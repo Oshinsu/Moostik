@@ -81,19 +81,24 @@
     }
   ],
   "characters": [
-    "baby-papy",
-    "young-papy",
-    "mama-moostik",
+    "baby-dorval",
+    "mama-dorval",
+    "young-dorval",
+    "papy-tik",
     "general-aedes",
     "scholar-culex",
+    "evil-pik",
+    "bartender-anopheles",
+    "singer-stegomyia",
     "child-killer"
   ],
   "locations": [
-    "tissu-metropolis",
-    "tire-fortress",
-    "ti-sang-bar",
-    "university-culex",
-    "martinique-house"
+    "tire-city",
+    "fort-sang-noir",
+    "bar-ti-sang",
+    "academy-of-blood",
+    "genocide-memorial",
+    "creole-house"
   ],
   "shots": [
     {
