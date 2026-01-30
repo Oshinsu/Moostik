@@ -11,7 +11,6 @@ import {
   MOOSTIK_ANIMATION_PROVIDERS,
   MOOSTIK_SCENE_PROVIDERS,
   REPLICATE_MODELS,
-  getOptimalProvider,
 } from "@/lib/video/types";
 
 export async function GET() {

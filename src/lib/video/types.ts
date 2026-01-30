@@ -878,7 +878,7 @@ export function getProviderFallbackChain(
   requirements: Partial<VideoCapabilities>
 ): VideoProvider[] {
   const providers = Object.entries(PROVIDER_CONFIGS)
-    .filter(([_, config]) => {
+    .filter(([, config]) => {
       const caps = config.capabilities;
       if (requirements.supportsAudio && !caps.supportsAudio) return false;
       if (requirements.supportsLipSync && !caps.supportsLipSync) return false;

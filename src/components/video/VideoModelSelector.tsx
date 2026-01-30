@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Tooltip,
   TooltipContent,
@@ -15,18 +13,14 @@ import {
   Check,
   Zap,
   Volume2,
-  Sparkles,
   Film,
   Play,
   Mic,
   Palette,
   Target,
   Clock,
-  DollarSign,
-  AlertTriangle,
   Crown,
   Star,
-  ChevronRight,
 } from "lucide-react";
 import {
   type VideoProvider,
@@ -113,7 +107,7 @@ export function VideoModelSelector({
   const [hoveredProvider, setHoveredProvider] = useState<VideoProvider | null>(null);
 
   const providers = Object.entries(PROVIDER_CONFIGS)
-    .filter(([_, config]) => !filterTier || config.tier === filterTier)
+    .filter(([, config]) => !filterTier || config.tier === filterTier)
     .sort((a, b) => a[1].pricing.costPer5sVideo - b[1].pricing.costPer5sVideo);
 
   const groupedByTier = providers.reduce((acc, [provider, config]) => {

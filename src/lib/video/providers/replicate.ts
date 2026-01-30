@@ -79,6 +79,22 @@ interface ReplicateInput {
   [key: string]: unknown;
 }
 
+// Type for Replicate prediction output object
+interface ReplicatePredictionOutput {
+  video?: string;
+  video_url?: string;
+  audio?: string;
+  audio_url?: string;
+}
+
+// Type for Replicate prediction metrics
+interface ReplicatePredictionMetrics {
+  predict_time?: number;
+}
+
+// Type for Replicate webhook events
+type ReplicateWebhookEvent = "start" | "output" | "logs" | "completed";
+
 /**
  * Build input for Wan 2.x models
  */
@@ -513,7 +529,7 @@ export async function generateVideo(
   provider: VideoProvider,
   options: {
     webhook?: string;
-    webhookEvents?: string[];
+    webhookEvents?: ReplicateWebhookEvent[];
   } = {}
 ): Promise<VideoGenerationOutput> {
   const perf = trackPerformance("generateVideo");
@@ -539,7 +555,7 @@ export async function generateVideo(
       model: modelId,
       input: replicateInput,
       webhook: options.webhook,
-      webhook_events_filter: options.webhookEvents as any,
+      webhook_events_filter: options.webhookEvents,
     });
 
     const output: VideoGenerationOutput = {
@@ -669,8 +685,9 @@ export async function checkVideoStatus(
           output.audioUrl = prediction.output[1];
         }
       } else if (typeof prediction.output === "object") {
-        output.videoUrl = (prediction.output as any).video || (prediction.output as any).video_url;
-        output.audioUrl = (prediction.output as any).audio || (prediction.output as any).audio_url;
+        const outputObj = prediction.output as ReplicatePredictionOutput;
+        output.videoUrl = outputObj.video || outputObj.video_url;
+        output.audioUrl = outputObj.audio || outputObj.audio_url;
       }
     }
 
@@ -685,8 +702,9 @@ export async function checkVideoStatus(
 
     // Metrics
     if (prediction.metrics) {
-      output.actualProcessingMs = (prediction.metrics as any).predict_time
-        ? (prediction.metrics as any).predict_time * 1000
+      const metrics = prediction.metrics as ReplicatePredictionMetrics;
+      output.actualProcessingMs = metrics.predict_time
+        ? metrics.predict_time * 1000
         : undefined;
     }
 

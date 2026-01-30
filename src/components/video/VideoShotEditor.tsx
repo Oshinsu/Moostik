@@ -14,26 +14,15 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// Select components available for future use
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Play,
   Film,
-  Camera,
-  Volume2,
-  Mic,
   Settings,
   Sparkles,
   Check,
-  ChevronDown,
-  AlertCircle,
   Wand2,
 } from "lucide-react";
 
@@ -89,57 +78,49 @@ export function VideoShotEditor({
   onClose,
   onSave,
 }: VideoShotEditorProps) {
-  const [animationType, setAnimationType] = useState<AnimationType>("subtle");
+  // Scene to animation type mapping
+  const sceneToAnimation: Record<string, AnimationType> = {
+    genocide: "death",
+    survival: "action",
+    training: "combat",
+    planning: "dialogue",
+    bar_scene: "dialogue",
+    battle: "combat",
+    emotional: "emotional",
+    establishing: "establishing",
+    flashback: "flashback",
+    montage: "transition",
+    revelation: "emotional",
+  };
+
+  // Initialize state from shot data
+  const initialAnimation = shot ? (sceneToAnimation[shot.sceneType] || "subtle") : "subtle";
+  const initialProvider = shot && MOOSTIK_SCENE_PROVIDERS[shot.sceneType]
+    ? MOOSTIK_SCENE_PROVIDERS[shot.sceneType]
+    : "wan-2.5";
+  const initialPrompt = shot
+    ? (shot.narrativeDescription || shot.description || shot.name)
+    : "";
+
+  const [animationType, setAnimationType] = useState<AnimationType>(initialAnimation);
   const [useAutoProvider, setUseAutoProvider] = useState(true);
-  const [selectedProvider, setSelectedProvider] = useState<VideoProvider>("wan-2.5");
+  const [selectedProvider, setSelectedProvider] = useState<VideoProvider>(initialProvider);
   const [videoConfig, setVideoConfig] = useState<Partial<VideoGenerationInput>>({
     durationSeconds: 5,
     aspectRatio: "16:9",
     resolution: "1080p",
     generateAudio: true,
   });
-  const [prompt, setPrompt] = useState("");
-
-  // Initialize from shot data
-  useEffect(() => {
-    if (shot) {
-      // Determine animation type from scene type
-      const sceneToAnimation: Record<string, AnimationType> = {
-        genocide: "death",
-        survival: "action",
-        training: "combat",
-        planning: "dialogue",
-        bar_scene: "dialogue",
-        battle: "combat",
-        emotional: "emotional",
-        establishing: "establishing",
-        flashback: "flashback",
-        montage: "transition",
-        revelation: "emotional",
-      };
-      const inferredAnimation = sceneToAnimation[shot.sceneType] || "subtle";
-      setAnimationType(inferredAnimation);
-
-      // Set prompt from shot description
-      setPrompt(shot.narrativeDescription || shot.description || shot.name);
-
-      // Auto-select provider based on scene type
-      if (useAutoProvider) {
-        const sceneProvider = MOOSTIK_SCENE_PROVIDERS[shot.sceneType];
-        if (sceneProvider) {
-          setSelectedProvider(sceneProvider);
-        }
-      }
-    }
-  }, [shot, useAutoProvider]);
+  const [prompt, setPrompt] = useState(initialPrompt);
 
   // Update provider when animation type changes (if auto mode)
-  useEffect(() => {
+  const handleAnimationTypeChange = (newType: AnimationType) => {
+    setAnimationType(newType);
     if (useAutoProvider) {
-      const optimalProvider = getOptimalProvider(animationType, "standard");
+      const optimalProvider = getOptimalProvider(newType, "standard");
       setSelectedProvider(optimalProvider);
     }
-  }, [animationType, useAutoProvider]);
+  };
 
   const handleSave = () => {
     onSave(shot.id, variation?.id, {
@@ -215,7 +196,7 @@ export function VideoShotEditor({
                     return (
                       <button
                         key={type.value}
-                        onClick={() => setAnimationType(type.value)}
+                        onClick={() => handleAnimationTypeChange(type.value)}
                         className={cn(
                           "w-full text-left p-3 rounded-lg border transition-all",
                           isSelected

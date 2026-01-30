@@ -8,7 +8,6 @@ import {
   DollarSign,
   Clock,
   Film,
-  TrendingUp,
   TrendingDown,
   AlertTriangle,
   Zap,
@@ -29,14 +28,6 @@ interface VideoCostEstimatorProps {
   className?: string;
   showComparison?: boolean;
   budgetLimit?: number;
-}
-
-interface ProviderCost {
-  provider: VideoProvider;
-  tier: string;
-  totalCost: number;
-  costPerShot: number;
-  processingTimeEstimate: string;
 }
 
 export function VideoCostEstimator({

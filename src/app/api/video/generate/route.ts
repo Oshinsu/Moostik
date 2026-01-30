@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     if (body.waitForCompletion !== false) {
       // Wait for video to complete (default behavior)
       result = await generateVideoAndWait(input, body.provider, {
-        maxWaitMs: providerConfig.timeoutMs,
+        timeoutMs: providerConfig.timeoutMs,
         pollIntervalMs: 2000,
       });
     } else {

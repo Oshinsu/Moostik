@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,11 +15,6 @@ import {
 import {
   Film,
   Play,
-  Settings,
-  DollarSign,
-  Clock,
-  Layers,
-  ChevronRight,
   Sparkles,
   Crown,
   Star,
@@ -28,7 +23,6 @@ import {
   Mic,
   Palette,
   Target,
-  RefreshCw,
 } from "lucide-react";
 
 import { Sidebar } from "@/components/Sidebar";
@@ -39,7 +33,6 @@ import { useMoostik } from "@/contexts/MoostikContext";
 
 import {
   type VideoProvider,
-  type ProviderTier,
   PROVIDER_CONFIGS,
   MOOSTIK_BUDGET_TIERS,
 } from "@/lib/video/types";
@@ -361,7 +354,7 @@ export default function VideoPage() {
                     Sélectionnez un épisode
                   </p>
                   <p className="text-xs text-zinc-600 mt-1">
-                    pour voir l'estimation des coûts
+                    pour voir l&apos;estimation des coûts
                   </p>
                 </div>
               )}

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// Custom tab navigation used instead of Tabs component
 import {
   Play,
   Pause,
@@ -22,8 +22,6 @@ import {
   X,
   AlertTriangle,
   Film,
-  Clock,
-  DollarSign,
   Settings,
   ChevronRight,
   Loader2,
@@ -41,7 +39,6 @@ import {
   type VideoGenerationInput,
   type VideoGenerationOutput,
   PROVIDER_CONFIGS,
-  MOOSTIK_BUDGET_TIERS,
 } from "@/lib/video/types";
 
 interface VideoGenerationWorkflowProps {
