@@ -22,33 +22,22 @@ import type {
   createEmptyClusterReferences,
   createEmptyReadinessCheck,
 } from "@/types/scene-cluster";
+import { isLocalUrl } from "./url-utils";
+import { referenceLogger as logger } from "./logger";
+import { config } from "./config";
 
 // ============================================================================
-// CONSTANTES
+// CONSTANTES (depuis config centralisée)
 // ============================================================================
 
 /** Limite maximum d'images de référence pour Nano Banana Pro */
-const MAX_REFERENCE_IMAGES = 14;
+const MAX_REFERENCE_IMAGES = config.replicate.maxReferenceImages;
 
 /** Nombre maximum de références par personnage */
-const MAX_REFS_PER_CHARACTER = 2;
+const MAX_REFS_PER_CHARACTER = config.references.maxRefsPerCharacter;
 
 /** Nombre maximum de références par lieu */
-const MAX_REFS_PER_LOCATION = 3;
-
-// ============================================================================
-// UTILITAIRES URL
-// ============================================================================
-
-/**
- * Vérifie si une URL est locale (non-accessible directement par Replicate)
- * Ces URLs seront converties en base64 automatiquement par replicate.ts
- */
-function isLocalUrl(url: string): boolean {
-  return url.startsWith('/api/images/') || 
-         url.startsWith('/output/') ||
-         (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:'));
-}
+const MAX_REFS_PER_LOCATION = config.references.maxRefsPerLocation;
 
 // ============================================================================
 // TYPES INTERNES
@@ -160,6 +149,11 @@ export async function resolveReferencesForShot(
 ): Promise<ClusterReferences> {
   const opts = { ...DEFAULT_RESOLVE_OPTIONS, ...options };
   const warnings: string[] = [];
+
+  logger.debug("Resolving references", {
+    characters: characterIds.length,
+    locations: locationIds.length,
+  });
 
   // Résoudre les références des personnages
   const characterRefs: CharacterReference[] = [];

@@ -1,98 +1,24 @@
 import Replicate from "replicate";
-import { writeFile, mkdir, readFile } from "fs/promises";
+import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import type { CameraAngle, MoostikPrompt, Variation } from "@/types/moostik";
 import { promptToText, CAMERA_ANGLES } from "@/types/moostik";
 import type { JsonMoostik } from "./json-moostik-standard";
 import { jsonMoostikToPrompt, getJsonMoostikNegative } from "./json-moostik-standard";
+import { withReplicateRetry, processBatch, REPLICATE_RETRY_OPTIONS } from "./retry";
+import { isLocalUrl, prepareUrlsForReplicate } from "./url-utils";
+import { replicateLogger as logger, trackPerformance } from "./logger";
+import { ReplicateError, RateLimitError } from "./errors";
+import { config } from "./config";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-// Configuration de génération parallèle
-// Réduit pour éviter le rate limiting avec les images base64 volumineuses (~7-8MB chacune)
-const MAX_PARALLEL_GENERATIONS = 2;
-const GENERATION_DELAY_MS = 2000; // Délai plus long entre les lancements pour éviter le rate limiting
-
-// ============================================================================
-// CONVERSION D'URLS LOCALES EN BASE64
-// ============================================================================
-
-/**
- * Vérifie si une URL est locale (non-accessible par Replicate)
- */
-function isLocalUrl(url: string): boolean {
-  return url.startsWith('/api/images/') || 
-         url.startsWith('/output/') ||
-         (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:'));
-}
-
-/**
- * Convertit un chemin local en chemin de fichier absolu
- */
-function localUrlToFilePath(url: string): string {
-  // /api/images/references/characters/papy-tik.png -> output/references/characters/papy-tik.png
-  if (url.startsWith('/api/images/')) {
-    return path.join(process.cwd(), 'output', url.replace('/api/images/', ''));
-  }
-  // /output/... -> output/...
-  if (url.startsWith('/output/')) {
-    return path.join(process.cwd(), url.substring(1));
-  }
-  // Chemin relatif
-  return path.join(process.cwd(), url);
-}
-
-/**
- * Convertit une URL locale en data URI base64
- */
-async function localUrlToBase64(url: string): Promise<string | null> {
-  try {
-    const filePath = localUrlToFilePath(url);
-    const buffer = await readFile(filePath);
-    const base64 = buffer.toString('base64');
-    
-    // Déterminer le type MIME
-    const ext = path.extname(filePath).toLowerCase();
-    const mimeTypes: Record<string, string> = {
-      '.png': 'image/png',
-      '.jpg': 'image/jpeg',
-      '.jpeg': 'image/jpeg',
-      '.gif': 'image/gif',
-      '.webp': 'image/webp',
-    };
-    const mimeType = mimeTypes[ext] || 'image/png';
-    
-    console.log(`[Replicate] Converted local image to base64: ${url}`);
-    return `data:${mimeType};base64,${base64}`;
-  } catch (error) {
-    console.error(`[Replicate] Failed to convert local URL to base64: ${url}`, error);
-    return null;
-  }
-}
-
-/**
- * Convertit toutes les URLs locales en base64 pour Replicate
- * Les URLs publiques (http/https) sont conservées telles quelles
- */
-async function convertLocalRefsToBase64(referenceImages: string[]): Promise<string[]> {
-  const convertedRefs: string[] = [];
-  
-  for (const url of referenceImages) {
-    if (isLocalUrl(url)) {
-      const base64 = await localUrlToBase64(url);
-      if (base64) {
-        convertedRefs.push(base64);
-      }
-    } else {
-      // URL publique - conserver telle quelle
-      convertedRefs.push(url);
-    }
-  }
-  
-  return convertedRefs;
-}
+// Configuration de génération parallèle (depuis config centralisée)
+const MAX_PARALLEL_GENERATIONS = config.replicate.maxParallelGenerations;
+const GENERATION_DELAY_MS = config.replicate.generationDelayMs;
+const MAX_REFERENCE_IMAGES = config.replicate.maxReferenceImages;
 
 export interface GenerateImageOptions {
   prompt: string;
@@ -115,18 +41,17 @@ export interface BatchGenerationResult {
   error?: string;
 }
 
-// Générer une seule image
+// Générer une seule image avec retry automatique
 export async function generateImage(
   options: GenerateImageOptions
 ): Promise<GenerateImageResult> {
   const { prompt, aspectRatio = "16:9", outputFormat = "png", seed, referenceImages } = options;
 
-  console.log("[Replicate] Generating image...");
-  console.log("[Replicate] Prompt length:", prompt.length);
-  
-  if (referenceImages && referenceImages.length > 0) {
-    console.log("[Replicate] Using", referenceImages.length, "reference images");
-  }
+  logger.info("Generating image", {
+    promptLength: prompt.length,
+    aspectRatio,
+    refCount: referenceImages?.length ?? 0,
+  });
 
   const input: Record<string, unknown> = {
     prompt,
@@ -140,59 +65,75 @@ export async function generateImage(
 
   // Ajouter les images de référence si fournies (limite: 14 images max)
   if (referenceImages && referenceImages.length > 0) {
-    // Nano Banana Pro supporte jusqu'à 14 images de référence
-    const validRefs = referenceImages.filter(url => url && url.length > 0).slice(0, 14);
-    if (validRefs.length > 0) {
-      // Convertir les URLs locales en base64 pour que Replicate puisse les utiliser
-      const convertedRefs = await convertLocalRefsToBase64(validRefs);
-      if (convertedRefs.length > 0) {
-        input.image_input = convertedRefs;
-        console.log("[Replicate] Injecting", convertedRefs.length, "reference images into image_input");
-        const localCount = validRefs.filter(isLocalUrl).length;
-        if (localCount > 0) {
-          console.log(`[Replicate] Converted ${localCount} local URLs to base64`);
-        }
-      }
+    const { convertedUrls, localCount, publicCount, failedCount } =
+      await prepareUrlsForReplicate(referenceImages, MAX_REFERENCE_IMAGES);
+
+    if (convertedUrls.length > 0) {
+      input.image_input = convertedUrls;
+      logger.debug("Reference images prepared", {
+        total: convertedUrls.length,
+        local: localCount,
+        public: publicCount,
+        failed: failedCount,
+      });
     }
   }
 
-  const output = await replicate.run("google/nano-banana-pro", { input });
+  // Utiliser le retry automatique pour les appels Replicate
+  const output = await withReplicateRetry(async () => {
+    try {
+      return await replicate.run("google/nano-banana-pro", { input });
+    } catch (error) {
+      // Détecter les erreurs de rate limiting
+      if (error instanceof Error && error.message.includes("429")) {
+        throw new RateLimitError(60);
+      }
+      throw error;
+    }
+  });
 
   // Le output est un FileOutput avec une méthode url()
   const fileOutput = output as { url: () => string } & Blob;
   const url = fileOutput.url();
 
-  console.log("[Replicate] Image generated:", url);
+  logger.info("Image generated successfully", { url: url.substring(0, 50) + "..." });
 
   return { url, seed };
 }
 
-// Télécharger une image localement
+// Télécharger une image localement avec retry
 export async function downloadImage(
   imageUrl: string,
   episodeId: string,
   shotId: string,
   variationId: string
 ): Promise<string> {
-  const outputDir = path.join(process.cwd(), "output", "images", episodeId, shotId);
+  const outputDir = path.join(config.paths.images, episodeId, shotId);
   await mkdir(outputDir, { recursive: true });
 
   const filename = `${variationId}.png`;
   const localPath = path.join(outputDir, filename);
 
-  console.log("[Download] Fetching image from:", imageUrl);
+  logger.debug("Downloading image", { url: imageUrl.substring(0, 50) + "..." });
 
-  const response = await fetch(imageUrl);
-  if (!response.ok) {
-    throw new Error(`Failed to download image: ${response.statusText}`);
-  }
+  // Utiliser retry pour le téléchargement
+  const buffer = await withReplicateRetry(async () => {
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new ReplicateError(
+        `Failed to download image: ${response.statusText}`,
+        "DOWNLOAD_ERROR",
+        response.status >= 500 // Retry uniquement pour les erreurs serveur
+      );
+    }
 
-  const arrayBuffer = await response.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
+  }, { maxRetries: 3, initialDelay: 1000 });
 
   await writeFile(localPath, buffer);
 
-  console.log("[Download] Saved to:", localPath);
+  logger.debug("Image saved", { path: localPath });
 
   return localPath;
 }
@@ -271,51 +212,73 @@ export async function generateShotVariations(
   onProgress?: (variationId: string, status: "generating" | "completed" | "error", result?: GenerateImageResult, error?: string) => void,
   referenceImages?: string[]
 ): Promise<BatchGenerationResult[]> {
-  const results: BatchGenerationResult[] = [];
   const pendingVariations = variations.filter(v => v.status === "pending" || v.status === "failed");
 
-  // Traiter en batches parallèles
-  for (let i = 0; i < pendingVariations.length; i += MAX_PARALLEL_GENERATIONS) {
-    const batch = pendingVariations.slice(i, i + MAX_PARALLEL_GENERATIONS);
+  logger.info("Starting shot variations generation", {
+    shotId,
+    total: pendingVariations.length,
+    episodeId,
+  });
 
-    const batchPromises = batch.map(async (variation, index) => {
-      // Petit délai échelonné pour éviter le rate limiting
-      await new Promise(resolve => setTimeout(resolve, index * GENERATION_DELAY_MS));
+  const tracker = trackPerformance(`Shot ${shotId} generation`, "Replicate");
 
+  // Utiliser processBatch pour le traitement parallèle avec retry
+  const batchResult = await processBatch({
+    items: pendingVariations,
+    processor: async (variation) => {
       onProgress?.(variation.id, "generating");
 
-      try {
-        const result = await generateVariation(
-          moostikPrompt,
-          variation.cameraAngle,
-          episodeId,
-          shotId,
-          variation.id,
-          referenceImages
-        );
+      const result = await generateVariation(
+        moostikPrompt,
+        variation.cameraAngle,
+        episodeId,
+        shotId,
+        variation.id,
+        referenceImages
+      );
 
-        onProgress?.(variation.id, "completed", result);
+      onProgress?.(variation.id, "completed", result);
 
-        return {
-          variationId: variation.id,
-          success: true,
-          result,
-        };
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
-        onProgress?.(variation.id, "error", undefined, errorMessage);
-
-        return {
-          variationId: variation.id,
-          success: false,
-          error: errorMessage,
-        };
+      return {
+        variationId: variation.id,
+        success: true,
+        result,
+      } as BatchGenerationResult;
+    },
+    concurrency: MAX_PARALLEL_GENERATIONS,
+    batchDelay: GENERATION_DELAY_MS,
+    onProgress: (completed, total, result) => {
+      if (result instanceof Error) {
+        logger.warn("Variation generation failed", { error: result.message });
       }
-    });
+    },
+    continueOnError: true,
+  });
 
-    const batchResults = await Promise.all(batchPromises);
-    results.push(...batchResults);
+  tracker.finish();
+
+  // Combiner les résultats
+  const results: BatchGenerationResult[] = [
+    ...batchResult.successful,
+    ...batchResult.failed.map(f => ({
+      variationId: pendingVariations[f.index].id,
+      success: false,
+      error: f.error.message,
+    })),
+  ];
+
+  // Notifier les erreurs
+  for (const failed of batchResult.failed) {
+    const variation = pendingVariations[failed.index];
+    onProgress?.(variation.id, "error", undefined, failed.error.message);
   }
+
+  logger.info("Shot variations generation completed", {
+    shotId,
+    successful: batchResult.successful.length,
+    failed: batchResult.failed.length,
+    totalTime: `${batchResult.totalTime}ms`,
+  });
 
   return results;
 }
@@ -336,9 +299,24 @@ export async function generateMultipleShotsParallel(
 ): Promise<Map<string, BatchGenerationResult[]>> {
   const allResults = new Map<string, BatchGenerationResult[]>();
 
+  logger.info("Starting multi-shot parallel generation", {
+    episodeId,
+    totalShots: shots.length,
+    maxParallel: maxParallelShots,
+  });
+
+  const tracker = trackPerformance(`Episode ${episodeId} batch generation`, "Replicate");
+
   // Traiter les shots en batches parallèles
   for (let i = 0; i < shots.length; i += maxParallelShots) {
     const shotBatch = shots.slice(i, i + maxParallelShots);
+    const batchNumber = Math.floor(i / maxParallelShots) + 1;
+
+    logger.debug(`Processing shot batch ${batchNumber}`, {
+      shots: shotBatch.map(s => s.shotId),
+    });
+
+    tracker.checkpoint(`Batch ${batchNumber} start`);
 
     const shotPromises = shotBatch.map(async (shot) => {
       const results = await generateShotVariations(
@@ -360,7 +338,26 @@ export async function generateMultipleShotsParallel(
     for (const { shotId, results } of batchResults) {
       allResults.set(shotId, results);
     }
+
+    tracker.checkpoint(`Batch ${batchNumber} complete`);
   }
+
+  tracker.finish();
+
+  // Calculer les statistiques finales
+  let totalSuccess = 0;
+  let totalFailed = 0;
+  for (const results of allResults.values()) {
+    totalSuccess += results.filter(r => r.success).length;
+    totalFailed += results.filter(r => !r.success).length;
+  }
+
+  logger.info("Multi-shot generation completed", {
+    episodeId,
+    totalShots: shots.length,
+    totalSuccess,
+    totalFailed,
+  });
 
   return allResults;
 }
@@ -378,31 +375,37 @@ export async function generateWithJsonMoostik(
 ): Promise<GenerateImageResult> {
   const prompt = jsonMoostikToPrompt(jsonMoostik);
   const negativePrompt = getJsonMoostikNegative(jsonMoostik);
-  
+
   // Construire le prompt final avec negative
   const fullPrompt = `${prompt}. AVOID: ${negativePrompt}`;
-  
-  console.log("[JsonMoostik] Generating with standard structure...");
-  console.log("[JsonMoostik] Type:", jsonMoostik.deliverable.type);
-  console.log("[JsonMoostik] Goal:", jsonMoostik.goal);
-  
+
+  logger.info("Generating with JSON MOOSTIK standard", {
+    type: jsonMoostik.deliverable.type,
+    goal: jsonMoostik.goal,
+  });
+
   const result = await generateImage({
     prompt: fullPrompt,
     aspectRatio: jsonMoostik.deliverable.aspect_ratio,
   });
-  
+
   // Sauvegarder si un chemin est fourni
   if (outputPath) {
     await mkdir(outputPath.dir, { recursive: true });
     const localPath = path.join(outputPath.dir, outputPath.filename);
-    
-    const response = await fetch(result.url);
-    const arrayBuffer = await response.arrayBuffer();
-    await writeFile(localPath, Buffer.from(arrayBuffer));
-    
+
+    const buffer = await withReplicateRetry(async () => {
+      const response = await fetch(result.url);
+      const arrayBuffer = await response.arrayBuffer();
+      return Buffer.from(arrayBuffer);
+    });
+
+    await writeFile(localPath, buffer);
+
+    logger.debug("Image saved", { localPath });
     return { url: result.url, localPath };
   }
-  
+
   return result;
 }
 
@@ -411,11 +414,13 @@ export async function generateCharacterReference(
   characterPrompt: string,
   characterId: string
 ): Promise<GenerateImageResult> {
-  const outputDir = path.join(process.cwd(), "output", "references", "characters");
+  const outputDir = path.join(config.paths.references, "characters");
   await mkdir(outputDir, { recursive: true });
 
+  logger.info("Generating character reference", { characterId });
+
   // Construire le prompt avec les invariants constitutionnels
-  const fullPrompt = `${characterPrompt}. 
+  const fullPrompt = `${characterPrompt}.
     Style: Pixar-dark 3D feature-film quality, ILM-grade VFX.
     MUST INCLUDE: visible needle-like proboscis.
     Palette: obsidian black, blood red, crimson, copper accent, warm amber eyes.
@@ -425,15 +430,22 @@ export async function generateCharacterReference(
 
   const result = await generateImage({
     prompt: fullPrompt,
-    aspectRatio: "21:9", // Turnaround sheet
+    aspectRatio: config.generation.characterTurnaroundRatio,
   });
 
   const filename = `${characterId}.png`;
   const localPath = path.join(outputDir, filename);
 
-  const response = await fetch(result.url);
-  const arrayBuffer = await response.arrayBuffer();
-  await writeFile(localPath, Buffer.from(arrayBuffer));
+  // Télécharger avec retry
+  const buffer = await withReplicateRetry(async () => {
+    const response = await fetch(result.url);
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
+  });
+
+  await writeFile(localPath, buffer);
+
+  logger.info("Character reference generated", { characterId, localPath });
 
   return {
     url: result.url,
@@ -446,8 +458,10 @@ export async function generateLocationReference(
   locationPrompt: string,
   locationId: string
 ): Promise<GenerateImageResult> {
-  const outputDir = path.join(process.cwd(), "output", "references", "locations");
+  const outputDir = path.join(config.paths.references, "locations");
   await mkdir(outputDir, { recursive: true });
+
+  logger.info("Generating location reference", { locationId });
 
   // Construire le prompt avec les invariants constitutionnels
   const fullPrompt = `${locationPrompt}.
@@ -461,15 +475,22 @@ export async function generateLocationReference(
 
   const result = await generateImage({
     prompt: fullPrompt,
-    aspectRatio: "16:9",
+    aspectRatio: config.generation.defaultAspectRatio,
   });
 
   const filename = `${locationId}.png`;
   const localPath = path.join(outputDir, filename);
 
-  const response = await fetch(result.url);
-  const arrayBuffer = await response.arrayBuffer();
-  await writeFile(localPath, Buffer.from(arrayBuffer));
+  // Télécharger avec retry
+  const buffer = await withReplicateRetry(async () => {
+    const response = await fetch(result.url);
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
+  });
+
+  await writeFile(localPath, buffer);
+
+  logger.info("Location reference generated", { locationId, localPath });
 
   return {
     url: result.url,
