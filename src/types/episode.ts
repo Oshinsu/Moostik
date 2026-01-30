@@ -158,6 +158,24 @@ export interface Variation {
   localPath?: string;
   generatedAt?: string;
   seed?: number;
+
+  // Video generation
+  /** Video generation status */
+  videoStatus?: "pending" | "generating" | "completed" | "failed";
+  /** Generated video URL (from provider CDN) */
+  videoUrl?: string;
+  /** Local path to downloaded video */
+  videoLocalPath?: string;
+  /** Video provider used (kling, runway, etc.) */
+  videoProvider?: string;
+  /** Video generation timestamp */
+  videoGeneratedAt?: string;
+
+  // Lip sync
+  /** Lip sync status */
+  lipSyncStatus?: "pending" | "processing" | "completed" | "failed";
+  /** Lip-synced video path */
+  lipSyncVideoPath?: string;
 }
 
 export interface Shot {
@@ -183,7 +201,28 @@ export interface Shot {
   durationSeconds?: number;
   /** Notes de réalisation */
   directorNotes?: string;
+
+  // Generated audio paths
+  /** Path to synthesized dialogue audio file */
+  dialogueAudioPath?: string;
+  /** Path to mixed audio (dialogue + sfx + ambience) */
+  mixedAudioPath?: string;
+  /** Total dialogue duration in milliseconds */
+  dialogueDurationMs?: number;
 }
+
+/** Episode generation status */
+export type EpisodeGenerationStatus =
+  | "draft"           // Initial state, narrative defined
+  | "images_pending"  // Waiting for image generation
+  | "images_done"     // All images generated
+  | "video_pending"   // Waiting for video generation
+  | "video_done"      // All videos generated
+  | "audio_pending"   // Waiting for audio (dialogue, music)
+  | "audio_done"      // All audio generated
+  | "composing"       // Final composition in progress
+  | "completed"       // Final episode rendered
+  | "failed";         // Generation failed
 
 export interface Episode {
   id: string;
@@ -196,4 +235,18 @@ export interface Episode {
   locations?: string[]; // IDs des lieux de l'épisode
   createdAt: string;
   updatedAt: string;
+
+  // Generation pipeline status
+  /** Current generation status */
+  generationStatus?: EpisodeGenerationStatus;
+  /** Path to generated music track */
+  musicPath?: string;
+  /** Path to final composed video */
+  finalVideoPath?: string;
+  /** Total episode duration in milliseconds */
+  totalDurationMs?: number;
+  /** Last generation error (if failed) */
+  generationError?: string;
+  /** Generation completion timestamp */
+  generationCompletedAt?: string;
 }

@@ -24,6 +24,7 @@ export * from "./validation";
 export * from "./retry";
 export * from "./url-utils";
 export * from "./logger";
+export * from "./config";
 
 // ============================================================================
 // STANDARDS & HELPERS
@@ -32,3 +33,27 @@ export * from "./logger";
 export * from "./json-moostik-standard";
 export * from "./moostik-bible";
 export { cn } from "./utils";
+
+// ============================================================================
+// VIDEO GENERATION (Kling, Runway, Luma)
+// ============================================================================
+
+export * from "./video";
+
+// ============================================================================
+// AUDIO GENERATION (Voice, Music, Lip Sync)
+// ============================================================================
+
+export * from "./audio";
+
+// ============================================================================
+// COMPOSITION (FFmpeg, Timeline, Episode Assembly)
+// ============================================================================
+
+export * from "./composition";
+
+// ============================================================================
+// ORCHESTRATION (Automated Series Generation)
+// ============================================================================
+
+export * from "./orchestrator";
