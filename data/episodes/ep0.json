@@ -1,0 +1,1582 @@
+{
+  "id": "ep0",
+  "number": 0,
+  "title": "Le Génocide",
+  "description": "Requiem for Attack on Titan OST - L'épisode pilote de MOOSTIK. \nLe massacre inaugural des Moostik par un enfant martiniquais armé de BYSS. \nDu génocide à la reconstruction, de la fuite à la préparation de la vengeance.\n27 shots, 162 images totales à générer.",
+  "acts": [
+    {
+      "id": "act-1",
+      "number": 1,
+      "title": "La Paix Avant La Tempête",
+      "description": "La vie paisible des Moostik avant le génocide",
+      "shotIds": [
+        "shot-001",
+        "shot-002",
+        "shot-003",
+        "shot-004",
+        "shot-005"
+      ]
+    },
+    {
+      "id": "act-2",
+      "number": 2,
+      "title": "L'Apparition de la Menace",
+      "description": "L'enfant au BYSS entre en scène",
+      "shotIds": [
+        "shot-006",
+        "shot-007",
+        "shot-008",
+        "shot-009"
+      ]
+    },
+    {
+      "id": "act-3",
+      "number": 3,
+      "title": "Le Génocide",
+      "description": "L'attaque et les premiers morts",
+      "shotIds": [
+        "shot-010",
+        "shot-011",
+        "shot-012",
+        "shot-013",
+        "shot-014"
+      ]
+    },
+    {
+      "id": "act-4",
+      "number": 4,
+      "title": "La Chasse",
+      "description": "Course-poursuite et massacre",
+      "shotIds": [
+        "shot-015",
+        "shot-016",
+        "shot-017"
+      ]
+    },
+    {
+      "id": "act-5",
+      "number": 5,
+      "title": "L'Évasion",
+      "description": "Fuite des survivants",
+      "shotIds": [
+        "shot-018",
+        "shot-019",
+        "shot-020"
+      ]
+    },
+    {
+      "id": "act-6",
+      "number": 6,
+      "title": "Reconstruction et Revanche",
+      "description": "Time skip et préparation de la guerre",
+      "shotIds": [
+        "shot-021",
+        "shot-022",
+        "shot-023",
+        "shot-024",
+        "shot-025",
+        "shot-026",
+        "shot-027"
+      ]
+    }
+  ],
+  "characters": [
+    "baby-papy",
+    "young-papy",
+    "mama-moostik",
+    "general-aedes",
+    "scholar-culex",
+    "child-killer"
+  ],
+  "locations": [
+    "tissu-metropolis",
+    "tire-fortress",
+    "ti-sang-bar",
+    "university-culex",
+    "martinique-house"
+  ],
+  "shots": [
+    {
+      "id": "shot-1-1769759484234",
+      "number": 1,
+      "name": "L'Ombre de la Mort",
+      "description": "Une main d'enfant colossale tenant une bombe BYSS s'approche d'un village Moostik paisible.",
+      "sceneType": "genocide",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Montrer la menace colossale de l'humain face à la fragilité du village Moostik.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "L'Enfant au BYSS",
+            "description": "Pixar-stylized 5-year-old Antillean Caribbean child hands ONLY on pure white background, ebony dark skin with warm subsurface scattering, soft rounded Pixar-style fingers with visible knuckle creases, holding BYSS aerosol can, cropped at wrist NO face visible, innocent playful grip, warm tropical lighting, 3D Pixar feature film quality, 8K textures",
+            "importance": "primary",
+            "action": "Une main d'enfant colossale tenant une bombe BYSS s'approche d'un village Moostik paisible."
+          }
+        ],
+        "scene": {
+          "location": "Cité du Pneu - Capitale des Bloodwings",
+          "time": "Daylight filtered through tropical leaves",
+          "atmosphere": [
+            "Toxic chemical haze",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Organic chitin spires rising from dew-water surface",
+            "Elegant bridges spanning water canals",
+            "Domed wing-membrane structures",
+            "Blood-drop shaped stained glass windows",
+            "Bioluminescent amber/crimson lanterns",
+            "Gothic arches with proboscis ornaments",
+            "NO human architecture - entirely Moostik Renaissance"
+          ]
+        },
+        "composition": {
+          "framing": "low angle",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "low angle",
+          "lens_mm": 24,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Harsh tropical sun filtering through leaves",
+          "fill": "Greenish bounce from foliage",
+          "rim": "High contrast white rim",
+          "notes": "Dramatic shadows from the child's hand"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "failed"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "failed"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "failed"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "failed"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "completed",
+          "imageUrl": "https://replicate.delivery/xezq/aMAMRGi1dNpNFdPqevoXE8990gsvtYMMYWoBWW5vUmtefLFsA/tmpkgn2aqgl.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-1-1769759484234/var-low_angle-1769759484235.png",
+          "generatedAt": "2026-01-30T13:11:39.062Z"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.234Z",
+      "updatedAt": "2026-01-30T13:12:54.604Z",
+      "characterIds": [
+        "child-killer"
+      ],
+      "locationIds": [
+        "tire-city"
+      ]
+    },
+    {
+      "id": "shot-2-1769759484235",
+      "number": 2,
+      "name": "Le Sacrifice de Maeli",
+      "description": "Mama Dorval (Maeli) protège le bébé Dorval sous ses ailes alors que le nuage chimique approche.",
+      "sceneType": "emotional",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Capturer l'héroïsme tragique de la mère et la terreur pure du bébé.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Maman de Dorval",
+            "description": "Premium 3D animated feature film character turnaround sheet, elegant Pixar-demonic microscopic mosquito countess mother Maeli, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek fine needle-precise proboscis elegant and refined, beautiful warm slightly larger eyes with subtle lash-like ridge stylization, kind smile with hint of melancholy, petal-crown arrangement of pale lint petals around head ridge held by crimson wax dots like delicate tiara, two tiny droplet-shaped crimson wax earrings on copper thread loops, elegant translucent wings longer with subtle crimson gradient near base romantic style, tiny sparkle-like condensation dust near wing edges, slim waist elegant abdomen curve long delicate legs, crimson thread rescue harness with quick-release wax loops on forelegs arranged like elegant jewelry, narrow lint-fiber ribbon wrap on one hind leg mentor ribbon, small droplet-eye charm at chest smaller than Dorval refined, protective stance slightly curved like shielding someone, dark Madonna aesthetic tragically beautiful, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, 8K micro-textures",
+            "importance": "primary",
+            "action": "Mama Dorval (Maeli) protège le bébé Dorval sous ses ailes alors que le nuage chimique approche."
+          },
+          {
+            "name": "Bébé Dorval (Le Génocide)",
+            "description": "Premium 3D animated feature film character turnaround sheet, tiny baby Pixar-demonic microscopic mosquito larva baby Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE minuscule baby proboscis like innocent drinking straw barely formed, ENORMOUS terrified glowing ruby-red eyes with dew-drop blood tears, tiny undeveloped wing nubs like baby demon wings, small blood-red crest tuft resembling cute baby devil horns, vulnerable tiny larval body with subtle demonic swirl patterns, expression of pure terrified innocence mixed with inherent demonic heritage, being protectively shielded, aggressively cute yet subtly unsettling dark cherub aesthetic, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red warm-amber, soft emotional lighting with crimson undertones, 8K micro-textures",
+            "importance": "primary",
+            "action": "Mama Dorval (Maeli) protège le bébé Dorval sous ses ailes alors que le nuage chimique approche."
+          }
+        ],
+        "scene": {
+          "location": "Cité du Pneu - Capitale des Bloodwings",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Organic chitin spires rising from dew-water surface",
+            "Elegant bridges spanning water canals",
+            "Domed wing-membrane structures",
+            "Blood-drop shaped stained glass windows",
+            "Bioluminescent amber/crimson lanterns",
+            "Gothic arches with proboscis ornaments",
+            "NO human architecture - entirely Moostik Renaissance"
+          ]
+        },
+        "composition": {
+          "framing": "close up",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "close up",
+          "lens_mm": 50,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "failed"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "failed"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "failed"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "failed"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:56.554Z",
+      "characterIds": [
+        "mama-dorval",
+        "baby-dorval"
+      ],
+      "locationIds": [
+        "tire-city"
+      ]
+    },
+    {
+      "id": "shot-3-1769759484235",
+      "number": 3,
+      "name": "Le Nuage Toxique",
+      "description": "Le gaz BYSS se répand dans les canaux de rosée, transformant le paradis en enfer.",
+      "sceneType": "genocide",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Montrer l'échelle de la destruction environnementale.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [],
+        "scene": {
+          "location": "Cité du Pneu - Capitale des Bloodwings",
+          "time": "Daylight filtered through tropical leaves",
+          "atmosphere": [
+            "Toxic chemical haze",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Organic chitin spires rising from dew-water surface",
+            "Elegant bridges spanning water canals",
+            "Domed wing-membrane structures",
+            "Blood-drop shaped stained glass windows",
+            "Bioluminescent amber/crimson lanterns",
+            "Gothic arches with proboscis ornaments",
+            "NO human architecture - entirely Moostik Renaissance"
+          ]
+        },
+        "composition": {
+          "framing": "extreme wide",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "extreme wide",
+          "lens_mm": 14,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Harsh tropical sun filtering through leaves",
+          "fill": "Greenish bounce from foliage",
+          "rim": "High contrast white rim",
+          "notes": "Dramatic shadows from the child's hand"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.790Z",
+      "characterIds": [],
+      "locationIds": [
+        "tire-city"
+      ]
+    },
+    {
+      "id": "shot-4-1769759484235",
+      "number": 4,
+      "name": "Seul dans les Cendres",
+      "description": "Bébé Dorval émerge des décombres de chitine, seul survivant au milieu des cadavres.",
+      "sceneType": "survival",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Accentuer la vulnérabilité et la solitude du survivant.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Bébé Dorval (Le Génocide)",
+            "description": "Premium 3D animated feature film character turnaround sheet, tiny baby Pixar-demonic microscopic mosquito larva baby Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE minuscule baby proboscis like innocent drinking straw barely formed, ENORMOUS terrified glowing ruby-red eyes with dew-drop blood tears, tiny undeveloped wing nubs like baby demon wings, small blood-red crest tuft resembling cute baby devil horns, vulnerable tiny larval body with subtle demonic swirl patterns, expression of pure terrified innocence mixed with inherent demonic heritage, being protectively shielded, aggressively cute yet subtly unsettling dark cherub aesthetic, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red warm-amber, soft emotional lighting with crimson undertones, 8K micro-textures",
+            "importance": "primary",
+            "action": "Bébé Dorval émerge des décombres de chitine, seul survivant au milieu des cadavres."
+          }
+        ],
+        "scene": {
+          "location": "Mémorial du Génocide BYSS",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Obsidian-like memorial walls from burned fibers",
+            "Names of fallen in bioluminescent script",
+            "Eternal blood-red flame",
+            "Statue of the Protecting Mother",
+            "Museum with BYSS can fragments"
+          ]
+        },
+        "composition": {
+          "framing": "high angle",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "high angle",
+          "lens_mm": 35,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "generating"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:57:40.441Z",
+      "characterIds": [
+        "baby-dorval"
+      ],
+      "locationIds": [
+        "genocide-memorial"
+      ]
+    },
+    {
+      "id": "shot-5-1769759484235",
+      "number": 5,
+      "name": "La Rencontre avec Aedes",
+      "description": "Le Général Aedes, blessé et scarifié, trouve le bébé Dorval dans les ruines.",
+      "sceneType": "survival",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Établir le lien entre le futur mentor et son pupille.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Général Aedes",
+            "description": "Premium 3D animated feature film character turnaround sheet, battle-hardened Pixar-demonic microscopic mosquito warlord General Aedes, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE war-worn proboscis held like blood-stained ceremonial blade with battle notches, stern commanding glowing blood-red eyes with thousand-yard PTSD stare yet adorably grumpy, scarred but powerful translucent wings like torn gothic battle flags with honor-wounds and copper-thread repairs, dark crimson mohawk crest standing aggressive like punk demon general, heavily scarred thorax with battle damage worn as medals of honor, military bearing radiating demonic gravitas and discipline, tiny skull-and-proboscis military insignia markings, crimson thread military harness with multiple wax seals indicating rank, commanding pose that would make actual demon generals take notes, grizzled veteran aesthetic meets cute grumpy grandpa energy, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, harsh dramatic military lighting with crimson battle-glow, 8K micro-textures",
+            "importance": "primary",
+            "action": "Le Général Aedes, blessé et scarifié, trouve le bébé Dorval dans les ruines."
+          },
+          {
+            "name": "Bébé Dorval (Le Génocide)",
+            "description": "Premium 3D animated feature film character turnaround sheet, tiny baby Pixar-demonic microscopic mosquito larva baby Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE minuscule baby proboscis like innocent drinking straw barely formed, ENORMOUS terrified glowing ruby-red eyes with dew-drop blood tears, tiny undeveloped wing nubs like baby demon wings, small blood-red crest tuft resembling cute baby devil horns, vulnerable tiny larval body with subtle demonic swirl patterns, expression of pure terrified innocence mixed with inherent demonic heritage, being protectively shielded, aggressively cute yet subtly unsettling dark cherub aesthetic, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red warm-amber, soft emotional lighting with crimson undertones, 8K micro-textures",
+            "importance": "primary",
+            "action": "Le Général Aedes, blessé et scarifié, trouve le bébé Dorval dans les ruines."
+          }
+        ],
+        "scene": {
+          "location": "Mémorial du Génocide BYSS",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Obsidian-like memorial walls from burned fibers",
+            "Names of fallen in bioluminescent script",
+            "Eternal blood-red flame",
+            "Statue of the Protecting Mother",
+            "Museum with BYSS can fragments"
+          ]
+        },
+        "composition": {
+          "framing": "medium",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "medium",
+          "lens_mm": 35,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.808Z",
+      "characterIds": [
+        "general-aedes",
+        "baby-dorval"
+      ],
+      "locationIds": [
+        "genocide-memorial"
+      ]
+    },
+    {
+      "id": "shot-6-1769759484235",
+      "number": 6,
+      "name": "L'Éveil du Guerrier",
+      "description": "Jeune Dorval s'entraîne au combat à la trompe contre des mannequins de paille au Fort Sang-Noir.",
+      "sceneType": "training",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Montrer la discipline et la rage de Dorval qui grandit.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Jeune Dorval (L'Ère Guerrière)",
+            "description": "Premium 3D animated feature film character turnaround sheet, young warrior Pixar-demonic microscopic mosquito prince Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek needle-like proboscis gleaming like polished blade, fierce burning amber-orange eyes (#FFB25A) with trauma and vengeful determination, pristine translucent wings with dramatically pulsing blood-red veins like living stained glass, vibrant scarlet mohawk crest standing aggressive like demonic crown, athletic elegant slender body built for aerial combat, blood-oath tribal markings on thorax, crimson thread harness with wax anchor nodes, droplet-eye wax seal insignia smaller and refined, small memorial blood-ruby token, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, fierce battle-ready heroic pose, expression of noble rage barely contained, dark prince aesthetic, 8K micro-textures",
+            "importance": "primary",
+            "action": "Jeune Dorval s'entraîne au combat à la trompe contre des mannequins de paille au Fort Sang-Noir."
+          },
+          {
+            "name": "Général Aedes",
+            "description": "Premium 3D animated feature film character turnaround sheet, battle-hardened Pixar-demonic microscopic mosquito warlord General Aedes, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE war-worn proboscis held like blood-stained ceremonial blade with battle notches, stern commanding glowing blood-red eyes with thousand-yard PTSD stare yet adorably grumpy, scarred but powerful translucent wings like torn gothic battle flags with honor-wounds and copper-thread repairs, dark crimson mohawk crest standing aggressive like punk demon general, heavily scarred thorax with battle damage worn as medals of honor, military bearing radiating demonic gravitas and discipline, tiny skull-and-proboscis military insignia markings, crimson thread military harness with multiple wax seals indicating rank, commanding pose that would make actual demon generals take notes, grizzled veteran aesthetic meets cute grumpy grandpa energy, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, harsh dramatic military lighting with crimson battle-glow, 8K micro-textures",
+            "importance": "primary",
+            "action": "Jeune Dorval s'entraîne au combat à la trompe contre des mannequins de paille au Fort Sang-Noir."
+          }
+        ],
+        "scene": {
+          "location": "Fort Sang-Noir",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Gothic defensive chitin architecture",
+            "Watchtowers with crimson beacon flames",
+            "Training grounds for proboscis combat",
+            "War council chamber",
+            "Barracks carved into organic material",
+            "NO modern weapons or technology"
+          ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "wide",
+          "lens_mm": 24,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.815Z",
+      "characterIds": [
+        "young-dorval",
+        "general-aedes"
+      ],
+      "locationIds": [
+        "fort-sang-noir"
+      ]
+    },
+    {
+      "id": "shot-7-1769759484235",
+      "number": 7,
+      "name": "L'Étude de l'Ennemi",
+      "description": "Dorval et Culex analysent des schémas d'anatomie humaine à l'Académie du Sang.",
+      "sceneType": "planning",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Montrer que la vengeance est aussi intellectuelle.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Jeune Dorval (L'Ère Guerrière)",
+            "description": "Premium 3D animated feature film character turnaround sheet, young warrior Pixar-demonic microscopic mosquito prince Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek needle-like proboscis gleaming like polished blade, fierce burning amber-orange eyes (#FFB25A) with trauma and vengeful determination, pristine translucent wings with dramatically pulsing blood-red veins like living stained glass, vibrant scarlet mohawk crest standing aggressive like demonic crown, athletic elegant slender body built for aerial combat, blood-oath tribal markings on thorax, crimson thread harness with wax anchor nodes, droplet-eye wax seal insignia smaller and refined, small memorial blood-ruby token, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, fierce battle-ready heroic pose, expression of noble rage barely contained, dark prince aesthetic, 8K micro-textures",
+            "importance": "primary",
+            "action": "Dorval et Culex analysent des schémas d'anatomie humaine à l'Académie du Sang."
+          },
+          {
+            "name": "Érudit Culex",
+            "description": "Premium 3D animated feature film character turnaround sheet, intellectual Pixar-demonic microscopic mosquito scholar professor Culex, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE fine precise proboscis held like elegant quill pen for annotation, large curious glowing amber eyes (#FFB25A) with natural spectacle-like markings, delicate precise translucent wings like anatomical diagrams, smaller cerebral blood-red crest, thin scholarly frame, holding tiny ancient scroll with human anatomy notes, medieval scholar robes aesthetic in lint-fiber, expression of nerdy sinister curiosity, adorable demon professor who has read Dracula and finds it amusing but inaccurate, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm scholarly amber lighting, 8K micro-textures",
+            "importance": "primary",
+            "action": "Dorval et Culex analysent des schémas d'anatomie humaine à l'Académie du Sang."
+          }
+        ],
+        "scene": {
+          "location": "Académie du Sang",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Medieval monastery scriptorium",
+            "Library stacks of leaf-parchment scrolls",
+            "Anatomical amphitheater",
+            "Gothic vaulted ceilings",
+            "Blood-drop stained glass",
+            "Chitin astrolabes medieval tools only"
+          ]
+        },
+        "composition": {
+          "framing": "medium",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "medium",
+          "lens_mm": 35,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.824Z",
+      "characterIds": [
+        "young-dorval",
+        "scholar-culex"
+      ],
+      "locationIds": [
+        "academy-of-blood"
+      ]
+    },
+    {
+      "id": "shot-8-1769759484235",
+      "number": 8,
+      "name": "Le Repaire des Bloodwings",
+      "description": "Papy Tik observe la nouvelle génération de guerriers depuis son trône au Bar Ti Sang.",
+      "sceneType": "bar_scene",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Établir l'ambiance actuelle de résistance et de camaraderie sombre.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Papy Tik (Dorval âgé)",
+            "description": "Premium 3D animated feature film character turnaround sheet, elderly Pixar-demonic microscopic mosquito patriarch Papy Tik, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE elegant needle-like proboscis polished like ancestral silverware with ritual notch marks near base, white lint-fiber beard beneath proboscis base like soft fluffy whiskers, wise haunted glowing amber eyes (#FFB25A) with crow's-feet ridges, silver-tinged translucent wings with copper-thread repair stitches and frayed edges, faded silver-gray blood-red crest, hunched elder posture with one hind leg weaker, holding thorn cane with crimson wax grip and droplet-eye stamp, crimson thread harness with wax anchor nodes, droplet-eye wax seal insignia on thorax, tiny lint-fiber mantle dark gray with crimson stitching, ancestral blood-ruby medallion, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, cute demonic elder aesthetic, 8K micro-textures",
+            "importance": "primary",
+            "action": "Papy Tik observe la nouvelle génération de guerriers depuis son trône au Bar Ti Sang."
+          },
+          {
+            "name": "Barman Anopheles",
+            "description": "Premium 3D animated feature film character turnaround sheet, suave Pixar-demonic microscopic mosquito bartender Anopheles, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE elegant proboscis polished and refined like fancy cocktail stirrer, charming glowing amber eyes (#FFB25A) with knowing twinkle, sleek translucent wings folded elegantly like waistcoat, slicked-back blood-red crest with cool confidence, holding tiny thimble cocktail shaker, microscopic lint-fiber bartender apron, cool confident Caribbean swagger pose, expression of charming sinister hospitality, suave demon mixologist who knows everyone's secrets, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm amber bar lighting, 8K micro-textures",
+            "importance": "primary",
+            "action": "Papy Tik observe la nouvelle génération de guerriers depuis son trône au Bar Ti Sang."
+          }
+        ],
+        "scene": {
+          "location": "Bar Ti Sang",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Renaissance Moostik interior architecture",
+            "Small elevated stage for singer",
+            "Curved organic bar counter",
+            "Intimate booth seating",
+            "Blood-drop motif decorations",
+            "Warm bioluminescent lanterns"
+          ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "wide",
+          "lens_mm": 24,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.830Z",
+      "characterIds": [
+        "papy-tik",
+        "bartender-anopheles"
+      ],
+      "locationIds": [
+        "bar-ti-sang"
+      ]
+    },
+    {
+      "id": "shot-9-1769759484235",
+      "number": 9,
+      "name": "Le Showcase de Stegomyia",
+      "description": "Le chanteur Stegomyia performe sur scène, hypnotisant la foule avec sa ballade du sang.",
+      "sceneType": "bar_scene",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Ajouter la dimension culturelle et mélancolique des Bloodwings.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Chanteur Stegomyia",
+            "description": "Premium 3D animated feature film character turnaround sheet, charismatic Pixar-demonic microscopic mosquito lounge singer Stegomyia, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek elegant proboscis held like vintage microphone for crooning, soulful glowing amber eyes (#FFB25A) with magnetic stage presence, elegant translucent wings spread dramatically in performance pose, slicked stylish blood-red crest like classic 50s crooner with pompadour vibe, confident smooth stage pose, retro-cool demon lounge singer aesthetic like Star Wars Cantina Band, expression of soulful charm with mysterious past, blood-ruby earring on one antenna, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm spotlight amber lighting, 8K micro-textures",
+            "importance": "primary",
+            "action": "Le chanteur Stegomyia performe sur scène, hypnotisant la foule avec sa ballade du sang."
+          }
+        ],
+        "scene": {
+          "location": "Bar Ti Sang",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Renaissance Moostik interior architecture",
+            "Small elevated stage for singer",
+            "Curved organic bar counter",
+            "Intimate booth seating",
+            "Blood-drop motif decorations",
+            "Warm bioluminescent lanterns"
+          ]
+        },
+        "composition": {
+          "framing": "medium",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "medium",
+          "lens_mm": 35,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.837Z",
+      "characterIds": [
+        "singer-stegomyia"
+      ],
+      "locationIds": [
+        "bar-ti-sang"
+      ]
+    },
+    {
+      "id": "shot-10-1769759484235",
+      "number": 10,
+      "name": "L'Appel aux Armes",
+      "description": "Gros plan sur l'œil d'Evil Pik qui s'illumine alors qu'il s'apprête à partir en mission.",
+      "sceneType": "battle",
+      "prompt": {
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Finir sur une note de tension extrême et d'action imminente.",
+        "invariants": [
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
+        ],
+        "subjects": [
+          {
+            "name": "Evil Pik",
+            "description": "Premium 3D animated feature film character turnaround sheet, twitchy psychopathic Pixar-demonic microscopic mosquito blood-addict Evil Pik, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE MASSIVE oversized needle-like proboscis like giant zanpakuto blood-sword gleaming with fresh blood droplets, wild manic glowing blood-red eyes with dilated twitching pupils showing addiction, spiky aggressive blood-red mohawk crest like punk trap rapper, lean hungry body vibrating with nervous twitchy energy, blood stains around proboscis base like junkie, trap artist swagger pose with attitude, expression of machiavellian calculation mixed with manic energy about to snap, tiny gold chain with blood-drop pendant, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent, based on Martinique trap rapper Evil P aesthetic, 8K micro-textures",
+            "importance": "primary",
+            "action": "Gros plan sur l'œil d'Evil Pik qui s'illumine alors qu'il s'apprête à partir en mission."
+          }
+        ],
+        "scene": {
+          "location": "Fort Sang-Noir",
+          "time": "Night with bioluminescent glow",
+          "atmosphere": [
+            "Dusty ancient library",
+            "Volumetric lighting",
+            "Cinematic particles"
+          ],
+          "materials": [
+            "Gothic defensive chitin architecture",
+            "Watchtowers with crimson beacon flames",
+            "Training grounds for proboscis combat",
+            "War council chamber",
+            "Barracks carved into organic material",
+            "NO modern weapons or technology"
+          ]
+        },
+        "composition": {
+          "framing": "extreme close_up",
+          "layout": "Golden ratio",
+          "depth": "Layered foreground and background"
+        },
+        "camera": {
+          "angle": "extreme close_up",
+          "lens_mm": 85,
+          "format": "Anamorphic",
+          "aperture": "f/2.8"
+        },
+        "lighting": {
+          "key": "Warm amber bioluminescent lanterns",
+          "fill": "Deep crimson ambient bounce",
+          "rim": "Sharp blood-red rim light on chitin edges",
+          "notes": "Flickering candlelight effect"
+        },
+        "text": {
+          "strings": [],
+          "font_style": "none",
+          "rules": "No text in image"
+        },
+        "negative": [
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "human architecture in Moostik scenes",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern technology",
+          "guns",
+          "weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "white caucasian humans",
+          "non-Pixar realistic humans",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines"
+        ]
+      },
+      "variations": [
+        {
+          "id": "var-extreme_wide-1769759484235",
+          "cameraAngle": "extreme_wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-wide-1769759484235",
+          "cameraAngle": "wide",
+          "status": "pending"
+        },
+        {
+          "id": "var-medium-1769759484235",
+          "cameraAngle": "medium",
+          "status": "pending"
+        },
+        {
+          "id": "var-close_up-1769759484235",
+          "cameraAngle": "close_up",
+          "status": "pending"
+        },
+        {
+          "id": "var-low_angle-1769759484235",
+          "cameraAngle": "low_angle",
+          "status": "pending"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-01-30T07:51:24.235Z",
+      "updatedAt": "2026-01-30T07:51:53.843Z",
+      "characterIds": [
+        "evil-pik"
+      ],
+      "locationIds": [
+        "fort-sang-noir"
+      ]
+    }
+  ],
+  "createdAt": "2026-01-29T18:30:22.868Z",
+  "updatedAt": "2026-01-30T13:12:54.609Z"
+}

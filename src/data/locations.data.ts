@@ -1,0 +1,217 @@
+/**
+ * MOOSTIK - Données des lieux
+ * 
+ * Architecture Renaissance Moostik
+ */
+
+import type { Location } from "@/types/location";
+
+// ============================================================================
+// LIEUX - ARCHITECTURE RENAISSANCE MOOSTIK
+// ============================================================================
+
+export const MOOSTIK_LOCATIONS: Location[] = [
+  {
+    id: "tire-city",
+    name: "Cité du Pneu - Capitale des Bloodwings",
+    type: "moostik_city",
+    scale: "micro",
+    description: "La merveille architecturale des Moostik, construite dans un vieux pneu abandonné. Renaissance fantastique, canaux de rosée, ponts élégants. AUCUNE architecture humaine.",
+    architecturalFeatures: [
+      "Organic chitin spires rising from dew-water surface",
+      "Elegant bridges spanning water canals",
+      "Domed wing-membrane structures",
+      "Blood-drop shaped stained glass windows",
+      "Bioluminescent amber/crimson lanterns",
+      "Gothic arches with proboscis ornaments",
+      "NO human architecture - entirely Moostik Renaissance"
+    ],
+    atmosphericElements: [
+      "Warm amber and crimson lighting reflecting on water",
+      "Swarms of Moostik flying in formations",
+      "Mist rising from dew canals",
+      "Fairy-tale castle atmosphere"
+    ],
+    referencePrompt: "Breathtaking microscopic Moostik Renaissance fantasy city built inside abandoned car tire filled with dew-water, organic chitin spires rising from reflective water surface, elegant bridges spanning canals, domed wing-membrane structures, blood-drop shaped stained glass windows glowing crimson and gold, bioluminescent amber lanterns casting warm glow everywhere, Gothic proboscis-shaped ornamental arches, fairy-tale castle meets insect biology, swarms of tiny Moostik flying in formations, NO human architecture, entirely alien Renaissance aesthetic, Pixar-dark 3D feature film quality, warm amber and crimson lighting reflecting on water, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "fort-sang-noir",
+    name: "Fort Sang-Noir",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Forteresse militaire des Bloodwings. Architecture défensive médiévale en chitine. Entraînement au combat à la trompe UNIQUEMENT.",
+    architecturalFeatures: [
+      "Gothic defensive chitin architecture",
+      "Watchtowers with crimson beacon flames",
+      "Training grounds for proboscis combat",
+      "War council chamber",
+      "Barracks carved into organic material",
+      "NO modern weapons or technology"
+    ],
+    atmosphericElements: [
+      "Harsh crimson military lighting",
+      "Disciplined formations drilling",
+      "Dust from training",
+      "Medieval military atmosphere"
+    ],
+    referencePrompt: "Imposing microscopic Moostik medieval military fortress called Fort Sang-Noir, Gothic defensive chitin architecture with organic curves, watchtowers with bioluminescent crimson beacons, training grounds showing Moostik warriors practicing proboscis combat techniques NO modern weapons, disciplined formations drilling, war council chamber with strategic maps on parchment, medieval castle aesthetic entirely Moostik no human elements, Pixar-dark 3D feature film quality, harsh crimson military lighting, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "bar-ti-sang",
+    name: "Bar Ti Sang",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Speakeasy tranquille des Bloodwings. Style Cantina Star Wars mais Moostik Renaissance. Chanteur en showcase, ambiance chill pas club.",
+    architecturalFeatures: [
+      "Renaissance Moostik interior architecture",
+      "Small elevated stage for singer",
+      "Curved organic bar counter",
+      "Intimate booth seating",
+      "Blood-drop motif decorations",
+      "Warm bioluminescent lanterns"
+    ],
+    atmosphericElements: [
+      "Warm intimate amber lighting",
+      "Live showcase performance",
+      "Patrons sipping nectar",
+      "Chill relaxed cantina vibes",
+      "NOT a club - sophisticated quiet bar"
+    ],
+    referencePrompt: "Cozy intimate microscopic Moostik cantina bar called Ti Sang, Renaissance Moostik organic architecture with warm bioluminescent amber lanterns, small elevated stage with charismatic Moostik singer performing showcase, scattered organic chitin tables with Moostik patrons, curved bar counter serving nectar drinks in thimble vessels, blood-drop motif decorations throughout, chill relaxed cantina atmosphere like Star Wars Cantina Band but demon mosquito aesthetic, warm intimate amber lighting, NOT a nightclub quiet sophisticated bar, Pixar-dark 3D feature film quality, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "academy-of-blood",
+    name: "Académie du Sang",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Monastère-université médiéval des Moostik. Scriptorium, bibliothèque, amphithéâtre anatomique. AUCUNE technologie moderne.",
+    architecturalFeatures: [
+      "Medieval monastery scriptorium",
+      "Library stacks of leaf-parchment scrolls",
+      "Anatomical amphitheater",
+      "Gothic vaulted ceilings",
+      "Blood-drop stained glass",
+      "Chitin astrolabes medieval tools only"
+    ],
+    atmosphericElements: [
+      "Nectar-wax candles casting warm glow",
+      "Scholar monks copying manuscripts",
+      "Quiet studious atmosphere",
+      "Medieval dark academia aesthetic"
+    ],
+    referencePrompt: "Medieval Renaissance microscopic Moostik monastery university called Academy of Blood, scriptorium with scholar Moostik monks copying illuminated manuscripts, towering library stacks of leaf-parchment scrolls, anatomical amphitheater for lectures on human weaknesses, Gothic vaulted organic ceilings with blood-drop stained glass, chitin astrolabes and medieval tools ONLY no modern technology, nectar-wax candles casting warm amber glow, quiet scholarly dark academia atmosphere, medieval aesthetic no human architecture, Pixar-dark 3D feature film quality, warm candlelit medieval lighting, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "cathedral-of-blood",
+    name: "Cathédrale du Sang Sacré",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Cathédrale gothique Moostik honorant les morts du génocide. Vitraux en goutte de sang, orgues en trompe, mémorial sacré.",
+    architecturalFeatures: [
+      "Massive wing-membrane Gothic dome",
+      "Proboscis-organ pipes",
+      "Blood-drop stained glass windows",
+      "Altar of the First Feeding",
+      "Memorial walls with genocide victims names",
+      "Chitin-carved pews"
+    ],
+    atmosphericElements: [
+      "Divine crimson light through windows",
+      "Sacred incense smoke",
+      "Reverent atmosphere",
+      "Mourning and determination"
+    ],
+    referencePrompt: "Majestic microscopic Moostik Gothic cathedral called Cathedral of Sacred Blood, massive wing-membrane dome creating sacred space, proboscis-organ pipes producing haunting music, blood-drop shaped stained glass windows depicting ancestral mythology in crimson and gold divine light, ornate altar of the First Feeding with blood-ruby offerings, memorial walls etched with thousands of genocide victim names, chitin-carved pews for congregation, sacred nectar incense smoke curling through air, reverent atmosphere honoring the fallen, Pixar-dark 3D feature film quality, divine dramatic cathedral lighting, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "genocide-memorial",
+    name: "Mémorial du Génocide BYSS",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Le site sacré où le génocide a eu lieu. Un mémorial construit dans les cendres, avec flamme éternelle et mur des noms.",
+    architecturalFeatures: [
+      "Obsidian-like memorial walls from burned fibers",
+      "Names of fallen in bioluminescent script",
+      "Eternal blood-red flame",
+      "Statue of the Protecting Mother",
+      "Museum with BYSS can fragments"
+    ],
+    atmosphericElements: [
+      "Solemn blood-red eternal flame",
+      "Whispered prayers",
+      "Atmosphere of sacred mourning",
+      "Never forget never forgive"
+    ],
+    referencePrompt: "Solemn microscopic Moostik genocide memorial built in burned fabric fibers, obsidian-like memorial walls carved from charred remains with thousands of names etched in glowing bioluminescent script, central eternal flame burning sacred blood-red, heroic statue of Protecting Mother shielding baby in center plaza, museum chambers with preserved BYSS aerosol fragments, solemn atmosphere of sacred mourning mixed with burning determination, this is why we fight, Pixar-dark 3D feature film quality, somber dramatic lighting with blood-red flame glow, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "nursery-pods",
+    name: "Les Cocons Sacrés",
+    type: "moostik_city",
+    scale: "micro",
+    description: "Nurseries où naissent les nouveaux Moostik. Pods organiques suspendus comme des lanternes, abritant la prochaine génération.",
+    architecturalFeatures: [
+      "Egg-cluster pod nurseries glowing with life",
+      "Suspended from silk threads",
+      "Translucent membrane walls",
+      "Feeding stations with nectar",
+      "Nurse stations in pod walls"
+    ],
+    atmosphericElements: [
+      "Warm amber nurturing glow",
+      "Gentle humming of larval activity",
+      "Hope amidst darkness",
+      "Future of the Bloodwings"
+    ],
+    referencePrompt: "Heartwarming microscopic Moostik nursery pods called Les Cocons Sacres, cluster of egg-shaped organic nursery pods glowing with warm amber life-light, suspended from delicate silk threads like demon lanterns, translucent membrane walls showing cute larval silhouettes, feeding stations with sacred nectar, nurse Moostik caretakers tending to young, warm nurturing atmosphere contrasting dark surroundings, hope and future amidst genocide trauma, adorable demon babies incubating, Pixar-dark 3D feature film quality, warm intimate nurturing lighting, 8K micro-textures, establishing shot",
+    referenceImages: []
+  },
+  {
+    id: "creole-house-enemy",
+    name: "Maison Créole (Territoire Ennemi)",
+    type: "human_space",
+    scale: "both",
+    description: "Maison créole martiniquaise vue du POV Moostik - COLOSSALE et hostile. Le lieu du génocide, territoire ennemi.",
+    architecturalFeatures: [
+      "COLOSSAL human architecture from micro POV",
+      "Jalousie shutters like fortress gates",
+      "Ceiling fan as deadly spinning blade",
+      "Furniture as mountain ranges",
+      "BYSS aerosol as weapon of mass destruction"
+    ],
+    atmosphericElements: [
+      "Humid tropical night",
+      "Enemy territory atmosphere",
+      "Lingering BYSS chemical smell",
+      "Human architecture as alien threat"
+    ],
+    referencePrompt: "COLOSSAL traditional Martinique creole house at night from microscopic Moostik POV, wooden jalousie shutters appearing as massive fortress gates, ceiling fan overhead as deadly spinning blade of death, furniture looming as mountain ranges, BYSS aerosol can visible as weapon of mass destruction, this is ENEMY TERRITORY where genocide happened, human architecture seen as hostile alien landscape, terrifying scale difference showing Moostik vulnerability, tropical humid dangerous atmosphere, Pixar-dark 3D feature film quality, threatening dramatic lighting, 8K textures, establishing shot from victim perspective",
+    referenceImages: []
+  }
+];
+
+// ============================================================================
+// HELPERS
+// ============================================================================
+
+export function getLocationById(id: string): Location | undefined {
+  return MOOSTIK_LOCATIONS.find(l => l.id === id);
+}
+
+export function getMoostikCities(): Location[] {
+  return MOOSTIK_LOCATIONS.filter(l => l.type === "moostik_city");
+}
+
+export function getHumanSpaces(): Location[] {
+  return MOOSTIK_LOCATIONS.filter(l => l.type === "human_space");
+}
+
+export function getLocationsByType(type: Location["type"]): Location[] {
+  return MOOSTIK_LOCATIONS.filter(l => l.type === type);
+}
