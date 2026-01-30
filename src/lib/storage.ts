@@ -4,6 +4,15 @@ import type { Episode, Shot, Variation, Character, Location } from "@/types";
 import { createEmptyPrompt, createShotVariations } from "@/data/prompt-helpers";
 import { MOOSTIK_CHARACTERS, HUMAN_CHARACTERS } from "@/data/characters.data";
 import { MOOSTIK_LOCATIONS } from "@/data/locations.data";
+import {
+  episodesCache,
+  charactersCache,
+  locationsCache,
+  getOrSet,
+} from "./cache";
+import { storageLogger as logger } from "./logger";
+import { validateId, createSafePath } from "./validation";
+import { StorageError, NotFoundError } from "./errors";
 
 const DATA_DIR = path.join(process.cwd(), "data", "episodes");
 const CHARACTERS_FILE = path.join(process.cwd(), "data", "characters.json");
@@ -18,42 +27,68 @@ async function ensureDataDir() {
 }
 
 export async function getEpisodes(): Promise<Episode[]> {
-  await ensureDataDir();
+  return getOrSet(episodesCache, "all-episodes", async () => {
+    await ensureDataDir();
 
-  try {
-    const files = await readdir(DATA_DIR);
-    const jsonFiles = files.filter((f) => f.endsWith(".json"));
+    try {
+      const files = await readdir(DATA_DIR);
+      const jsonFiles = files.filter((f) => f.endsWith(".json"));
 
-    const episodes = await Promise.all(
-      jsonFiles.map(async (file) => {
-        const content = await readFile(path.join(DATA_DIR, file), "utf-8");
-        return JSON.parse(content) as Episode;
-      })
-    );
+      const episodes = await Promise.all(
+        jsonFiles.map(async (file) => {
+          const content = await readFile(path.join(DATA_DIR, file), "utf-8");
+          return JSON.parse(content) as Episode;
+        })
+      );
 
-    return episodes.sort((a, b) => a.number - b.number);
-  } catch {
-    return [];
-  }
+      logger.debug("Loaded episodes from disk", { count: episodes.length });
+      return episodes.sort((a, b) => a.number - b.number);
+    } catch (error) {
+      logger.error("Failed to load episodes", error);
+      return [];
+    }
+  }) as Promise<Episode[]>;
 }
 
 export async function getEpisode(id: string): Promise<Episode | null> {
-  await ensureDataDir();
-  const filePath = path.join(DATA_DIR, `${id}.json`);
+  // Validate ID to prevent path traversal
+  const safeId = validateId(id, "episode");
+  const cacheKey = `episode:${safeId}`;
 
-  try {
-    const content = await readFile(filePath, "utf-8");
-    return JSON.parse(content) as Episode;
-  } catch {
-    return null;
-  }
+  return getOrSet(episodesCache, cacheKey, async () => {
+    await ensureDataDir();
+    const filePath = createSafePath(DATA_DIR, `${safeId}.json`);
+
+    try {
+      const content = await readFile(filePath, "utf-8");
+      logger.debug("Loaded episode from disk", { id: safeId });
+      return JSON.parse(content) as Episode;
+    } catch {
+      logger.warn("Episode not found", { id: safeId });
+      return null;
+    }
+  }) as Promise<Episode | null>;
 }
 
 export async function saveEpisode(episode: Episode): Promise<void> {
   await ensureDataDir();
-  const filePath = path.join(DATA_DIR, `${episode.id}.json`);
+  const safeId = validateId(episode.id, "episode");
+  const filePath = createSafePath(DATA_DIR, `${safeId}.json`);
+
   episode.updatedAt = new Date().toISOString();
-  await writeFile(filePath, JSON.stringify(episode, null, 2), "utf-8");
+
+  try {
+    await writeFile(filePath, JSON.stringify(episode, null, 2), "utf-8");
+
+    // Invalidate cache for this episode and the list
+    episodesCache.delete(`episode:${safeId}`);
+    episodesCache.delete("all-episodes");
+
+    logger.debug("Saved episode", { id: safeId });
+  } catch (error) {
+    logger.error("Failed to save episode", error, { id: safeId });
+    throw new StorageError("write", filePath, error instanceof Error ? error : undefined);
+  }
 }
 
 export async function createEpisode(
@@ -268,18 +303,32 @@ export async function regenerateVariations(
 // ============================================================================
 
 export async function getCharacters(): Promise<Character[]> {
-  try {
-    const content = await readFile(CHARACTERS_FILE, "utf-8");
-    return JSON.parse(content) as Character[];
-  } catch {
-    // Return default characters if file doesn't exist
-    return [...MOOSTIK_CHARACTERS, ...HUMAN_CHARACTERS];
-  }
+  return getOrSet(charactersCache, "all-characters", async () => {
+    try {
+      const content = await readFile(CHARACTERS_FILE, "utf-8");
+      const characters = JSON.parse(content) as Character[];
+      logger.debug("Loaded characters from disk", { count: characters.length });
+      return characters;
+    } catch {
+      // Return default characters if file doesn't exist
+      logger.info("Characters file not found, using defaults");
+      return [...MOOSTIK_CHARACTERS, ...HUMAN_CHARACTERS];
+    }
+  }) as Promise<Character[]>;
 }
 
 export async function saveCharacters(characters: Character[]): Promise<void> {
-  await mkdir(path.dirname(CHARACTERS_FILE), { recursive: true });
-  await writeFile(CHARACTERS_FILE, JSON.stringify(characters, null, 2), "utf-8");
+  try {
+    await mkdir(path.dirname(CHARACTERS_FILE), { recursive: true });
+    await writeFile(CHARACTERS_FILE, JSON.stringify(characters, null, 2), "utf-8");
+
+    // Invalidate cache
+    charactersCache.clear();
+    logger.debug("Saved characters", { count: characters.length });
+  } catch (error) {
+    logger.error("Failed to save characters", error);
+    throw new StorageError("write", CHARACTERS_FILE, error instanceof Error ? error : undefined);
+  }
 }
 
 export async function initializeCharacters(): Promise<Character[]> {
@@ -293,18 +342,32 @@ export async function initializeCharacters(): Promise<Character[]> {
 // ============================================================================
 
 export async function getLocations(): Promise<Location[]> {
-  try {
-    const content = await readFile(LOCATIONS_FILE, "utf-8");
-    return JSON.parse(content) as Location[];
-  } catch {
-    // Return default locations if file doesn't exist
-    return MOOSTIK_LOCATIONS;
-  }
+  return getOrSet(locationsCache, "all-locations", async () => {
+    try {
+      const content = await readFile(LOCATIONS_FILE, "utf-8");
+      const locations = JSON.parse(content) as Location[];
+      logger.debug("Loaded locations from disk", { count: locations.length });
+      return locations;
+    } catch {
+      // Return default locations if file doesn't exist
+      logger.info("Locations file not found, using defaults");
+      return MOOSTIK_LOCATIONS;
+    }
+  }) as Promise<Location[]>;
 }
 
 export async function saveLocations(locations: Location[]): Promise<void> {
-  await mkdir(path.dirname(LOCATIONS_FILE), { recursive: true });
-  await writeFile(LOCATIONS_FILE, JSON.stringify(locations, null, 2), "utf-8");
+  try {
+    await mkdir(path.dirname(LOCATIONS_FILE), { recursive: true });
+    await writeFile(LOCATIONS_FILE, JSON.stringify(locations, null, 2), "utf-8");
+
+    // Invalidate cache
+    locationsCache.clear();
+    logger.debug("Saved locations", { count: locations.length });
+  } catch (error) {
+    logger.error("Failed to save locations", error);
+    throw new StorageError("write", LOCATIONS_FILE, error instanceof Error ? error : undefined);
+  }
 }
 
 export async function initializeLocations(): Promise<Location[]> {

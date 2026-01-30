@@ -116,14 +116,57 @@ const MoostikIcons = {
   library: (
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
       {/* Scrolls with seal */}
-      <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={1.5} 
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
         d="M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6M4 6l2-2h12l2 2"
       />
       <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
       <path strokeLinecap="round" strokeWidth={1.5} d="M12 10v4M10 12h4" />
+    </svg>
+  ),
+  video: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* Film reel with play */}
+      <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth={1.5} />
+      <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
+      <circle cx="6" cy="5" r="1.5" fill="currentColor" />
+      <circle cx="18" cy="5" r="1.5" fill="currentColor" />
+      <circle cx="6" cy="19" r="1.5" fill="currentColor" />
+      <circle cx="18" cy="19" r="1.5" fill="currentColor" />
+    </svg>
+  ),
+  shots: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* 3x3 Grid */}
+      <rect x="3" y="3" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="9.5" y="3" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="16" y="3" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="3" y="9.5" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="16" y="9.5" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="3" y="16" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="9.5" y="16" width="5" height="5" rx="1" strokeWidth={1.5} />
+      <rect x="16" y="16" width="5" height="5" rx="1" strokeWidth={1.5} />
+    </svg>
+  ),
+  cinema: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* Clapperboard */}
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8h16l-2-4H6L4 8z" />
+      <rect x="4" y="8" width="16" height="12" rx="1" strokeWidth={1.5} />
+      <path strokeLinecap="round" strokeWidth={1.5} d="M7 4l2 4M12 4l2 4M17 4l2 4" />
+      <circle cx="12" cy="14" r="2" strokeWidth={1.5} />
+    </svg>
+  ),
+  editor: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* Timeline with tracks */}
+      <rect x="3" y="4" width="18" height="4" rx="1" strokeWidth={1.5} />
+      <rect x="3" y="10" width="12" height="4" rx="1" strokeWidth={1.5} />
+      <rect x="3" y="16" width="15" height="4" rx="1" strokeWidth={1.5} />
+      <circle cx="19" cy="12" r="2" fill="currentColor" />
     </svg>
   ),
   episode: (
@@ -163,6 +206,10 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
     { href: "/", icon: MoostikIcons.dashboard, label: "Quartier Général", sublabel: "Centre de commandement" },
     { href: "/characters", icon: MoostikIcons.characters, label: "Les Bloodwings", sublabel: "16 âmes" },
     { href: "/locations", icon: MoostikIcons.locations, label: "Territoires", sublabel: "8 lieux sacrés" },
+    { href: "/shots", icon: MoostikIcons.shots, label: "Shots x9", sublabel: "Grille cinématique", badge: "NEW" },
+    { href: "/cinema", icon: MoostikIcons.cinema, label: "Cinema Studio", sublabel: "Contrôle caméra pro", badge: "NEW" },
+    { href: "/video", icon: MoostikIcons.video, label: "Vidéo I2V", sublabel: "12 modèles SOTA" },
+    { href: "/editor", icon: MoostikIcons.editor, label: "Montage IA", sublabel: "Timeline & export", badge: "NEW" },
     { href: "/lore", icon: MoostikIcons.lore, label: "Bible Sacrée", sublabel: "Le savoir ancestral" },
     { href: "/references", icon: MoostikIcons.references, label: "Galerie des Âmes", sublabel: "Références visuelles" },
     { href: "/library", icon: MoostikIcons.library, label: "Archives", sublabel: "Toutes les images" },
@@ -205,10 +252,15 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className={cn(
-                      "text-sm font-medium truncate",
+                      "text-sm font-medium truncate flex items-center gap-2",
                       isActive ? "text-amber-400" : "text-zinc-300 group-hover:text-amber-400"
                     )}>
                       {item.label}
+                      {"badge" in item && item.badge && (
+                        <Badge className="text-[8px] px-1 py-0 bg-blood-600 text-white border-0">
+                          {item.badge}
+                        </Badge>
+                      )}
                     </div>
                     <div className="text-[10px] text-zinc-600 truncate">
                       {item.sublabel}
