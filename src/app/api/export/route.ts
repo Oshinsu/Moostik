@@ -10,18 +10,35 @@ import * as path from "path";
 import {
   PLATFORM_PRESETS,
   type PlatformPreset,
-  type ExportConfig,
-  buildFFmpegCommand,
-  estimateFileSize,
-  estimateExportTime,
 } from "@/lib/editor/export";
 
 export const maxDuration = 600; // 10 minutes for export
 
+// Local config interface for API (different from library ExportConfig)
+interface APIExportConfig {
+  video?: {
+    codec?: string;
+    resolution?: string;
+    fps?: number;
+    bitrate?: number;
+    crf?: number;
+    colorDepth?: string;
+  };
+  audio?: {
+    codec?: string;
+    bitrate?: number;
+    sampleRate?: number;
+  };
+  output?: {
+    container?: string;
+    filename?: string;
+  };
+}
+
 interface ExportRequest {
   episodeId: string;
   presetId: string;
-  customConfig?: Partial<ExportConfig>;
+  customConfig?: Partial<APIExportConfig>;
   inputFiles: {
     videos: string[];
     audios?: string[];
@@ -42,6 +59,21 @@ interface ExportStatus {
 
 // In-memory job tracking (would use Redis in production)
 const exportJobs = new Map<string, ExportStatus>();
+
+// Simple estimation functions
+function estimateExportTime(durationSeconds: number, config: APIExportConfig): number {
+  // Rough estimate: encoding takes about 2-5x real-time depending on settings
+  const multiplier = config.video?.codec === "av1" ? 10 : config.video?.codec === "h265" ? 5 : 3;
+  return durationSeconds * multiplier * 1000; // Return milliseconds
+}
+
+function estimateFileSize(durationSeconds: number, config: APIExportConfig): number {
+  // Estimate based on bitrate or use defaults
+  const videoBitrate = config.video?.bitrate || 8000; // kbps
+  const audioBitrate = config.audio?.bitrate || 192; // kbps
+  const totalBitrate = videoBitrate + audioBitrate;
+  return Math.round((totalBitrate * durationSeconds) / 8); // Bytes
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -68,11 +100,11 @@ export async function POST(request: NextRequest) {
     const jobId = `export-${body.episodeId}-${Date.now()}`;
 
     // Build config
-    const config: ExportConfig = {
+    const config: APIExportConfig = {
       video: { ...preset.video, ...body.customConfig?.video },
       audio: { ...preset.audio, ...body.customConfig?.audio },
       output: {
-        container: preset.output?.container || "mp4",
+        container: (preset as { output?: { container?: string } }).output?.container || "mp4",
         filename: `${body.episodeId}-${preset.id}`,
         ...body.customConfig?.output,
       },
@@ -144,7 +176,7 @@ export async function GET(request: NextRequest) {
 async function runFFmpegExport(
   jobId: string,
   inputFiles: { videos: string[]; audios?: string[] },
-  config: ExportConfig,
+  config: APIExportConfig,
   outputPath: string,
   preset: PlatformPreset
 ): Promise<void> {
@@ -221,9 +253,9 @@ async function runFFmpegExport(
 function buildFFmpegArgs(
   concatPath: string,
   audioFiles: string[] | undefined,
-  config: ExportConfig,
+  config: APIExportConfig,
   outputPath: string,
-  preset: PlatformPreset
+  _preset: PlatformPreset
 ): string[] {
   const args: string[] = [
     "-y", // Overwrite
