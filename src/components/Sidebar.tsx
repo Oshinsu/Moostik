@@ -116,14 +116,25 @@ const MoostikIcons = {
   library: (
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
       {/* Scrolls with seal */}
-      <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={1.5} 
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
         d="M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6M4 6l2-2h12l2 2"
       />
       <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
       <path strokeLinecap="round" strokeWidth={1.5} d="M12 10v4M10 12h4" />
+    </svg>
+  ),
+  video: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* Film reel with play */}
+      <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth={1.5} />
+      <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
+      <circle cx="6" cy="5" r="1.5" fill="currentColor" />
+      <circle cx="18" cy="5" r="1.5" fill="currentColor" />
+      <circle cx="6" cy="19" r="1.5" fill="currentColor" />
+      <circle cx="18" cy="19" r="1.5" fill="currentColor" />
     </svg>
   ),
   episode: (
@@ -163,6 +174,7 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
     { href: "/", icon: MoostikIcons.dashboard, label: "Quartier Général", sublabel: "Centre de commandement" },
     { href: "/characters", icon: MoostikIcons.characters, label: "Les Bloodwings", sublabel: "16 âmes" },
     { href: "/locations", icon: MoostikIcons.locations, label: "Territoires", sublabel: "8 lieux sacrés" },
+    { href: "/video", icon: MoostikIcons.video, label: "Vidéo I2V", sublabel: "12 modèles SOTA", badge: "NEW" },
     { href: "/lore", icon: MoostikIcons.lore, label: "Bible Sacrée", sublabel: "Le savoir ancestral" },
     { href: "/references", icon: MoostikIcons.references, label: "Galerie des Âmes", sublabel: "Références visuelles" },
     { href: "/library", icon: MoostikIcons.library, label: "Archives", sublabel: "Toutes les images" },
@@ -205,10 +217,15 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className={cn(
-                      "text-sm font-medium truncate",
+                      "text-sm font-medium truncate flex items-center gap-2",
                       isActive ? "text-amber-400" : "text-zinc-300 group-hover:text-amber-400"
                     )}>
                       {item.label}
+                      {"badge" in item && item.badge && (
+                        <Badge className="text-[8px] px-1 py-0 bg-blood-600 text-white border-0">
+                          {item.badge}
+                        </Badge>
+                      )}
                     </div>
                     <div className="text-[10px] text-zinc-600 truncate">
                       {item.sublabel}
