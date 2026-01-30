@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -270,8 +270,37 @@ export default function Home() {
                   <span className="text-amber-400">⚡</span>
                   Actions Rapides
                 </h2>
-                
+
                 <div className="grid grid-cols-3 gap-4">
+                  {/* New SOTA Tools - Row 1 */}
+                  <Link href="/shots">
+                    <Card className="bg-gradient-to-br from-violet-900/30 to-[#14131a] border-violet-800/30 hover:border-violet-600/50 transition-all cursor-pointer moostik-card-hover p-6 relative overflow-hidden">
+                      <Badge className="absolute top-3 right-3 bg-blood-600 text-white text-[10px] border-0">NEW</Badge>
+                      <div className="text-3xl mb-3">🎬</div>
+                      <h3 className="font-semibold text-white">Shots x9</h3>
+                      <p className="text-xs text-zinc-500 mt-1">Grille cinématique 9 angles</p>
+                    </Card>
+                  </Link>
+
+                  <Link href="/cinema">
+                    <Card className="bg-gradient-to-br from-indigo-900/30 to-[#14131a] border-indigo-800/30 hover:border-indigo-600/50 transition-all cursor-pointer moostik-card-hover p-6 relative overflow-hidden">
+                      <Badge className="absolute top-3 right-3 bg-blood-600 text-white text-[10px] border-0">NEW</Badge>
+                      <div className="text-3xl mb-3">🎥</div>
+                      <h3 className="font-semibold text-white">Cinema Studio</h3>
+                      <p className="text-xs text-zinc-500 mt-1">Contrôle caméra pro</p>
+                    </Card>
+                  </Link>
+
+                  <Link href="/editor">
+                    <Card className="bg-gradient-to-br from-fuchsia-900/30 to-[#14131a] border-fuchsia-800/30 hover:border-fuchsia-600/50 transition-all cursor-pointer moostik-card-hover p-6 relative overflow-hidden">
+                      <Badge className="absolute top-3 right-3 bg-blood-600 text-white text-[10px] border-0">NEW</Badge>
+                      <div className="text-3xl mb-3">✂️</div>
+                      <h3 className="font-semibold text-white">Montage IA</h3>
+                      <p className="text-xs text-zinc-500 mt-1">Timeline & export SOTA</p>
+                    </Card>
+                  </Link>
+
+                  {/* Existing Tools - Row 2 */}
                   <Link href="/library">
                     <Card className="bg-gradient-to-br from-blood-900/30 to-[#14131a] border-blood-800/30 hover:border-blood-600/50 transition-all cursor-pointer moostik-card-hover p-6">
                       <div className="text-3xl mb-3">📚</div>
@@ -279,7 +308,7 @@ export default function Home() {
                       <p className="text-xs text-zinc-500 mt-1">Parcourir toutes les images générées</p>
                     </Card>
                   </Link>
-                  
+
                   <Link href="/lore">
                     <Card className="bg-gradient-to-br from-crimson-900/30 to-[#14131a] border-crimson-800/30 hover:border-crimson-600/50 transition-all cursor-pointer moostik-card-hover p-6">
                       <div className="text-3xl mb-3">📖</div>
@@ -287,7 +316,7 @@ export default function Home() {
                       <p className="text-xs text-zinc-500 mt-1">Le savoir ancestral des Bloodwings</p>
                     </Card>
                   </Link>
-                  
+
                   <Link href="/references">
                     <Card className="bg-gradient-to-br from-amber-900/30 to-[#14131a] border-amber-800/30 hover:border-amber-600/50 transition-all cursor-pointer moostik-card-hover p-6">
                       <div className="text-3xl mb-3">🎨</div>

@@ -249,8 +249,18 @@ export default function LibraryPage() {
 
       <main className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col">
-          {/* Header */}
-          <div className="p-6 border-b border-blood-900/30 bg-[#0b0b0e]/95 backdrop-blur-sm">
+          {/* Header - MOOSTIK Bloodwings Style */}
+          <div className="relative p-6 border-b border-blood-900/30 overflow-hidden">
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-crimson-900/15 via-[#0b0b0e] to-blood-900/10" />
+
+            {/* Animated blood veins */}
+            <div className="absolute inset-0 opacity-15">
+              <div className="absolute top-0 left-1/5 w-px h-full bg-gradient-to-b from-crimson-700/50 via-blood-600/30 to-transparent animate-pulse" />
+              <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-crimson-700/50 animate-pulse" style={{ animationDelay: '0.7s' }} />
+            </div>
+
+            <div className="relative">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
@@ -330,17 +340,17 @@ export default function LibraryPage() {
             {/* Filtres */}
             <div className="flex items-center gap-4">
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                 <Input
                   placeholder="Rechercher par nom, catégorie..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-gray-900 border-gray-800"
+                  className="pl-10 bg-[#14131a] border-blood-900/30 focus:border-blood-600"
                 />
               </div>
 
               <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger className="w-40 bg-gray-900 border-gray-800">
+                <SelectTrigger className="w-40 bg-[#14131a] border-blood-900/30">
                   <Filter className="h-4 w-4 mr-2" />
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
@@ -352,8 +362,8 @@ export default function LibraryPage() {
                 </SelectContent>
               </Select>
 
-              <Select value={sortBy} onValueChange={(v: any) => setSortBy(v)}>
-                <SelectTrigger className="w-40 bg-gray-900 border-gray-800">
+              <Select value={sortBy} onValueChange={(v: "name" | "type" | "date") => setSortBy(v)}>
+                <SelectTrigger className="w-40 bg-[#14131a] border-blood-900/30">
                   <SelectValue placeholder="Trier par" />
                 </SelectTrigger>
                 <SelectContent>
@@ -363,12 +373,12 @@ export default function LibraryPage() {
                 </SelectContent>
               </Select>
 
-              <div className="flex border border-gray-800 rounded-md overflow-hidden">
+              <div className="flex border border-blood-900/30 rounded-md overflow-hidden">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("grid")}
-                  className={viewMode === "grid" ? "bg-red-600" : ""}
+                  className={viewMode === "grid" ? "moostik-btn-blood" : ""}
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </Button>
@@ -376,7 +386,7 @@ export default function LibraryPage() {
                   variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("list")}
-                  className={viewMode === "list" ? "bg-red-600" : ""}
+                  className={viewMode === "list" ? "moostik-btn-blood" : ""}
                 >
                   <LayoutList className="h-4 w-4" />
                 </Button>
@@ -386,10 +396,11 @@ export default function LibraryPage() {
                 variant="ghost"
                 size="sm"
                 onClick={selectAll}
-                className="text-gray-400"
+                className="text-zinc-400 hover:text-blood-400"
               >
                 Sélectionner tout
               </Button>
+            </div>
             </div>
           </div>
 

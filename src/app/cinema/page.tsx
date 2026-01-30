@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -26,6 +26,8 @@ import {
   Wand2,
 } from "lucide-react";
 import { CinemaStudio } from "@/components/cinema";
+import { Sidebar } from "@/components/Sidebar";
+import type { Episode } from "@/types/moostik";
 import {
   type CameraConfig,
   type StackedMovements,
@@ -71,6 +73,17 @@ const DEFAULT_DOF: DepthOfField = {
 // ============================================
 
 export default function CinemaPage() {
+  // Episodes for sidebar
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+
+  // Fetch episodes
+  useEffect(() => {
+    fetch("/api/episodes")
+      .then(res => res.json())
+      .then(data => setEpisodes(Array.isArray(data) ? data : []))
+      .catch(() => setEpisodes([]));
+  }, []);
+
   // State
   const [mode, setMode] = useState<"photography" | "videography">("videography");
   const [camera, setCamera] = useState<CameraConfig>(DEFAULT_CAMERA);
@@ -111,7 +124,7 @@ export default function CinemaPage() {
     }
   };
 
-  // Handle generation
+  // Handle generation with real API
   const handleGenerate = async () => {
     if (!sourceImage || !prompt) return;
 
@@ -133,50 +146,96 @@ export default function CinemaPage() {
     const fullPrompt = buildCinemaStudioPrompt(prompt, session);
     console.log("Generated prompt:", fullPrompt);
 
-    // Simulate generation (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    try {
+      if (mode === "videography") {
+        // Call video generation API
+        const response = await fetch("/api/video/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sourceImage,
+            prompt: fullPrompt,
+            provider: "kling", // Default to Kling for cinema
+            camera: camera,
+            movements: movements.primary,
+          }),
+        });
 
-    setGeneratedResult(sourceImage); // In real impl, this would be the generated image/video
+        if (response.ok) {
+          const result = await response.json();
+          setGeneratedResult(result.videoUrl || result.imageUrl || sourceImage);
+        } else {
+          console.error("Video generation failed");
+          setGeneratedResult(sourceImage);
+        }
+      } else {
+        // Call image generation API
+        const response = await fetch("/api/generate/standalone", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: fullPrompt,
+            sourceImage,
+            style: "cinematic",
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setGeneratedResult(result.imageUrl || sourceImage);
+        } else {
+          console.error("Image generation failed");
+          setGeneratedResult(sourceImage);
+        }
+      }
+    } catch (error) {
+      console.error("Generation error:", error);
+      setGeneratedResult(sourceImage);
+    }
+
     setIsGenerating(false);
   };
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-[#0a0a0d]">
-        {/* Header */}
-        <header className="border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
-          <div className="container mx-auto px-6 py-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/30 to-blood-600/20 border border-purple-600/30 flex items-center justify-center">
-                  <Clapperboard className="w-6 h-6 text-purple-400" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-white tracking-tight">
-                    Cinema Studio
-                  </h1>
-                  <p className="text-sm text-zinc-500">
-                    Contrôle caméra professionnel avec physique optique réelle
-                  </p>
-                </div>
-              </div>
+      <div className="flex h-screen bg-[#0a0a0d]">
+        <Sidebar episodes={episodes} />
 
-              <div className="flex items-center gap-3">
-                <Badge className="bg-purple-900/30 text-purple-400 border-purple-900/30">
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  Inspiré par Higgsfield
-                </Badge>
-                <Badge variant="outline" className="text-zinc-500 border-zinc-800">
-                  <Aperture className="w-3 h-3 mr-1" />
-                  {camera.focalLength}mm f/{camera.aperture}
-                </Badge>
+        <div className="flex-1 overflow-auto">
+          {/* Header */}
+          <header className="border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
+            <div className="px-6 py-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/30 to-blood-600/20 border border-purple-600/30 flex items-center justify-center">
+                    <Clapperboard className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">
+                      Cinema Studio
+                    </h1>
+                    <p className="text-sm text-zinc-500">
+                      Contrôle caméra professionnel avec physique optique réelle
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-purple-900/30 text-purple-400 border-purple-900/30">
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    Inspiré par Higgsfield
+                  </Badge>
+                  <Badge variant="outline" className="text-zinc-500 border-zinc-800">
+                    <Aperture className="w-3 h-3 mr-1" />
+                    {camera.focalLength}mm f/{camera.aperture}
+                  </Badge>
+                </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
 
-        {/* Main Content */}
-        <main className="container mx-auto px-6 py-8">
+          {/* Main Content */}
+          <main className="px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Panel: Cinema Controls */}
             <div className="lg:col-span-1 space-y-6">
@@ -471,7 +530,8 @@ export default function CinemaPage() {
               </div>
             </div>
           </div>
-        </main>
+          </main>
+        </div>
       </div>
     </TooltipProvider>
   );

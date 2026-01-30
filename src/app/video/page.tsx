@@ -89,22 +89,38 @@ export default function VideoPage() {
       <Sidebar />
 
       <main className="flex-1 overflow-hidden flex flex-col">
-        {/* Header */}
-        <header className="border-b border-blood-900/30 p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blood-900/50 to-blood-900/20 flex items-center justify-center">
-                <Film className="w-6 h-6 text-blood-400" />
+        {/* Header - MOOSTIK Bloodwings Style */}
+        <header className="relative border-b border-blood-900/30 overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blood-900/20 via-[#0b0b0e] to-purple-900/10" />
+
+          {/* Animated blood veins */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-blood-700/50 via-purple-600/30 to-transparent animate-pulse" />
+            <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-purple-700/50 animate-pulse" style={{ animationDelay: '0.8s' }} />
+          </div>
+
+          <div className="relative p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blood-600/30 to-purple-600/20 border border-blood-600/30 flex items-center justify-center">
+                  <Film className="w-6 h-6 text-blood-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-blood-500 animate-pulse" />
+                    <span className="text-xs text-blood-400 uppercase tracking-widest font-medium">Animation Studio</span>
+                  </div>
+                  <h1 className="text-2xl font-bold tracking-tight">
+                    <span className="bg-gradient-to-r from-blood-400 via-purple-500 to-blood-500 bg-clip-text text-transparent">
+                      Génération Vidéo I2V
+                    </span>
+                  </h1>
+                  <p className="text-sm text-zinc-500">
+                    12 modèles SOTA • Image-to-Video • Janvier 2026
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white tracking-tight">
-                  Génération Vidéo I2V
-                </h1>
-                <p className="text-sm text-zinc-500">
-                  12 modèles SOTA • Image-to-Video • Janvier 2026
-                </p>
-              </div>
-            </div>
 
             <div className="flex items-center gap-3">
               {/* Episode Selector */}
@@ -144,6 +160,7 @@ export default function VideoPage() {
                 </Button>
               )}
             </div>
+          </div>
           </div>
         </header>
 

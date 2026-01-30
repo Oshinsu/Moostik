@@ -124,57 +124,73 @@ export default function CharactersPage() {
   const getLocationById = (id: string) => locations.find((l) => l.id === id);
 
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100">
+    <div className="flex h-screen bg-[#0b0b0e] text-zinc-100">
       <Sidebar episodes={episodes} onCreateEpisode={() => {}} />
 
       <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-2xl font-bold flex items-center gap-2">
-                <Users className="h-6 w-6 text-red-500" />
-                Personnages
-              </h1>
-              <p className="text-sm text-zinc-500 mt-1">
-                {characters.length} personnages • Cliquez pour voir les détails
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Badge variant="outline" className="border-red-800">
-                {characters.filter((c) => c.type === "moostik").length} Moostik
-              </Badge>
-              <Badge variant="outline" className="border-purple-800">
-                {characters.filter((c) => c.type === "human").length} Humains
-              </Badge>
-            </div>
+        {/* Header - MOOSTIK Bloodwings Style */}
+        <header className="relative border-b border-blood-900/30 overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blood-900/20 via-[#0b0b0e] to-crimson-900/10" />
+
+          {/* Animated blood veins */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-blood-700/50 via-blood-600/30 to-transparent animate-pulse" />
+            <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-blood-700/50 animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
 
-          {/* Filtres */}
-          <div className="flex items-center gap-4">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
-              <Input
-                placeholder="Rechercher un personnage..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-zinc-900 border-zinc-800"
-              />
+          <div className="relative p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-blood-500 animate-pulse" />
+                <span className="text-xs text-blood-400 uppercase tracking-widest font-medium">
+                  Les Bloodwings
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Badge className="bg-blood-900/50 text-blood-400 border-blood-700/50">
+                  {characters.filter((c) => c.type === "moostik").length} Moostik
+                </Badge>
+                <Badge className="bg-purple-900/50 text-purple-400 border-purple-700/50">
+                  {characters.filter((c) => c.type === "human").length} Humains
+                </Badge>
+              </div>
             </div>
-            
-            <div className="flex gap-2">
-              {(["all", "moostik", "human"] as const).map((type) => (
-                <Button
-                  key={type}
-                  variant={filterType === type ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setFilterType(type)}
-                  className={filterType === type ? "bg-red-600" : "border-zinc-700"}
-                >
-                  {type === "all" ? "Tous" : type === "moostik" ? "Moostik" : "Humains"}
-                </Button>
-              ))}
+
+            <h1 className="text-3xl font-bold tracking-tight mb-2">
+              <span className="bg-gradient-to-r from-blood-400 via-crimson-500 to-blood-500 bg-clip-text text-transparent">
+                Personnages
+              </span>
+            </h1>
+            <p className="text-zinc-500 max-w-xl">
+              {characters.length} âmes qui portent notre vengeance. Chaque goutte de sang versée est une prière pour nos morts.
+            </p>
+
+            {/* Filtres */}
+            <div className="flex items-center gap-4 mt-6">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                <Input
+                  placeholder="Rechercher un personnage..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-[#14131a] border-blood-900/30 focus:border-blood-600"
+                />
+              </div>
+
+              <div className="flex gap-2">
+                {(["all", "moostik", "human"] as const).map((type) => (
+                  <Button
+                    key={type}
+                    variant={filterType === type ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setFilterType(type)}
+                    className={filterType === type ? "moostik-btn-blood text-white" : "border-blood-900/30 text-zinc-400 hover:text-white hover:border-blood-600"}
+                  >
+                    {type === "all" ? "Tous" : type === "moostik" ? "🦟 Moostik" : "👤 Humains"}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </header>
@@ -182,8 +198,9 @@ export default function CharactersPage() {
         {/* Grille de personnages */}
         <div className="flex-1 overflow-y-auto p-6">
           {loading ? (
-            <div className="flex items-center justify-center h-64">
-              <div className="text-zinc-400">Chargement...</div>
+            <div className="flex flex-col items-center justify-center h-64 gap-4">
+              <div className="w-12 h-12 border-2 border-blood-900 border-t-blood-500 rounded-full animate-spin" />
+              <p className="text-zinc-500 text-sm">Les esprits consultent les archives...</p>
             </div>
           ) : (
             <div className="space-y-8">

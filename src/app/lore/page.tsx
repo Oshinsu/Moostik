@@ -28,21 +28,39 @@ export default function LorePage() {
   }, [fetchEpisodes]);
 
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100">
+    <div className="flex h-screen bg-[#0b0b0e] text-zinc-100">
       <Sidebar episodes={episodes} onCreateEpisode={() => {}} />
 
       <main className="flex-1 overflow-auto">
-        {/* Header */}
-        <header className="sticky top-0 z-40 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-          <div className="px-6 py-4">
+        {/* Header - MOOSTIK Bloodwings Style */}
+        <header className="sticky top-0 z-40 relative border-b border-blood-900/30 overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blood-900/20 via-[#0b0b0e] to-crimson-900/10" />
+
+          {/* Animated blood veins */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-blood-700/50 via-crimson-600/30 to-transparent animate-pulse" />
+            <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-crimson-700/50 animate-pulse" style={{ animationDelay: '0.7s' }} />
+            <div className="absolute top-0 left-2/3 w-px h-full bg-gradient-to-b from-blood-600/40 via-transparent to-crimson-600/30 animate-pulse" style={{ animationDelay: '1.2s' }} />
+          </div>
+
+          <div className="relative px-6 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold">Bible Moostik</h1>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-2 h-2 rounded-full bg-blood-500 animate-pulse" />
+                  <span className="text-xs text-blood-400 uppercase tracking-widest font-medium">Grimoire Sacré</span>
+                </div>
+                <h1 className="text-2xl font-bold tracking-tight">
+                  <span className="bg-gradient-to-r from-blood-400 via-crimson-500 to-blood-500 bg-clip-text text-transparent">
+                    Bible Moostik
+                  </span>
+                </h1>
                 <p className="text-sm text-zinc-500 mt-1">
                   Guide de style, lore et règles de l&apos;univers
                 </p>
               </div>
-              <Badge className="bg-red-900 text-red-100">
+              <Badge className="bg-blood-900/50 text-blood-200 border border-blood-700/30">
                 Version 1.0
               </Badge>
             </div>
@@ -53,32 +71,32 @@ export default function LorePage() {
         <ScrollArea className="flex-1" style={{ height: "calc(100vh - 80px)" }}>
           <div className="p-6">
             <Tabs defaultValue="overview" className="space-y-6">
-              <TabsList className="bg-zinc-900 border-zinc-800 flex-wrap h-auto gap-1 p-1">
-                <TabsTrigger value="overview" className="data-[state=active]:bg-red-900">
+              <TabsList className="bg-[#14131a] border border-blood-900/30 flex-wrap h-auto gap-1 p-1">
+                <TabsTrigger value="overview" className="data-[state=active]:bg-blood-900/50 data-[state=active]:text-blood-200">
                   Vue d&apos;ensemble
                 </TabsTrigger>
-                <TabsTrigger value="style" className="data-[state=active]:bg-red-900">
+                <TabsTrigger value="style" className="data-[state=active]:bg-blood-900/50 data-[state=active]:text-blood-200">
                   Guide de Style
                 </TabsTrigger>
-                <TabsTrigger value="moostik" className="data-[state=active]:bg-red-900">
+                <TabsTrigger value="moostik" className="data-[state=active]:bg-blood-900/50 data-[state=active]:text-blood-200">
                   Les Moostik
                 </TabsTrigger>
-                <TabsTrigger value="humans" className="data-[state=active]:bg-red-900">
+                <TabsTrigger value="humans" className="data-[state=active]:bg-amber-900/50 data-[state=active]:text-amber-200">
                   Les Humains
                 </TabsTrigger>
-                <TabsTrigger value="world" className="data-[state=active]:bg-red-900">
+                <TabsTrigger value="world" className="data-[state=active]:bg-crimson-900/50 data-[state=active]:text-crimson-200">
                   Le Monde
                 </TabsTrigger>
-                <TabsTrigger value="technical" className="data-[state=active]:bg-red-900">
+                <TabsTrigger value="technical" className="data-[state=active]:bg-blood-900/50 data-[state=active]:text-blood-200">
                   Technique
                 </TabsTrigger>
               </TabsList>
 
               {/* Overview Tab */}
               <TabsContent value="overview" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
-                    <CardTitle className="text-red-400">MOOSTIK - Présentation</CardTitle>
+                    <CardTitle className="text-blood-400">MOOSTIK - Présentation</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-zinc-300">
@@ -87,7 +105,7 @@ export default function LorePage() {
                       qui survit à un génocide perpétré par un enfant humain, et prépare sa vengeance.
                     </p>
                     
-                    <Separator className="bg-zinc-800" />
+                    <Separator className="bg-blood-900/30" />
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -112,13 +130,13 @@ export default function LorePage() {
                       </div>
                     </div>
                     
-                    <Separator className="bg-zinc-800" />
+                    <Separator className="bg-blood-900/30" />
                     
                     <div>
                       <h4 className="text-sm font-medium text-zinc-400 mb-2">Thèmes centraux</h4>
                       <div className="flex flex-wrap gap-2">
                         {["Génocide", "Survie", "Vengeance", "Famille", "Sacrifice", "Reconstruction", "Identité", "Échelle"].map(theme => (
-                          <Badge key={theme} variant="outline" className="border-red-800 text-red-400">
+                          <Badge key={theme} variant="outline" className="border-blood-800 text-blood-400">
                             {theme}
                           </Badge>
                         ))}
@@ -127,7 +145,7 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Synopsis EP0 - Le Génocide</CardTitle>
                   </CardHeader>
@@ -160,15 +178,15 @@ export default function LorePage() {
 
               {/* Style Guide Tab */}
               <TabsContent value="style" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
-                    <CardTitle className="text-red-400">Invariants de Style</CardTitle>
+                    <CardTitle className="text-blood-400">Invariants de Style</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
                       {MOOSTIK_INVARIANTS.map((invariant, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm">
-                          <span className="text-red-500 font-mono text-xs bg-red-900/20 px-2 py-0.5 rounded">
+                          <span className="text-blood-500 font-mono text-xs bg-blood-900/20 px-2 py-0.5 rounded">
                             {(i + 1).toString().padStart(2, "0")}
                           </span>
                           <span className="text-zinc-300">{invariant}</span>
@@ -178,7 +196,7 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Palette de Couleurs</CardTitle>
                   </CardHeader>
@@ -204,14 +222,14 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Negative Prompts (À éviter)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
                       {MOOSTIK_NEGATIVE_PROMPT.map((neg, i) => (
-                        <Badge key={i} variant="outline" className="border-red-900 text-red-400 text-xs">
+                        <Badge key={i} variant="outline" className="border-blood-900 text-blood-400 text-xs">
                           ✕ {neg}
                         </Badge>
                       ))}
@@ -222,9 +240,9 @@ export default function LorePage() {
 
               {/* Moostik Tab */}
               <TabsContent value="moostik" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
-                    <CardTitle className="text-red-400">Design des Moostik</CardTitle>
+                    <CardTitle className="text-blood-400">Design des Moostik</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid md:grid-cols-2 gap-6">
@@ -232,30 +250,30 @@ export default function LorePage() {
                         <h4 className="text-sm font-medium text-zinc-300 mb-3">Anatomie</h4>
                         <ul className="text-sm text-zinc-400 space-y-2">
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500">•</span>
+                            <span className="text-blood-500">•</span>
                             Corps anthropomorphe élancé (pas d&apos;insecte réaliste)
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500">•</span>
+                            <span className="text-blood-500">•</span>
                             Grands yeux expressifs style Pixar
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500">•</span>
+                            <span className="text-blood-500">•</span>
                             Proboscis fin comme une aiguille
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500">•</span>
+                            <span className="text-blood-500">•</span>
                             Ailes translucides avec veines rouges
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500">•</span>
+                            <span className="text-blood-500">•</span>
                             Petite crête rouge sur la tête
                           </li>
                         </ul>
                       </div>
                       <div>
                         <h4 className="text-sm font-medium text-zinc-300 mb-3">Échelle</h4>
-                        <div className="bg-zinc-800 rounded-lg p-4 text-center">
+                        <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4 text-center">
                           <p className="text-4xl mb-2">🦟</p>
                           <p className="text-xs text-zinc-500">MICROSCOPIQUE</p>
                           <p className="text-sm text-zinc-400 mt-2">
@@ -267,12 +285,12 @@ export default function LorePage() {
                       </div>
                     </div>
                     
-                    <Separator className="bg-zinc-800" />
+                    <Separator className="bg-blood-900/30" />
                     
                     <div>
                       <h4 className="text-sm font-medium text-zinc-300 mb-3">Règle d&apos;échelle absolue</h4>
-                      <div className="bg-red-900/20 border border-red-900/50 rounded-lg p-4">
-                        <p className="text-sm text-red-300">
+                      <div className="bg-blood-900/20 border border-blood-900/50 rounded-lg p-4">
+                        <p className="text-sm text-blood-300">
                           <strong>CRITIQUE :</strong> Les Moostik doivent TOUJOURS apparaître microscopiques 
                           par rapport à leur environnement. Jamais à taille d&apos;insecte normale. 
                           Les humains sont des colosses titanesques vus d&apos;en bas.
@@ -282,7 +300,7 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Société Moostik</CardTitle>
                   </CardHeader>
@@ -315,7 +333,7 @@ export default function LorePage() {
 
               {/* Humans Tab */}
               <TabsContent value="humans" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle className="text-amber-400">Design des Humains</CardTitle>
                   </CardHeader>
@@ -375,7 +393,7 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>L&apos;Enfant au BYSS</CardTitle>
                   </CardHeader>
@@ -386,15 +404,15 @@ export default function LorePage() {
                       la cruauté innocente de l&apos;enfance.
                     </p>
                     <div className="grid md:grid-cols-3 gap-4 text-sm">
-                      <div className="bg-zinc-800 rounded-lg p-3">
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-3">
                         <p className="text-amber-400 font-medium mb-1">Âge</p>
                         <p className="text-zinc-400">5 ans</p>
                       </div>
-                      <div className="bg-zinc-800 rounded-lg p-3">
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-3">
                         <p className="text-amber-400 font-medium mb-1">Ethnicité</p>
                         <p className="text-zinc-400">Antillais/Caribéen</p>
                       </div>
-                      <div className="bg-zinc-800 rounded-lg p-3">
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-3">
                         <p className="text-amber-400 font-medium mb-1">Visibilité</p>
                         <p className="text-zinc-400">Mains uniquement</p>
                       </div>
@@ -405,9 +423,9 @@ export default function LorePage() {
 
               {/* World Tab */}
               <TabsContent value="world" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
-                    <CardTitle className="text-red-400">Architecture Moostik</CardTitle>
+                    <CardTitle className="text-blood-400">Architecture Moostik</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-zinc-300 mb-4">
@@ -416,8 +434,8 @@ export default function LorePage() {
                     </p>
                     
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="bg-zinc-800 rounded-lg p-4">
-                        <h4 className="font-medium text-red-400 mb-2">Éléments structurels</h4>
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4">
+                        <h4 className="font-medium text-blood-400 mb-2">Éléments structurels</h4>
                         <ul className="text-sm text-zinc-400 space-y-1">
                           <li>• Dômes en membrane d&apos;aile (filtrent la lumière)</li>
                           <li>• Flèches en forme de proboscis (collectent la rosée)</li>
@@ -426,8 +444,8 @@ export default function LorePage() {
                           <li>• Fenêtres hexagonales (œil composé)</li>
                         </ul>
                       </div>
-                      <div className="bg-zinc-800 rounded-lg p-4">
-                        <h4 className="font-medium text-red-400 mb-2">Matériaux</h4>
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4">
+                        <h4 className="font-medium text-blood-400 mb-2">Matériaux</h4>
                         <ul className="text-sm text-zinc-400 space-y-1">
                           <li>• Fibres de tissu (poutres, fondations)</li>
                           <li>• Fils de soie (ponts, escaliers)</li>
@@ -440,7 +458,7 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Martinique - Contexte</CardTitle>
                   </CardHeader>
@@ -477,16 +495,16 @@ export default function LorePage() {
 
               {/* Technical Tab */}
               <TabsContent value="technical" className="space-y-6">
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
-                    <CardTitle className="text-red-400">Angles de Caméra</CardTitle>
+                    <CardTitle className="text-blood-400">Angles de Caméra</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-3">
                       {CAMERA_ANGLES.map((angle) => (
-                        <div key={angle.angle} className="bg-zinc-800 rounded-lg p-3">
+                        <div key={angle.angle} className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-3">
                           <div className="flex items-center gap-2 mb-1">
-                            <Badge variant="outline" className="border-red-800 text-red-400 text-xs">
+                            <Badge variant="outline" className="border-blood-800 text-blood-400 text-xs">
                               {angle.angle}
                             </Badge>
                             <span className="text-sm font-medium text-zinc-200">
@@ -500,22 +518,22 @@ export default function LorePage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-zinc-900/50 border-zinc-800">
+                <Card className="bg-[#14131a]/80 border-blood-900/30">
                   <CardHeader>
                     <CardTitle>Spécifications Techniques</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-3 gap-4">
-                      <div className="bg-zinc-800 rounded-lg p-4 text-center">
-                        <p className="text-2xl font-bold text-red-400">4K</p>
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4 text-center">
+                        <p className="text-2xl font-bold text-blood-400">4K</p>
                         <p className="text-xs text-zinc-500">Résolution</p>
                       </div>
-                      <div className="bg-zinc-800 rounded-lg p-4 text-center">
-                        <p className="text-2xl font-bold text-red-400">16:9</p>
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4 text-center">
+                        <p className="text-2xl font-bold text-blood-400">16:9</p>
                         <p className="text-xs text-zinc-500">Aspect Ratio</p>
                       </div>
-                      <div className="bg-zinc-800 rounded-lg p-4 text-center">
-                        <p className="text-2xl font-bold text-red-400">PNG</p>
+                      <div className="bg-[#0b0b0e] rounded-lg border border-blood-900/20 p-4 text-center">
+                        <p className="text-2xl font-bold text-blood-400">PNG</p>
                         <p className="text-xs text-zinc-500">Format</p>
                       </div>
                     </div>
@@ -525,7 +543,7 @@ export default function LorePage() {
                     <div className="text-sm text-zinc-400">
                       <h4 className="font-medium text-zinc-200 mb-2">Modèle de génération</h4>
                       <p>
-                        <code className="bg-zinc-800 px-2 py-1 rounded text-red-400">
+                        <code className="bg-[#0b0b0e] px-2 py-1 rounded border border-blood-900/30 text-blood-400">
                           google/nano-banana-pro
                         </code>
                         {" "}via Replicate API
