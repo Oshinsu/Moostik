@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -42,13 +42,17 @@ import {
   SHOTS_GRID_CONFIG,
   getAngleConfig,
   getGridPreset,
+  buildMoostikShotPrompt,
 } from "@/lib/shots/types";
+import { Sidebar } from "@/components/Sidebar";
+import type { Episode } from "@/types/moostik";
 
 // ============================================
 // PAGE COMPONENT
 // ============================================
 
 export default function ShotsPage() {
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [sourceImage, setSourceImage] = useState<string>("");
   const [basePrompt, setBasePrompt] = useState<string>("");
   const [stylePreset, setStylePreset] = useState<ShotsStyle>("pixar_dark");
@@ -58,6 +62,14 @@ export default function ShotsPage() {
   const [referenceId, setReferenceId] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeTab, setActiveTab] = useState("setup");
+
+  // Fetch episodes for sidebar
+  useEffect(() => {
+    fetch("/api/episodes")
+      .then(res => res.json())
+      .then(data => setEpisodes(Array.isArray(data) ? data : []))
+      .catch(() => setEpisodes([]));
+  }, []);
 
   // Get active angles based on preset
   const activeAngles = gridPreset === "all"
@@ -81,7 +93,7 @@ export default function ShotsPage() {
     return newShots;
   }, [activeAngles]);
 
-  // Handle generation
+  // Handle generation with real API
   const handleGenerate = async () => {
     if (!sourceImage || !basePrompt) return;
 
@@ -89,23 +101,53 @@ export default function ShotsPage() {
     setActiveTab("grid");
     const shotsToGenerate = initializeShots();
 
-    // Simulate generation (replace with actual API call)
+    // Generate each shot via API
     for (let i = 0; i < shotsToGenerate.length; i++) {
+      const shot = shotsToGenerate[i];
+
       setShots(prev => prev.map((s, idx) =>
         idx === i ? { ...s, status: "generating" } : s
       ));
 
-      // Simulate delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      try {
+        // Build the full prompt for this angle
+        const fullPrompt = buildMoostikShotPrompt(basePrompt, shot.angleConfig);
 
-      setShots(prev => prev.map((s, idx) =>
-        idx === i ? {
-          ...s,
-          status: "completed",
-          imageUrl: sourceImage, // In real impl, this would be the generated image
-          generatedAt: new Date().toISOString(),
-        } : s
-      ));
+        // Call the standalone generation API
+        const response = await fetch("/api/generate/standalone", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: fullPrompt,
+            style: stylePreset,
+            sourceImage: sourceImage,
+            angle: shot.angle,
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setShots(prev => prev.map((s, idx) =>
+            idx === i ? {
+              ...s,
+              status: "completed",
+              imageUrl: result.imageUrl || sourceImage,
+              prompt: fullPrompt,
+              generatedAt: new Date().toISOString(),
+            } : s
+          ));
+        } else {
+          // On API error, mark as failed but continue
+          setShots(prev => prev.map((s, idx) =>
+            idx === i ? { ...s, status: "failed" } : s
+          ));
+        }
+      } catch (error) {
+        console.error(`Failed to generate shot ${i}:`, error);
+        setShots(prev => prev.map((s, idx) =>
+          idx === i ? { ...s, status: "failed" } : s
+        ));
+      }
     }
 
     setIsGenerating(false);
@@ -132,40 +174,43 @@ export default function ShotsPage() {
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-[#0a0a0d]">
-        {/* Header */}
-        <header className="border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
-          <div className="container mx-auto px-6 py-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blood-600/30 to-amber-600/20 border border-blood-600/30 flex items-center justify-center">
-                  <Grid3X3 className="w-6 h-6 text-blood-400" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-white tracking-tight">
-                    Shots x9
-                  </h1>
-                  <p className="text-sm text-zinc-500">
-                    Générez 9 angles cinématiques à partir d&apos;une seule image
-                  </p>
-                </div>
-              </div>
+      <div className="flex h-screen bg-[#0a0a0d]">
+        <Sidebar episodes={episodes} />
 
-              <div className="flex items-center gap-3">
-                <Badge className="bg-blood-900/30 text-blood-400 border-blood-900/30">
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  Inspiré par Higgsfield
-                </Badge>
-                <Badge variant="outline" className="text-zinc-500 border-zinc-800">
-                  <Zap className="w-3 h-3 mr-1" />4 crédits / grille
-                </Badge>
+        <div className="flex-1 overflow-auto">
+          {/* Header */}
+          <header className="border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
+            <div className="px-6 py-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blood-600/30 to-amber-600/20 border border-blood-600/30 flex items-center justify-center">
+                    <Grid3X3 className="w-6 h-6 text-blood-400" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">
+                      Shots x9
+                    </h1>
+                    <p className="text-sm text-zinc-500">
+                      Générez 9 angles cinématiques à partir d&apos;une seule image
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-blood-900/30 text-blood-400 border-blood-900/30">
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    Inspiré par Higgsfield
+                  </Badge>
+                  <Badge variant="outline" className="text-zinc-500 border-zinc-800">
+                    <Zap className="w-3 h-3 mr-1" />4 crédits / grille
+                  </Badge>
+                </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
 
-        {/* Main Content */}
-        <main className="container mx-auto px-6 py-8">
+          {/* Main Content */}
+          <main className="px-6 py-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="bg-zinc-900/50 border border-zinc-800/30 p-1">
               <TabsTrigger value="setup" className="data-[state=active]:bg-blood-900/30">
@@ -492,7 +537,8 @@ export default function ShotsPage() {
               </div>
             </TabsContent>
           </Tabs>
-        </main>
+          </main>
+        </div>
       </div>
     </TooltipProvider>
   );

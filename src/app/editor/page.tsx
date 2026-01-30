@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,6 +44,8 @@ import {
 import {
   PLATFORM_PRESETS,
 } from "@/lib/editor/export";
+import { Sidebar } from "@/components/Sidebar";
+import type { Episode } from "@/types/moostik";
 
 // ============================================
 // MOCK DATA
@@ -125,6 +127,17 @@ const MOCK_TRACKS: MockTrack[] = [
 // ============================================
 
 export default function EditorPage() {
+  // Episodes for sidebar
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+
+  // Fetch episodes
+  useEffect(() => {
+    fetch("/api/episodes")
+      .then(res => res.json())
+      .then(data => setEpisodes(Array.isArray(data) ? data : []))
+      .catch(() => setEpisodes([]));
+  }, []);
+
   const [tracks, setTracks] = useState<MockTrack[]>(MOCK_TRACKS);
   const [playhead, setPlayhead] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -156,54 +169,57 @@ export default function EditorPage() {
 
   return (
     <TooltipProvider>
-      <div className="h-screen flex flex-col bg-[#0a0a0d] overflow-hidden">
-        {/* Header */}
-        <header className="flex-shrink-0 border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
-          <div className="px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600/30 to-blood-600/20 border border-emerald-600/30 flex items-center justify-center">
-                  <Scissors className="w-5 h-5 text-emerald-400" />
+      <div className="flex h-screen bg-[#0a0a0d] overflow-hidden">
+        <Sidebar episodes={episodes} />
+
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Header */}
+          <header className="flex-shrink-0 border-b border-blood-900/30 bg-gradient-to-r from-[#0b0b0e] to-[#14131a]">
+            <div className="px-4 py-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600/30 to-blood-600/20 border border-emerald-600/30 flex items-center justify-center">
+                    <Scissors className="w-5 h-5 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h1 className="text-lg font-bold text-white tracking-tight">
+                      Montage IA
+                    </h1>
+                    <p className="text-xs text-zinc-500">
+                      Timeline • Beat Sync • Export SOTA
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="text-lg font-bold text-white tracking-tight">
-                    Montage IA
-                  </h1>
-                  <p className="text-xs text-zinc-500">
-                    Timeline • Beat Sync • Export SOTA
-                  </p>
+
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-emerald-900/30 text-emerald-400 border-emerald-900/30">
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    IA Activée
+                  </Badge>
+
+                  {/* Export Dropdown */}
+                  <Select value={exportPreset} onValueChange={setExportPreset}>
+                    <SelectTrigger className="w-[180px] h-8 text-xs bg-zinc-900/50 border-zinc-800">
+                      <Download className="w-3 h-3 mr-2" />
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {PLATFORM_PRESETS.slice(0, 8).map((preset) => (
+                        <SelectItem key={preset.id} value={preset.id}>
+                          {preset.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Button size="sm" className="moostik-btn-blood text-white h-8">
+                    <Download className="w-4 h-4 mr-2" />
+                    Exporter
+                  </Button>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Badge className="bg-emerald-900/30 text-emerald-400 border-emerald-900/30">
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  IA Activée
-                </Badge>
-
-                {/* Export Dropdown */}
-                <Select value={exportPreset} onValueChange={setExportPreset}>
-                  <SelectTrigger className="w-[180px] h-8 text-xs bg-zinc-900/50 border-zinc-800">
-                    <Download className="w-3 h-3 mr-2" />
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {PLATFORM_PRESETS.slice(0, 8).map((preset) => (
-                      <SelectItem key={preset.id} value={preset.id}>
-                        {preset.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <Button size="sm" className="moostik-btn-blood text-white h-8">
-                  <Download className="w-4 h-4 mr-2" />
-                  Exporter
-                </Button>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
 
         {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
@@ -572,6 +588,7 @@ export default function EditorPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </TooltipProvider>
