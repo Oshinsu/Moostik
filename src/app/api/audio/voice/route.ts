@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
 
     try {
       // Try XTTS-v2 (best quality)
-      const output = await replicate.run(modelId, {
+      const output = await replicate.run(modelId as `${string}/${string}:${string}`, {
         input: {
           text: styledText,
           language: body.language || "fr",
