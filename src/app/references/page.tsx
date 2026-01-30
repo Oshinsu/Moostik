@@ -144,39 +144,56 @@ export default function ReferencesPage() {
   const humanLocations = locations.filter((l) => l.type === "human_space" || l.type === "natural" || l.type === "hybrid");
 
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100">
+    <div className="flex h-screen bg-[#0b0b0e] text-zinc-100">
       <Sidebar episodes={episodes} onCreateEpisode={() => {}} />
 
       <main className="flex-1 overflow-auto">
-        {/* Header */}
-        <header className="sticky top-0 z-40 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-          <div className="px-6 py-4">
+        {/* Header - MOOSTIK Bloodwings Style */}
+        <header className="sticky top-0 z-40 relative border-b border-blood-900/30 overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/15 via-[#0b0b0e] to-blood-900/10" />
+
+          {/* Animated blood veins */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-0 left-1/5 w-px h-full bg-gradient-to-b from-amber-700/50 via-blood-600/30 to-transparent animate-pulse" />
+            <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-amber-700/50 animate-pulse" style={{ animationDelay: '0.5s' }} />
+          </div>
+
+          <div className="relative px-6 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold">Images de Reference</h1>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="text-xs text-amber-400 uppercase tracking-widest font-medium">Galerie des Âmes</span>
+                </div>
+                <h1 className="text-2xl font-bold">
+                  <span className="bg-gradient-to-r from-amber-400 via-blood-500 to-amber-500 bg-clip-text text-transparent">
+                    Images de Référence
+                  </span>
+                </h1>
                 <p className="text-sm text-zinc-500 mt-1">
-                  Generez et validez les images de reference pour garantir la coherence visuelle
+                  Générez et validez les images de référence pour garantir la cohérence visuelle
                 </p>
               </div>
               {stats && (
                 <div className="flex items-center gap-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-red-400">
+                  <div className="text-center px-3 py-2 bg-blood-900/20 rounded-lg border border-blood-800/30">
+                    <p className="text-2xl font-bold text-blood-400">
                       {stats.charactersWithRefs}/{stats.totalCharacters}
                     </p>
                     <p className="text-xs text-zinc-500">Personnages</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center px-3 py-2 bg-amber-900/20 rounded-lg border border-amber-800/30">
                     <p className="text-2xl font-bold text-amber-400">
                       {stats.locationsWithRefs}/{stats.totalLocations}
                     </p>
                     <p className="text-xs text-zinc-500">Lieux</p>
                   </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-green-400">
+                  <div className="text-center px-3 py-2 bg-emerald-900/20 rounded-lg border border-emerald-800/30">
+                    <p className="text-2xl font-bold text-emerald-400">
                       {stats.validatedCharacters + stats.validatedLocations}
                     </p>
-                    <p className="text-xs text-zinc-500">Validees</p>
+                    <p className="text-xs text-zinc-500">Validées</p>
                   </div>
                 </div>
               )}
@@ -185,28 +202,29 @@ export default function ReferencesPage() {
         </header>
 
         {/* Info Banner */}
-        <div className="mx-6 mt-4 p-4 bg-blue-900/20 border border-blue-800/50 rounded-lg">
-          <p className="text-sm text-blue-300">
-            <strong>Comment utiliser:</strong> Generez des images de reference pour chaque personnage et lieu. 
-            Ces references seront automatiquement injectees lors de la generation des shots pour maintenir 
-            la coherence visuelle. Nano Banana Pro supporte jusqu&apos;a 14 images de reference simultanees.
+        <div className="mx-6 mt-4 p-4 bg-blood-900/15 border border-blood-800/30 rounded-lg">
+          <p className="text-sm text-blood-300">
+            <strong>Comment utiliser:</strong> Générez des images de référence pour chaque personnage et lieu.
+            Ces références seront automatiquement injectées lors de la génération des shots pour maintenir
+            la cohérence visuelle. Nano Banana Pro supporte jusqu&apos;à 14 images de référence simultanées.
           </p>
         </div>
 
         {/* Content */}
         <div className="p-6">
           {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <div className="w-8 h-8 border-2 border-red-900 border-t-transparent rounded-full animate-spin" />
+            <div className="flex flex-col items-center justify-center py-20 gap-4">
+              <div className="w-12 h-12 border-2 border-blood-900 border-t-blood-500 rounded-full animate-spin" />
+              <p className="text-zinc-500 text-sm">Les esprits consultent les archives...</p>
             </div>
           ) : (
             <Tabs defaultValue="characters" className="space-y-6">
-              <TabsList className="bg-zinc-900 border-zinc-800">
-                <TabsTrigger value="characters" className="data-[state=active]:bg-red-900">
-                  Personnages ({characters.length})
+              <TabsList className="bg-[#14131a] border-blood-900/30">
+                <TabsTrigger value="characters" className="data-[state=active]:bg-blood-900/50 data-[state=active]:text-blood-300">
+                  🦟 Personnages ({characters.length})
                 </TabsTrigger>
-                <TabsTrigger value="locations" className="data-[state=active]:bg-amber-900">
-                  Lieux ({locations.length})
+                <TabsTrigger value="locations" className="data-[state=active]:bg-amber-900/50 data-[state=active]:text-amber-300">
+                  🏛️ Lieux ({locations.length})
                 </TabsTrigger>
               </TabsList>
 
