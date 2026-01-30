@@ -1,12 +1,11 @@
 /**
  * MOOSTIK Video Generation Manager
- * Orchestrates video generation across multiple providers
- * Handles batch processing, fallbacks, and progress tracking
+ * Orchestrates video generation across multiple Replicate I2V models
+ * Updated for SOTA providers - January 2026
  */
 
 import {
   VideoProvider,
-  VideoProviderConfig,
   VideoGenerationInput,
   VideoGenerationOutput,
   BatchVideoRequest,
@@ -16,15 +15,27 @@ import {
   ShotVideoRequest,
   AnimationType,
   CameraMotion,
-  DEFAULT_PROVIDER_CONFIGS,
+  VideoResolution,
+  PROVIDER_CONFIGS,
+  REPLICATE_MODELS,
+  MOOSTIK_ANIMATION_PROVIDERS,
+  MOOSTIK_BUDGET_TIERS,
+  MOOSTIK_SCENE_PROVIDERS,
+  getOptimalProvider,
+  calculateEpisodeCost,
+  getProviderFallbackChain,
 } from "./types";
-import { VideoProviderBase, createProvider, VideoProviderError } from "./provider-base";
+import {
+  generateVideo,
+  generateVideoAndWait,
+  generateVideoWithRetry,
+  checkVideoStatus,
+  cancelVideo,
+  downloadVideo,
+  ReplicateVideoError,
+} from "./providers/replicate";
 import { createLogger, trackPerformance } from "../logger";
 import { config as appConfig } from "../config";
-
-// Import providers to register them
-import "./providers/kling";
-import "./providers/runway";
 
 const logger = createLogger("VideoManager");
 
@@ -33,54 +44,15 @@ const logger = createLogger("VideoManager");
 // ============================================
 
 export class VideoManager {
-  private providers: Map<VideoProvider, VideoProviderBase> = new Map();
-  private defaultProvider: VideoProvider = "kling";
-  private fallbackChain: VideoProvider[] = ["kling", "runway", "luma"];
+  private defaultProvider: VideoProvider = "wan-2.5";
+  private budgetTier: keyof typeof MOOSTIK_BUDGET_TIERS = "draft";
 
-  constructor() {
-    this.initializeProviders();
-  }
-
-  /**
-   * Initialize available providers based on API keys
-   */
-  private initializeProviders(): void {
-    const providerKeys: Record<VideoProvider, string | undefined> = {
-      kling: process.env.KLING_API_KEY,
-      runway: process.env.RUNWAY_API_KEY,
-      luma: process.env.LUMA_API_KEY,
-      pika: process.env.PIKA_API_KEY,
-      minimax: process.env.MINIMAX_API_KEY,
-      sora: process.env.SORA_API_KEY,
-    };
-
-    for (const [provider, apiKey] of Object.entries(providerKeys)) {
-      if (apiKey) {
-        try {
-          const config: VideoProviderConfig = {
-            provider: provider as VideoProvider,
-            apiKey,
-            ...DEFAULT_PROVIDER_CONFIGS[provider as VideoProvider],
-          } as VideoProviderConfig;
-
-          this.providers.set(provider as VideoProvider, createProvider(config));
-          logger.info(`Initialized video provider: ${provider}`);
-        } catch (error) {
-          logger.warn(`Failed to initialize provider ${provider}:`, error);
-        }
-      }
+  constructor(options?: { defaultProvider?: VideoProvider; budgetTier?: keyof typeof MOOSTIK_BUDGET_TIERS }) {
+    if (options?.defaultProvider) {
+      this.defaultProvider = options.defaultProvider;
     }
-
-    if (this.providers.size === 0) {
-      logger.warn("No video providers configured. Set API keys in environment.");
-    }
-
-    // Set default provider to first available
-    for (const provider of this.fallbackChain) {
-      if (this.providers.has(provider)) {
-        this.defaultProvider = provider;
-        break;
-      }
+    if (options?.budgetTier) {
+      this.budgetTier = options.budgetTier;
     }
   }
 
@@ -91,74 +63,63 @@ export class VideoManager {
     input: VideoGenerationInput,
     options: {
       preferredProvider?: VideoProvider;
-      enableFallback?: boolean;
+      fallbackProviders?: VideoProvider[];
+      animationType?: AnimationType;
+      sceneType?: string;
       onProgress?: (output: VideoGenerationOutput) => void;
     } = {}
   ): Promise<VideoGenerationOutput> {
-    const {
-      preferredProvider,
-      enableFallback = true,
-      onProgress,
-    } = options;
-
     const perf = trackPerformance("generateVideo");
 
     // Select provider
-    const providersToTry = this.selectProviders(input, preferredProvider, enableFallback);
+    const provider = this.selectProvider(input, options);
 
-    if (providersToTry.length === 0) {
-      throw new VideoProviderError(
-        "kling",
-        "NO_PROVIDER",
-        "No video providers available or configured"
-      );
-    }
+    logger.info(`Starting video generation`, {
+      provider,
+      model: REPLICATE_MODELS[provider],
+      duration: input.durationSeconds,
+      resolution: input.resolution,
+    });
 
-    let lastError: VideoProviderError | null = null;
+    try {
+      const result = await generateVideoWithRetry(input, provider, {
+        onProgress: options.onProgress,
+      });
 
-    for (const providerName of providersToTry) {
-      const provider = this.providers.get(providerName);
-      if (!provider) continue;
+      // Calculate cost
+      const config = PROVIDER_CONFIGS[provider];
+      result.costUsd = config.pricing.costPerSecond * (result.durationSeconds || input.durationSeconds);
 
-      try {
-        logger.info(`Attempting video generation with ${providerName}`);
+      perf.end();
+      logger.info(`Video generation completed`, {
+        provider,
+        cost: result.costUsd,
+        processingMs: result.actualProcessingMs,
+      });
 
-        // Start generation
-        const job = await provider.generateWithRetry(input);
+      return result;
 
-        // Wait for completion
-        const result = await provider.waitForCompletion(job.id, {
-          onProgress,
-          timeoutMs: provider["config"].timeoutMs,
-        });
+    } catch (error) {
+      perf.end();
 
-        perf.end();
-        logger.info(`Video generation completed with ${providerName}`, {
-          jobId: job.id,
-          duration: perf,
-        });
+      // Try fallback providers
+      const fallbacks = options.fallbackProviders || this.getFallbackChain(provider, input);
+      for (const fallbackProvider of fallbacks) {
+        if (fallbackProvider === provider) continue;
 
-        return result;
-
-      } catch (error) {
-        lastError = error instanceof VideoProviderError
-          ? error
-          : new VideoProviderError(providerName, "UNKNOWN", String(error));
-
-        logger.warn(`Provider ${providerName} failed, trying next...`, {
-          error: lastError.message,
-        });
-
-        if (!enableFallback) break;
+        logger.warn(`Provider ${provider} failed, trying fallback: ${fallbackProvider}`);
+        try {
+          const result = await generateVideoWithRetry(input, fallbackProvider, {
+            onProgress: options.onProgress,
+          });
+          return result;
+        } catch (fallbackError) {
+          logger.warn(`Fallback provider ${fallbackProvider} also failed`);
+        }
       }
-    }
 
-    perf.end();
-    throw lastError || new VideoProviderError(
-      this.defaultProvider,
-      "ALL_PROVIDERS_FAILED",
-      "All video providers failed"
-    );
+      throw error;
+    }
   }
 
   /**
@@ -169,6 +130,9 @@ export class VideoManager {
       shots,
       episodeId,
       parallelLimit = 2,
+      preferredProvider,
+      fallbackProviders,
+      budgetMaxUsd,
       onProgress,
     } = request;
 
@@ -176,12 +140,15 @@ export class VideoManager {
     logger.info(`Starting batch video generation`, {
       episodeId,
       shotCount: shots.length,
+      parallelLimit,
     });
 
     const results: ShotVideo[] = [];
     const queue = [...shots];
     let completed = 0;
     let failed = 0;
+    let totalCost = 0;
+    const providersUsed = new Set<VideoProvider>();
     const inProgressJobs: Map<string, Promise<ShotVideo | null>> = new Map();
 
     const reportProgress = () => {
@@ -192,16 +159,43 @@ export class VideoManager {
           failed,
           inProgress: inProgressJobs.size,
           currentShot: queue[0]?.shotId,
+          totalCostUsd: totalCost,
         });
       }
     };
+
+    // Check budget
+    const estimateBatchCost = () => {
+      const provider = preferredProvider || this.defaultProvider;
+      const config = PROVIDER_CONFIGS[provider];
+      return shots.reduce((sum, s) => sum + config.pricing.costPerSecond * s.durationSeconds, 0);
+    };
+
+    if (budgetMaxUsd) {
+      const estimatedCost = estimateBatchCost();
+      if (estimatedCost > budgetMaxUsd) {
+        logger.warn(`Estimated cost $${estimatedCost.toFixed(2)} exceeds budget $${budgetMaxUsd}`);
+      }
+    }
 
     // Process queue with parallelism
     while (queue.length > 0 || inProgressJobs.size > 0) {
       // Start new jobs up to parallel limit
       while (queue.length > 0 && inProgressJobs.size < parallelLimit) {
+        // Check budget
+        if (budgetMaxUsd && totalCost >= budgetMaxUsd) {
+          logger.warn(`Budget exhausted, stopping batch generation`);
+          queue.length = 0;
+          break;
+        }
+
         const shot = queue.shift()!;
-        const jobPromise = this.processShotVideo(shot, episodeId);
+        const jobPromise = this.processShotVideo(
+          shot,
+          episodeId,
+          preferredProvider,
+          fallbackProviders
+        );
 
         inProgressJobs.set(shot.shotId, jobPromise);
 
@@ -210,6 +204,8 @@ export class VideoManager {
           if (result) {
             results.push(result);
             completed++;
+            totalCost += result.output?.costUsd || 0;
+            if (result.provider) providersUsed.add(result.provider);
           } else {
             failed++;
           }
@@ -243,8 +239,9 @@ export class VideoManager {
         completed,
         failed,
         totalDurationSeconds: totalDuration,
-        totalCreditsUsed: 0, // TODO: Track credits
-        processingTimeMs: 0, // TODO: Calculate from perf
+        totalCostUsd: totalCost,
+        processingTimeMs: 0,
+        providersUsed: Array.from(providersUsed),
       },
     };
   }
@@ -254,17 +251,21 @@ export class VideoManager {
    */
   private async processShotVideo(
     request: ShotVideoRequest,
-    episodeId: string
+    episodeId: string,
+    preferredProvider?: VideoProvider,
+    fallbackProviders?: VideoProvider[]
   ): Promise<ShotVideo | null> {
     try {
       const input = this.buildVideoInput(request);
 
       const output = await this.generateVideo(input, {
-        enableFallback: true,
+        preferredProvider: request.preferredProvider || preferredProvider,
+        fallbackProviders,
+        animationType: request.animationType,
       });
 
       // Download video locally
-      const localPath = await this.downloadToLocal(
+      const localPath = await downloadVideo(
         output,
         episodeId,
         request.shotId,
@@ -283,7 +284,7 @@ export class VideoManager {
         },
         animationType: request.animationType,
         cameraWork: request.cameraMotion || { type: "static", intensity: "subtle" },
-        lipSyncRequired: false, // Set externally if dialogue present
+        lipSyncRequired: request.requiresLipSync || false,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
@@ -306,10 +307,11 @@ export class VideoManager {
       prompt: this.enhancePromptForVideo(request.prompt, request.animationType),
       durationSeconds: request.durationSeconds,
       aspectRatio: "16:9",
-      resolution: "1080p",
-      quality: "high",
+      resolution: this.getResolutionForBudget(),
+      quality: this.budgetTier === "high" ? "cinematic" : this.budgetTier === "standard" ? "high" : "standard",
       cameraMotion: request.cameraMotion,
       motionIntensity: this.getMotionIntensity(request.animationType),
+      generateAudio: this.budgetTier !== "prototype",
     };
   }
 
@@ -327,6 +329,9 @@ export class VideoManager {
       combat: "Fast-paced combat, dynamic fighting movements, impactful strikes",
       death: "Dramatic death scene, final moments, emotional impact",
       flashback: "Dreamy flashback effect, memory sequence, soft edges",
+      dance: "Fluid dance movements, rhythmic motion, expressive body language",
+      walking: "Natural walking motion, realistic gait, environmental interaction",
+      flying: "Graceful flight, wing movement, aerial dynamics",
     };
 
     return `${prompt}. ${enhancements[animationType]}`;
@@ -346,116 +351,62 @@ export class VideoManager {
       combat: 0.9,
       death: 0.5,
       flashback: 0.3,
+      dance: 0.8,
+      walking: 0.5,
+      flying: 0.6,
     };
     return intensityMap[animationType];
   }
 
   /**
-   * Select providers based on input requirements and availability
+   * Get resolution for current budget tier
    */
-  private selectProviders(
+  private getResolutionForBudget(): VideoResolution {
+    return MOOSTIK_BUDGET_TIERS[this.budgetTier].resolution;
+  }
+
+  /**
+   * Select optimal provider based on input and options
+   */
+  private selectProvider(
     input: VideoGenerationInput,
-    preferred?: VideoProvider,
-    enableFallback = true
+    options: {
+      preferredProvider?: VideoProvider;
+      animationType?: AnimationType;
+      sceneType?: string;
+    }
+  ): VideoProvider {
+    if (options.preferredProvider) {
+      return options.preferredProvider;
+    }
+
+    if (options.sceneType && MOOSTIK_SCENE_PROVIDERS[options.sceneType]) {
+      return MOOSTIK_SCENE_PROVIDERS[options.sceneType];
+    }
+
+    if (options.animationType) {
+      return getOptimalProvider(options.animationType, this.budgetTier);
+    }
+
+    return MOOSTIK_BUDGET_TIERS[this.budgetTier].provider;
+  }
+
+  /**
+   * Get fallback provider chain
+   */
+  private getFallbackChain(
+    primary: VideoProvider,
+    input: VideoGenerationInput
   ): VideoProvider[] {
-    const candidates: VideoProvider[] = [];
+    const requirements = {
+      supportsAudio: input.generateAudio,
+      supportsInterpolation: !!input.endImage,
+      supportsMotionBrush: !!input.motionBrush,
+      supportsMotionTransfer: !!input.motionTransfer,
+    };
 
-    // Add preferred if specified and available
-    if (preferred && this.providers.has(preferred)) {
-      const provider = this.providers.get(preferred)!;
-      if (this.canProviderHandle(provider, input)) {
-        candidates.push(preferred);
-      }
-    }
-
-    // Add fallback chain
-    if (enableFallback) {
-      for (const providerName of this.fallbackChain) {
-        if (candidates.includes(providerName)) continue;
-        if (!this.providers.has(providerName)) continue;
-
-        const provider = this.providers.get(providerName)!;
-        if (this.canProviderHandle(provider, input)) {
-          candidates.push(providerName);
-        }
-      }
-    }
-
-    return candidates;
-  }
-
-  /**
-   * Check if provider can handle the input
-   */
-  private canProviderHandle(provider: VideoProviderBase, input: VideoGenerationInput): boolean {
-    const config = provider["config"] as VideoProviderConfig;
-    const caps = config.capabilities;
-
-    // Check duration
-    if (input.durationSeconds > caps.maxDurationSeconds) {
-      return false;
-    }
-
-    // Check aspect ratio
-    if (!caps.supportedAspectRatios.includes(input.aspectRatio)) {
-      return false;
-    }
-
-    // Check source type
-    if (input.sourceType === "image" && !caps.supportsImageToVideo) {
-      return false;
-    }
-    if (input.sourceType === "video" && !caps.supportsVideoToVideo) {
-      return false;
-    }
-
-    // Check motion brush
-    if (input.motionBrush && !caps.supportsMotionBrush) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Download video to local storage
-   */
-  private async downloadToLocal(
-    output: VideoGenerationOutput,
-    episodeId: string,
-    shotId: string,
-    variationId: string
-  ): Promise<string> {
-    if (!output.videoUrl) {
-      throw new Error("No video URL to download");
-    }
-
-    const path = await import("path");
-    const localPath = path.join(
-      appConfig.paths.output,
-      "videos",
-      episodeId,
-      shotId,
-      `${variationId}.mp4`
-    );
-
-    const provider = this.providers.get(output.provider);
-    if (provider) {
-      return provider.download(output.id, localPath);
-    }
-
-    // Fallback: direct download
-    const response = await fetch(output.videoUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to download video: ${response.status}`);
-    }
-
-    const fs = await import("fs/promises");
-    const buffer = await response.arrayBuffer();
-    await fs.mkdir(path.dirname(localPath), { recursive: true });
-    await fs.writeFile(localPath, Buffer.from(buffer));
-
-    return localPath;
+    const chain = getProviderFallbackChain(requirements);
+    return chain.filter((p) => p !== primary);
   }
 
   // ============================================
@@ -463,26 +414,54 @@ export class VideoManager {
   // ============================================
 
   /**
-   * Get available providers
+   * Set budget tier
    */
-  getAvailableProviders(): VideoProvider[] {
-    return Array.from(this.providers.keys());
+  setBudgetTier(tier: keyof typeof MOOSTIK_BUDGET_TIERS): void {
+    this.budgetTier = tier;
+    this.defaultProvider = MOOSTIK_BUDGET_TIERS[tier].provider;
+    logger.info(`Budget tier set to ${tier}`, {
+      provider: this.defaultProvider,
+      estimatedCostPerEpisode: MOOSTIK_BUDGET_TIERS[tier].estimatedCostPerEpisode,
+    });
   }
 
   /**
-   * Check if any provider is available
+   * Get available providers
+   */
+  getAvailableProviders(): VideoProvider[] {
+    return Object.keys(PROVIDER_CONFIGS) as VideoProvider[];
+  }
+
+  /**
+   * Check if Replicate API is configured
    */
   isAvailable(): boolean {
-    return this.providers.size > 0;
+    return !!process.env.REPLICATE_API_TOKEN;
   }
 
   /**
    * Get provider capabilities
    */
   getProviderCapabilities(provider: VideoProvider) {
-    const p = this.providers.get(provider);
-    if (!p) return null;
-    return (p as unknown as { config: VideoProviderConfig }).config.capabilities;
+    return PROVIDER_CONFIGS[provider]?.capabilities;
+  }
+
+  /**
+   * Get provider pricing
+   */
+  getProviderPricing(provider: VideoProvider) {
+    return PROVIDER_CONFIGS[provider]?.pricing;
+  }
+
+  /**
+   * Estimate batch cost
+   */
+  estimateBatchCost(
+    shots: Array<{ durationSeconds: number }>,
+    provider?: VideoProvider
+  ): number {
+    const p = provider || this.defaultProvider;
+    return calculateEpisodeCost(shots.length, 5, p);
   }
 
   /**
@@ -499,8 +478,28 @@ export class VideoManager {
       combat: { type: "handheld", intensity: "dramatic" },
       death: { type: "zoom", direction: "in", intensity: "moderate" },
       flashback: { type: "zoom", direction: "out", intensity: "subtle" },
+      dance: { type: "tracking", intensity: "moderate" },
+      walking: { type: "tracking", intensity: "subtle" },
+      flying: { type: "tracking", intensity: "moderate" },
     };
     return suggestions[animationType];
+  }
+
+  /**
+   * Get budget tier info
+   */
+  getBudgetTiers() {
+    return MOOSTIK_BUDGET_TIERS;
+  }
+
+  /**
+   * Get current budget tier
+   */
+  getCurrentBudgetTier() {
+    return {
+      tier: this.budgetTier,
+      ...MOOSTIK_BUDGET_TIERS[this.budgetTier],
+    };
   }
 }
 
@@ -517,14 +516,13 @@ export function getVideoManager(): VideoManager {
   return videoManagerInstance;
 }
 
-// Utility
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // ============================================
-// EXPORTS
+// RE-EXPORTS
 // ============================================
 
-export { VideoProviderBase, VideoProviderError } from "./provider-base";
+export { ReplicateVideoError } from "./providers/replicate";
 export * from "./types";
