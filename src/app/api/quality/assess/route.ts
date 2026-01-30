@@ -266,7 +266,7 @@ async function assessMoostikStyle(imageData: string): Promise<MoostikScore> {
       }
     );
 
-    const response = typeof output === "string" ? output.toLowerCase() : "";
+    const response = typeof output === "string" ? (output as string).toLowerCase() : "";
     const hasDarkStyle = response.includes("yes") || response.includes("dark") || response.includes("gothic");
     const scoreMatch = response.match(/(\d+)/);
     const baseScore = scoreMatch ? parseInt(scoreMatch[1]) * 10 : (hasDarkStyle ? 80 : 60);
