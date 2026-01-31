@@ -67,6 +67,7 @@ interface MockTrackItem {
   start: number; // seconds
   duration: number; // seconds
   color?: string;
+  thumbnail?: string; // URL for video track thumbnails
 }
 
 const MOCK_TRACKS: MockTrack[] = [
@@ -76,10 +77,10 @@ const MOCK_TRACKS: MockTrack[] = [
     type: "video",
     color: "#8B0000",
     items: [
-      { id: "v1-1", name: "Intro - EP01", start: 0, duration: 5 },
-      { id: "v1-2", name: "Scène dialogue", start: 5, duration: 8 },
-      { id: "v1-3", name: "Action combat", start: 13, duration: 6 },
-      { id: "v1-4", name: "Conclusion", start: 19, duration: 4 },
+      { id: "v1-1", name: "Intro - EP01", start: 0, duration: 5, thumbnail: "/placeholder-shot-1.jpg" },
+      { id: "v1-2", name: "Scène dialogue", start: 5, duration: 8, thumbnail: "/placeholder-shot-2.jpg" },
+      { id: "v1-3", name: "Action combat", start: 13, duration: 6, thumbnail: "/placeholder-shot-3.jpg" },
+      { id: "v1-4", name: "Conclusion", start: 19, duration: 4, thumbnail: "/placeholder-shot-4.jpg" },
     ],
   },
   {
@@ -129,6 +130,7 @@ const MOCK_TRACKS: MockTrack[] = [
 export default function EditorPage() {
   // Episodes for sidebar
   const [episodes, setEpisodes] = useState<Episode[]>([]);
+  const [selectedEpisodeId, setSelectedEpisodeId] = useState<string | null>(null);
 
   // Fetch episodes
   useEffect(() => {
@@ -138,7 +140,49 @@ export default function EditorPage() {
       .catch(() => setEpisodes([]));
   }, []);
 
+  // Build tracks from selected episode
+  const selectedEpisode = episodes.find(e => e.id === selectedEpisodeId);
+
+  const buildTracksFromEpisode = (episode: Episode): MockTrack[] => {
+    const videoItems: MockTrackItem[] = [];
+    let currentTime = 0;
+
+    episode.shots.forEach((shot) => {
+      const completedVariation = shot.variations.find(v => v.status === "completed");
+      if (completedVariation) {
+        videoItems.push({
+          id: shot.id,
+          name: `Shot ${shot.number}: ${shot.prompt.slice(0, 20)}...`,
+          start: currentTime,
+          duration: 5, // Default 5s per shot
+          thumbnail: completedVariation.imageUrl,
+        });
+        currentTime += 5;
+      }
+    });
+
+    return [
+      {
+        id: "v1",
+        name: "Vidéo principale",
+        type: "video",
+        color: "#8B0000",
+        items: videoItems.length > 0 ? videoItems : MOCK_TRACKS[0].items,
+      },
+      ...MOCK_TRACKS.slice(1), // Keep audio and subtitle tracks
+    ];
+  };
+
   const [tracks, setTracks] = useState<MockTrack[]>(MOCK_TRACKS);
+
+  // Update tracks when episode changes
+  useEffect(() => {
+    if (selectedEpisode) {
+      setTracks(buildTracksFromEpisode(selectedEpisode));
+    } else {
+      setTracks(MOCK_TRACKS);
+    }
+  }, [selectedEpisode]);
   const [playhead, setPlayhead] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   // setPlayhead will be used for playback functionality
@@ -149,7 +193,11 @@ export default function EditorPage() {
   const [autoEditMode, setAutoEditMode] = useState<AutoEditMode>("beat_sync");
   const [exportPreset, setExportPreset] = useState<string>("youtube_4k");
 
-  const totalDuration = 23; // seconds
+  // Calculate total duration from tracks
+  const totalDuration = Math.max(
+    23, // minimum
+    ...tracks.flatMap(t => t.items.map(i => i.start + i.duration))
+  );
   const pixelsPerSecond = zoom * 2;
 
   // Format time
@@ -192,6 +240,29 @@ export default function EditorPage() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                  {/* Episode Selector */}
+                  <Select value={selectedEpisodeId || ""} onValueChange={setSelectedEpisodeId}>
+                    <SelectTrigger className="w-[200px] h-8 text-xs bg-zinc-900/50 border-zinc-800">
+                      <FileVideo className="w-3 h-3 mr-2" />
+                      <SelectValue placeholder="Charger un épisode..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {episodes.map((ep) => {
+                        const shotCount = ep.shots.filter(s =>
+                          s.variations.some(v => v.status === "completed")
+                        ).length;
+                        return (
+                          <SelectItem key={ep.id} value={ep.id}>
+                            <div className="flex items-center gap-2">
+                              <span>EP{ep.number}: {ep.title}</span>
+                              <Badge className="text-[9px] bg-zinc-800">{shotCount} shots</Badge>
+                            </div>
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
+
                   <Badge className="bg-emerald-900/30 text-emerald-400 border-emerald-900/30">
                     <Sparkles className="w-3 h-3 mr-1" />
                     IA Activée
@@ -464,7 +535,7 @@ export default function EditorPage() {
                             <div
                               key={item.id}
                               className={cn(
-                                "absolute top-0 bottom-0 rounded cursor-pointer border transition-all",
+                                "absolute top-0 bottom-0 rounded cursor-pointer border transition-all overflow-hidden",
                                 selectedItem === item.id
                                   ? "border-white ring-1 ring-white/30"
                                   : "border-transparent hover:border-white/30"
@@ -476,8 +547,42 @@ export default function EditorPage() {
                               }}
                               onClick={() => setSelectedItem(item.id)}
                             >
-                              <div className="h-full px-2 flex items-center overflow-hidden">
-                                <span className="text-[10px] text-white truncate font-medium">
+                              {/* Thumbnail strip for video tracks */}
+                              {track.type === "video" && (
+                                <div className="absolute inset-0 flex">
+                                  {item.thumbnail ? (
+                                    // Real thumbnail from episode data
+                                    [...Array(Math.max(1, Math.ceil(item.duration / 2)))].map((_, idx) => (
+                                      <div
+                                        key={idx}
+                                        className="h-full flex-1 bg-cover bg-center"
+                                        style={{
+                                          backgroundImage: `url(${item.thumbnail})`,
+                                          opacity: 0.7,
+                                          borderRight: idx < Math.ceil(item.duration / 2) - 1 ? `1px solid ${track.color}` : 'none'
+                                        }}
+                                      />
+                                    ))
+                                  ) : (
+                                    // Fallback gradient
+                                    [...Array(Math.max(1, Math.floor(item.duration / 2)))].map((_, idx) => (
+                                      <div
+                                        key={idx}
+                                        className="h-full flex-1 bg-cover bg-center opacity-60"
+                                        style={{
+                                          backgroundImage: `linear-gradient(to right, ${track.color}40, ${track.color}60)`,
+                                          borderRight: idx < Math.floor(item.duration / 2) - 1 ? `1px solid ${track.color}` : 'none'
+                                        }}
+                                      />
+                                    ))
+                                  )}
+                                </div>
+                              )}
+                              <div className="relative h-full px-2 flex items-center overflow-hidden">
+                                {track.type === "video" && (
+                                  <FileVideo className="w-3 h-3 mr-1.5 text-white/70 flex-shrink-0" />
+                                )}
+                                <span className="text-[10px] text-white truncate font-medium drop-shadow-sm">
                                   {item.name}
                                 </span>
                               </div>
