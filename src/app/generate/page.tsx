@@ -26,30 +26,7 @@ import {
   AlertCircle,
   RefreshCw,
 } from "lucide-react";
-
-interface Episode {
-  id: string;
-  number: number;
-  title: string;
-  shots: Shot[];
-}
-
-interface Shot {
-  id: string;
-  number: number;
-  name: string;
-  status: string;
-  variations: Variation[];
-}
-
-interface Variation {
-  id: string;
-  cameraAngle: string;
-  status: string;
-  imageUrl?: string;
-  videoStatus?: string;
-  videoUrl?: string;
-}
+import type { Episode, Shot, Variation } from "@/types";
 
 interface GenerationStats {
   totalShots: number;
