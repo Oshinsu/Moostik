@@ -6,8 +6,6 @@
  * Utilisé pour les images générées et les images de référence.
  */
 
-import { createServerClient } from "./client";
-
 // ============================================================================
 // CONFIGURATION
 // ============================================================================
@@ -19,7 +17,22 @@ export const BUCKET_GENERATED_IMAGES = "generated-images";
 export const BUCKET_REFERENCES = "references";
 
 /** URL publique de Supabase */
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+
+/** Check if Supabase is configured */
+function isSupabaseConfigured(): boolean {
+  return !!(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+}
+
+/** Lazy-load server client to avoid import errors */
+function getServerClient() {
+  // Dynamic import to avoid errors when env vars are missing
+  const { createServerClient } = require("./client");
+  return createServerClient();
+}
 
 // ============================================================================
 // TYPES
@@ -58,8 +71,17 @@ export async function uploadImage(
   imageData: Buffer | Blob | ArrayBuffer,
   options: UploadOptions
 ): Promise<UploadResult> {
+  // Check if Supabase is configured
+  if (!isSupabaseConfigured()) {
+    console.warn("[Supabase Storage] Not configured, skipping upload");
+    return {
+      success: false,
+      error: "Supabase not configured",
+    };
+  }
+
   try {
-    const supabase = createServerClient();
+    const supabase = getServerClient();
     
     const { bucket, path, contentType = "image/png", upsert = true } = options;
     
@@ -166,8 +188,13 @@ export function getPublicUrl(bucket: string, path: string): string {
  * @returns true si succès
  */
 export async function deleteImage(bucket: string, path: string): Promise<boolean> {
+  if (!isSupabaseConfigured()) {
+    console.warn("[Supabase Storage] Not configured, skipping delete");
+    return false;
+  }
+
   try {
-    const supabase = createServerClient();
+    const supabase = getServerClient();
     
     const { error } = await supabase.storage
       .from(bucket)
@@ -194,8 +221,13 @@ export async function deleteImage(bucket: string, path: string): Promise<boolean
  * @returns Liste des chemins de fichiers
  */
 export async function listImages(bucket: string, folder?: string): Promise<string[]> {
+  if (!isSupabaseConfigured()) {
+    console.warn("[Supabase Storage] Not configured, returning empty list");
+    return [];
+  }
+
   try {
-    const supabase = createServerClient();
+    const supabase = getServerClient();
     
     const { data, error } = await supabase.storage
       .from(bucket)
@@ -226,8 +258,12 @@ export async function listImages(bucket: string, folder?: string): Promise<strin
  * @returns true si le fichier existe
  */
 export async function imageExists(bucket: string, path: string): Promise<boolean> {
+  if (!isSupabaseConfigured()) {
+    return false;
+  }
+
   try {
-    const supabase = createServerClient();
+    const supabase = getServerClient();
     
     // Essayer de récupérer les métadonnées
     const { data, error } = await supabase.storage
