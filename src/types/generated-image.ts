@@ -11,8 +11,8 @@ export interface GeneratedImage {
   id: string;
   /** URL de l'image (relative à l'API) */
   url: string;
-  /** Chemin local du fichier sur le serveur */
-  localPath: string;
+  /** Chemin local du fichier sur le serveur (null sur serverless) */
+  localPath: string | null;
   /** ID du shot associé (ex: "shot-1-1769759484234") */
   shotId: string | null;
   /** ID de la variation (ex: "var-extreme_wide-1769759484235") */

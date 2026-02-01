@@ -242,8 +242,8 @@ export async function listImages(bucket: string, folder?: string): Promise<strin
     }
     
     return data
-      .filter(item => item.name && !item.name.startsWith("."))
-      .map(item => folder ? `${folder}/${item.name}` : item.name);
+      .filter((item: { name: string }) => item.name && !item.name.startsWith("."))
+      .map((item: { name: string }) => folder ? `${folder}/${item.name}` : item.name);
   } catch (error) {
     console.error(`[Supabase Storage] List error:`, error);
     return [];
@@ -275,7 +275,7 @@ export async function imageExists(bucket: string, path: string): Promise<boolean
     if (error) return false;
     
     const fileName = path.split("/").pop();
-    return data.some(item => item.name === fileName);
+    return data.some((item: { name: string }) => item.name === fileName);
   } catch {
     return false;
   }
