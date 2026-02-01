@@ -7,4 +7,6 @@ export { LoadingState } from "./LoadingState";
 export { EmptyState } from "./EmptyState";
 export { ShotPlaceholder } from "./ShotPlaceholder";
 export { StatusBadge, ImageTypeBadge } from "./StatusBadge";
+export { ImmersiveLightbox } from "./ImmersiveLightbox";
+export { TimelineStoryboard } from "./TimelineStoryboard";
 export type { StatusType } from "./StatusBadge";
