@@ -2511,75 +2511,90 @@
       "description": "Au Bar Ti Sang, les trois survivants du génocide Koko, Mila, Trez entourent Papy Tik. Leurs voix racontent l histoire aux nouvelles générations.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: Les Voix du Passé - Au Bar Ti Sang, les trois survivants du génocide Koko, Mila, Trez entourent Papy Tik. Leurs voix racontent l histoire aux nouvelles générations.",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Set the scene with atmospheric world-building and narrative context",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Au Bar Ti Sang, les trois survivants du génocide Koko, Mila, Trez entourent Papy Tik. Leurs voix racontent l histoire aux nouvelles générations.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis (their ONLY weapon)",
-          "Architecture Moostik: Renaissance fantastique/Gothic organique - NO human architecture in Moostik scenes",
-          "Technology: Medieval fantasy ONLY - no modern weapons, no electricity, no machines",
-          "Combat: Proboscis fighting ONLY - no guns, tanks, or manufactured weapons",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized, usually only hands visible",
-          "Lighting: Bioluminescent amber/crimson lanterns, nectar-wax candles, no electric lights",
-          "Materials: Chitin, resin, wing-membrane, silk threads, nectar-wax - organic only",
-          "Motifs: Blood-drop shapes, wing patterns, proboscis ornaments - no human symbols",
-          "Context: Martinique/Caribbean setting, Bloodwings resistance after genocide"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Koko, elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
-            "Mila, memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
-            "Trez, scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
-            "Papy Tik, ancient elder mosquito patriarch, wise weathered amber eyes, tattered wings telling stories"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes",
-            "Delicate antennae"
-          ],
-          "emotion": "traumatic memories, survivor's guilt, burning remembrance, precise grief, documented pain, keeper of truth, permanent vigilance, escape-ready tension, nightmare-touched, ancient sorrow, wise observation, guarded hope"
-        },
-        "midground": {
-          "environment": [
-            "Bar Ti Sang interior, dim amber bioluminescent lighting, smoke curling, nectar-wax candles"
-          ],
-          "micro_city_architecture": [
-            "Gothic organic bar, chitin counter, wing-membrane tapestries, blood-drop chandeliers"
-          ],
-          "action": [
-            "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, sitting watchful, pipe smoking, silent judgment establishing narrative moment"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [
-            "Creole bar atmosphere, Caribbean noir, tropical speakeasy"
-          ],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Koko",
+            "priority": 1,
+            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
+            "importance": "primary",
+            "action": "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, sitting watchful, pipe smoking, silent judgment establishing narrative moment"
+          },
+          {
+            "name": "Mila",
+            "priority": 2,
+            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
+            "importance": "secondary"
+          },
+          {
+            "name": "Trez",
+            "priority": 3,
+            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
+            "importance": "secondary"
+          },
+          {
+            "name": "Papy Tik",
+            "priority": 4,
+            "description": "ancient elder mosquito patriarch, wise weathered amber eyes, tattered wings telling stories",
+            "importance": "background"
+          }
+        ],
+        "scene": {
+          "location": "Creole bar atmosphere, Caribbean noir, tropical speakeasy",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Bar Ti Sang interior, dim amber bioluminescent lighting, smoke curling, nectar-wax candles",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ],
+          "materials": [
+            "Gothic organic bar, chitin counter, wing-membrane tapestries, blood-drop chandeliers"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Warm bioluminescent amber/crimson lantern light",
           "fill": "Cool ambient bounce",
-          "effects": "Volumetric atmosphere, depth haze"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere, depth haze"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "human silhouettes in Moostik cities",
           "human furniture style in Moostik locations",
@@ -2647,73 +2662,78 @@
       "description": "Flashback vers le Village Cooltik avant le genocide. Mama Dorval et bebe Dorval dans leur quotidien idyllique. Derniers jours innocents.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: Le Village Paisible - Flashback vers le Village Cooltik avant le genocide. Mama Dorval et bebe Dorval dans leur quotidien idyllique. Derniers jours innocents.",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Set the scene with atmospheric world-building and narrative context",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Flashback vers le Village Cooltik avant le genocide. Mama Dorval et bebe Dorval dans leur quotidien idyllique. Derniers jours innocents.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis (their ONLY weapon)",
-          "Architecture Moostik: Renaissance fantastique/Gothic organique - NO human architecture in Moostik scenes",
-          "Technology: Medieval fantasy ONLY - no modern weapons, no electricity, no machines",
-          "Combat: Proboscis fighting ONLY - no guns, tanks, or manufactured weapons",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized, usually only hands visible",
-          "Lighting: Bioluminescent amber/crimson lanterns, nectar-wax candles, no electric lights",
-          "Materials: Chitin, resin, wing-membrane, silk threads, nectar-wax - organic only",
-          "Motifs: Blood-drop shapes, wing patterns, proboscis ornaments - no human symbols",
-          "Context: Martinique/Caribbean setting, Bloodwings resistance after genocide"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Mama Dorval, protective mother mosquito, fierce amber eyes, wings spread defensively, maternal strength",
-            "Baby Dorval, tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes",
-            "Delicate antennae"
-          ],
-          "emotion": "fierce determination, maternal love, sacrifice, innocent terror, desperate hope, survival instinct"
-        },
-        "midground": {
-          "environment": [
-            "Cooltik Village, peaceful pre-genocide, golden afternoon light, idyllic mosquito settlement"
-          ],
-          "micro_city_architecture": [
-            "Organic village homes, resin-sealed structures, communal gathering spaces, nurturing atmosphere"
-          ],
-          "action": [
-            "shielding baby, facing danger, final protective embrace, clinging, trembling, reaching for safety establishing narrative moment"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [
-            "Tropical paradise, Caribbean tranquility, innocent times"
-          ],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Mama Dorval",
+            "priority": 1,
+            "description": "protective mother mosquito, fierce amber eyes, wings spread defensively, maternal strength",
+            "importance": "primary",
+            "action": "shielding baby, facing danger, final protective embrace, clinging, trembling, reaching for safety establishing narrative moment"
+          },
+          {
+            "name": "Baby Dorval",
+            "priority": 2,
+            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious",
+            "importance": "secondary"
+          }
+        ],
+        "scene": {
+          "location": "Tropical paradise, Caribbean tranquility, innocent times",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Cooltik Village, peaceful pre-genocide, golden afternoon light, idyllic mosquito settlement",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ],
+          "materials": [
+            "Organic village homes, resin-sealed structures, communal gathering spaces, nurturing atmosphere"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Warm bioluminescent amber/crimson lantern light",
           "fill": "Cool ambient bounce",
-          "effects": "Volumetric atmosphere, depth haze"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere, depth haze"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "human silhouettes in Moostik cities",
           "human furniture style in Moostik locations",
@@ -2779,72 +2799,72 @@
       "description": "Bebe Dorval fuit desesperement a travers les persiennes jalousies martiniquaises. Le passage entre la mort et la survie. Lumiere d espoir au bout.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: Fuite a travers les Persiennes - Bebe Dorval fuit desesperement a travers les persiennes jalousies martiniquaises. Le passage entre la mort et la survie. Lumiere d espoir au bout.",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Set the scene with atmospheric world-building and narrative context",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Bebe Dorval fuit desesperement a travers les persiennes jalousies martiniquaises. Le passage entre la mort et la survie. Lumiere d espoir au bout.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis (their ONLY weapon)",
-          "Architecture Moostik: Renaissance fantastique/Gothic organique - NO human architecture in Moostik scenes",
-          "Technology: Medieval fantasy ONLY - no modern weapons, no electricity, no machines",
-          "Combat: Proboscis fighting ONLY - no guns, tanks, or manufactured weapons",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized, usually only hands visible",
-          "Lighting: Bioluminescent amber/crimson lanterns, nectar-wax candles, no electric lights",
-          "Materials: Chitin, resin, wing-membrane, silk threads, nectar-wax - organic only",
-          "Motifs: Blood-drop shapes, wing patterns, proboscis ornaments - no human symbols",
-          "Context: Martinique/Caribbean setting, Bloodwings resistance after genocide"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval, tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes",
-            "Delicate antennae"
-          ],
-          "emotion": "innocent terror, desperate hope, survival instinct"
-        },
-        "midground": {
-          "environment": [
-            "Jalousies gateway, wooden slat shutters, light streaming through, escape route"
-          ],
-          "micro_city_architecture": [
-            "Traditional Martinique jalousies, wooden louvers, threshold between death and survival"
-          ],
-          "action": [
-            "clinging, trembling, reaching for safety establishing narrative moment"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [
-            "Caribbean architectural detail, life-saving passage, hope's corridor"
-          ],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval",
+            "priority": 1,
+            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious",
+            "importance": "primary",
+            "action": "clinging, trembling, reaching for safety establishing narrative moment"
+          }
+        ],
+        "scene": {
+          "location": "Caribbean architectural detail, life-saving passage, hope's corridor",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Jalousies gateway, wooden slat shutters, light streaming through, escape route",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ],
+          "materials": [
+            "Traditional Martinique jalousies, wooden louvers, threshold between death and survival"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Warm bioluminescent amber/crimson lantern light",
           "fill": "Cool ambient bounce",
-          "effects": "Volumetric atmosphere, depth haze"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere, depth haze"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "human silhouettes in Moostik cities",
           "human furniture style in Moostik locations",
@@ -2909,75 +2929,90 @@
       "description": "Les survivants Koko, Mila, Trez et General Aedes font serment sur les cendres du memorial. Jamais oublier, jamais pardonner. Vengeance eternelle.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: Le Serment de Vengeance - Les survivants Koko, Mila, Trez et General Aedes font serment sur les cendres du memorial. Jamais oublier, jamais pardonner. Vengeance eternelle.",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Set the scene with atmospheric world-building and narrative context",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Les survivants Koko, Mila, Trez et General Aedes font serment sur les cendres du memorial. Jamais oublier, jamais pardonner. Vengeance eternelle.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis (their ONLY weapon)",
-          "Architecture Moostik: Renaissance fantastique/Gothic organique - NO human architecture in Moostik scenes",
-          "Technology: Medieval fantasy ONLY - no modern weapons, no electricity, no machines",
-          "Combat: Proboscis fighting ONLY - no guns, tanks, or manufactured weapons",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized, usually only hands visible",
-          "Lighting: Bioluminescent amber/crimson lanterns, nectar-wax candles, no electric lights",
-          "Materials: Chitin, resin, wing-membrane, silk threads, nectar-wax - organic only",
-          "Motifs: Blood-drop shapes, wing patterns, proboscis ornaments - no human symbols",
-          "Context: Martinique/Caribbean setting, Bloodwings resistance after genocide"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Koko, elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
-            "Mila, memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
-            "Trez, scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
-            "General Aedes, military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes",
-            "Delicate antennae"
-          ],
-          "emotion": "traumatic memories, survivor's guilt, burning remembrance, precise grief, documented pain, keeper of truth, permanent vigilance, escape-ready tension, nightmare-touched, stoic resolve, hidden grief, duty-bound determination"
-        },
-        "midground": {
-          "environment": [
-            "Genocide Memorial, sacred ash grounds, eternal candles, mourning atmosphere"
-          ],
-          "micro_city_architecture": [
-            "Memorial architecture, names carved in chitin, eternal flame, gathering circle"
-          ],
-          "action": [
-            "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [
-            "Caribbean sacred ground, Bloodwings holy site, oath-taking place"
-          ],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Koko",
+            "priority": 1,
+            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
+            "importance": "primary",
+            "action": "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
+          },
+          {
+            "name": "Mila",
+            "priority": 2,
+            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
+            "importance": "secondary"
+          },
+          {
+            "name": "Trez",
+            "priority": 3,
+            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
+            "importance": "secondary"
+          },
+          {
+            "name": "General Aedes",
+            "priority": 4,
+            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence",
+            "importance": "background"
+          }
+        ],
+        "scene": {
+          "location": "Caribbean sacred ground, Bloodwings holy site, oath-taking place",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Genocide Memorial, sacred ash grounds, eternal candles, mourning atmosphere",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ],
+          "materials": [
+            "Memorial architecture, names carved in chitin, eternal flame, gathering circle"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Warm bioluminescent amber/crimson lantern light",
           "fill": "Cool ambient bounce",
-          "effects": "Volumetric atmosphere, depth haze"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere, depth haze"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "human silhouettes in Moostik cities",
           "human furniture style in Moostik locations",
@@ -3045,76 +3080,80 @@
       "description": "Time skip: Vue panoramique de Tire City en construction. Jeune Dorval et General Aedes supervisent la fondation des Bloodwings.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: La Renaissance des Bloodwings - Time skip: Vue panoramique de Tire City en construction. Jeune Dorval et General Aedes supervisent la fondation des Bloodwings.",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Set the scene with atmospheric world-building and narrative context",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "cinematic_still",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Time skip: Vue panoramique de Tire City en construction. Jeune Dorval et General Aedes supervisent la fondation des Bloodwings.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis (their ONLY weapon)",
-          "Architecture Moostik: Renaissance fantastique/Gothic organique - NO human architecture in Moostik scenes",
-          "Technology: Medieval fantasy ONLY - no modern weapons, no electricity, no machines",
-          "Combat: Proboscis fighting ONLY - no guns, tanks, or manufactured weapons",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized, usually only hands visible",
-          "Lighting: Bioluminescent amber/crimson lanterns, nectar-wax candles, no electric lights",
-          "Materials: Chitin, resin, wing-membrane, silk threads, nectar-wax - organic only",
-          "Motifs: Blood-drop shapes, wing patterns, proboscis ornaments - no human symbols",
-          "Context: Martinique/Caribbean setting, Bloodwings resistance after genocide"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Young Dorval, warrior prince mosquito, sharp amber eyes, muscular frame, battle-ready wings",
-            "General Aedes, military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes",
-            "Delicate antennae"
-          ],
-          "emotion": "burning vengeance, cold determination, grief-forged strength, stoic resolve, hidden grief, duty-bound determination"
-        },
-        "midground": {
-          "environment": [
+        "subjects": [
+          {
+            "name": "Young Dorval",
+            "priority": 1,
+            "description": "warrior prince mosquito, sharp amber eyes, muscular frame, battle-ready wings",
+            "importance": "primary",
+            "action": "training strikes, combat stance, strategic observation, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
+          },
+          {
+            "name": "General Aedes",
+            "priority": 2,
+            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence",
+            "importance": "secondary"
+          }
+        ],
+        "scene": {
+          "location": "Caribbean resistance stronghold, Moostik new beginning, defiant construction",
+          "time": "Cinematic lighting",
+          "atmosphere": [
             "Tire City panorama, reconstruction in progress, hope rising from ashes",
-            "Fort Sang-Noir, military training grounds, disciplined atmosphere, warrior preparation"
-          ],
-          "micro_city_architecture": [
-            "New Bloodwings capital, defensive walls, rising towers, phoenix city",
-            "Bloodwings fortress, training yards, strategy chambers, war rooms"
-          ],
-          "action": [
-            "training strikes, combat stance, strategic observation, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [
-            "Caribbean resistance stronghold, Moostik new beginning, defiant construction",
-            "Caribbean military installation, resistance headquarters, vengeance forge"
-          ],
-          "human_threat": [],
-          "martinique_cues": [
+            "Fort Sang-Noir, military training grounds, disciplined atmosphere, warrior preparation",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ],
+          "materials": [
+            "New Bloodwings capital, defensive walls, rising towers, phoenix city",
+            "Bloodwings fortress, training yards, strategy chambers, war rooms"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Warm bioluminescent amber/crimson lantern light",
           "fill": "Cool ambient bounce",
-          "effects": "Volumetric atmosphere, depth haze"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere, depth haze"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "human silhouettes in Moostik cities",
           "human furniture style in Moostik locations",
@@ -3181,62 +3220,73 @@
       "description": "L'enfant humain approche avec le BYSS, sourire innocent sur le visage. Mama Dorval sent le danger.",
       "sceneType": "genocide",
       "prompt": {
-        "task": "Create: The child-killer approaches with BYSS aerosol, innocent smile hiding deadly purpose",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Capture the horrific irony of a child as instrument of genocide, innocence weaponized",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "L'enfant humain approche avec le BYSS, sourire innocent sur le visage. Mama Dorval sent le danger.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Human child 5 years old, Caribbean features, innocent smile, holding BYSS aerosol can like a toy"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Childlike curiosity mixed with impending doom, dramatic irony"
-        },
-        "midground": {
-          "environment": [
-            "Creole house interior, warm afternoon light, deceptive tranquility before storm"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Child approaching playfully, aerosol raised, Mama Dorval sensing danger"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Human child 5 years old",
+            "priority": 1,
+            "description": "Caribbean features, innocent smile, holding BYSS aerosol can like a toy",
+            "importance": "primary",
+            "action": "Child approaching playfully, aerosol raised, Mama Dorval sensing danger"
+          }
+        ],
+        "scene": {
+          "location": "Creole house interior, warm afternoon light, deceptive tranquility before storm",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Creole house interior, warm afternoon light, deceptive tranquility before storm",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3295,62 +3345,73 @@
       "description": "Le premier jet de BYSS - l'instant où tout bascule. Le nuage toxique commence à se répandre.",
       "sceneType": "genocide",
       "prompt": {
-        "task": "Create: The first spray of BYSS - the moment everything changes, toxic cloud begins spreading",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Freeze the precise moment of genocide initiation with visceral horror",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "the moment everything changes, toxic cloud begins spreading",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "BYSS aerosol spraying, toxic cloud emerging, deadly mist expanding"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Frozen horror, point of no return, irreversible doom"
-        },
-        "midground": {
-          "environment": [
-            "Toxic cloud spreading through Creole house, particles catching light, death visible"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Child spraying innocently, unaware of destruction being caused"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "BYSS aerosol spraying",
+            "priority": 1,
+            "description": "toxic cloud emerging, deadly mist expanding",
+            "importance": "primary",
+            "action": "Child spraying innocently, unaware of destruction being caused"
+          }
+        ],
+        "scene": {
+          "location": "Toxic cloud spreading through Creole house, particles catching light, death visible",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Toxic cloud spreading through Creole house, particles catching light, death visible",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3405,62 +3466,73 @@
       "description": "Les moustiques Moostik tombent, surpris par l'attaque. Corps minuscules s'effondrant dans l'horreur.",
       "sceneType": "genocide",
       "prompt": {
-        "task": "Create: First Moostik victims falling, tiny bodies collapsing in the toxic cloud",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Show the mass death beginning with unflinching horror",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Les moustiques Moostik tombent, surpris par l'attaque. Corps minuscules s'effondrant dans l'horreur.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Falling Moostik mosquitoes, wings crumpling, amber eyes dimming, bodies in free fall"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Mass terror, sudden death, silent screams"
-        },
-        "midground": {
-          "environment": [
-            "Toxic BYSS cloud thick in air, victims scattered, domestic space turned killing field"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Bodies falling like rain, desperate last movements, death spreading"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Falling Moostik mosquitoes",
+            "priority": 1,
+            "description": "wings crumpling, amber eyes dimming, bodies in free fall",
+            "importance": "primary",
+            "action": "Bodies falling like rain, desperate last movements, death spreading"
+          }
+        ],
+        "scene": {
+          "location": "Toxic BYSS cloud thick in air, victims scattered, domestic space turned killing field",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Toxic BYSS cloud thick in air, victims scattered, domestic space turned killing field",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3513,62 +3585,73 @@
       "description": "Mama Dorval hurle en voyant le carnage, protégeant baby Dorval de son corps, ailes déployées.",
       "sceneType": "genocide",
       "prompt": {
-        "task": "Create: Mama Dorval's scream of horror, shielding baby Dorval with her body",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Capture maternal sacrifice beginning, fierce protection against impossible odds",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Mama Dorval hurle en voyant le carnage, protégeant baby Dorval de son corps, ailes déployées.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Mama Dorval screaming, wings spread as shield, amber eyes fierce with determination"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Maternal fury, protective desperation, defiant love against death"
-        },
-        "midground": {
-          "environment": [
-            "Toxic cloud approaching, dead bodies around, shrinking safe space"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Wings spread defensively, body curling around baby, creating living shield"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Mama Dorval screaming",
+            "priority": 1,
+            "description": "wings spread as shield, amber eyes fierce with determination",
+            "importance": "primary",
+            "action": "Wings spread defensively, body curling around baby, creating living shield"
+          }
+        ],
+        "scene": {
+          "location": "Toxic cloud approaching, dead bodies around, shrinking safe space",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Toxic cloud approaching, dead bodies around, shrinking safe space",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3624,62 +3707,73 @@
       "description": "Le nuage toxique engloutit la pièce. Mama Dorval s'enroule autour de baby Dorval, dernier rempart.",
       "sceneType": "genocide",
       "prompt": {
-        "task": "Create: Toxic cloud engulfing the room, Mama Dorval as last barrier protecting baby",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Maximum emotional impact - mother's final protective embrace against death itself",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Le nuage toxique engloutit la pièce. Mama Dorval s'enroule autour de baby Dorval, dernier rempart.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Mama Dorval's wings forming cocoon around baby, her body absorbing toxic cloud"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Ultimate sacrifice, love stronger than death, final breath given freely"
-        },
-        "midground": {
-          "environment": [
-            "Room completely filled with toxic cloud, no escape visible, death everywhere"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Mama Dorval's body trembling but holding, filtering poison, giving life through death"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Mama Dorval's wings forming cocoon around baby",
+            "priority": 1,
+            "description": "her body absorbing toxic cloud",
+            "importance": "primary",
+            "action": "Mama Dorval's body trembling but holding, filtering poison, giving life through death"
+          }
+        ],
+        "scene": {
+          "location": "Room completely filled with toxic cloud, no escape visible, death everywhere",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Room completely filled with toxic cloud, no escape visible, death everywhere",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3735,62 +3829,73 @@
       "description": "Mama Dorval expire, son dernier souffle protecteur donnant la vie à baby Dorval. Sacrifice ultime.",
       "sceneType": "emotional",
       "prompt": {
-        "task": "Create: Mama Dorval's final breath, dying while protecting, ultimate sacrifice complete",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Devastating emotional climax - death as gift of life, love transcending mortality",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Mama Dorval expire, son dernier souffle protecteur donnant la vie à baby Dorval. Sacrifice ultime.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Mama Dorval's eyes closing, peaceful expression despite agony, wings still wrapped around baby"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Transcendent sacrifice, peaceful acceptance, love beyond death"
-        },
-        "midground": {
-          "environment": [
-            "Toxic cloud settling, stillness of death, single ray of light on baby"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Final exhale, body relaxing in death, baby protected in embrace"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Mama Dorval's eyes closing",
+            "priority": 1,
+            "description": "peaceful expression despite agony, wings still wrapped around baby",
+            "importance": "primary",
+            "action": "Final exhale, body relaxing in death, baby protected in embrace"
+          }
+        ],
+        "scene": {
+          "location": "Toxic cloud settling, stillness of death, single ray of light on baby",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Toxic cloud settling, stillness of death, single ray of light on baby",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3846,62 +3951,73 @@
       "description": "Baby Dorval émerge des ailes de sa mère morte. Seul survivant, entouré de cendres et de corps.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Baby Dorval emerging from dead mother's wings, sole survivor in field of death",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Birth of the protagonist through ultimate loss, survival as burden and gift",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval émerge des ailes de sa mère morte. Seul survivant, entouré de cendres et de corps.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval emerging confused, amber eyes wide with incomprehension, mother's lifeless wings parting"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Shock, survival guilt, innocence shattered, grief beginning"
-        },
-        "midground": {
-          "environment": [
-            "Death all around, bodies of community, mother's sacrifice visible"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "First movements of survival, looking around in horror, alone"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval emerging confused",
+            "priority": 1,
+            "description": "amber eyes wide with incomprehension, mother's lifeless wings parting",
+            "importance": "primary",
+            "action": "First movements of survival, looking around in horror, alone"
+          }
+        ],
+        "scene": {
+          "location": "Death all around, bodies of community, mother's sacrifice visible",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Death all around, bodies of community, mother's sacrifice visible",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -3956,62 +4072,73 @@
       "description": "Vue d'ensemble de la dévastation. Baby Dorval seul parmi les morts. Naissance d'une vengeance.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Wide shot of genocide aftermath, baby Dorval alone among the dead",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Establish the scope of loss and the origin of vengeance",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Vue d'ensemble de la dévastation. Baby Dorval seul parmi les morts. Naissance d'une vengeance.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval tiny figure among destruction, sole movement in stillness of death"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Devastation, utter loss, first ember of future vengeance"
-        },
-        "midground": {
-          "environment": [
-            "Bodies everywhere, settling dust and toxin, destroyed innocence visible"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Baby crawling over bodies, seeking life, finding only death"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval tiny figure among destruction",
+            "priority": 1,
+            "description": "sole movement in stillness of death",
+            "importance": "primary",
+            "action": "Baby crawling over bodies, seeking life, finding only death"
+          }
+        ],
+        "scene": {
+          "location": "Bodies everywhere, settling dust and toxin, destroyed innocence visible",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Bodies everywhere, settling dust and toxin, destroyed innocence visible",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -4066,62 +4193,73 @@
       "description": "Baby Dorval aperçoit la lumière filtrant à travers les jalousies. Premier espoir d'évasion.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Baby Dorval spots light through the jalousies, first hope of escape",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Visual metaphor of hope - light through shutters as path to survival",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval aperçoit la lumière filtrant à travers les jalousies. Premier espoir d'évasion.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval looking up, amber eyes catching light rays, hope flickering"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "First hope, survival instinct awakening, desperate determination"
-        },
-        "midground": {
-          "environment": [
-            "Jalousies wooden shutters, light streaming through slats, escape route visible"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Small body turning toward light, instinct pulling toward safety"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval looking up",
+            "priority": 1,
+            "description": "amber eyes catching light rays, hope flickering",
+            "importance": "primary",
+            "action": "Small body turning toward light, instinct pulling toward safety"
+          }
+        ],
+        "scene": {
+          "location": "Jalousies wooden shutters, light streaming through slats, escape route visible",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Jalousies wooden shutters, light streaming through slats, escape route visible",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -4176,62 +4314,73 @@
       "description": "Baby Dorval rampe vers les jalousies, déterminé malgré sa terreur. Chaque centimètre est un combat.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Baby Dorval crawling toward jalousies, determined despite terror",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Show the struggle for survival, every inch a battle won",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval rampe vers les jalousies, déterminé malgré sa terreur. Chaque centimètre est un combat.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval crawling desperately, tiny wings helping propel forward, eyes fixed on light"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Desperate determination, primal survival, infant courage"
-        },
-        "midground": {
-          "environment": [
-            "Floor covered with dust and bodies, jalousies getting closer, light getting brighter"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Crawling motion, reaching, struggling, never stopping"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval crawling desperately",
+            "priority": 1,
+            "description": "tiny wings helping propel forward, eyes fixed on light",
+            "importance": "primary",
+            "action": "Crawling motion, reaching, struggling, never stopping"
+          }
+        ],
+        "scene": {
+          "location": "Floor covered with dust and bodies, jalousies getting closer, light getting brighter",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Floor covered with dust and bodies, jalousies getting closer, light getting brighter",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -4286,62 +4435,73 @@
       "description": "Baby Dorval se faufile entre les lattes des jalousies. Le moment le plus périlleux de l'évasion.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Baby Dorval squeezing through jalousie slats, most perilous moment",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Maximum tension - will the infant fit? Will escape succeed?",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval se faufile entre les lattes des jalousies. Le moment le plus périlleux de l'évasion.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval's tiny body between wooden slats, wings folded tight, squeezing through"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Maximum tension, desperate squeeze, life or death moment"
-        },
-        "midground": {
-          "environment": [
-            "Jalousie slats close together, light beyond, darkness behind"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Wedging through, wings pressed flat, final push toward freedom"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval's tiny body between wooden slats",
+            "priority": 1,
+            "description": "wings folded tight, squeezing through",
+            "importance": "primary",
+            "action": "Wedging through, wings pressed flat, final push toward freedom"
+          }
+        ],
+        "scene": {
+          "location": "Jalousie slats close together, light beyond, darkness behind",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Jalousie slats close together, light beyond, darkness behind",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -4396,62 +4556,73 @@
       "description": "Baby Dorval traverse les jalousies. La lumière l'accueille. Survie achevée, trauma commencé.",
       "sceneType": "survival",
       "prompt": {
-        "task": "Create: Baby Dorval emerges through jalousies into light, survival achieved",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Triumphant survival moment, but tinged with loss - freedom bought with everything",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval traverse les jalousies. La lumière l'accueille. Survie achevée, trauma commencé.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval emerging into light, tiny form silhouetted, wings unfurling in freedom"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Relief and devastation combined, survival guilt beginning, alone in the world"
-        },
-        "midground": {
-          "environment": [
-            "Exterior Caribbean landscape, storm clearing, new world without family"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "First breath of free air, looking back at death, looking forward to unknown"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval emerging into light",
+            "priority": 1,
+            "description": "tiny form silhouetted, wings unfurling in freedom",
+            "importance": "primary",
+            "action": "First breath of free air, looking back at death, looking forward to unknown"
+          }
+        ],
+        "scene": {
+          "location": "Exterior Caribbean landscape, storm clearing, new world without family",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Exterior Caribbean landscape, storm clearing, new world without family",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",
@@ -4506,62 +4677,73 @@
       "description": "Baby Dorval à l'extérieur, minuscule contre le paysage martiniquais. Seul survivant d'un monde effacé.",
       "sceneType": "establishing",
       "prompt": {
-        "task": "Create: Baby Dorval alone in vast Caribbean landscape, sole survivor of erased world",
-        "deliverable": "One single cinematic frame, Pixar-dark 3D, ILM-grade VFX, 8K micro-textures",
-        "goal": "Establish scale of loss - tiny figure against huge world, alone",
+        "task": "generate_image",
+        "deliverable": {
+          "type": "action_shot",
+          "aspect_ratio": "16:9",
+          "resolution": "4K"
+        },
+        "goal": "Baby Dorval à l'extérieur, minuscule contre le paysage martiniquais. Seul survivant d'un monde effacé.",
         "invariants": [
-          "Style: Pixar-dark 3D feature-film quality, ILM-grade lighting, démoniaque mignon aesthetic",
-          "Moostik: MICROSCOPIC anthropomorphic mosquitoes with large expressive amber/orange eyes, translucent wings with red veins, thin proboscis",
-          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized",
-          "Lighting: Dramatic cinematic lighting appropriate to scene",
-          "Materials: Chitin, resin, wing-membrane, silk threads - organic only",
-          "Context: Martinique/Caribbean setting, Bloodwings genocide origin"
+          "Style: Pixar-dark 3D feature-film quality, ILM-grade VFX, démoniaque mignon aesthetic",
+          "Palette: obsidian black (#0B0B0E), blood red (#8B0015), deep crimson (#B0002A), copper (#9B6A3A), warm amber (#FFB25A)",
+          "Moostik anatomy: MUST have visible needle-like proboscis (their ONLY weapon), large expressive amber/orange eyes, translucent wings with crimson veins",
+          "Moostik scale: MICROSCOPIC - dust-speck sized compared to humans",
+          "Moostik bodies: matte obsidian chitin (#0B0B0E) with subtle satin highlights",
+          "Moostik architecture: Renaissance bio-organic Gothic style - NO human architecture in Moostik scenes",
+          "Moostik materials: chitin, resin, wing-membrane, silk threads, nectar-wax, blood-ruby",
+          "Moostik lighting: bioluminescent amber/crimson lanterns, nectar-wax candles - NO electric lights",
+          "Technology: Medieval fantasy ONLY - NO modern weapons, NO electricity, NO machines",
+          "Combat: Proboscis fighting ONLY - NO guns, tanks, or manufactured weapons",
+          "Clan sigil: Droplet-Eye (blood drop with stylized eye) on wax seals and insignia",
+          "Humans: Antillean/Caribbean ONLY (ebony skin), Pixar-stylized proportions",
+          "Human POV: Humans appear as COLOSSAL titans from Moostik perspective"
         ],
-        "foreground": {
-          "subjects": [
-            "Baby Dorval as tiny silhouette, lost in vastness, alone"
-          ],
-          "micro_detail": [
-            "Intricate chitin textures",
-            "Translucent wing membranes with red veins",
-            "Expressive amber compound eyes"
-          ],
-          "emotion": "Utter isolation, survivor's burden, beginning of long journey"
-        },
-        "midground": {
-          "environment": [
-            "Martinique tropical landscape, post-storm clearing, beautiful indifference of nature"
-          ],
-          "micro_city_architecture": [],
-          "action": [
-            "Standing still, processing loss, beginning new existence"
-          ],
-          "threat": []
-        },
-        "background": {
-          "location": [],
-          "human_threat": [],
-          "martinique_cues": [
+        "subjects": [
+          {
+            "name": "Baby Dorval as tiny silhouette",
+            "priority": 1,
+            "description": "lost in vastness, alone",
+            "importance": "primary",
+            "action": "Standing still, processing loss, beginning new existence"
+          }
+        ],
+        "scene": {
+          "location": "Martinique tropical landscape, post-storm clearing, beautiful indifference of nature",
+          "time": "Cinematic lighting",
+          "atmosphere": [
+            "Martinique tropical landscape, post-storm clearing, beautiful indifference of nature",
             "Caribbean tropical atmosphere",
             "Martinique cultural elements"
+          ],
+          "materials": [
+            "Chitin",
+            "Resin",
+            "Wing-membrane"
           ]
+        },
+        "composition": {
+          "framing": "wide",
+          "layout": "Cinematic composition",
+          "depth": "Shallow focus on subject"
+        },
+        "camera": {
+          "format": "Anamorphic 2.39:1",
+          "lens_mm": 35,
+          "aperture": "f/1.4",
+          "angle": "Static keyframe"
         },
         "lighting": {
           "key": "Dramatic cinematic lighting",
           "fill": "Mood-appropriate ambient",
-          "effects": "Volumetric atmosphere"
-        },
-        "camera": {
-          "framing": "Cinematic composition",
-          "lens": "Macro equivalent",
-          "movement": "Static keyframe",
-          "depth_of_field": "Shallow focus on subject"
+          "rim": "Subtle edge separation",
+          "notes": "Volumetric atmosphere"
         },
         "grade": {
           "look": "Pixar-dark cinematic, high contrast, rich blacks",
           "mood": "Démoniaque mignon - dark but beautiful"
         },
-        "negative_prompt": [
+        "negative": [
           "human architecture in Moostik scenes",
           "modern technology",
           "anime cartoon 2D illustration style",

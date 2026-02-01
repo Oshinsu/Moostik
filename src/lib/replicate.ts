@@ -10,6 +10,12 @@ import { prepareUrlsForReplicate } from "./url-utils";
 import { replicateLogger as logger, trackPerformance } from "./logger";
 import { ReplicateError, RateLimitError } from "./errors";
 import { config } from "./config";
+import { 
+  uploadVariation, 
+  uploadReference, 
+  BUCKET_GENERATED_IMAGES,
+  BUCKET_REFERENCES 
+} from "./supabase/storage";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -119,13 +125,13 @@ export async function generateImage(
   return { url, seed };
 }
 
-// Télécharger une image localement avec retry
+// Télécharger une image et uploader vers Supabase Storage
 export async function downloadImage(
   imageUrl: string,
   episodeId: string,
   shotId: string,
   variationId: string
-): Promise<string> {
+): Promise<{ localPath: string; supabaseUrl: string }> {
   const outputDir = path.join(config.paths.images, episodeId, shotId);
   await mkdir(outputDir, { recursive: true });
 
@@ -149,14 +155,30 @@ export async function downloadImage(
     return Buffer.from(arrayBuffer);
   }, { maxRetries: 3, initialDelay: 1000 });
 
+  // Sauvegarder localement (backup)
   await writeFile(localPath, buffer);
+  logger.debug("Image saved locally", { path: localPath });
 
-  logger.debug("Image saved", { path: localPath });
-
-  return localPath;
+  // Upload vers Supabase Storage (source de vérité)
+  const uploadResult = await uploadVariation(buffer, episodeId, shotId, variationId);
+  
+  if (uploadResult.success && uploadResult.publicUrl) {
+    logger.info("Image uploaded to Supabase", { 
+      path: uploadResult.storagePath,
+      url: uploadResult.publicUrl.substring(0, 80) + "..."
+    });
+    return { localPath, supabaseUrl: uploadResult.publicUrl };
+  } else {
+    logger.warn("Supabase upload failed, using local path", { 
+      error: uploadResult.error,
+      localPath 
+    });
+    // Fallback: utiliser l'URL de l'API locale si Supabase échoue
+    return { localPath, supabaseUrl: `/api/images/${episodeId}/${shotId}/${variationId}.png` };
+  }
 }
 
-// Générer et sauvegarder une image
+// Générer et sauvegarder une image (local + Supabase)
 export async function generateAndSave(
   prompt: string,
   episodeId: string,
@@ -167,10 +189,11 @@ export async function generateAndSave(
   negativePrompt?: string  // SOTA: Separate negative prompt
 ): Promise<GenerateImageResult> {
   const result = await generateImage({ prompt, negativePrompt, seed, referenceImages });
-  const localPath = await downloadImage(result.url, episodeId, shotId, variationId);
+  const { localPath, supabaseUrl } = await downloadImage(result.url, episodeId, shotId, variationId);
 
   return {
-    url: result.url,
+    // URL principale = Supabase (source de vérité pour le déploiement)
+    url: supabaseUrl,
     localPath,
     seed: result.seed,
   };
@@ -429,7 +452,7 @@ export async function generateWithJsonMoostik(
   return result;
 }
 
-// Génération de personnage de référence avec JSON MOOSTIK
+// Génération de personnage de référence avec JSON MOOSTIK + upload Supabase
 export async function generateCharacterReference(
   characterPrompt: string,
   characterId: string
@@ -463,17 +486,33 @@ export async function generateCharacterReference(
     return Buffer.from(arrayBuffer);
   });
 
+  // Sauvegarder localement (backup)
   await writeFile(localPath, buffer);
 
-  logger.info("Character reference generated", { characterId, localPath });
+  // Upload vers Supabase Storage (source de vérité)
+  const uploadResult = await uploadReference(buffer, "characters", characterId);
+  
+  let finalUrl = result.url;
+  if (uploadResult.success && uploadResult.publicUrl) {
+    finalUrl = uploadResult.publicUrl;
+    logger.info("Character reference uploaded to Supabase", { 
+      characterId, 
+      url: finalUrl.substring(0, 80) + "..." 
+    });
+  } else {
+    logger.warn("Character Supabase upload failed", { 
+      characterId, 
+      error: uploadResult.error 
+    });
+  }
 
   return {
-    url: result.url,
+    url: finalUrl,
     localPath,
   };
 }
 
-// Génération de lieu de référence avec JSON MOOSTIK
+// Génération de lieu de référence avec JSON MOOSTIK + upload Supabase
 export async function generateLocationReference(
   locationPrompt: string,
   locationId: string
@@ -508,12 +547,28 @@ export async function generateLocationReference(
     return Buffer.from(arrayBuffer);
   });
 
+  // Sauvegarder localement (backup)
   await writeFile(localPath, buffer);
 
-  logger.info("Location reference generated", { locationId, localPath });
+  // Upload vers Supabase Storage (source de vérité)
+  const uploadResult = await uploadReference(buffer, "locations", locationId);
+  
+  let finalUrl = result.url;
+  if (uploadResult.success && uploadResult.publicUrl) {
+    finalUrl = uploadResult.publicUrl;
+    logger.info("Location reference uploaded to Supabase", { 
+      locationId, 
+      url: finalUrl.substring(0, 80) + "..." 
+    });
+  } else {
+    logger.warn("Location Supabase upload failed", { 
+      locationId, 
+      error: uploadResult.error 
+    });
+  }
 
   return {
-    url: result.url,
+    url: finalUrl,
     localPath,
   };
 }

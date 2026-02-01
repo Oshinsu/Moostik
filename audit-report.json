@@ -1,0 +1,617 @@
+{
+  "timestamp": "2026-02-01T06:58:24.460Z",
+  "characters": {
+    "total": 19,
+    "withImages": 6,
+    "validated": 19,
+    "missing": [
+      "papy-tik",
+      "young-dorval",
+      "general-aedes",
+      "scholar-culex",
+      "bartender-anopheles",
+      "singer-stegomyia",
+      "femme-fatale-tigresse",
+      "evil-pik",
+      "petit-t1",
+      "doc-hemoglobin",
+      "mama-zika",
+      "captain-dengue",
+      "infiltrator-aedes-albopictus"
+    ]
+  },
+  "locations": {
+    "total": 12,
+    "withImages": 4,
+    "validated": 12,
+    "missing": [
+      "tire-city",
+      "fort-sang-noir",
+      "bar-ti-sang",
+      "academy-of-blood",
+      "cathedral-of-blood",
+      "genocide-memorial",
+      "nursery-pods",
+      "creole-house-enemy"
+    ]
+  },
+  "episodes": [
+    {
+      "id": "ep0",
+      "title": "Le Génocide",
+      "shots": [
+        {
+          "id": "shot-1-1769759484234",
+          "name": "L'Ombre de la Mort",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "child-killer"
+          ],
+          "locationIds": [
+            "cooltik-village"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-2-1769759484235",
+          "name": "Le Sacrifice de Maeli",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-3-1769759484235",
+          "name": "Le Nuage Toxique",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": true,
+          "characterIds": [],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-4-1769759484235",
+          "name": "Seul dans les Cendres",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "genocide-memorial"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [
+            "genocide-memorial"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-5-1769759484235",
+          "name": "La Rencontre avec Aedes",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "general-aedes",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "genocide-memorial"
+          ],
+          "missingCharacterRefs": [
+            "general-aedes"
+          ],
+          "missingLocationRefs": [
+            "genocide-memorial"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-6-1769759484235",
+          "name": "L'Éveil du Guerrier",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "young-dorval",
+            "general-aedes"
+          ],
+          "locationIds": [
+            "fort-sang-noir"
+          ],
+          "missingCharacterRefs": [
+            "young-dorval",
+            "general-aedes"
+          ],
+          "missingLocationRefs": [
+            "fort-sang-noir"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-7-1769759484235",
+          "name": "L'Étude de l'Ennemi",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "young-dorval",
+            "scholar-culex"
+          ],
+          "locationIds": [
+            "academy-of-blood"
+          ],
+          "missingCharacterRefs": [
+            "young-dorval",
+            "scholar-culex"
+          ],
+          "missingLocationRefs": [
+            "academy-of-blood"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-8-1769759484235",
+          "name": "Le Repaire des Bloodwings",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "papy-tik",
+            "bartender-anopheles"
+          ],
+          "locationIds": [
+            "bar-ti-sang"
+          ],
+          "missingCharacterRefs": [
+            "papy-tik",
+            "bartender-anopheles"
+          ],
+          "missingLocationRefs": [
+            "bar-ti-sang"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-9-1769759484235",
+          "name": "Le Showcase de Stegomyia",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "singer-stegomyia"
+          ],
+          "locationIds": [
+            "bar-ti-sang"
+          ],
+          "missingCharacterRefs": [
+            "singer-stegomyia"
+          ],
+          "missingLocationRefs": [
+            "bar-ti-sang"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-10-1769759484235",
+          "name": "L'Appel aux Armes",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "evil-pik"
+          ],
+          "locationIds": [
+            "fort-sang-noir"
+          ],
+          "missingCharacterRefs": [
+            "evil-pik"
+          ],
+          "missingLocationRefs": [
+            "fort-sang-noir"
+          ],
+          "variationsCount": 6,
+          "completedVariations": 6,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-011",
+          "name": "Les Voix du Passé",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "koko-survivor",
+            "mila-survivor",
+            "trez-survivor",
+            "papy-tik"
+          ],
+          "locationIds": [
+            "bar-ti-sang"
+          ],
+          "missingCharacterRefs": [
+            "papy-tik"
+          ],
+          "missingLocationRefs": [
+            "bar-ti-sang"
+          ],
+          "variationsCount": 5,
+          "completedVariations": 2,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-012",
+          "name": "Le Village Paisible",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "cooltik-village"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 2,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-013",
+          "name": "Fuite a travers les Persiennes",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "jalousies-gateway"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 2,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-014",
+          "name": "Le Serment de Vengeance",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "koko-survivor",
+            "mila-survivor",
+            "trez-survivor",
+            "general-aedes"
+          ],
+          "locationIds": [
+            "genocide-memorial"
+          ],
+          "missingCharacterRefs": [
+            "general-aedes"
+          ],
+          "missingLocationRefs": [
+            "genocide-memorial"
+          ],
+          "variationsCount": 5,
+          "completedVariations": 2,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-015",
+          "name": "La Renaissance des Bloodwings",
+          "isSota": "cinematic_still",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": false,
+          "characterIds": [
+            "young-dorval",
+            "general-aedes"
+          ],
+          "locationIds": [
+            "tire-city",
+            "fort-sang-noir"
+          ],
+          "missingCharacterRefs": [
+            "young-dorval",
+            "general-aedes"
+          ],
+          "missingLocationRefs": [
+            "tire-city",
+            "fort-sang-noir"
+          ],
+          "variationsCount": 5,
+          "completedVariations": 2,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-16",
+          "name": "L'Innocence Brisée",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "child-killer",
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 1,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-17",
+          "name": "Le Premier Spray",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "child-killer"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-18",
+          "name": "Les Premières Victimes",
+          "isSota": "action_shot",
+          "hasCharacterRefs": false,
+          "hasLocationRefs": true,
+          "characterIds": [],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-19",
+          "name": "Le Cri de Mama Dorval",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-20",
+          "name": "L'Enveloppement Mortel",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-21",
+          "name": "Le Dernier Souffle",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "mama-dorval",
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-22",
+          "name": "L'Éveil du Survivant",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889794560-23",
+          "name": "Les Cendres du Génocide",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-house-interior"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889802112-24",
+          "name": "La Découverte des Jalousies",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "jalousies-gateway"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889802112-25",
+          "name": "L'Approche du Passage",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "jalousies-gateway"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889802112-26",
+          "name": "Le Passage Étroit",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "jalousies-gateway"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889802112-27",
+          "name": "L'Émergence vers la Lumière",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-exterior-storm"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        },
+        {
+          "id": "shot-exp-1769889802112-28",
+          "name": "Seul dans le Monde",
+          "isSota": "action_shot",
+          "hasCharacterRefs": true,
+          "hasLocationRefs": true,
+          "characterIds": [
+            "baby-dorval"
+          ],
+          "locationIds": [
+            "martinique-exterior-storm"
+          ],
+          "missingCharacterRefs": [],
+          "missingLocationRefs": [],
+          "variationsCount": 5,
+          "completedVariations": 0,
+          "hasSupabaseUrls": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalShots": 28,
+    "sotaShots": 28,
+    "legacyShots": 0,
+    "shotsWithRefs": 19,
+    "shotsWithoutRefs": 9,
+    "totalImages": 71,
+    "imagesWithSupabaseUrl": 71
+  }
+}
