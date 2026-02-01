@@ -31,6 +31,9 @@ import {
   X,
   Check,
   Filter,
+  Video,
+  FileImage,
+  FileVideo,
 } from "lucide-react";
 import { downloadImage, downloadMultipleImages } from "@/lib/download-utils";
 import { getCameraAngleLabel } from "@/data/camera-angles";
@@ -45,6 +48,8 @@ interface ImageItem {
   createdAt?: string;
   episodeId?: string;
   shotId?: string;
+  videoUrl?: string;
+  videoStatus?: string;
 }
 
 export default function LibraryPage() {
@@ -136,6 +141,8 @@ export default function LibraryPage() {
               episodeId: episode.id,
               shotId: img.shotId,
               createdAt: img.createdAt,
+              videoUrl: img.videoUrl,
+              videoStatus: img.videoStatus,
             });
           }
         }
@@ -173,6 +180,10 @@ export default function LibraryPage() {
       }
       return 0;
     });
+
+  const downloadVideo = async (url: string, filename: string) => {
+    await downloadImage(url, filename, "mp4");
+  };
 
   const downloadSelected = async () => {
     const selectedItems = images.filter((img) => selectedImages.has(img.id));
@@ -455,6 +466,14 @@ export default function LibraryPage() {
                         loading="lazy"
                       />
 
+                      {/* Video indicator */}
+                      {img.videoUrl && img.videoStatus === "completed" && (
+                        <div className="absolute top-2 right-2 z-10 px-1.5 py-0.5 bg-emerald-500/90 rounded text-[10px] font-bold text-white flex items-center gap-1">
+                          <Video className="h-3 w-3" />
+                          MP4
+                        </div>
+                      )}
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         <div className="absolute bottom-2 right-2 flex gap-2">
@@ -473,6 +492,7 @@ export default function LibraryPage() {
                             size="sm"
                             variant="secondary"
                             className="h-8 w-8 p-0"
+                            title="Télécharger PNG"
                             onClick={(e) => {
                               e.stopPropagation();
                               downloadImage(
@@ -481,8 +501,25 @@ export default function LibraryPage() {
                               );
                             }}
                           >
-                            <Download className="h-4 w-4" />
+                            <FileImage className="h-4 w-4" />
                           </Button>
+                          {img.videoUrl && img.videoStatus === "completed" && (
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              className="h-8 w-8 p-0 bg-emerald-600 hover:bg-emerald-700"
+                              title="Télécharger MP4"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                downloadVideo(
+                                  img.videoUrl!,
+                                  img.name.replace(/[^a-zA-Z0-9]/g, "_")
+                                );
+                              }}
+                            >
+                              <FileVideo className="h-4 w-4" />
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -579,11 +616,20 @@ export default function LibraryPage() {
                       )}
                     </div>
 
+                    {/* Video indicator */}
+                    {img.videoUrl && img.videoStatus === "completed" && (
+                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 flex-shrink-0">
+                        <Video className="h-3 w-3 mr-1" />
+                        MP4
+                      </Badge>
+                    )}
+
                     {/* Actions */}
                     <div className="flex gap-2 flex-shrink-0">
                       <Button
                         size="sm"
                         variant="ghost"
+                        title="Aperçu"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedImage(img);
@@ -594,6 +640,7 @@ export default function LibraryPage() {
                       <Button
                         size="sm"
                         variant="ghost"
+                        title="Télécharger PNG"
                         onClick={(e) => {
                           e.stopPropagation();
                           downloadImage(
@@ -602,8 +649,25 @@ export default function LibraryPage() {
                           );
                         }}
                       >
-                        <Download className="h-4 w-4" />
+                        <FileImage className="h-4 w-4" />
                       </Button>
+                      {img.videoUrl && img.videoStatus === "completed" && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="text-emerald-400 hover:text-emerald-300"
+                          title="Télécharger MP4"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            downloadVideo(
+                              img.videoUrl!,
+                              img.name.replace(/[^a-zA-Z0-9]/g, "_")
+                            );
+                          }}
+                        >
+                          <FileVideo className="h-4 w-4" />
+                        </Button>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -671,26 +735,63 @@ export default function LibraryPage() {
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end gap-2">
-              <Button
-                variant="outline"
-                onClick={() => window.open(selectedImage?.url, "_blank")}
-              >
-                Ouvrir en plein écran
-              </Button>
-              <Button
-                onClick={() =>
-                  selectedImage &&
-                  downloadImage(
-                    selectedImage.url,
-                    selectedImage.name.replace(/[^a-zA-Z0-9]/g, "_")
-                  )
-                }
-                className="bg-red-600 hover:bg-red-700"
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Télécharger PNG
-              </Button>
+            <div className="flex flex-col gap-3 pt-4 border-t border-gray-800">
+              {/* Format download section */}
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-400">
+                  Formats disponibles:
+                </div>
+                <div className="flex gap-2">
+                  <Badge variant="outline" className="bg-crimson-500/10 text-crimson-300 border-crimson-500/30">
+                    <FileImage className="h-3 w-3 mr-1" />
+                    PNG
+                  </Badge>
+                  {selectedImage?.videoUrl && selectedImage?.videoStatus === "completed" && (
+                    <Badge variant="outline" className="bg-emerald-500/10 text-emerald-300 border-emerald-500/30">
+                      <FileVideo className="h-3 w-3 mr-1" />
+                      MP4
+                    </Badge>
+                  )}
+                </div>
+              </div>
+
+              {/* Download buttons */}
+              <div className="flex justify-end gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => window.open(selectedImage?.url, "_blank")}
+                >
+                  Ouvrir en plein écran
+                </Button>
+                <Button
+                  onClick={() =>
+                    selectedImage &&
+                    downloadImage(
+                      selectedImage.url,
+                      selectedImage.name.replace(/[^a-zA-Z0-9]/g, "_")
+                    )
+                  }
+                  className="bg-crimson-600 hover:bg-crimson-700"
+                >
+                  <FileImage className="h-4 w-4 mr-2" />
+                  Télécharger PNG
+                </Button>
+                {selectedImage?.videoUrl && selectedImage?.videoStatus === "completed" && (
+                  <Button
+                    onClick={() =>
+                      selectedImage &&
+                      downloadVideo(
+                        selectedImage.videoUrl!,
+                        selectedImage.name.replace(/[^a-zA-Z0-9]/g, "_")
+                      )
+                    }
+                    className="bg-emerald-600 hover:bg-emerald-700"
+                  >
+                    <FileVideo className="h-4 w-4 mr-2" />
+                    Télécharger MP4
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </DialogContent>
