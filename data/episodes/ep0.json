@@ -454,6 +454,13 @@
           "videoPrompt": "L'Ombre de la Mort. Confusion, then horror realization. dolly camera, Forward/backward movement creating depth and intimacy. Tragic, somber, unforgettable. emotional expression, character emotion. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "dolly"
+        },
+        {
+          "id": "var-legacy-shot-1-1769759484234",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-001.png",
+          "generatedAt": "2026-02-01T06:49:34.828Z"
         }
       ],
       "status": "completed",
@@ -677,6 +684,13 @@
           "videoPrompt": "Le Sacrifice de Maeli. Fierce determination, body shielding, final breath exhaling. Trembling, tears forming, desperate clinging to mother. static camera, Locked-off shot, no movement, focusing on character performance. Intimate, vulnerable, raw. emotional expression, character emotion. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "static"
+        },
+        {
+          "id": "var-legacy-shot-2-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-002.png",
+          "generatedAt": "2026-02-01T06:49:34.830Z"
         }
       ],
       "status": "completed",
@@ -884,6 +898,13 @@
           "videoPrompt": "Le Nuage Toxique. Slow, devastating movement. Bodies falling, smoke rising. Visceral impact.. dolly camera, Forward/backward movement creating depth and intimacy. Tragic, somber, unforgettable. emotional expression, character emotion. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "dolly"
+        },
+        {
+          "id": "var-legacy-shot-3-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-003.png",
+          "generatedAt": "2026-02-01T06:49:34.830Z"
         }
       ],
       "status": "completed",
@@ -1097,6 +1118,13 @@
           "videoPrompt": "Seul dans les Cendres. Tiny wings flutter gently, antennae twitch with curiosity. crane camera, Sweeping vertical movement for establishing grandeur. Cinematic atmosphere. emotional expression, character emotion. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "crane"
+        },
+        {
+          "id": "var-legacy-shot-4-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-004.png",
+          "generatedAt": "2026-02-01T06:49:34.830Z"
         }
       ],
       "status": "completed",
@@ -1319,6 +1347,13 @@
           "videoPrompt": "La Rencontre avec Aedes. Military bearing, wings folded tight, watchful gaze. Tiny wings flutter gently, antennae twitch with curiosity. crane camera, Sweeping vertical movement for establishing grandeur. Cinematic atmosphere. emotional expression, character emotion. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "crane"
+        },
+        {
+          "id": "var-legacy-shot-5-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-005.png",
+          "generatedAt": "2026-02-01T06:49:34.830Z"
         }
       ],
       "status": "completed",
@@ -1543,6 +1578,13 @@
           "videoPrompt": "L'Éveil du Guerrier. Lightning strikes, acrobatic combat, predator precision. Strategic movements, commanding gestures, battlefield authority. orbit camera, Circular movement around subject for 360° impact. Determined, focused, building power. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "orbit"
+        },
+        {
+          "id": "var-legacy-shot-6-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-006.png",
+          "generatedAt": "2026-02-01T06:49:34.830Z"
         }
       ],
       "status": "completed",
@@ -1766,6 +1808,13 @@
           "videoPrompt": "L'Étude de l'Ennemi. Warrior stance, wings held proud, eyes scanning horizon. Subtle breathing, ambient movement. crane camera, Sweeping vertical movement for establishing grandeur. Cinematic atmosphere. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "crane"
+        },
+        {
+          "id": "var-legacy-shot-7-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-007.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         }
       ],
       "status": "completed",
@@ -1990,6 +2039,13 @@
           "videoPrompt": "Le Repaire des Bloodwings. Weathered elder sitting still, pipe smoke curling, wise observation. Subtle breathing, ambient movement. pan camera, Slow horizontal sweep revealing the scene. Conspiratorial, weary, determined. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "pan"
+        },
+        {
+          "id": "var-legacy-shot-8-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-008.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         }
       ],
       "status": "completed",
@@ -2205,6 +2261,13 @@
           "videoPrompt": "Le Showcase de Stegomyia. Subtle breathing, ambient movement. pan camera, Slow horizontal sweep revealing the scene. Conspiratorial, weary, determined. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "pan"
+        },
+        {
+          "id": "var-legacy-shot-9-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-009.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         }
       ],
       "status": "completed",
@@ -2421,6 +2484,13 @@
           "videoPrompt": "L'Appel aux Armes. Explosive speed, ruthless precision, lethal elegance. handheld camera, Organic, documentary-feel movement adding tension. Adrenaline, tension, stakes. motion brush, precise camera control, 6-axis camera.",
           "videoDuration": 10,
           "videoCameraMotion": "handheld"
+        },
+        {
+          "id": "var-legacy-shot-10-1769759484235",
+          "cameraAngle": "establishing",
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-010.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         }
       ],
       "status": "completed",
@@ -2538,12 +2608,16 @@
         {
           "id": "var-extreme_wide-1769888806981-10",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011.png",
+          "generatedAt": "2026-02-01T06:49:05.065Z"
         },
         {
           "id": "var-wide-1769888806981-10",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-medium-1769888806981-10",
@@ -2666,12 +2740,16 @@
         {
           "id": "var-extreme_wide-1769888806981-11",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012.png",
+          "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
           "id": "var-wide-1769888806981-11",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-medium-1769888806981-11",
@@ -2792,12 +2870,16 @@
         {
           "id": "var-extreme_wide-1769888806981-12",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013.png",
+          "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
           "id": "var-wide-1769888806981-12",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-medium-1769888806981-12",
@@ -2924,12 +3006,16 @@
         {
           "id": "var-extreme_wide-1769888806981-13",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014.png",
+          "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
           "id": "var-wide-1769888806981-13",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-medium-1769888806981-13",
@@ -3056,12 +3142,16 @@
         {
           "id": "var-extreme_wide-1769888806981-14",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015.png",
+          "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
           "id": "var-wide-1769888806981-14",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-medium-1769888806981-14",
@@ -3168,7 +3258,9 @@
         {
           "id": "var-extreme_wide-1769889794560-16",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-016.png",
+          "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
           "id": "var-wide-1769889794560-16",
