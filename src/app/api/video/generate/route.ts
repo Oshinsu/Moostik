@@ -15,6 +15,7 @@ import {
   generateVideo,
   ReplicateVideoError,
 } from "@/lib/video/providers/replicate";
+import { getEpisode, updateShot } from "@/lib/storage";
 
 export const maxDuration = 60; // 60s max for Vercel hobby plan
 
@@ -53,6 +54,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get episode and shot to update
+    const episode = await getEpisode(body.episodeId);
+    const shot = episode?.shots.find(s => s.id === body.shotId);
+    
+    if (!shot) {
+      return NextResponse.json(
+        { error: "Shot not found" },
+        { status: 404 }
+      );
+    }
+
+    // Update variation to generating status
+    const updatingVariations = shot.variations.map(v =>
+      v.id === body.variationId
+        ? { ...v, videoStatus: "generating" as const, videoProvider: body.provider }
+        : v
+    );
+    await updateShot(body.episodeId, body.shotId, { variations: updatingVariations });
+
     // Build full input with defaults
     const providerConfig = PROVIDER_CONFIGS[body.provider];
     const caps = providerConfig.capabilities;
@@ -82,22 +102,59 @@ export async function POST(request: NextRequest) {
 
     let result: VideoGenerationOutput;
 
-    if (body.waitForCompletion !== false) {
-      // Wait for video to complete (default behavior)
-      result = await generateVideoAndWait(input, body.provider, {
-        timeoutMs: providerConfig.timeoutMs,
-        pollIntervalMs: 2000,
-      });
-    } else {
-      // Just start the generation and return immediately
-      result = await generateVideo(input, body.provider);
+    try {
+      if (body.waitForCompletion !== false) {
+        // Wait for video to complete (default behavior)
+        result = await generateVideoAndWait(input, body.provider, {
+          timeoutMs: providerConfig.timeoutMs,
+          pollIntervalMs: 2000,
+        });
+      } else {
+        // Just start the generation and return immediately
+        result = await generateVideo(input, body.provider);
+      }
+
+      // Calculate cost
+      const cost = providerConfig.pricing.costPerSecond * input.durationSeconds;
+      result.costUsd = Math.max(cost, providerConfig.pricing.minimumCost);
+
+      // Update variation with video result
+      const currentEpisode = await getEpisode(body.episodeId);
+      const currentShot = currentEpisode?.shots.find(s => s.id === body.shotId);
+      if (currentShot) {
+        const completedVariations = currentShot.variations.map(v =>
+          v.id === body.variationId
+            ? {
+                ...v,
+                videoStatus: "completed" as const,
+                videoUrl: result.videoUrl,
+                videoProvider: body.provider,
+                videoGeneratedAt: new Date().toISOString(),
+                videoDuration: input.durationSeconds,
+                videoPrompt: input.prompt,
+                videoCameraMotion: input.cameraMotion,
+              }
+            : v
+        );
+        await updateShot(body.episodeId, body.shotId, { variations: completedVariations });
+        console.log(`[Video] Updated variation ${body.variationId} with videoUrl: ${result.videoUrl}`);
+      }
+
+      return NextResponse.json(result);
+    } catch (genError) {
+      // Update variation to failed status
+      const currentEpisode = await getEpisode(body.episodeId);
+      const currentShot = currentEpisode?.shots.find(s => s.id === body.shotId);
+      if (currentShot) {
+        const failedVariations = currentShot.variations.map(v =>
+          v.id === body.variationId
+            ? { ...v, videoStatus: "failed" as const }
+            : v
+        );
+        await updateShot(body.episodeId, body.shotId, { variations: failedVariations });
+      }
+      throw genError;
     }
-
-    // Calculate cost
-    const cost = providerConfig.pricing.costPerSecond * input.durationSeconds;
-    result.costUsd = Math.max(cost, providerConfig.pricing.minimumCost);
-
-    return NextResponse.json(result);
   } catch (error) {
     console.error("Video generation error:", error);
 

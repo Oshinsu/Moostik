@@ -42,16 +42,40 @@ export async function PUT(request: NextRequest, context: RouteContext) {
   try {
     const { id, shotId } = await context.params;
     const body = await request.json();
-    const { name, prompt, status } = body as {
+    const { 
+      name, 
+      description,
+      prompt, 
+      status,
+      sceneType,
+      characterIds,
+      locationIds,
+      variations,
+      referenceVariation,
+    } = body as {
       name?: string;
+      description?: string;
       prompt?: MoostikPrompt;
       status?: "pending" | "generating" | "completed" | "error";
+      sceneType?: string;
+      characterIds?: string[];
+      locationIds?: string[];
+      variations?: unknown[];
+      referenceVariation?: string;
     };
 
     const updates: Record<string, unknown> = {};
     if (name !== undefined) updates.name = name;
+    if (description !== undefined) updates.description = description;
     if (prompt !== undefined) updates.prompt = prompt;
     if (status !== undefined) updates.status = status;
+    if (sceneType !== undefined) updates.sceneType = sceneType;
+    if (characterIds !== undefined) updates.characterIds = characterIds;
+    if (locationIds !== undefined) updates.locationIds = locationIds;
+    if (variations !== undefined) updates.variations = variations;
+    if (referenceVariation !== undefined) updates.referenceVariation = referenceVariation;
+
+    console.log(`[Shot] Updating shot ${shotId} with fields:`, Object.keys(updates));
 
     const shot = await updateShot(id, shotId, updates);
 

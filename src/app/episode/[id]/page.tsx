@@ -24,6 +24,7 @@ import { Badge } from "@/components/ui/badge";
 import { LoadingState } from "@/components/shared/LoadingState";
 import { useMoostik } from "@/contexts/MoostikContext";
 import type { Episode, Shot, Variation, SceneCluster, GenerationReadinessCheck } from "@/types";
+import { VideoGenerationWorkflow } from "@/components/video/VideoGenerationWorkflow";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
@@ -55,6 +56,9 @@ export default function EpisodePage() {
   const [clusters, setClusters] = useState<SceneCluster[]>([]);
   const [readiness, setReadiness] = useState<GenerationReadinessCheck | null>(null);
   const [showClusters, setShowClusters] = useState(false);
+  
+  // Video generation state
+  const [showVideoWorkflow, setShowVideoWorkflow] = useState(false);
 
   const fetchEpisode = useCallback(async () => {
     try {
@@ -139,7 +143,7 @@ export default function EpisodePage() {
 
   const saveShot = async (shot: Shot) => {
     try {
-      await fetch(`/api/episodes/${episodeId}/shots/${shot.id}`, {
+      const res = await fetch(`/api/episodes/${episodeId}/shots/${shot.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -147,8 +151,17 @@ export default function EpisodePage() {
           description: shot.description,
           prompt: shot.prompt,
           sceneType: shot.sceneType,
+          characterIds: shot.characterIds,
+          locationIds: shot.locationIds,
         }),
       });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        console.error("Failed to save shot:", error);
+        return;
+      }
+      
       setEditingShot(null);
       fetchEpisode();
     } catch (error) {
@@ -462,8 +475,19 @@ export default function EpisodePage() {
                         Génération...
                       </>
                     ) : (
-                      <>Générer Tout ({stats.pendingVariations})</>
+                      <>Générer Images ({stats.pendingVariations})</>
                     )}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowVideoWorkflow(true)}
+                    disabled={stats.completedVariations === 0}
+                    className="bg-emerald-900/20 border-emerald-600/30 text-emerald-400 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-900/40"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Vidéos I2V
                   </Button>
                   <Button
                     variant="outline"
@@ -738,6 +762,20 @@ export default function EpisodePage() {
         total={generationProgress.total}
         errors={generationProgress.errors}
       />
+
+      {/* Video Generation Workflow */}
+      {episode && (
+        <VideoGenerationWorkflow
+          episode={episode}
+          shots={episode.shots}
+          open={showVideoWorkflow}
+          onClose={() => setShowVideoWorkflow(false)}
+          onComplete={() => {
+            fetchEpisode();
+            setShowVideoWorkflow(false);
+          }}
+        />
+      )}
     </div>
   );
 }

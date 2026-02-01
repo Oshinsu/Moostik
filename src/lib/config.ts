@@ -63,10 +63,10 @@ export const config = {
     },
     /** Modèle utilisé pour la génération */
     model: "google/nano-banana-pro" as const,
-    /** Nombre maximum de générations parallèles */
-    maxParallelGenerations: 1,
-    /** Délai entre les générations (ms) */
-    generationDelayMs: 5000,
+    /** Nombre maximum de générations parallèles (Replicate permet 600 req/min) */
+    maxParallelGenerations: 10,
+    /** Délai entre les batches (ms) */
+    generationDelayMs: 1000,
     /** Nombre maximum d'images de référence */
     maxReferenceImages: 14,
     /** Timeout pour une génération (ms) */
@@ -76,7 +76,7 @@ export const config = {
   // Generation
   generation: {
     /** Nombre maximum de shots générés en parallèle */
-    maxParallelShots: 3,
+    maxParallelShots: 5,
     /** Nombre de variations par shot (angles de caméra) */
     variationsPerShot: 5,
     /** Format de sortie par défaut */

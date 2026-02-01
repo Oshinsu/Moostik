@@ -291,6 +291,7 @@ export interface GeneratedFrames {
   thumbnail?: string;
   /** When frames were extracted */
   extractedAt?: string;
+}
 
 /** Episode generation status */
 export type EpisodeGenerationStatus =

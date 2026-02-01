@@ -155,8 +155,8 @@ export async function withRetryResult<T>(
  */
 export const REPLICATE_RETRY_OPTIONS: RetryOptions = {
   maxRetries: 3,
-  initialDelay: 2000, // 2 secondes pour éviter rate limiting
-  maxDelay: 60000, // 1 minute max
+  initialDelay: 1000, // 1 seconde (Replicate permet 600 req/min)
+  maxDelay: 30000, // 30 secondes max
   backoffMultiplier: 2,
   jitter: true,
   isRetryable: isReplicateRetryable,
