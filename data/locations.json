@@ -270,14 +270,7 @@
     ],
     "referencePrompt": "Peaceful idyllic microscopic Moostik village BEFORE genocide, humble organic chitin cottages with warm glowing windows, small communal gathering areas with families, simple nectar fountain in village center, family nests woven into soft fabric fibers, modest marketplace stalls, Moostik children playing innocently, NO fortifications or defenses they felt SAFE, warm golden afternoon sunshine lighting, peaceful happy community that doesn't know horror is coming, innocent daily life, heartbreaking contrast knowing what happens next, Pixar-heartwarming 3D feature film quality, warm idyllic pastoral lighting, 8K micro-textures, establishing shot",
     "referenceImages": [
-      "/api/images/references/locations/cooltik-village-establishing.png",
-      "/api/images/references/locations/cooltik-village-detail.png",
-      "/api/images/references/locations/cooltik-village-atmosphere.png",
-      "/api/images/references/locations/cooltik-village-aerial.png",
-      "/api/images/references/locations/cooltik-village-entrance.png",
-      "/api/images/references/locations/cooltik-village.png",
-      "https://replicate.delivery/xezq/hQRb9Pos3Oq3Ltryekhzf2W2buMSWB7EEUQbxStlPqmrgeFsA/tmp6a6xlttg.png",
-      "https://replicate.delivery/xezq/IKOZP99ukF5xMRR4KEhmwmGP1BJzwwxEygT5KURa7Gb93vgF/tmpr3pqg9k7.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/cooltik-village.png"
     ],
     "validated": true
   },
@@ -304,14 +297,7 @@
     ],
     "referencePrompt": "HORRIFYING microscopic POV inside Martinique creole house DURING genocide, COLOSSAL wooden jalousie shutters like prison bars, massive deadly ceiling fan spinning, toxic green-yellow BYSS chemical cloud billowing through air, Moostik bodies falling and convulsing, chaos and terror, human child hands visible in background holding aerosol weapon, furniture as colossal obstacles, suffocating death atmosphere, this is genocide in progress, Moostik POV showing absolute helplessness and horror, Pixar-dark TRAUMATIC 3D feature film quality, toxic sickly green lighting mixed with shadow, 8K textures, massacre scene",
     "referenceImages": [
-      "/api/images/references/locations/martinique-house-interior-establishing.png",
-      "/api/images/references/locations/martinique-house-interior-detail.png",
-      "/api/images/references/locations/martinique-house-interior-atmosphere.png",
-      "/api/images/references/locations/martinique-house-interior-aerial.png",
-      "/api/images/references/locations/martinique-house-interior-entrance.png",
-      "/api/images/references/locations/martinique-house-interior.png",
-      "https://replicate.delivery/xezq/lYD1syHJWQpGNBnHZLUJq5TmTCkf5OUnF9slTxFDsQAyRfCWA/tmpl4miv81t.png",
-      "https://replicate.delivery/xezq/XLmRfyyl1g2sLaCyTbz39JrqVJ8urc38LXFwbspqQrL1vfCWA/tmpt_soe7te.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/martinique-house-interior.png"
     ],
     "validated": true
   },
@@ -337,14 +323,7 @@
     ],
     "referencePrompt": "DRAMATIC microscopic POV extreme close-up of Martinique wooden jalousie shutters as GATEWAY between worlds, massive wooden slats appearing as colossal barriers, thin strips of golden escape light streaming through gaps, toxic BYSS cloud visible behind in shadows, freedom and survival light visible through gaps ahead, this is the threshold between genocide death and survival hope, liminal transition space, Moostik escaping through narrow gap between slats, desperate escape moment, Pixar-dark 3D feature film quality, dramatic contrast lighting toxic behind golden ahead, 8K textures, threshold escape scene",
     "referenceImages": [
-      "/api/images/references/locations/jalousies-gateway-establishing.png",
-      "/api/images/references/locations/jalousies-gateway-detail.png",
-      "/api/images/references/locations/jalousies-gateway-atmosphere.png",
-      "/api/images/references/locations/jalousies-gateway-aerial.png",
-      "/api/images/references/locations/jalousies-gateway-entrance.png",
-      "/api/images/references/locations/jalousies-gateway.png",
-      "https://replicate.delivery/xezq/TlFY5WweJd2qYaBo8IJrJSfdEIdr7exfqPP8klkfvyAfQpvgF/tmp4isde_oa.png",
-      "https://replicate.delivery/xezq/e5eMRBJnfjT5UJR5c8idwpVDRcOfefzjye7lsm4IJTZOUwfCWA/tmpv1iv_1pg.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/jalousies-gateway.png"
     ],
     "validated": true
   },
@@ -370,14 +349,7 @@
     ],
     "referencePrompt": "DRAMATIC microscopic POV outside Martinique creole house during tropical storm, COLOSSAL house silhouette visible through sheets of rain, massive tropical vegetation leaves as giant umbrellas, individual rain drops falling as dangerous water bombs from Moostik perspective, lightning bolt illumination revealing landscape, muddy ground as treacherous terrain, howling wind moving giant leaves, torrential downpour atmosphere, nature as both threat and temporary ally, dramatic storm lighting with lightning flashes and dark shadows, Pixar-dark 3D feature film quality, intense weather dramatic lighting, 8K textures, exterior storm scene",
     "referenceImages": [
-      "/api/images/references/locations/martinique-exterior-storm-establishing.png",
-      "/api/images/references/locations/martinique-exterior-storm-detail.png",
-      "/api/images/references/locations/martinique-exterior-storm-atmosphere.png",
-      "/api/images/references/locations/martinique-exterior-storm-aerial.png",
-      "/api/images/references/locations/martinique-exterior-storm-entrance.png",
-      "/api/images/references/locations/martinique-exterior-storm.png",
-      "https://replicate.delivery/xezq/OCGNzwVQ0N6dH9H2saPMybY76VmF9MsnUte7qlLJCepukeFsA/tmp231442yy.png",
-      "https://replicate.delivery/xezq/G8sxcnUgsV7fGSPiE5AqHhJVJQGH5dEZcPfYjC7gkKD4gfFsA/tmp55w61hvy.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/martinique-exterior-storm.png"
     ],
     "validated": true
   }
