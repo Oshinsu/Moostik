@@ -1,0 +1,1648 @@
+{
+  "id": "promo-assets",
+  "title": "Bloodwings Studio - Assets Promo",
+  "description": "Assets marketing et branding pour Bloodwings Studio. Logos, placeholders, carrousel process, images promo, croquis et BD moodboard.",
+  "categories": [
+    {
+      "id": "logos",
+      "title": "🩸 Logos Bloodwings Studio",
+      "description": "5 variantes du logo studio - du principal aux icônes",
+      "shots": [
+        {
+          "id": "logo-principal",
+          "name": "Logo Principal",
+          "number": 1,
+          "description": "Logo emblématique Bloodwings Studio - silhouette blood-red sur noir",
+          "sceneType": "branding",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "BLOODWINGS_BRANDING",
+              "asset_id": "LOGO_BLOODWINGS_PRINCIPAL_V1",
+              "scene_intent": "Logo emblématique du studio Bloodwings: un moustique démoniaque stylisé en silhouette majestueuse, ailes déployées formant une goutte de sang inversée, trompe élégante pointant vers le bas comme un sceptre royal. Noble, menaçant, cinématographique. L'essence même du studio qui fait des films pour les vampires."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Logo must read as single iconic silhouette at any size",
+                  "Wings spread to form blood-drop negative space",
+                  "Proboscis as royal scepter element pointing down",
+                  "Demon cute meets corporate elegance"
+                ],
+                "look": "clean vector-style 3D render, logo design, perfect symmetry, iconic memorable shape",
+                "palette": ["blood red #8B0015", "obsidian black #0B0B0E", "deep crimson #B0002A"]
+              },
+              "environment": {
+                "space": "pure black void background with subtle blood-red vignette",
+                "gigantism_cues": [],
+                "mood": "corporate demonic elegance, studio prestige"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "2048x2048",
+              "seed": 666001,
+              "steps": 70,
+              "guidance_strength": 9.5
+            },
+            "constraints": {
+              "must_include": [
+                "perfectly symmetrical mosquito silhouette",
+                "wings spread forming blood-drop negative space",
+                "elegant proboscis pointing down like scepter",
+                "minimalist iconic design suitable for logo",
+                "two small amber eye dots glowing"
+              ],
+              "must_not_include": ["text", "typography", "busy background", "realistic mosquito anatomy", "multiple colors"]
+            },
+            "goal": "Iconic Bloodwings Studio logo: stylized Pixar-demonic mosquito silhouette in blood-red (#8B0015), wings spread majestically to form inverted blood-drop negative space, elegant needle proboscis pointing down like royal scepter, two tiny glowing amber eye dots, corporate demon aesthetic, clean minimalist design suitable for animation studio branding, single flat color on pure black background, vector-style 3D render, must work at favicon size",
+            "subjects": [{
+              "type": "logo_element",
+              "description": "Stylized demon mosquito logo silhouette, wings spread perfectly symmetrical forming blood-drop shape when viewed as negative space, elegant needle proboscis pointing down like royal weapon, two small glowing amber dots for eyes, demonic cute aesthetic, flat blood-red color, designed for animation studio branding"
+            }],
+            "invariants": [
+              "BLOOD-RED (#8B0015) silhouette on BLACK (#0B0B0E) background",
+              "Perfect bilateral symmetry",
+              "Recognizable at small sizes"
+            ],
+            "negative": ["realistic mosquito", "multiple colors", "gradients", "text", "complex background", "3D shading", "drop shadows"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+          ]
+        },
+        {
+          "id": "logo-icon",
+          "name": "Logo Icône (Favicon)",
+          "number": 2,
+          "description": "Version simplifiée - juste la tête de Moostik pour favicon/app icon",
+          "sceneType": "branding",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "BLOODWINGS_BRANDING",
+              "asset_id": "LOGO_ICON_FAVICON_V1",
+              "scene_intent": "Icône minimaliste: juste la tête du Moostik Bloodwings, yeux ambrés lumineux, trompe stylisée, forme circulaire implicite. Doit fonctionner à 16x16 pixels."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Head only - maximum simplification",
+                  "Must read at 16px",
+                  "Glowing amber eyes as focal point"
+                ],
+                "look": "ultra minimal icon design, favicon optimized",
+                "palette": ["blood red #8B0015", "amber #FFB25A", "obsidian black #0B0B0E"]
+              },
+              "environment": {
+                "space": "pure black background",
+                "gigantism_cues": [],
+                "mood": "minimal corporate"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "512x512",
+              "seed": 666002,
+              "steps": 70,
+              "guidance_strength": 9.5
+            },
+            "constraints": {
+              "must_include": ["mosquito head silhouette only", "two glowing amber eyes", "short proboscis hint"],
+              "must_not_include": ["wings", "body", "complex details", "text"]
+            },
+            "goal": "Minimal favicon icon: Moostik head silhouette only in blood-red, two bright glowing amber eyes as focal point, hint of proboscis below, designed to work at 16x16 pixels, ultra simplified",
+            "subjects": [{
+              "type": "icon",
+              "description": "Simplified mosquito head icon, blood-red silhouette, two glowing amber eye dots prominent, minimal proboscis hint, favicon-ready design"
+            }],
+            "negative": ["complex details", "wings", "full body", "text", "gradients"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+          ]
+        },
+        {
+          "id": "logo-horizontal",
+          "name": "Logo Horizontal (Banner)",
+          "number": 3,
+          "description": "Logo + espace pour texte BLOODWINGS STUDIO",
+          "sceneType": "branding",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "BLOODWINGS_BRANDING",
+              "asset_id": "LOGO_HORIZONTAL_BANNER_V1",
+              "scene_intent": "Banner horizontal: logo Moostik à gauche, grand espace noir à droite pour le nom du studio. Composition cinématique, le logo semble émerger de l'ombre."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Logo positioned left third",
+                  "Negative space for typography right",
+                  "Cinematic emergence from shadow"
+                ],
+                "look": "cinematic banner composition, dramatic lighting",
+                "palette": ["blood red #8B0015", "obsidian black #0B0B0E", "subtle crimson glow"]
+              },
+              "environment": {
+                "space": "black void with subtle crimson atmospheric glow around logo",
+                "gigantism_cues": [],
+                "mood": "cinematic prestige reveal"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "21:9",
+              "render_resolution": "2520x1080",
+              "seed": 666003,
+              "steps": 70,
+              "guidance_strength": 9.0
+            },
+            "goal": "Horizontal banner: Bloodwings mosquito logo positioned in left third, emerging from shadow with subtle crimson atmospheric glow, large black negative space on right for studio name typography, cinematic composition, prestige animation studio aesthetic",
+            "subjects": [{
+              "type": "logo_composition",
+              "description": "Bloodwings mosquito logo in left third of frame, blood-red silhouette with subtle crimson rim glow, emerging dramatically from black void, composition leaving right 2/3 as negative space for typography"
+            }],
+            "negative": ["centered logo", "busy background", "text", "cluttered composition"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+          ]
+        },
+        {
+          "id": "logo-badge",
+          "name": "Logo Badge (Circulaire)",
+          "number": 4,
+          "description": "Version badge circulaire avec bordure élégante",
+          "sceneType": "branding",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "BLOODWINGS_BRANDING",
+              "asset_id": "LOGO_BADGE_CIRCULAR_V1",
+              "scene_intent": "Badge circulaire premium: logo Moostik au centre, bordure ornementale en cuivre/or vieilli avec motifs de gouttes de sang, style sceau médiéval noble."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Circular badge format",
+                  "Ornate copper border",
+                  "Medieval seal aesthetic",
+                  "Blood-drop motifs in border"
+                ],
+                "look": "premium badge design, aged copper ornaments, medieval nobility",
+                "palette": ["blood red #8B0015", "aged copper #9B6A3A", "obsidian black #0B0B0E"]
+              },
+              "environment": {
+                "space": "black background",
+                "gigantism_cues": [],
+                "mood": "noble heritage, medieval prestige"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "2048x2048",
+              "seed": 666004,
+              "steps": 70,
+              "guidance_strength": 9.0
+            },
+            "goal": "Circular badge: Bloodwings mosquito logo centered, surrounded by ornate aged copper circular border with blood-drop motifs, medieval seal aesthetic, noble heritage feeling, premium animation studio badge",
+            "subjects": [{
+              "type": "badge",
+              "description": "Circular premium badge with Bloodwings mosquito logo centered in blood-red, ornate aged copper border with intricate blood-drop pattern engravings, medieval wax seal aesthetic, noble demonic heritage design"
+            }],
+            "negative": ["modern design", "simple border", "bright colors", "text"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+          ]
+        },
+        {
+          "id": "logo-animated",
+          "name": "Logo Animated Frame",
+          "number": 5,
+          "description": "Version avec particules de sang flottantes pour animation",
+          "sceneType": "branding",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "BLOODWINGS_BRANDING",
+              "asset_id": "LOGO_ANIMATED_PARTICLES_V1",
+              "scene_intent": "Frame d'animation: logo Moostik entouré de particules de sang flottantes, gouttelettes en suspension comme des étoiles sanglantes, effet magique démoniaque."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Logo with floating blood particles",
+                  "Magical demonic atmosphere",
+                  "Particles like bloody stars",
+                  "Animation-ready composition"
+                ],
+                "look": "magical particle effects, floating blood droplets, ethereal demonic",
+                "palette": ["blood red #8B0015", "deep crimson #B0002A", "obsidian black #0B0B0E", "amber glow #FFB25A"]
+              },
+              "environment": {
+                "space": "black void with floating blood particles of various sizes",
+                "gigantism_cues": [],
+                "mood": "magical demonic, otherworldly"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "2048x2048",
+              "seed": 666005,
+              "steps": 70,
+              "guidance_strength": 8.5
+            },
+            "goal": "Animated logo frame: Bloodwings mosquito logo with floating blood particle effects surrounding it, droplets of various sizes suspended like bloody stars, magical demonic atmosphere, subtle amber glow from logo eyes, ready for motion graphics animation",
+            "subjects": [{
+              "type": "animated_logo",
+              "description": "Bloodwings mosquito logo surrounded by floating blood particles of various sizes, droplets suspended in air like demonic stars, subtle crimson glow emanating, amber eye glow, magical otherworldly atmosphere"
+            }],
+            "negative": ["static feeling", "no particles", "simple background"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "placeholders",
+      "title": "🦟 Placeholders DA Moostik",
+      "description": "Placeholders élégants avec Moostik intricate style Pixar démoniaque",
+      "shots": [
+        {
+          "id": "placeholder-loading",
+          "name": "Placeholder Chargement",
+          "number": 6,
+          "description": "Moostik en méditation attendant le contenu",
+          "sceneType": "ui",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_UI",
+              "asset_id": "PLACEHOLDER_LOADING_V1",
+              "scene_intent": "Placeholder élégant: Moostik intricate en pose méditative, yeux fermés avec lueur ambrée douce, trompe élégamment posée, ailes translucides repliées comme des mains en prière. Il attend patiemment que le contenu charge. Noblesse démoniaque Renaissance."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Single Moostik in elegant waiting pose",
+                  "Renaissance demonic nobility aesthetic",
+                  "Intricate chitin micro-details visible",
+                  "Meditative patience, eyes closed"
+                ],
+                "look": "premium 3D animated feature film, Pixar-dark, intricate micro-textures, meditative",
+                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "warm amber glow #FFB25A"]
+              },
+              "environment": {
+                "space": "dark void with subtle floating amber particles like dust motes in sunbeam",
+                "gigantism_cues": ["single lint fiber beneath as meditation cushion, appears as fluffy cloud"],
+                "mood": "serene demonic patience, Renaissance nobility"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "1024x1024",
+              "seed": 667001,
+              "steps": 70,
+              "guidance_strength": 8.5
+            },
+            "goal": "Elegant loading placeholder: single intricate Moostik in serene meditation pose, eyes closed with soft amber glow visible through lids, elegant proboscis held gracefully like noble scepter resting, translucent wings with crimson veins folded like praying hands, blood-red mohawk crest relaxed, Renaissance demon noble aesthetic, sitting on fluffy lint fiber cushion, floating amber dust particles around, peaceful waiting for content",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Single elegant Moostik in peaceful meditation pose, intricate obsidian chitin body with visible micro-textures, eyes closed with soft amber glow seeping through, proboscis held gracefully downward like resting scepter, translucent wings folded elegantly showing crimson vein patterns, blood-red mohawk crest relaxed, serene noble expression, sitting cross-legged on fluffy lint fiber, Renaissance demonic nobility"
+            }],
+            "negative": ["action pose", "aggressive", "open eyes", "busy background", "multiple characters"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+          ]
+        },
+        {
+          "id": "placeholder-empty",
+          "name": "Placeholder Contenu Vide",
+          "number": 7,
+          "description": "Moostik curieux regardant un espace vide",
+          "sceneType": "ui",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_UI",
+              "asset_id": "PLACEHOLDER_EMPTY_V1",
+              "scene_intent": "Placeholder pour contenu vide: Moostik curieux regardant vers le spectateur avec une expression interrogative adorable, tête légèrement penchée, comme demandant 'Où est le contenu?' Mignon mais noble."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Curious questioning expression",
+                  "Head tilted adorably",
+                  "Direct eye contact with viewer",
+                  "Cute demonic aesthetic"
+                ],
+                "look": "premium 3D animated feature, Pixar-cute demonic, questioning expression",
+                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "amber #FFB25A"]
+              },
+              "environment": {
+                "space": "minimal dark background with subtle spotlight",
+                "gigantism_cues": [],
+                "mood": "curious, questioning, adorably confused"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 667002,
+              "steps": 70
+            },
+            "goal": "Empty state placeholder: single Moostik looking directly at viewer with adorably curious expression, head tilted slightly, glowing amber eyes wide with questioning look, as if asking 'where is the content?', cute demonic aesthetic, minimal background",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Curious Moostik looking at viewer, head tilted adorably, wide glowing amber eyes with questioning expression, proboscis slightly raised in curiosity, wings half-spread in confused gesture, cute demonic 'where is everything?' pose"
+            }],
+            "negative": ["aggressive", "scary", "action", "busy background"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+          ]
+        },
+        {
+          "id": "placeholder-error",
+          "name": "Placeholder Erreur",
+          "number": 8,
+          "description": "Moostik embarrassé après une erreur",
+          "sceneType": "ui",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_UI",
+              "asset_id": "PLACEHOLDER_ERROR_V1",
+              "scene_intent": "Placeholder erreur: Moostik avec expression embarrassée/désolée, une patte sur le visage en facepalm, ailes tombantes, comme s'excusant pour un bug. Humour auto-dérisoire du studio."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Embarrassed apologetic expression",
+                  "Facepalm gesture with foreleg",
+                  "Drooping wings showing shame",
+                  "Self-deprecating humor"
+                ],
+                "look": "premium 3D animated feature, comedic embarrassment, Pixar expression",
+                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "amber #FFB25A", "blush pink hint"]
+              },
+              "environment": {
+                "space": "dark background with subtle red warning glow",
+                "gigantism_cues": [],
+                "mood": "embarrassed, apologetic, self-deprecating humor"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 667003,
+              "steps": 70
+            },
+            "goal": "Error state placeholder: Moostik in embarrassed facepalm pose, one foreleg covering face, wings drooping in shame, amber eyes peeking through with apologetic expression, subtle blush effect, as if saying 'oops our bad', comedic self-deprecating studio humor",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Embarrassed Moostik doing facepalm with foreleg, wings drooped in shame, amber eyes peeking apologetically from behind leg, subtle blush glow on chitin, blood-red crest wilted, comedic 'we messed up' pose"
+            }],
+            "negative": ["confident", "aggressive", "proud", "action"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "process-carousel",
+      "title": "⚡ Carrousel Process Révolutionnaire™",
+      "description": "7 images expliquant le process Bloodwings avec humour trollesque",
+      "shots": [
+        {
+          "id": "process-1-idea",
+          "name": "1. L'Idée Arrive",
+          "number": 9,
+          "description": "Un Moostik senior reçoit une vision divine après 3 verres de nectar",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_01_IDEA_V1",
+              "scene_intent": "Scène comique: Moostik senior (style Papy Tik) assis au bar Ti Sang, plusieurs verres de nectar vides devant lui, soudain une ampoule blood-red géante apparaît au-dessus de sa tête - l'IDÉE arrive! Expression de révélation divine mêlée à une légère ivresse créative."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Eureka moment at the bar",
+                  "Blood-red lightbulb above head",
+                  "Multiple empty nectar glasses",
+                  "Divine creative revelation"
+                ],
+                "look": "premium 3D animated comedy scene, Pixar humor, warm bar lighting",
+                "palette": ["warm amber bar light", "blood red lightbulb", "obsidian black", "nectar gold"]
+              },
+              "environment": {
+                "space": "Bar Ti Sang interior, warm cozy atmosphere, organic chitin bar counter",
+                "gigantism_cues": ["thimble nectar glasses", "lint fiber bar napkins"],
+                "mood": "comedic eureka moment, tipsy creativity"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668001,
+              "steps": 70
+            },
+            "goal": "Process Step 1 - The Idea: elderly Moostik at Bar Ti Sang with multiple empty thimble nectar glasses, suddenly illuminated by GIANT blood-red lightbulb appearing above his head, expression of divine creative revelation mixed with slight tipsy wonder, warm amber bar lighting, comedic Pixar storytelling moment",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Elderly Moostik (Papy Tik style) sitting at bar, surrounded by empty thimble nectar glasses, looking up in wonder at giant blood-red lightbulb appearing above head, expression mixing 'eureka!' with slight intoxicated wisdom, amber eyes wide with revelation"
+            }],
+            "negative": ["sad", "serious", "aggressive", "dark mood"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-2-brief",
+          "name": "2. Le Brief JSON",
+          "number": 10,
+          "description": "Le JSON Moostik Bloodwings descend des cieux",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_02_BRIEF_V1",
+              "scene_intent": "Scène épique/comique: un parchemin lumineux descend du ciel portant le JSON MOOSTIK BLOODWINGS sacré. Des rayons divins l'entourent. En bas, des Moostik ingénieurs regardent en pleurant de joie, certains à genoux en révérence."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Sacred JSON scroll descending",
+                  "Divine light rays",
+                  "Moostik engineers weeping with joy",
+                  "Religious reverence for code"
+                ],
+                "look": "epic religious painting meets tech humor, divine lighting, comedic reverence",
+                "palette": ["divine gold light", "blood red scroll glow", "obsidian black", "heavenly white rays"]
+              },
+              "environment": {
+                "space": "Dark void below, heavenly light breaking through clouds above",
+                "gigantism_cues": [],
+                "mood": "epic comedic religious tech reverence"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668002,
+              "steps": 70
+            },
+            "goal": "Process Step 2 - The Brief: sacred glowing scroll/tablet descending from heavenly light above bearing the JSON MOOSTIK BLOODWINGS code, divine rays surrounding it, below several Moostik engineers looking up in tears of joy, some kneeling in reverence, comedic religious tech worship scene",
+            "subjects": [{
+              "type": "scene",
+              "description": "Glowing blood-red bordered scroll with JSON text hints descending from divine golden light rays above, multiple Moostik engineers below looking up in reverent worship, tears of joy, some kneeling, comedic religious tech ceremony"
+            }],
+            "negative": ["casual", "mundane", "dark", "sad"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-3-approval",
+          "name": "3. La DA Approuve",
+          "number": 11,
+          "description": "Après 47 révisions et 12 sacrifices rituels",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_03_APPROVAL_V1",
+              "scene_intent": "Scène tribunal: Moostik Directeur Artistique en robe de juge/cardinal, assis sur un trône élevé, tamponnant un document avec un sceau de cire rouge sang. Autour de lui, des piles de versions rejetées en flammes. Expression sévère mais satisfaite: APPROUVÉ."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "DA as judge/cardinal figure",
+                  "Throne of approval",
+                  "Rejected versions burning in piles",
+                  "Blood wax seal of approval"
+                ],
+                "look": "dark tribunal scene, cardinal robes, dramatic judgment",
+                "palette": ["cardinal crimson robes", "blood red wax seal", "fire orange rejected piles", "obsidian black"]
+              },
+              "environment": {
+                "space": "Dark tribunal chamber, elevated throne, burning paper piles",
+                "gigantism_cues": [],
+                "mood": "severe judgment, finally satisfied"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668003,
+              "steps": 70
+            },
+            "goal": "Process Step 3 - DA Approval: Moostik Art Director as stern judge/cardinal on elevated throne, wearing crimson robes, stamping document with blood-red wax seal, piles of rejected versions burning around chamber, severe but finally satisfied expression, dark tribunal aesthetic",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Stern Moostik Art Director in cardinal-style crimson robes, sitting on elevated throne, pressing blood-red wax seal stamp onto approved document, severe but satisfied expression, piles of rejected paper versions burning in background"
+            }],
+            "negative": ["happy", "casual", "modern office", "bright"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-4-generation",
+          "name": "4. NB2 Génère",
+          "number": 12,
+          "description": "Nano Banana 2 Pro entre en transe. Le GPU fond.",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_04_GENERATION_V1",
+              "scene_intent": "Scène épique/absurde: un ordinateur/GPU colossal entouré de flammes et d'énergie, des Moostik techniciens regardent avec crainte et admiration, l'écran affiche '70 STEPS...' et des images se forment. Le GPU fume littéralement."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "GPU as divine machine",
+                  "Flames and energy surrounding",
+                  "Moostik technicians in awe",
+                  "Screen showing generation"
+                ],
+                "look": "epic tech worship, machine as deity, flames and energy",
+                "palette": ["GPU green glow", "flame orange", "blood red energy", "obsidian black"]
+              },
+              "environment": {
+                "space": "Dark tech temple, colossal GPU shrine, flames surrounding",
+                "gigantism_cues": ["GPU appears as massive monolith from Moostik POV"],
+                "mood": "tech worship, epic power, slight fear"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668004,
+              "steps": 70
+            },
+            "goal": "Process Step 4 - Generation: colossal GPU/computer as divine machine from Moostik POV, surrounded by flames and crackling energy, screen showing image forming with '70 STEPS' counter, smoke rising from overheating, Moostik technicians watching in awe and slight fear, epic tech worship scene",
+            "subjects": [{
+              "type": "scene",
+              "description": "Massive GPU shrine from Moostik POV, flames and energy crackling around it, screen displaying image generation in progress, smoke rising dramatically, tiny Moostik technicians looking up in worship and fear, tech deity aesthetic"
+            }],
+            "negative": ["calm", "mundane", "modern office", "peaceful"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-5-miracle",
+          "name": "5. Le Miracle",
+          "number": 13,
+          "description": "4096x1744 pixels de perfection. Pixar applaudit.",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_05_MIRACLE_V1",
+              "scene_intent": "Révélation divine: l'image générée apparaît dans un halo doré, des anges-Moostik (avec auréoles) l'entourent en admiration, des confettis blood-red tombent, quelque part en arrière-plan une lampe Pixar regarde jalousement."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Generated image as divine artifact",
+                  "Angel Moostiks with halos",
+                  "Pixar lamp jealous in background",
+                  "Confetti celebration"
+                ],
+                "look": "divine revelation, angelic celebration, comedic jealousy",
+                "palette": ["divine gold halo", "blood red confetti", "angel white", "obsidian black"]
+              },
+              "environment": {
+                "space": "Heavenly void with divine light, generated masterpiece floating",
+                "gigantism_cues": [],
+                "mood": "divine celebration, comedic triumph"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668005,
+              "steps": 70
+            },
+            "goal": "Process Step 5 - The Miracle: generated image floating in divine golden halo, angel-Moostiks with tiny halos surrounding it in worship, blood-red confetti falling, subtle Pixar lamp shape in background looking jealous, divine revelation celebration scene",
+            "subjects": [{
+              "type": "scene",
+              "description": "Floating generated masterpiece image in golden divine halo, surrounded by celebrating angel-Moostiks with tiny halos, blood-red confetti falling, comedic Pixar lamp silhouette in background looking envious"
+            }],
+            "negative": ["sad", "failure", "dark", "mundane"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-6-video",
+          "name": "6. La Vidéo",
+          "number": 14,
+          "description": "Kling 2.6 donne vie. L'équipe pleure.",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_06_VIDEO_V1",
+              "scene_intent": "Moment émouvant: un écran de cinéma montre la première vidéo générée, un Moostik à l'écran BOUGE pour la première fois. Dans le public, des Moostik spectateurs pleurent de joie, se tiennent les pattes, certains évanouissent."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Cinema premiere of first video",
+                  "Moostik moving on screen",
+                  "Audience weeping with joy",
+                  "Historic emotional moment"
+                ],
+                "look": "emotional cinema scene, premiere night, tears of joy",
+                "palette": ["cinema screen glow", "blood red theater seats", "amber emotional lighting"]
+              },
+              "environment": {
+                "space": "Moostik cinema theater, organic chitin seats, large screen",
+                "gigantism_cues": [],
+                "mood": "overwhelming emotion, historic joy"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668006,
+              "steps": 70
+            },
+            "goal": "Process Step 6 - Video: cinema theater scene showing first AI video on screen with Moostik character moving, audience of Moostiks watching in tears of overwhelming joy, some holding hands/forelegs, some fainting from emotion, premiere night of historic achievement",
+            "subjects": [{
+              "type": "scene",
+              "description": "Moostik cinema theater, screen showing first generated video with Moostik character in motion, audience of emotional Moostiks crying tears of joy, holding each other, some dramatically fainting, historic premiere moment"
+            }],
+            "negative": ["bored", "empty theater", "casual", "mundane"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+          ]
+        },
+        {
+          "id": "process-7-masterpiece",
+          "name": "7. Le Chef-d'Oeuvre",
+          "number": 15,
+          "description": "Disponible gratuitement. Mic drop.",
+          "sceneType": "process",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "BLOODWINGS_PROCESS",
+              "asset_id": "PROCESS_07_MASTERPIECE_V1",
+              "scene_intent": "Finale épique: Moostik badass fait un MIC DROP, derrière lui une explosion de confettis et le logo Bloodwings. Expression de swag absolu. 'Disponible gratuitement. Parce qu'on est comme ça.' Pure victoire trollesque."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Epic mic drop moment",
+                  "Explosion of confetti behind",
+                  "Bloodwings logo backdrop",
+                  "Ultimate swag expression"
+                ],
+                "look": "epic victory moment, mic drop pose, maximum swag",
+                "palette": ["blood red explosion", "confetti gold", "obsidian black", "amber victory glow"]
+              },
+              "environment": {
+                "space": "Stage with Bloodwings logo backdrop, confetti explosion",
+                "gigantism_cues": [],
+                "mood": "ultimate victory, trollesque triumph, free swag"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 668007,
+              "steps": 70
+            },
+            "goal": "Process Step 7 - Masterpiece: badass Moostik doing epic MIC DROP pose, tiny microphone falling from foreleg, massive explosion of blood-red confetti behind, Bloodwings Studio logo glowing in backdrop, expression of ultimate 'we did it' swag, victory trollesque moment",
+            "subjects": [{
+              "type": "moostik",
+              "description": "Badass Moostik in mic drop pose, foreleg releasing tiny microphone falling downward, sunglasses-like eye expression of ultimate swag, massive blood-red confetti explosion behind, Bloodwings logo glowing, victory stance"
+            }],
+            "negative": ["humble", "modest", "sad", "failure"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "promo-images",
+      "title": "🎬 Images Promo EP0",
+      "description": "5 formats d'images promo pour campagnes Display/Meta",
+      "shots": [
+        {
+          "id": "promo-poster-cinema",
+          "name": "Affiche Cinéma (2:3)",
+          "number": 16,
+          "description": "Affiche verticale style cinéma pour EP0",
+          "sceneType": "promo",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "MOOSTIK_EP0_PROMO",
+              "asset_id": "POSTER_CINEMA_2x3_V1",
+              "scene_intent": "Affiche cinéma épique: Papy Tik en silhouette héroïque au premier plan regardant vers le haut, derrière lui les flammes du génocide illuminent le ciel, ombres des morts tombant, en haut les persiennes martiniquaises fermées comme barreaux de prison. Composition de blockbuster hollywoodien. Espace en haut pour titre."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Hollywood blockbuster poster composition",
+                  "Hero silhouette foreground",
+                  "Tragedy fire backdrop",
+                  "Jalousies as visual prison"
+                ],
+                "look": "theatrical movie poster, epic blockbuster composition, dramatic contrast",
+                "palette": ["obsidian black silhouette", "fire orange", "blood red sky", "smoke gray"]
+              },
+              "environment": {
+                "space": "foreground hero, middle burning village, background jalousie sky",
+                "gigantism_cues": ["BYSS aerosol can silhouette looming in sky like apocalypse weapon"],
+                "mood": "epic tragedy, hero's burden, vengeance rising"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "2:3",
+              "render_resolution": "2048x3072",
+              "seed": 669001,
+              "steps": 70,
+              "guidance_strength": 9.0
+            },
+            "goal": "Epic cinema poster EP0 LE GENOCIDE: elderly Papy Tik mosquito silhouette in heroic pose foreground looking up, behind him burning Cooltik village with flames reaching sky, falling Moostik bodies in flames, toxic BYSS cloud, top of frame Martinique jalousie wooden slats like prison bars, clear space at top for title, Hollywood blockbuster poster composition",
+            "subjects": [{
+              "type": "poster_composition",
+              "description": "Papy Tik heroic silhouette in foreground, cane visible, looking up at sky, burning village middle ground, falling bodies, BYSS cloud, jalousie bars top framing, poster layout with title space"
+            }],
+            "negative": ["horizontal", "close up only", "no background", "happy scene"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "hero_shot", "status": "pending" }
+          ]
+        },
+        {
+          "id": "promo-display-horizontal",
+          "name": "Display Banner (16:9)",
+          "number": 17,
+          "description": "Banner horizontal pour web ads et YouTube",
+          "sceneType": "promo",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "MOOSTIK_EP0_PROMO",
+              "asset_id": "BANNER_DISPLAY_16x9_V1",
+              "scene_intent": "Wide action scene: le génocide en cours vu en plan large, nuage BYSS vert toxique se répandant dans une maison créole, Moostiks fuyant en tous sens, main géante d'enfant visible tenant l'aérosol. Cinématique épique widescreen."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Wide action genocide scene",
+                  "BYSS cloud spreading",
+                  "Moostiks fleeing in chaos",
+                  "Giant child hand with aerosol"
+                ],
+                "look": "widescreen epic action, disaster movie aesthetic, Moostik POV",
+                "palette": ["toxic green BYSS", "blood red warning", "obsidian black", "fire orange"]
+              },
+              "environment": {
+                "space": "interior Martinique creole house, BYSS cloud spreading",
+                "gigantism_cues": ["furniture as mountains", "child hand COLOSSAL holding death weapon", "ceiling fan as spinning blade above"],
+                "mood": "apocalyptic action, desperate survival"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 669002,
+              "steps": 70
+            },
+            "goal": "Widescreen action banner: genocide scene inside Martinique house, toxic green BYSS cloud spreading from right, Moostiks fleeing in terror in all directions, COLOSSAL child hand visible holding aerosol weapon, furniture looming as mountains, desperate survival action scene, widescreen epic composition",
+            "subjects": [{
+              "type": "action_scene",
+              "description": "Wide interior with BYSS toxic cloud spreading, multiple Moostiks fleeing in panic, giant child hand with aerosol visible, creole house furniture colossal, chaos and desperation"
+            }],
+            "negative": ["calm", "peaceful", "portrait", "single subject"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "extreme_wide", "status": "pending" }
+          ]
+        },
+        {
+          "id": "promo-meta-square",
+          "name": "Meta Carré (1:1)",
+          "number": 18,
+          "description": "Format carré pour Instagram/Facebook",
+          "sceneType": "promo",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_EP0_PROMO",
+              "asset_id": "META_SQUARE_1x1_V1",
+              "scene_intent": "Close-up émotionnel: Mama Dorval protégeant Baby Dorval, son corps bouclier entre le nuage BYSS et son bébé, expression de détermination maternelle absolue, yeux ambrés brillants de larmes et courage."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Emotional maternal sacrifice",
+                  "Mother protecting baby",
+                  "BYSS threat approaching",
+                  "Tears and courage"
+                ],
+                "look": "emotional close-up, Pixar heart moment, sacrifice scene",
+                "palette": ["blood red", "toxic green approaching", "amber tears", "obsidian black"]
+              },
+              "environment": {
+                "space": "close-up focus on mother and baby, BYSS cloud approaching behind",
+                "gigantism_cues": [],
+                "mood": "maternal sacrifice, heartbreaking courage"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "1080x1080",
+              "seed": 669003,
+              "steps": 70
+            },
+            "goal": "Emotional square format: Mama Dorval in protective pose shielding Baby Dorval with her body, BYSS cloud approaching from behind, mother's expression of absolute maternal determination, amber eyes glistening with tears but fierce with courage, heartbreaking sacrifice moment",
+            "subjects": [{
+              "type": "emotional_moment",
+              "description": "Mama Dorval holding Baby Dorval close, body positioned as shield, wings spread protectively, expression fierce maternal determination with tears, Baby's terrified huge eyes looking at mother, BYSS cloud approaching from behind"
+            }],
+            "negative": ["wide shot", "action", "multiple characters", "happy"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "close_up", "status": "pending" }
+          ]
+        },
+        {
+          "id": "promo-story-vertical",
+          "name": "Story Vertical (9:16)",
+          "number": 19,
+          "description": "Format vertical pour TikTok/Stories",
+          "sceneType": "promo",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "ultra_cinematic_environment_keyframe",
+              "project": "MOOSTIK_EP0_PROMO",
+              "asset_id": "STORY_VERTICAL_9x16_V1",
+              "scene_intent": "Composition verticale dynamique: fuite à travers les persiennes, lumière dorée d'espoir en haut, Baby Dorval s'échappant vers le haut à travers les lattes géantes, BYSS vert toxique en bas le poursuivant."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Vertical escape dynamic",
+                  "Light of hope above",
+                  "BYSS threat below",
+                  "Jalousies as escape route"
+                ],
+                "look": "dynamic vertical composition, escape scene, light vs dark contrast",
+                "palette": ["golden hope light top", "toxic green BYSS bottom", "obsidian wood jalousies"]
+              },
+              "environment": {
+                "space": "vertical jalousie slats composition, light above, toxic cloud below",
+                "gigantism_cues": ["jalousie wooden slats COLOSSAL like ladder rungs", "light through gaps like divine beams"],
+                "mood": "desperate escape, hope above, death below"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "9:16",
+              "render_resolution": "1080x1920",
+              "seed": 669004,
+              "steps": 70
+            },
+            "goal": "Vertical story format: dramatic escape through Martinique jalousie shutters, COLOSSAL wooden slats as vertical ladder, Baby Dorval climbing up toward golden light of hope above, toxic green BYSS cloud rising from below pursuing, light vs dark vertical composition",
+            "subjects": [{
+              "type": "escape_scene",
+              "description": "Baby Dorval climbing up through massive jalousie slat gaps, golden divine light streaming from above, toxic green BYSS cloud rising from below, vertical composition with hope above and death below"
+            }],
+            "negative": ["horizontal", "calm", "indoor", "static"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "dynamic_vertical", "status": "pending" }
+          ]
+        },
+        {
+          "id": "promo-thumbnail-yt",
+          "name": "Miniature YouTube (16:9)",
+          "number": 20,
+          "description": "Thumbnail haute contraste avec espace texte",
+          "sceneType": "promo",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_EP0_PROMO",
+              "asset_id": "THUMBNAIL_YT_16x9_V1",
+              "scene_intent": "Thumbnail accrocheur: gros plan sur les yeux terrifiés de Baby Dorval reflétant les flammes du génocide, haute saturation, contraste extrême, composition laissant espace pour texte à droite."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Eye close-up with fire reflection",
+                  "Extreme contrast for thumbnail",
+                  "High saturation colors",
+                  "Text space on right"
+                ],
+                "look": "YouTube thumbnail optimized, extreme contrast, eye-catching",
+                "palette": ["fire orange reflection", "blood red", "amber terror eyes", "black depth"]
+              },
+              "environment": {
+                "space": "extreme close-up on eyes, fire reflected in pupils",
+                "gigantism_cues": [],
+                "mood": "terror, click-worthy drama"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 669005,
+              "steps": 70,
+              "guidance_strength": 9.5
+            },
+            "goal": "YouTube thumbnail: extreme close-up on Baby Dorval's terrified HUGE amber eyes, flames of genocide reflecting in pupils, extreme contrast and saturation for thumbnail visibility, composition weighted to left leaving right third empty for title text overlay",
+            "subjects": [{
+              "type": "thumbnail",
+              "description": "Baby Dorval's massive terrified eyes in extreme close-up, flames reflecting in amber pupils, tears forming, extreme contrast and saturation, positioned left with right space for text"
+            }],
+            "negative": ["wide shot", "low contrast", "muted colors", "centered"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "extreme_close_up", "status": "pending" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sketches",
+      "title": "✏️ Croquis Personnages & Lieux",
+      "description": "3 personnages et 3 lieux en style sketch/concept art",
+      "shots": [
+        {
+          "id": "sketch-papy-tik",
+          "name": "Croquis Papy Tik",
+          "number": 21,
+          "description": "Character design turnaround sketch style",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "character_sheet",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "SKETCH_PAPY_TIK_V1",
+              "scene_intent": "Feuille de design personnage style croquis: Papy Tik en trois vues (face, 3/4, profil), traits de construction visibles, annotations de design autour des features clés, style rough pencil sketch avec croix de repère."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Character turnaround three views",
+                  "Visible construction lines",
+                  "Design annotations",
+                  "Production sketch aesthetic"
+                ],
+                "look": "rough pencil sketch, animation production design sheet, construction lines visible",
+                "palette": ["pencil gray", "red annotation marks", "light paper background"]
+              },
+              "environment": {
+                "space": "clean paper background with sketch grid hints",
+                "gigantism_cues": [],
+                "mood": "production design, professional sketch"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 670001,
+              "steps": 70
+            },
+            "goal": "Character design sketch sheet: elderly Moostik patriarch Papy Tik in THREE VIEWS (front, three-quarter, profile), rough pencil sketch style with visible construction lines, red annotation marks pointing to key features (proboscis, cane, amber eyes, silver wings, mohawk crest), production design sheet aesthetic",
+            "subjects": [{
+              "type": "character_sheet",
+              "description": "Papy Tik in three views arranged horizontally, rough sketch lines visible, red annotations pointing to: 'trompe ancestrale', 'canne rubis', 'yeux ambrés hantés', 'ailes argentées cicatrisées', 'crête mohawk argentée'"
+            }],
+            "negative": ["finished render", "single view", "no annotations", "clean lines"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "turnaround", "status": "pending" }
+          ]
+        },
+        {
+          "id": "sketch-baby-dorval",
+          "name": "Croquis Baby Dorval - Expressions",
+          "number": 22,
+          "description": "Expression sheet montrant terreur, innocence, espoir",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "character_sheet",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "SKETCH_BABY_EXPRESSIONS_V1",
+              "scene_intent": "Feuille d'expressions: Baby Dorval avec 6 expressions différentes (terreur absolue, innocence, pleurs, espoir timide, confusion, sommeil paisible), style croquis avec annotations émotionnelles."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Expression sheet 6 emotions",
+                  "Baby character emotions",
+                  "Sketch annotation style",
+                  "Emotional range display"
+                ],
+                "look": "expression sheet, rough sketch, emotion annotations",
+                "palette": ["pencil gray", "emotional color hints", "paper background"]
+              },
+              "environment": {
+                "space": "clean paper with expression grid",
+                "gigantism_cues": [],
+                "mood": "character study, emotional range"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 670002,
+              "steps": 70
+            },
+            "goal": "Expression sheet sketch: Baby Dorval tiny Moostik larva with 6 different expressions arranged in grid - TERREUR (huge eyes, trembling), INNOCENCE (curious wide eyes), PLEURS (tears streaming), ESPOIR (tiny smile), CONFUSION (head tilt), SOMMEIL (peaceful closed eyes), rough sketch style with emotion labels",
+            "subjects": [{
+              "type": "expression_sheet",
+              "description": "Baby Dorval head in 6 expressions: terror, innocence, crying, hope, confusion, peaceful sleep - sketch style with French emotion labels under each"
+            }],
+            "negative": ["single expression", "full body", "finished render"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "expression_grid", "status": "pending" }
+          ]
+        },
+        {
+          "id": "sketch-mama-dorval",
+          "name": "Croquis Mama Dorval - Pose Protectrice",
+          "number": 23,
+          "description": "Action pose sketch montrant le sacrifice maternel",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "character_sheet",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "SKETCH_MAMA_POSE_V1",
+              "scene_intent": "Croquis de pose action: Mama Dorval en position de protection maximale, ailes déployées comme bouclier, corps courbé sur son bébé, expression de détermination féroce. Lignes dynamiques montrant le mouvement."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Protective action pose",
+                  "Wings as shield gesture",
+                  "Dynamic motion lines",
+                  "Maternal fierce expression"
+                ],
+                "look": "action pose sketch, dynamic lines, protective stance",
+                "palette": ["pencil gray", "motion line red", "paper background"]
+              },
+              "environment": {
+                "space": "clean paper with action lines",
+                "gigantism_cues": [],
+                "mood": "protective fury, maternal sacrifice"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "1:1",
+              "render_resolution": "1080x1080",
+              "seed": 670003,
+              "steps": 70
+            },
+            "goal": "Action pose sketch: Mama Dorval in maximum protective stance, wings spread wide as shield, body curved over invisible baby, expression of fierce maternal determination, dynamic red motion lines showing protective movement, sketch annotation 'LE SACRIFICE'",
+            "subjects": [{
+              "type": "action_pose",
+              "description": "Mama Dorval in protective crouch, wings spread as shield, motion lines indicating protective sweep, fierce determined expression, sketch style with 'LE SACRIFICE' label"
+            }],
+            "negative": ["static pose", "relaxed", "no motion lines"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "action_pose", "status": "pending" }
+          ]
+        },
+        {
+          "id": "sketch-bar-ti-sang",
+          "name": "Concept Art Bar Ti Sang",
+          "number": 24,
+          "description": "Environment concept sketch du bar avec notes d'éclairage",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "location_establishing",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "CONCEPT_BAR_TI_SANG_V1",
+              "scene_intent": "Concept art environnement: intérieur Bar Ti Sang, perspective one-point vers la scène, annotations d'éclairage (warm amber), notes de matériaux (chitin organique), croquis architectural avec mood notes."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Interior environment concept",
+                  "One-point perspective",
+                  "Lighting notes annotations",
+                  "Material callouts"
+                ],
+                "look": "environment concept sketch, architectural perspective, production notes",
+                "palette": ["pencil gray", "amber lighting hints", "warm tone washes"]
+              },
+              "environment": {
+                "space": "Bar Ti Sang interior perspective",
+                "gigantism_cues": [],
+                "mood": "cozy intimate, Renaissance Moostik"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 670004,
+              "steps": 70
+            },
+            "goal": "Environment concept sketch: Bar Ti Sang interior one-point perspective toward stage, rough sketch with annotations - 'WARM AMBER LIGHTING' arrows, 'ORGANIC CHITIN ARCHITECTURE' labels, 'INTIMATE CANTINA ATMOSPHERE' note, architectural concept art style",
+            "subjects": [{
+              "type": "environment_concept",
+              "description": "Bar Ti Sang interior sketch perspective, organic bar counter left, small stage back center, booth seating right, annotations pointing to lighting sources, materials, atmosphere notes"
+            }],
+            "negative": ["finished render", "no annotations", "exterior"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "interior_perspective", "status": "pending" }
+          ]
+        },
+        {
+          "id": "sketch-cooltik-village",
+          "name": "Concept Art Village Cooltik - AVANT",
+          "number": 25,
+          "description": "Establishing sketch du village paisible avec label 'AVANT'",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "location_establishing",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "CONCEPT_COOLTIK_AVANT_V1",
+              "scene_intent": "Concept art nostalgique: Village Cooltik AVANT le génocide, cottages organiques paisibles, familles heureuses suggérées, lumière dorée d'après-midi. Grand label 'AVANT' en haut. Mélancolie de ce qui a été perdu."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Peaceful village BEFORE",
+                  "Nostalgic golden light",
+                  "Happy families suggested",
+                  "AVANT label prominent"
+                ],
+                "look": "nostalgic concept sketch, golden hour wash, peaceful melancholy",
+                "palette": ["golden warm wash", "pencil gray", "peaceful green hints"]
+              },
+              "environment": {
+                "space": "Village Cooltik establishing view",
+                "gigantism_cues": ["fabric fiber cottages", "lint pathways"],
+                "mood": "peaceful nostalgia, what was lost"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 670005,
+              "steps": 70
+            },
+            "goal": "Concept sketch: Village Cooltik before genocide, peaceful organic cottages, warm golden afternoon light wash, happy Moostik silhouettes suggested, large 'AVANT' label at top, nostalgic melancholy of what was lost, production concept art style",
+            "subjects": [{
+              "type": "environment_concept",
+              "description": "Village Cooltik establishing sketch, organic cottages, warm golden light, peaceful atmosphere, 'AVANT' label top center, annotation 'ce qui a été perdu...'"
+            }],
+            "negative": ["destruction", "fire", "dark", "APRES"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "establishing", "status": "pending" }
+          ]
+        },
+        {
+          "id": "sketch-maison-genocide",
+          "name": "Concept Art Maison - Scène Génocide",
+          "number": 26,
+          "description": "Dramatic perspective sketch du lieu du massacre",
+          "sceneType": "sketch",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "location_establishing",
+              "project": "MOOSTIK_SKETCHES",
+              "asset_id": "CONCEPT_MAISON_GENOCIDE_V1",
+              "scene_intent": "Concept art dramatique: intérieur maison créole pendant génocide, perspective POV Moostik montrant architecture COLOSSALE hostile, nuage BYSS esquissé, jalousies fermées, annotations de danger et d'échelle."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": [
+                  "Hostile interior POV",
+                  "BYSS cloud sketch",
+                  "Scale danger annotations",
+                  "Dramatic perspective"
+                ],
+                "look": "dramatic concept sketch, hostile environment, danger annotations",
+                "palette": ["toxic green BYSS wash", "pencil dark", "danger red annotations"]
+              },
+              "environment": {
+                "space": "Creole house interior from Moostik POV",
+                "gigantism_cues": ["furniture COLOSSAL", "ceiling fan DEADLY", "BYSS can MASSIVE"],
+                "mood": "hostile territory, death zone"
+              }
+            },
+            "parameters": {
+              "aspect_ratio": "16:9",
+              "render_resolution": "1920x1080",
+              "seed": 670006,
+              "steps": 70
+            },
+            "goal": "Concept sketch: Martinique house interior during genocide from Moostik POV, dramatic low angle showing COLOSSAL hostile architecture, BYSS toxic cloud sketched in green wash, red danger annotations pointing to threats - 'VENTILATEUR MORTEL', 'NUAGE BYSS', 'SANS ISSUE'",
+            "subjects": [{
+              "type": "environment_concept",
+              "description": "Hostile interior sketch, low angle showing massive furniture, ceiling fan above, BYSS cloud in green wash, red danger annotations, dramatic genocide location concept"
+            }],
+            "negative": ["peaceful", "safe", "warm colors", "no danger"]
+          },
+          "variations": [
+            { "id": "v1", "cameraAngle": "dramatic_low", "status": "pending" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bd-moodboard",
+      "title": "📚 BD Moodboard EP0",
+      "description": "10 images racontant l'histoire de l'épisode en séquence",
+      "shots": [
+        {
+          "id": "bd-01-bar-present",
+          "name": "BD 1: Bar Ti Sang - Présent",
+          "number": 27,
+          "description": "Ouverture: les survivants au bar racontent",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_01_BAR_PRESENT_V1",
+              "scene_intent": "Planche BD ouverture: Bar Ti Sang chaleureux, trois vieux Moostik survivants (Koko, Mila, Trez) assis ensemble, visages marqués par les souvenirs. L'un commence à parler. Ambiance intime de témoignage."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Three survivors at bar", "Intimate testimony moment", "Warm bar atmosphere", "Story beginning"],
+                "look": "BD panel composition, warm intimate, storytelling moment",
+                "palette": ["warm amber bar light", "blood red accents", "shadow depth"]
+              },
+              "environment": {
+                "space": "Bar Ti Sang interior, survivors' table",
+                "gigantism_cues": ["thimble nectar glasses"],
+                "mood": "intimate testimony, memories surfacing"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671001 },
+            "goal": "BD panel 1: Bar Ti Sang warm interior, three elderly survivor Moostiks (Koko scarred warrior, Mila wise sage, Trez alert scout) sitting together at table with thimble nectar drinks, one beginning to speak, intimate testimony atmosphere, BD panel composition",
+            "subjects": [{ "type": "group_scene", "description": "Three elderly survivors at bar table, each showing their survivor traits, one speaking, others listening intently" }],
+            "negative": ["happy", "young characters", "action"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+        },
+        {
+          "id": "bd-02-transition",
+          "name": "BD 2: Il était une fois...",
+          "number": 28,
+          "description": "Transition vers le flashback",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_02_TRANSITION_V1",
+              "scene_intent": "Transition visuelle: les yeux d'un survivant deviennent flous, le présent se dissout, des souvenirs dorés commencent à émerger. Effet de 'plongée dans le passé'."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Eyes becoming unfocused", "Present dissolving", "Golden memories emerging", "Flashback transition"],
+                "look": "dreamy transition, dissolve effect, memory emergence",
+                "palette": ["present dark fading", "golden memory glow emerging", "blur effect"]
+              },
+              "environment": { "space": "abstract transition space", "gigantism_cues": [], "mood": "dreamlike memory transition" }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671002 },
+            "goal": "BD panel 2 transition: close-up on elderly Moostik's amber eyes becoming unfocused and dreamy, present bar scene dissolving around edges, golden warm light of memories beginning to emerge, flashback transition effect",
+            "subjects": [{ "type": "transition", "description": "Eyes in close-up, present fading to memory glow" }],
+            "negative": ["sharp focus", "present day", "action"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "close_up", "status": "pending" }]
+        },
+        {
+          "id": "bd-03-village-peaceful",
+          "name": "BD 3: Village Paisible",
+          "number": 29,
+          "description": "Flashback: Cooltik avant le génocide",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_03_VILLAGE_PEACEFUL_V1",
+              "scene_intent": "Flashback doré: Village Cooltik baigné de lumière d'après-midi, familles Moostik vaquant paisiblement, enfants jouant. L'innocence d'avant. Tout est beau, tout va bien."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Idyllic village life", "Golden afternoon light", "Families at peace", "Innocence before horror"],
+                "look": "golden hour idyllic, pastoral peace, heartbreaking beauty",
+                "palette": ["golden warm light", "peaceful greens", "happy amber eyes"]
+              },
+              "environment": {
+                "space": "Village Cooltik exterior",
+                "gigantism_cues": ["fabric fiber cottages", "lint gardens"],
+                "mood": "idyllic peace, innocence"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671003 },
+            "goal": "BD panel 3 flashback: Village Cooltik in golden afternoon light, organic cottages, Moostik families going about peaceful life, children playing, flowers blooming, idyllic pastoral scene before the horror",
+            "subjects": [{ "type": "establishing", "description": "Peaceful village, happy families, golden light" }],
+            "negative": ["danger", "dark", "fire", "BYSS"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "wide", "status": "pending" }]
+        },
+        {
+          "id": "bd-04-mama-baby",
+          "name": "BD 4: Mama et Bébé",
+          "number": 30,
+          "description": "Moment tendre: Mama Dorval avec son bébé",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_04_MAMA_BABY_V1",
+              "scene_intent": "Moment intime: Mama Dorval dans son nid douillet, berçant tendrement Baby Dorval. Regards amoureux échangés. Le bonheur simple d'une mère et son enfant. Derniers moments de paix."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Maternal love moment", "Mother cradling baby", "Tender exchange", "Last peaceful moment"],
+                "look": "intimate maternal scene, tender lighting, emotional warmth",
+                "palette": ["warm amber", "soft pink love", "safe darkness around"]
+              },
+              "environment": {
+                "space": "Cozy nest in cottage",
+                "gigantism_cues": ["fabric fiber nest"],
+                "mood": "maternal love, peaceful intimacy"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671004 },
+            "goal": "BD panel 4: intimate scene of Mama Dorval in cozy fabric nest, tenderly cradling Baby Dorval, loving gazes exchanged between mother and child, warm amber lighting, peaceful maternal moment - last happiness before tragedy",
+            "subjects": [{ "type": "intimate", "description": "Mother holding baby in nest, loving gazes, tender moment" }],
+            "negative": ["danger", "fear", "action", "others present"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+        },
+        {
+          "id": "bd-05-shadow-arrives",
+          "name": "BD 5: L'Ombre Arrive",
+          "number": 31,
+          "description": "Tension: la main géante avec BYSS apparaît",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_05_SHADOW_V1",
+              "scene_intent": "Montée de tension: une OMBRE COLOSSALE tombe sur le village. En contre-jour, la silhouette gigantesque d'une main d'enfant tenant un aérosol BYSS. Les Moostik lèvent les yeux, confus. Le mal arrive."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Giant shadow falling", "Child hand silhouette", "BYSS can visible", "Confusion turning to fear"],
+                "look": "dramatic shadow, tension building, threat appearing",
+                "palette": ["dark shadow", "ominous backlight", "fear amber eyes"]
+              },
+              "environment": {
+                "space": "Village with giant shadow",
+                "gigantism_cues": ["COLOSSAL child hand", "BYSS can as weapon of mass destruction"],
+                "mood": "dread, threat appearing"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671005 },
+            "goal": "BD panel 5 tension: giant shadow falling over village, silhouette of COLOSSAL child hand holding BYSS aerosol visible against light, Moostiks below looking up in confusion turning to fear, dramatic threat appearing",
+            "subjects": [{ "type": "threat", "description": "Giant shadow, child hand silhouette with BYSS, confused/fearful Moostiks below" }],
+            "negative": ["peaceful", "calm", "happy", "no shadow"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "low_angle", "status": "pending" }]
+        },
+        {
+          "id": "bd-06-byss-cloud",
+          "name": "BD 6: Le Nuage Toxique",
+          "number": 32,
+          "description": "Horreur: BYSS se répand, les Moostik tombent",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_06_BYSS_CLOUD_V1",
+              "scene_intent": "HORREUR: le nuage BYSS vert toxique envahit l'air. Les Moostik suffoquent, tombent du ciel, convulsent. Chaos total. Cris silencieux. Le génocide commence. Image traumatique mais nécessaire."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Toxic cloud spreading", "Moostiks falling", "Chaos and screaming", "Genocide horror"],
+                "look": "horror scene, toxic atmosphere, mass death",
+                "palette": ["toxic green BYSS", "death black", "panic amber", "suffocation blue"]
+              },
+              "environment": {
+                "space": "Village engulfed in BYSS",
+                "gigantism_cues": [],
+                "mood": "pure horror, genocide"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671006 },
+            "goal": "BD panel 6 HORROR: toxic green BYSS cloud spreading through air, Moostiks falling from sky, convulsing, suffocating, chaos and silent screams, genocide in progress, traumatic but necessary depiction",
+            "subjects": [{ "type": "horror", "description": "BYSS cloud spreading, Moostiks falling/dying, chaos, genocide" }],
+            "negative": ["peaceful", "survivors", "escape", "hope"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "wide", "status": "pending" }]
+        },
+        {
+          "id": "bd-07-sacrifice",
+          "name": "BD 7: Le Sacrifice",
+          "number": 33,
+          "description": "Climax émotionnel: Mama protège son bébé",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_07_SACRIFICE_V1",
+              "scene_intent": "SACRIFICE: Mama Dorval utilise son corps comme bouclier, ailes déployées pour protéger Baby Dorval du nuage toxique. Son corps absorbe le poison. Ses yeux disent adieu mais sont féroces de détermination. L'amour maternel ultime."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Mother as shield", "Wings spread protection", "Absorbing poison", "Farewell in eyes"],
+                "look": "heroic sacrifice, maternal protection, emotional peak",
+                "palette": ["protective amber glow", "toxic green behind", "sacrifice crimson", "love pink"]
+              },
+              "environment": {
+                "space": "Amid BYSS cloud",
+                "gigantism_cues": [],
+                "mood": "ultimate sacrifice, fierce maternal love"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671007 },
+            "goal": "BD panel 7 EMOTIONAL CLIMAX: Mama Dorval as living shield, wings spread wide protecting Baby Dorval beneath her, toxic BYSS cloud hitting her body, her eyes meeting baby's - farewell but fierce determination, ultimate maternal sacrifice",
+            "subjects": [{ "type": "sacrifice", "description": "Mother shielding baby with body, wings as barrier, poison hitting her, fierce loving eyes" }],
+            "negative": ["baby exposed", "mother fleeing", "both dying"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "close_up", "status": "pending" }]
+        },
+        {
+          "id": "bd-08-escape",
+          "name": "BD 8: L'Évasion",
+          "number": 34,
+          "description": "Espoir: fuite à travers les persiennes",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_08_ESCAPE_V1",
+              "scene_intent": "ESPOIR: Baby Dorval s'échappe à travers les lattes des persiennes martiniquaises. Derrière lui l'enfer vert toxique. Devant, des rayons de lumière dorée - la liberté, la survie. Le seuil entre mort et vie."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Escape through jalousies", "Light of hope ahead", "BYSS behind", "Threshold moment"],
+                "look": "dramatic escape, light vs dark, hope emerging",
+                "palette": ["golden hope light", "toxic green behind", "dark jalousie wood"]
+              },
+              "environment": {
+                "space": "Jalousie threshold",
+                "gigantism_cues": ["COLOSSAL wooden slats"],
+                "mood": "desperate hope, escape to life"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671008 },
+            "goal": "BD panel 8 HOPE: Baby Dorval squeezing through gap in massive jalousie slats, toxic green BYSS cloud behind, golden rays of light and freedom ahead, threshold between death and life, desperate escape to survival",
+            "subjects": [{ "type": "escape", "description": "Baby escaping through jalousie gap, BYSS behind, light ahead" }],
+            "negative": ["trapped", "caught", "no light", "no escape"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+        },
+        {
+          "id": "bd-09-oath",
+          "name": "BD 9: Le Serment",
+          "number": 35,
+          "description": "Résolution: les survivants font serment au mémorial",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_09_OATH_V1",
+              "scene_intent": "SERMENT: au mémorial du génocide, les survivants se tiennent devant la flamme éternelle. Mains levées en serment. Leurs visages marqués mais résolus. 'Jamais oublier. Jamais pardonner.' Les Bloodwings naissent."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Survivors at memorial", "Oath hands raised", "Eternal flame", "Never forget never forgive"],
+                "look": "solemn oath scene, memorial setting, resolve born",
+                "palette": ["eternal flame red", "memorial obsidian", "determined amber eyes"]
+              },
+              "environment": {
+                "space": "Genocide memorial, eternal flame",
+                "gigantism_cues": [],
+                "mood": "solemn oath, vengeance born"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671009 },
+            "goal": "BD panel 9 OATH: survivors standing before genocide memorial eternal flame, forelegs raised in solemn oath, scarred faces resolved and determined, 'never forget never forgive', birth of Bloodwings vengeance",
+            "subjects": [{ "type": "oath", "description": "Survivors at memorial, oath gesture, eternal flame, determined faces" }],
+            "negative": ["sad collapse", "giving up", "no flame"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "low_angle", "status": "pending" }]
+        },
+        {
+          "id": "bd-10-return-present",
+          "name": "BD 10: Retour au Présent - Papy Tik",
+          "number": 36,
+          "description": "Clôture: les yeux de Papy Tik portent tout",
+          "sceneType": "bd",
+          "prompt": {
+            "meta": {
+              "model_version": "nano-banana-2-pro",
+              "task_type": "cinematic_keyframe",
+              "project": "MOOSTIK_BD",
+              "asset_id": "BD_10_RETURN_V1",
+              "scene_intent": "CLÔTURE: retour au bar Ti Sang. Gros plan sur les yeux de Papy Tik (Baby Dorval devenu vieux). Ses yeux ambrés portent tout - le trauma, la perte, la vengeance, mais aussi... l'espoir de la nouvelle génération qui écoute."
+            },
+            "scene_graph": {
+              "style_bible": {
+                "usp_core": ["Return to present", "Papy Tik's eyes", "All history in gaze", "Hope for new generation"],
+                "look": "emotional close-up, aged wise eyes, history in gaze",
+                "palette": ["amber wise eyes", "warm bar light", "hint of hope gold"]
+              },
+              "environment": {
+                "space": "Bar Ti Sang, present",
+                "gigantism_cues": [],
+                "mood": "reflection, burden, hope"
+              }
+            },
+            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671010 },
+            "goal": "BD panel 10 CLOSURE: back in Bar Ti Sang, extreme close-up on elderly Papy Tik's amber eyes, carrying weight of all we've seen - trauma, loss, vengeance - but also hint of hope as young listeners are reflected in his eyes, full circle",
+            "subjects": [{ "type": "closure", "description": "Papy Tik's aged eyes close-up, all history visible, young Moostiks reflected" }],
+            "negative": ["action", "violence", "despair only"]
+          },
+          "variations": [{ "id": "v1", "cameraAngle": "extreme_close_up", "status": "pending" }]
+        }
+      ]
+    }
+  ]
+}
