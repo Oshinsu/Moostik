@@ -12,7 +12,7 @@ import {
   type PlatformPreset,
 } from "@/lib/editor/export";
 
-export const maxDuration = 600; // 10 minutes for export
+export const maxDuration = 60; // 60s max for Vercel hobby plan
 
 // Local config interface for API (different from library ExportConfig)
 interface APIExportConfig {

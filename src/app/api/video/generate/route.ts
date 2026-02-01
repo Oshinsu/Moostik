@@ -16,7 +16,7 @@ import {
   ReplicateVideoError,
 } from "@/lib/video/providers/replicate";
 
-export const maxDuration = 300; // 5 minutes timeout
+export const maxDuration = 60; // 60s max for Vercel hobby plan
 
 interface GenerateVideoRequest {
   episodeId: string;

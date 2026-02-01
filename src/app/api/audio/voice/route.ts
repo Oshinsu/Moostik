@@ -8,7 +8,7 @@ import Replicate from "replicate";
 import * as fs from "fs/promises";
 import * as path from "path";
 
-export const maxDuration = 120;
+export const maxDuration = 60; // 60s max for Vercel hobby plan
 
 // Voice profiles for MOOSTIK characters
 const MOOSTIK_VOICES: Record<string, VoiceProfile> = {

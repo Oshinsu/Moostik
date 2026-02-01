@@ -8,7 +8,7 @@ import { spawn } from "child_process";
 import * as fs from "fs/promises";
 import * as path from "path";
 
-export const maxDuration = 120; // 2 minutes
+export const maxDuration = 60; // 60s max for Vercel hobby plan
 
 interface AudioAnalysisRequest {
   audioUrl?: string;
