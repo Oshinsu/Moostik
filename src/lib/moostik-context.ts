@@ -30,9 +30,9 @@ import {
 export type TimelinePosition = "before_genocide" | "during_genocide" | "after_genocide";
 
 /**
- * Type de scène pour les presets
+ * Type de scène MOOSTIK pour les presets atmosphériques
  */
-export type SceneType = "peaceful" | "tense" | "apocalyptic" | "sacred" | "bar" | "military" | "training" | "village";
+export type MoostikSceneType = "peaceful" | "tense" | "apocalyptic" | "sacred" | "bar" | "military" | "training" | "village";
 
 /**
  * Contexte global MOOSTIK
@@ -69,6 +69,7 @@ export interface MoostikGlobalContext {
     skin_tone: string;
     style: string;
     children: string;
+    child_killer?: string;
     pov_rule: string;
   };
   

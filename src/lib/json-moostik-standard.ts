@@ -269,7 +269,9 @@ export const MOOSTIK_HUMAN_RULES = {
   skin_tone: "ebony/dark skin with warm subsurface scattering",
   /** Style de rendu */
   style: "Pixar-stylized proportions, NOT photorealistic",
-  /** Description enfant (génocide) */
+  /** Description enfants générale */
+  children: "5-year-old Caribbean child, ebony skin, innocent playful demeanor",
+  /** Description enfant tueur (génocide) */
   child_killer: "5-year-old Caribbean child, ebony skin, innocent playful demeanor, unaware of the genocide they cause",
   /** Règle POV */
   pov_rule: "From Moostik POV, humans are COLOSSAL titans - show only hands, feet, or silhouettes, NEVER full faces in Moostik scenes",
@@ -727,8 +729,19 @@ export function createBloodwingsJsonMoostik(options: {
     seed,
   } = options;
   
+  // Mapping des types de scène vers les presets de lighting
+  const lightingPresetMap: Record<string, keyof typeof MOOSTIK_LIGHTING_PRESETS> = {
+    peaceful: "bar_scene",
+    tense: "training",
+    apocalyptic: "genocide",
+    sacred: "cathedral",
+    bar: "bar_scene",
+    military: "training",
+  };
+  
   // Sélectionner le preset de lighting selon le type de scène
-  const lightingPreset = MOOSTIK_LIGHTING_PRESETS[sceneType] || MOOSTIK_LIGHTING_PRESETS.bar_scene;
+  const lightingKey = lightingPresetMap[sceneType] || "bar_scene";
+  const lightingPreset = MOOSTIK_LIGHTING_PRESETS[lightingKey];
   const atmospherePreset = MOOSTIK_ATMOSPHERE_PRESETS[sceneType] || MOOSTIK_ATMOSPHERE_PRESETS.peaceful;
   
   return {
