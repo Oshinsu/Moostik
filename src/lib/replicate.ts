@@ -200,6 +200,7 @@ export async function generateAndSave(
 }
 
 // Générer une variation spécifique d'un shot
+// SOTA Janvier 2026: Intègre le contexte global BLOODWINGS
 export async function generateVariation(
   moostikPrompt: MoostikPrompt | JsonMoostik,
   angle: CameraAngle,
@@ -209,15 +210,33 @@ export async function generateVariation(
   referenceImages?: string[]
 ): Promise<GenerateImageResult> {
   let promptText = "";
-  let aspectRatio = "16:9";
 
   // Détecter si c'est un JsonMoostik (Standard SOTA) ou un MoostikPrompt (Ancien)
   if ("deliverable" in moostikPrompt && "goal" in moostikPrompt) {
-    // C'est un JsonMoostik
+    // C'est un JsonMoostik - Appliquer le contexte global BLOODWINGS
     const json = moostikPrompt as JsonMoostik;
-    // On peut ajuster l'angle dans le JSON avant de générer le prompt
-    const updatedJson = { ...json };
-    updatedJson.camera = { ...json.camera, angle: angle.replace("_", " ") };
+    
+    // 1. Charger le contexte global
+    const { loadGlobalContext, injectGlobalContext } = await import("./moostik-context");
+    const context = loadGlobalContext(episodeId);
+    
+    // 2. Déterminer le type de scène pour les gigantism cues appropriés
+    const sceneType = json.scene_graph?.environment?.mood?.includes("human") 
+      ? "human_interaction" 
+      : json.scene?.location?.toLowerCase().includes("bar") 
+        ? "interior" 
+        : "default";
+    
+    // 3. Injecter le contexte global dans le prompt
+    const enrichedJson = injectGlobalContext(json, context, {
+      sceneType: sceneType as "interior" | "exterior" | "human_interaction" | "default",
+      includeGigantism: true,
+      includeHumanRules: true,
+    });
+    
+    // 4. Ajuster l'angle dans le JSON enrichi
+    const updatedJson = { ...enrichedJson };
+    updatedJson.camera = { ...enrichedJson.camera, angle: angle.replace("_", " ") };
     
     const angleToFraming: Record<string, string> = {
       extreme_wide: "extreme_wide",
@@ -229,16 +248,28 @@ export async function generateVariation(
     };
     
     updatedJson.composition = { 
-      ...(json.composition || {}), 
+      ...(enrichedJson.composition || {}), 
       framing: (angleToFraming[angle] || "medium") as "extreme_wide" | "wide" | "medium" | "close" | "extreme_close" | "macro"
     };
     
+    // 5. Convertir en prompt texte
     promptText = jsonMoostikToPrompt(updatedJson);
-    // SOTA: Extract negative prompt separately for better model control
-    const negativePrompt = getJsonMoostikNegative(updatedJson);
-    aspectRatio = json.deliverable.aspect_ratio;
     
-    return generateAndSave(promptText, episodeId, shotId, variationId, undefined, referenceImages, negativePrompt);
+    // 6. Extraire le negative prompt (inclut constraints.must_not_include)
+    const negativePrompt = getJsonMoostikNegative(updatedJson);
+    
+    // 7. Utiliser le seed du prompt si disponible
+    const seed = updatedJson.parameters?.seed;
+    
+    logger.info("Generating with BLOODWINGS context", {
+      shotId,
+      variationId,
+      hasGigantism: (updatedJson.scene_graph?.environment?.gigantism_cues?.length || 0) > 0,
+      hasConstraints: !!updatedJson.constraints,
+      seed,
+    });
+    
+    return generateAndSave(promptText, episodeId, shotId, variationId, seed, referenceImages, negativePrompt);
   } else {
     // C'est l'ancien format MoostikPrompt
     promptText = promptToText(moostikPrompt as MoostikPrompt, angle);

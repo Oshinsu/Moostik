@@ -356,7 +356,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -391,6 +403,71 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-1-1769759484234",
+          "scene_intent": "Peaceful moostik village moments before genocide: child's titan-hand approaches like a slow-motion apocalypse. Contrast between idyllic micro-scale life and looming macro-scale death. Pixar-dark beauty meets horror."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Village Cooltik - Avant le Génocide",
+            "gigantism_cues": [
+              "human hand approaches as a slow-moving wall of doom",
+              "human fingers rise as colossal pillars",
+              "child's shadow covers entire village like eclipse",
+              "human breath creates hurricane winds",
+              "spray droplets fall like toxic rain"
+            ],
+            "mood": "atmospheric tension"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1278000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -585,7 +662,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -621,6 +710,68 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-2-1769759484235",
+          "scene_intent": "Mama Dorval's ultimate sacrifice: a mother mosquito shields her baby with her own body as toxic BYSS spray descends. Heroic tragedy at microscopic scale. The most emotionally devastating moment of the series."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Intérieur Maison Martiniquaise - Scène du Massacre",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1280000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -802,7 +953,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [],
@@ -835,6 +998,71 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-3-1769759484235",
+          "scene_intent": "The toxic BYSS cloud spreads through the village like a biblical plague. Volumetric crimson fog, ember particles, mass death. The genocide in full apocalyptic horror."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Intérieur Maison Martiniquaise - Scène du Massacre",
+            "gigantism_cues": [
+              "BYSS spray cloud spreads as apocalyptic fog",
+              "aerosol nozzle looms as a volcano",
+              "toxic mist engulfs like a tidal wave",
+              "child's fingers grip like continental plates",
+              "ember particles float like dying stars"
+            ],
+            "mood": "apocalyptic horror"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1281000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -1020,7 +1248,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -1055,6 +1295,68 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-4-1769759484235",
+          "scene_intent": "Baby Dorval emerges alone from the devastation. His mother's body lies beneath the toxic residue. A lone survivor in a landscape of death. Overwhelming grief at micro-scale."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Mémorial du Génocide BYSS",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1282000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -1248,7 +1550,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -1284,6 +1598,68 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-5-1769759484235",
+          "scene_intent": "General Aedes discovers the orphaned Baby Dorval among the corpses. The moment of hope in despair - the birth of a future warrior. Military mentor meets traumatized child."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Mémorial du Génocide BYSS",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1283000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -1479,7 +1855,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -1515,6 +1903,68 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-6-1769759484235",
+          "scene_intent": "Young Dorval trains with General Aedes at Fort Sang-Noir. The transformation from victim to warrior. Discipline, determination, and the seeds of vengeance."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Fort Sang-Noir",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1284000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -1710,7 +2160,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -1745,6 +2207,68 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-7-1769759484235",
+          "scene_intent": "Young Dorval studies human anatomy with Scholar Culex at the Academy of Blood. Know your enemy. The intellectual side of resistance."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Académie du Sang",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1285000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -1940,7 +2464,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -1976,6 +2512,70 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-8-1769759484235",
+          "scene_intent": "The secret Bloodwings hideout beneath the bar. Veterans gather, plans are made. The resistance takes shape in shadows and whispers."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Bar Ti Sang",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1286000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "bioluminescent amber lighting",
+            "intimate bar atmosphere"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -2165,7 +2765,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [],
@@ -2198,6 +2810,70 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-9-1769759484235",
+          "scene_intent": "Singer Stegomyia performs at Bar Ti Sang. A moment of culture and beauty amidst the darkness. Music as resistance, art as survival."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Bar Ti Sang",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1287000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "bioluminescent amber lighting",
+            "intimate bar atmosphere"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -2386,7 +3062,19 @@
           "watermarks",
           "readable text unless specified",
           "gore close-ups",
-          "intestines"
+          "intestines",
+          "concept art style",
+          "sketch style",
+          "modern buildings",
+          "concrete structures",
+          "manufactured weapons",
+          "LED lights",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "human faces in Moostik-scale scenes",
+          "intestines visible"
         ],
         "foreground": {
           "subjects": [
@@ -2421,6 +3109,71 @@
             "Caribbean tropical atmosphere",
             "Martinique cultural elements",
             "Creole aesthetic details"
+          ]
+        },
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-10-1769759484235",
+          "scene_intent": "General Aedes rallies the Bloodwings for action. The call to arms. Warriors unite with a common purpose - survival and vengeance."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Fort Sang-Noir",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1327000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
           ]
         }
       },
@@ -2537,26 +3290,26 @@
           {
             "name": "Koko",
             "priority": 1,
-            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
+            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, sitting watchful, pipe smoking, silent judgment establishing narrative moment"
           },
           {
             "name": "Mila",
             "priority": 2,
-            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
+            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           },
           {
             "name": "Trez",
             "priority": 3,
-            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
+            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           },
           {
             "name": "Papy Tik",
             "priority": 4,
-            "description": "ancient elder mosquito patriarch, wise weathered amber eyes, tattered wings telling stories",
+            "description": "ancient elder mosquito patriarch, wise weathered amber eyes, tattered wings telling stories. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "background"
           }
         ],
@@ -2607,8 +3360,106 @@
           "white caucasian humans",
           "readable text watermarks logos",
           "metal weapons swords armor",
-          "modern buildings skyscrapers"
-        ]
+          "modern buildings skyscrapers",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-011",
+          "scene_intent": "Present day: Koko, Mila, and Trez surround Papy Tik at Bar Ti Sang. The survivors share their trauma, preserving memory for future generations. Intimate storytelling moment."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Creole bar atmosphere, Caribbean noir, tropical speakeasy",
+            "gigantism_cues": [
+              "glass surfaces reflect like frozen lakes",
+              "drink droplets cling like decorative spheres",
+              "smoke wisps curl like massive clouds",
+              "lantern light pools like amber lakes"
+            ],
+            "mood": "intimate reflection"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 637000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "bioluminescent amber lighting",
+            "intimate bar atmosphere"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "koko-survivor",
@@ -2688,14 +3539,14 @@
           {
             "name": "Mama Dorval",
             "priority": 1,
-            "description": "protective mother mosquito, fierce amber eyes, wings spread defensively, maternal strength",
+            "description": "protective mother mosquito, fierce amber eyes, wings spread defensively, maternal strength. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "shielding baby, facing danger, final protective embrace, clinging, trembling, reaching for safety establishing narrative moment"
           },
           {
             "name": "Baby Dorval",
             "priority": 2,
-            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious",
+            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           }
         ],
@@ -2746,8 +3597,105 @@
           "white caucasian humans",
           "readable text watermarks logos",
           "metal weapons swords armor",
-          "modern buildings skyscrapers"
-        ]
+          "modern buildings skyscrapers",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-012",
+          "scene_intent": "Flashback to the peaceful village before the horror. Idyllic daily life, community, innocence. The calm before the storm that makes the tragedy hit harder."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Tropical paradise, Caribbean tranquility, innocent times",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 638000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "mama-dorval",
@@ -2825,7 +3773,7 @@
           {
             "name": "Baby Dorval",
             "priority": 1,
-            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious",
+            "description": "tiny infant mosquito, large innocent amber eyes, delicate translucent wings, vulnerable and precious. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "clinging, trembling, reaching for safety establishing narrative moment"
           }
@@ -2877,8 +3825,105 @@
           "white caucasian humans",
           "readable text watermarks logos",
           "metal weapons swords armor",
-          "modern buildings skyscrapers"
-        ]
+          "modern buildings skyscrapers",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-013",
+          "scene_intent": "The desperate flight through the jalousies (window shutters). Moostiks squeeze through the slats to escape the toxic cloud. Claustrophobic survival horror."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Caribbean architectural detail, life-saving passage, hope's corridor",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 639000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -2955,26 +4000,26 @@
           {
             "name": "Koko",
             "priority": 1,
-            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior",
+            "description": "elder survivor mosquito, scarred veteran, haunted amber eyes, weathered warrior. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "narrating horrors, gesturing to wounds, voice trembling, recording stories, cataloguing loss, preserving memory, scanning surroundings, ready to flee, survival instincts, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
           },
           {
             "name": "Mila",
             "priority": 2,
-            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings",
+            "description": "memory keeper mosquito, observant amber eyes, methodical demeanor, archival wings. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           },
           {
             "name": "Trez",
             "priority": 3,
-            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits",
+            "description": "scout survivor mosquito, alert amber eyes, agile frame, always watching exits. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           },
           {
             "name": "General Aedes",
             "priority": 4,
-            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence",
+            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "background"
           }
         ],
@@ -3025,8 +4070,105 @@
           "white caucasian humans",
           "readable text watermarks logos",
           "metal weapons swords armor",
-          "modern buildings skyscrapers"
-        ]
+          "modern buildings skyscrapers",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-014",
+          "scene_intent": "Young Dorval swears vengeance over his mother's grave. The oath that defines his life. Raw emotion, determination, the birth of a warrior's purpose."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Caribbean sacred ground, Bloodwings holy site, oath-taking place",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 640000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "koko-survivor",
@@ -3106,14 +4248,14 @@
           {
             "name": "Young Dorval",
             "priority": 1,
-            "description": "warrior prince mosquito, sharp amber eyes, muscular frame, battle-ready wings",
+            "description": "warrior prince mosquito, sharp amber eyes, muscular frame, battle-ready wings. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "training strikes, combat stance, strategic observation, commanding troops, strategic planning, rescuing survivors establishing narrative moment"
           },
           {
             "name": "General Aedes",
             "priority": 2,
-            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence",
+            "description": "military commander mosquito, stern amber eyes, decorated chitin armor, commanding presence. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "secondary"
           }
         ],
@@ -3166,8 +4308,105 @@
           "white caucasian humans",
           "readable text watermarks logos",
           "metal weapons swords armor",
-          "modern buildings skyscrapers"
-        ]
+          "modern buildings skyscrapers",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "oversized mosquitoes",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-015",
+          "scene_intent": "The official formation of the Bloodwings resistance. Veterans and survivors unite under the Droplet-Eye banner. Hope rises from ashes."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Caribbean resistance stronghold, Moostik new beginning, defiant construction",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 641000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "young-dorval",
@@ -3246,7 +4485,7 @@
           {
             "name": "Human child 5 years old",
             "priority": 1,
-            "description": "Caribbean features, innocent smile, holding BYSS aerosol can like a toy",
+            "description": "Caribbean features, innocent smile, holding BYSS aerosol can like a toy. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Child approaching playfully, aerosol raised, Mama Dorval sensing danger"
           }
@@ -3293,8 +4532,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-16",
+          "scene_intent": "L'enfant humain approche avec le BYSS, sourire innocent sur le visage. Mama Dorval sent le danger."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Creole house interior, warm afternoon light, deceptive tranquility before storm",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1720000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "child-killer",
@@ -3371,7 +4713,7 @@
           {
             "name": "BYSS aerosol spraying",
             "priority": 1,
-            "description": "toxic cloud emerging, deadly mist expanding",
+            "description": "toxic cloud emerging, deadly mist expanding. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Child spraying innocently, unaware of destruction being caused"
           }
@@ -3418,8 +4760,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-17",
+          "scene_intent": "Le premier jet de BYSS - l'instant où tout bascule. Le nuage toxique commence à se répandre."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Toxic cloud spreading through Creole house, particles catching light, death visible",
+            "gigantism_cues": [
+              "BYSS spray cloud spreads as apocalyptic fog",
+              "aerosol nozzle looms as a volcano",
+              "toxic mist engulfs like a tidal wave",
+              "child's fingers grip like continental plates",
+              "ember particles float like dying stars"
+            ],
+            "mood": "apocalyptic horror"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1721000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "child-killer"
@@ -3492,7 +4937,7 @@
           {
             "name": "Falling Moostik mosquitoes",
             "priority": 1,
-            "description": "wings crumpling, amber eyes dimming, bodies in free fall",
+            "description": "wings crumpling, amber eyes dimming, bodies in free fall. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Bodies falling like rain, desperate last movements, death spreading"
           }
@@ -3539,8 +4984,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-18",
+          "scene_intent": "Les moustiques Moostik tombent, surpris par l'attaque. Corps minuscules s'effondrant dans l'horreur."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Toxic BYSS cloud thick in air, victims scattered, domestic space turned killing field",
+            "gigantism_cues": [
+              "BYSS spray cloud spreads as apocalyptic fog",
+              "aerosol nozzle looms as a volcano",
+              "toxic mist engulfs like a tidal wave",
+              "child's fingers grip like continental plates",
+              "ember particles float like dying stars"
+            ],
+            "mood": "apocalyptic horror"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1722000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [],
       "locationIds": [
@@ -3611,7 +5159,7 @@
           {
             "name": "Mama Dorval screaming",
             "priority": 1,
-            "description": "wings spread as shield, amber eyes fierce with determination",
+            "description": "wings spread as shield, amber eyes fierce with determination. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Wings spread defensively, body curling around baby, creating living shield"
           }
@@ -3658,8 +5206,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-19",
+          "scene_intent": "Mama Dorval hurle en voyant le carnage, protégeant baby Dorval de son corps, ailes déployées."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Toxic cloud approaching, dead bodies around, shrinking safe space",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1723000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "mama-dorval",
@@ -3733,7 +5384,7 @@
           {
             "name": "Mama Dorval's wings forming cocoon around baby",
             "priority": 1,
-            "description": "her body absorbing toxic cloud",
+            "description": "her body absorbing toxic cloud. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Mama Dorval's body trembling but holding, filtering poison, giving life through death"
           }
@@ -3780,8 +5431,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-20",
+          "scene_intent": "Le nuage toxique engloutit la pièce. Mama Dorval s'enroule autour de baby Dorval, dernier rempart."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Room completely filled with toxic cloud, no escape visible, death everywhere",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1715000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "mama-dorval",
@@ -3855,7 +5609,7 @@
           {
             "name": "Mama Dorval's eyes closing",
             "priority": 1,
-            "description": "peaceful expression despite agony, wings still wrapped around baby",
+            "description": "peaceful expression despite agony, wings still wrapped around baby. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Final exhale, body relaxing in death, baby protected in embrace"
           }
@@ -3902,8 +5656,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-21",
+          "scene_intent": "Mama Dorval expire, son dernier souffle protecteur donnant la vie à baby Dorval. Sacrifice ultime."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Toxic cloud settling, stillness of death, single ray of light on baby",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1716000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "mama-dorval",
@@ -3977,7 +5834,7 @@
           {
             "name": "Baby Dorval emerging confused",
             "priority": 1,
-            "description": "amber eyes wide with incomprehension, mother's lifeless wings parting",
+            "description": "amber eyes wide with incomprehension, mother's lifeless wings parting. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "First movements of survival, looking around in horror, alone"
           }
@@ -4024,8 +5881,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-22",
+          "scene_intent": "Baby Dorval émerge des ailes de sa mère morte. Seul survivant, entouré de cendres et de corps."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Death all around, bodies of community, mother's sacrifice visible",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1717000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4098,7 +6058,7 @@
           {
             "name": "Baby Dorval tiny figure among destruction",
             "priority": 1,
-            "description": "sole movement in stillness of death",
+            "description": "sole movement in stillness of death. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Baby crawling over bodies, seeking life, finding only death"
           }
@@ -4145,8 +6105,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889794560-23",
+          "scene_intent": "Vue d'ensemble de la dévastation. Baby Dorval seul parmi les morts. Naissance d'une vengeance."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Bodies everywhere, settling dust and toxin, destroyed innocence visible",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1718000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4219,7 +6282,7 @@
           {
             "name": "Baby Dorval looking up",
             "priority": 1,
-            "description": "amber eyes catching light rays, hope flickering",
+            "description": "amber eyes catching light rays, hope flickering. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Small body turning toward light, instinct pulling toward safety"
           }
@@ -4266,8 +6329,110 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889802112-24",
+          "scene_intent": "Baby Dorval aperçoit la lumière filtrant à travers les jalousies. Premier espoir d'évasion."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Jalousies wooden shutters, light streaming through slats, escape route visible",
+            "gigantism_cues": [
+              "furniture legs appear as towering columns",
+              "table surface stretches like an infinite plain",
+              "lamp light appears as a distant sun",
+              "baseboards tower like fortress walls"
+            ],
+            "mood": "atmospheric tension"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1702000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4340,7 +6505,7 @@
           {
             "name": "Baby Dorval crawling desperately",
             "priority": 1,
-            "description": "tiny wings helping propel forward, eyes fixed on light",
+            "description": "tiny wings helping propel forward, eyes fixed on light. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Crawling motion, reaching, struggling, never stopping"
           }
@@ -4387,8 +6552,110 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889802112-25",
+          "scene_intent": "Baby Dorval rampe vers les jalousies, déterminé malgré sa terreur. Chaque centimètre est un combat."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Floor covered with dust and bodies, jalousies getting closer, light getting brighter",
+            "gigantism_cues": [
+              "furniture legs appear as towering columns",
+              "table surface stretches like an infinite plain",
+              "lamp light appears as a distant sun",
+              "baseboards tower like fortress walls"
+            ],
+            "mood": "atmospheric tension"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1703000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4461,7 +6728,7 @@
           {
             "name": "Baby Dorval's tiny body between wooden slats",
             "priority": 1,
-            "description": "wings folded tight, squeezing through",
+            "description": "wings folded tight, squeezing through. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Wedging through, wings pressed flat, final push toward freedom"
           }
@@ -4508,8 +6775,110 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889802112-26",
+          "scene_intent": "Baby Dorval se faufile entre les lattes des jalousies. Le moment le plus périlleux de l'évasion."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Jalousie slats close together, light beyond, darkness behind",
+            "gigantism_cues": [
+              "furniture legs appear as towering columns",
+              "table surface stretches like an infinite plain",
+              "lamp light appears as a distant sun",
+              "baseboards tower like fortress walls"
+            ],
+            "mood": "atmospheric tension"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1704000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4582,7 +6951,7 @@
           {
             "name": "Baby Dorval emerging into light",
             "priority": 1,
-            "description": "tiny form silhouetted, wings unfurling in freedom",
+            "description": "tiny form silhouetted, wings unfurling in freedom. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "First breath of free air, looking back at death, looking forward to unknown"
           }
@@ -4629,8 +6998,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889802112-27",
+          "scene_intent": "Baby Dorval traverse les jalousies. La lumière l'accueille. Survie achevée, trauma commencé."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Exterior Caribbean landscape, storm clearing, new world without family",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1705000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"
@@ -4703,7 +7175,7 @@
           {
             "name": "Baby Dorval as tiny silhouette",
             "priority": 1,
-            "description": "lost in vastness, alone",
+            "description": "lost in vastness, alone. Pixar-dark 3D feature film quality, démoniaque mignon aesthetic, 8K textures, ILM-grade VFX.",
             "importance": "primary",
             "action": "Standing still, processing loss, beginning new existence"
           }
@@ -4750,8 +7222,111 @@
           "flat shading cheap CGI",
           "oversized mosquitoes",
           "white caucasian humans",
-          "readable text watermarks logos"
-        ]
+          "readable text watermarks logos",
+          "anime style",
+          "cartoon style",
+          "2D illustration",
+          "flat shading",
+          "cheap CGI look",
+          "neon oversaturation",
+          "concept art style",
+          "sketch style",
+          "human silhouettes in Moostik cities",
+          "human furniture in Moostik locations",
+          "modern buildings",
+          "concrete structures",
+          "guns",
+          "manufactured weapons",
+          "tanks",
+          "machines",
+          "vehicles",
+          "electricity",
+          "electronics",
+          "screens",
+          "computers",
+          "LED lights",
+          "mosquito without visible proboscis",
+          "human-scale insects",
+          "realistic mosquitoes",
+          "cute cartoon bugs",
+          "asian humans",
+          "light-skinned humans",
+          "non-Pixar realistic humans",
+          "human faces in Moostik-scale scenes",
+          "random logos",
+          "watermarks",
+          "readable text unless specified",
+          "gore close-ups",
+          "intestines visible"
+        ],
+        "meta": {
+          "model_version": "nano-banana-2-pro",
+          "task_type": "cinematic_keyframe",
+          "project": "MOOSTIK_EP0",
+          "asset_id": "shot-exp-1769889802112-28",
+          "scene_intent": "Baby Dorval à l'extérieur, minuscule contre le paysage martiniquais. Seul survivant d'un monde effacé."
+        },
+        "references": {
+          "da": "bloodwings_da.png"
+        },
+        "scene_graph": {
+          "style_bible": {
+            "usp_core": [
+              "Moostik POV: everything appears COLOSSAL from mosquito perspective",
+              "Humans are terrain hazards, not characters - show body parts as landscapes",
+              "Proboscis is the ONLY weapon - visible on all Moostik characters",
+              "Démoniaque mignon aesthetic - cute but menacing",
+              "Caribbean/Martiniquais humans ONLY - ebony skin, Pixar-stylized"
+            ],
+            "look": "premium 3D animated feature film, Pixar-dark, cute demonic, démoniaque mignon",
+            "palette": [
+              "obsidian black",
+              "blood red",
+              "deep crimson",
+              "copper",
+              "warm amber"
+            ]
+          },
+          "environment": {
+            "space": "Martinique tropical landscape, post-storm clearing, beautiful indifference of nature",
+            "gigantism_cues": [
+              "fabric threads appear as massive tree trunks",
+              "crumbs look like weathered boulders",
+              "lint balls tumble like slow tumbleweeds",
+              "dust motes drift like slow asteroids",
+              "carpet fibers form a dense forest"
+            ],
+            "mood": "idyllic peace"
+          }
+        },
+        "parameters": {
+          "aspect_ratio": "16:9",
+          "render_resolution": "3840x2160",
+          "output_count": 1,
+          "steps": 70,
+          "guidance_strength": 8.5,
+          "sharpness": 0.34,
+          "film_grain": 0.13,
+          "seed": 1706000000
+        },
+        "constraints": {
+          "must_include": [
+            "visible proboscis on all Moostik characters",
+            "micro-scale texture cues",
+            "Pixar-dark feature film quality",
+            "Caribbean child hands with ebony skin",
+            "BYSS aerosol can visible",
+            "gigantic scale from Moostik POV",
+            "toxic BYSS spray cloud",
+            "apocalyptic atmosphere",
+            "ember particles and soot"
+          ],
+          "must_not_include": [
+            "human faces in Moostik-scale scenes",
+            "modern technology",
+            "white/caucasian humans"
+          ]
+        }
       },
       "characterIds": [
         "baby-dorval"

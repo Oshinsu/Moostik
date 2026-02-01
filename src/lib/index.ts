@@ -37,6 +37,10 @@ export * from "./json-moostik-standard";
 // Non utilisé directement mais exporté pour référence future.
 export * from "./moostik-bible";
 
+// MOOSTIK Context System - Global context injected before each generation
+// SOTA Janvier 2026 - Standard BLOODWINGS
+export * from "./moostik-context";
+
 export { cn } from "./utils";
 
 // ============================================================================
