@@ -1047,7 +1047,7 @@ export function createDefaultConfig(project: EditorProject, presetId?: string): 
       crf: 23,
       preset: preset?.video.preset || "medium",
       hdr: preset?.video.hdr || "sdr",
-      colorSpace: project.settings.colorSpace,
+      colorSpace: project.settings.colorSpace as "sRGB" | "Rec709" | "Rec2020" | "DCI-P3",
       colorDepth: preset?.video.colorDepth || 8,
       pixelFormat: preset?.video.pixelFormat || "yuv420p",
       twoPass: preset?.video.twoPass || false,

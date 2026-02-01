@@ -69,8 +69,8 @@ async function main() {
   const response = await fetch(`${BASE_URL}/api/references`);
   const data = await response.json();
   
-  const characters = data.characters.map((c: any) => ({ type: "character" as const, id: c.id, name: c.name }));
-  const locations = data.locations.map((l: any) => ({ type: "location" as const, id: l.id, name: l.name }));
+  const characters = data.characters.map((c: { id: string; name: string }) => ({ type: "character" as const, id: c.id, name: c.name }));
+  const locations = data.locations.map((l: { id: string; name: string }) => ({ type: "location" as const, id: l.id, name: l.name }));
   
   console.log(`📊 À générer: ${characters.length} personnages + ${locations.length} lieux = ${characters.length + locations.length} images\n`);
   

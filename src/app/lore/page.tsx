@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,19 +13,18 @@ import { MOOSTIK_INVARIANTS, MOOSTIK_NEGATIVE_PROMPT, CAMERA_ANGLES } from "@/ty
 export default function LorePage() {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
 
-  const fetchEpisodes = useCallback(async () => {
-    try {
-      const res = await fetch("/api/episodes");
-      const data = await res.json();
-      setEpisodes(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error("Failed to fetch episodes:", error);
-    }
-  }, []);
-
   useEffect(() => {
+    const fetchEpisodes = async () => {
+      try {
+        const res = await fetch("/api/episodes");
+        const data = await res.json();
+        setEpisodes(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Failed to fetch episodes:", error);
+      }
+    };
     fetchEpisodes();
-  }, [fetchEpisodes]);
+  }, []);
 
   return (
     <div className="flex h-screen bg-[#0b0b0e] text-zinc-100">

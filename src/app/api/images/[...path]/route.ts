@@ -11,8 +11,11 @@ export async function GET(
   { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
-    const { path } = await params;
-    const imagePath = join(process.cwd(), "output", ...path);
+    const { path: pathSegments } = await params;
+    // Support both /api/images/ep0/... and /api/images/images/ep0/...
+    const imagePath = pathSegments[0] === "images" 
+      ? join(process.cwd(), "output", ...pathSegments)
+      : join(process.cwd(), "output", "images", ...pathSegments);
     
     const imageBuffer = await readFile(imagePath);
     

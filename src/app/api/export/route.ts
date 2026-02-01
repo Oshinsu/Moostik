@@ -99,10 +99,23 @@ export async function POST(request: NextRequest) {
     // Create job ID
     const jobId = `export-${body.episodeId}-${Date.now()}`;
 
-    // Build config
+    // Build config - extract only the fields we need to avoid type conflicts
     const config: APIExportConfig = {
-      video: { ...preset.video, ...body.customConfig?.video },
-      audio: { ...preset.audio, ...body.customConfig?.audio },
+      video: { 
+        codec: preset.video?.codec,
+        resolution: preset.video?.resolution,
+        fps: preset.video?.fps,
+        bitrate: preset.video?.bitrate,
+        crf: preset.video?.crf,
+        colorDepth: preset.video?.colorDepth?.toString(),
+        ...body.customConfig?.video,
+      },
+      audio: { 
+        codec: preset.audio?.codec,
+        bitrate: preset.audio?.bitrate,
+        sampleRate: preset.audio?.sampleRate,
+        ...body.customConfig?.audio,
+      },
       output: {
         container: (preset as { output?: { container?: string } }).output?.container || "mp4",
         filename: `${body.episodeId}-${preset.id}`,

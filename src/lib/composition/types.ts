@@ -21,10 +21,10 @@ export interface Timeline {
 
   // Tracks
   videoTrack: VideoTrack;
-  dialogueTrack: AudioTrack;
-  musicTrack: AudioTrack;
-  sfxTrack: AudioTrack;
-  ambienceTrack: AudioTrack;
+  dialogueTrack: CompositionAudioTrack;
+  musicTrack: CompositionAudioTrack;
+  sfxTrack: CompositionAudioTrack;
+  ambienceTrack: CompositionAudioTrack;
 
   // Metadata
   createdAt: string;
@@ -38,7 +38,7 @@ export interface VideoTrack {
   transitions: Transition[];
 }
 
-export interface AudioTrack {
+export interface CompositionAudioTrack {
   id: string;
   type: "dialogue" | "music" | "sfx" | "ambience";
   clips: AudioClip[];
@@ -360,24 +360,28 @@ export const DEFAULT_COMPOSITION_SETTINGS = {
   // Output presets
   presets: {
     preview: {
+      format: "mp4" as const,
       resolution: { width: 1280, height: 720 },
       fps: 24,
       bitrate: "2M",
       codec: "h264" as const,
     },
     standard: {
+      format: "mp4" as const,
       resolution: { width: 1920, height: 1080 },
       fps: 24,
       bitrate: "8M",
       codec: "h264" as const,
     },
     high: {
+      format: "mp4" as const,
       resolution: { width: 2560, height: 1440 },
       fps: 24,
       bitrate: "15M",
       codec: "h265" as const,
     },
     cinema: {
+      format: "mov" as const,
       resolution: { width: 3840, height: 2160 },
       fps: 24,
       bitrate: "30M",

@@ -2,11 +2,11 @@ import Replicate from "replicate";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import type { CameraAngle, MoostikPrompt, Variation } from "@/types/moostik";
-import { promptToText, CAMERA_ANGLES } from "@/types/moostik";
+import { promptToText } from "@/types/moostik";
 import type { JsonMoostik } from "./json-moostik-standard";
 import { jsonMoostikToPrompt, getJsonMoostikNegative } from "./json-moostik-standard";
-import { withReplicateRetry, processBatch, REPLICATE_RETRY_OPTIONS } from "./retry";
-import { isLocalUrl, prepareUrlsForReplicate } from "./url-utils";
+import { withReplicateRetry, processBatch } from "./retry";
+import { prepareUrlsForReplicate } from "./url-utils";
 import { replicateLogger as logger, trackPerformance } from "./logger";
 import { ReplicateError, RateLimitError } from "./errors";
 import { config } from "./config";
@@ -22,6 +22,7 @@ const MAX_REFERENCE_IMAGES = config.replicate.maxReferenceImages;
 
 export interface GenerateImageOptions {
   prompt: string;
+  negativePrompt?: string;  // SOTA: Separate negative prompt for better control
   aspectRatio?: string;
   outputFormat?: "png" | "jpg" | "webp";
   seed?: number;
@@ -45,10 +46,11 @@ export interface BatchGenerationResult {
 export async function generateImage(
   options: GenerateImageOptions
 ): Promise<GenerateImageResult> {
-  const { prompt, aspectRatio = "16:9", outputFormat = "png", seed, referenceImages } = options;
+  const { prompt, negativePrompt, aspectRatio = "16:9", outputFormat = "png", seed, referenceImages } = options;
 
   logger.info("Generating image", {
     promptLength: prompt.length,
+    negativeLength: negativePrompt?.length ?? 0,
     aspectRatio,
     refCount: referenceImages?.length ?? 0,
   });
@@ -58,6 +60,11 @@ export async function generateImage(
     aspect_ratio: aspectRatio,
     output_format: outputFormat,
   };
+
+  // SOTA: Use separate negative_prompt parameter for better control
+  if (negativePrompt && negativePrompt.length > 0) {
+    input.negative_prompt = negativePrompt;
+  }
 
   if (seed !== undefined) {
     input.seed = seed;
@@ -92,11 +99,22 @@ export async function generateImage(
     }
   });
 
-  // Le output est un FileOutput avec une méthode url()
-  const fileOutput = output as { url: () => string } & Blob;
-  const url = fileOutput.url();
+  // Le output peut être différent selon la version de Replicate
+  let url: string;
+  
+  if (typeof output === 'string') {
+    url = output;
+  } else if (Array.isArray(output) && typeof output[0] === 'string') {
+    url = output[0];
+  } else if (output && typeof (output as { url: () => string }).url === 'function') {
+    url = (output as { url: () => string }).url();
+  } else if (output && typeof output === 'object' && 'url' in output) {
+    url = String((output as { url: unknown }).url);
+  } else {
+    throw new ReplicateError(`Unexpected output format from Replicate: ${typeof output}`, "INVALID_OUTPUT");
+  }
 
-  logger.info("Image generated successfully", { url: url.substring(0, 50) + "..." });
+  logger.info("Image generated successfully", { url: typeof url === 'string' ? url.substring(0, 50) + "..." : url });
 
   return { url, seed };
 }
@@ -114,7 +132,7 @@ export async function downloadImage(
   const filename = `${variationId}.png`;
   const localPath = path.join(outputDir, filename);
 
-  logger.debug("Downloading image", { url: imageUrl.substring(0, 50) + "..." });
+  logger.debug("Downloading image", { url: typeof imageUrl === 'string' ? imageUrl.substring(0, 50) + "..." : imageUrl });
 
   // Utiliser retry pour le téléchargement
   const buffer = await withReplicateRetry(async () => {
@@ -145,9 +163,10 @@ export async function generateAndSave(
   shotId: string,
   variationId: string,
   seed?: number,
-  referenceImages?: string[]
+  referenceImages?: string[],
+  negativePrompt?: string  // SOTA: Separate negative prompt
 ): Promise<GenerateImageResult> {
-  const result = await generateImage({ prompt, seed, referenceImages });
+  const result = await generateImage({ prompt, negativePrompt, seed, referenceImages });
   const localPath = await downloadImage(result.url, episodeId, shotId, variationId);
 
   return {
@@ -177,7 +196,7 @@ export async function generateVariation(
     const updatedJson = { ...json };
     updatedJson.camera = { ...json.camera, angle: angle.replace("_", " ") };
     
-    const angleToFraming: Record<string, any> = {
+    const angleToFraming: Record<string, string> = {
       extreme_wide: "extreme_wide",
       wide: "wide",
       medium: "medium",
@@ -187,20 +206,21 @@ export async function generateVariation(
     };
     
     updatedJson.composition = { 
-      ...json.composition, 
-      framing: angleToFraming[angle] || "medium" 
+      ...(json.composition || {}), 
+      framing: (angleToFraming[angle] || "medium") as "extreme_wide" | "wide" | "medium" | "close" | "extreme_close" | "macro"
     };
     
     promptText = jsonMoostikToPrompt(updatedJson);
-    const negative = getJsonMoostikNegative(updatedJson);
-    promptText = `${promptText}. AVOID: ${negative}`;
+    // SOTA: Extract negative prompt separately for better model control
+    const negativePrompt = getJsonMoostikNegative(updatedJson);
     aspectRatio = json.deliverable.aspect_ratio;
+    
+    return generateAndSave(promptText, episodeId, shotId, variationId, undefined, referenceImages, negativePrompt);
   } else {
     // C'est l'ancien format MoostikPrompt
     promptText = promptToText(moostikPrompt as MoostikPrompt, angle);
+    return generateAndSave(promptText, episodeId, shotId, variationId, undefined, referenceImages);
   }
-
-  return generateAndSave(promptText, episodeId, shotId, variationId, undefined, referenceImages);
 }
 
 // Générer toutes les variations d'un shot en parallèle

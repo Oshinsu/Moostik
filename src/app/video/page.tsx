@@ -86,7 +86,7 @@ export default function VideoPage() {
 
   return (
     <div className="flex h-screen bg-[#0b0b0e]">
-      <Sidebar />
+      <Sidebar episodes={episodes} />
 
       <main className="flex-1 overflow-hidden flex flex-col">
         {/* Header - MOOSTIK Bloodwings Style */}

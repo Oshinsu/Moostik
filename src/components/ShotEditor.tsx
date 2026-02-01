@@ -196,9 +196,9 @@ export function ShotEditor({ shot, open, onClose, onSave }: ShotEditorProps) {
                                   : "bg-[#14131a] border-blood-900/10 hover:border-blood-900/30"
                               )}
                             >
-                              <div className="w-10 h-10 rounded-lg overflow-hidden bg-zinc-900 border border-white/5">
+                              <div className="w-10 h-10 rounded-lg overflow-hidden bg-zinc-900 border border-white/5 relative">
                                 {loc.referenceImages?.[0] ? (
-                                  <img src={loc.referenceImages[0]} alt="" className="w-full h-full object-cover" />
+                                  <Image src={loc.referenceImages[0]} alt="" fill unoptimized className="object-cover" />
                                 ) : (
                                   <div className="w-full h-full flex items-center justify-center text-lg">🏛️</div>
                                 )}

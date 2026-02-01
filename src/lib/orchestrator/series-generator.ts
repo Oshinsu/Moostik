@@ -4,7 +4,7 @@
  * from narrative data, coordinating all generation modules.
  */
 
-import { Episode, Shot, Variation } from "@/types/episode";
+import { Episode, Shot } from "@/types/episode";
 import { getEpisode, getCharacter, getLocation } from "../storage";
 
 // Video generation
@@ -14,7 +14,6 @@ import {
   ShotVideoRequest,
   BatchVideoResult,
   AnimationType,
-  CameraMotion,
 } from "../video";
 
 // Audio generation
@@ -439,6 +438,20 @@ export class SeriesGenerator {
     for (const shot of shotsWithDialogue) {
       onProgress(`Processing ${shot.id}`, (processed / shotsWithDialogue.length) * 100);
 
+      // Map DialogueEmotion to VoiceEmotion
+      const emotionMap: Record<string, "neutral" | "happy" | "sad" | "angry" | "fearful" | "surprised" | "disgusted" | "whispering" | "shouting" | "crying"> = {
+        neutral: "neutral",
+        angry: "angry",
+        sad: "sad",
+        terrified: "fearful",
+        determined: "neutral",
+        loving: "happy",
+        mocking: "angry",
+        desperate: "crying",
+        triumphant: "happy",
+        melancholic: "sad",
+      };
+
       const request: DialogueSynthesisRequest = {
         episodeId: episode.id,
         shotId: shot.id,
@@ -447,7 +460,7 @@ export class SeriesGenerator {
           characterId: line.speakerId,
           text: line.text,
           textCreole: line.textCreole,
-          emotion: line.emotion as any,
+          emotion: emotionMap[line.emotion] || "neutral",
           intensity: 0.8,
           speakingStyle: line.type === "whisper" ? "whisper" : line.type === "scream" ? "shout" : "normal",
           pauseAfterMs: 500,
@@ -777,7 +790,7 @@ export class SeriesGenerator {
 
 export class SeriesGeneratorError extends MoostikError {
   constructor(message: string, details?: unknown) {
-    super(message, "SERIES_GENERATOR_ERROR", 500, details);
+    super(message, "SERIES_GENERATOR_ERROR", 500, details as Record<string, unknown> | undefined);
   }
 }
 

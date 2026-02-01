@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCharacters, saveCharacters, initializeCharacters } from "@/lib/storage";
 import type { Character } from "@/types/moostik";
+import { createErrorResponse, getStatusCode, ValidationError, NotFoundError, MoostikError } from "@/lib/errors";
+import { createLogger } from "@/lib/logger";
+
+const logger = createLogger("API:Characters");
 
 // GET /api/characters - Get all characters
 export async function GET() {
@@ -14,11 +18,8 @@ export async function GET() {
     
     return NextResponse.json(characters);
   } catch (error) {
-    console.error("[Characters] GET error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch characters" },
-      { status: 500 }
-    );
+    logger.error("GET error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -29,20 +30,14 @@ export async function POST(request: NextRequest) {
     const character = body as Character;
 
     if (!character.id || !character.name) {
-      return NextResponse.json(
-        { error: "Missing required fields: id, name" },
-        { status: 400 }
-      );
+      throw new ValidationError("Missing required fields: id, name");
     }
 
     const characters = await getCharacters();
     
     // Check if ID already exists
     if (characters.some(c => c.id === character.id)) {
-      return NextResponse.json(
-        { error: "Character with this ID already exists" },
-        { status: 409 }
-      );
+      throw new MoostikError("Character with this ID already exists", "CONFLICT", 409);
     }
 
     characters.push(character);
@@ -50,11 +45,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(character, { status: 201 });
   } catch (error) {
-    console.error("[Characters] POST error:", error);
-    return NextResponse.json(
-      { error: "Failed to create character" },
-      { status: 500 }
-    );
+    logger.error("POST error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -65,20 +57,14 @@ export async function PUT(request: NextRequest) {
     const { id, ...updates } = body as Character & { id: string };
 
     if (!id) {
-      return NextResponse.json(
-        { error: "Missing required field: id" },
-        { status: 400 }
-      );
+      throw new ValidationError("Missing required field: id");
     }
 
     const characters = await getCharacters();
     const index = characters.findIndex(c => c.id === id);
 
     if (index === -1) {
-      return NextResponse.json(
-        { error: "Character not found" },
-        { status: 404 }
-      );
+      throw new NotFoundError("Character", id);
     }
 
     characters[index] = { ...characters[index], ...updates };
@@ -86,10 +72,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(characters[index]);
   } catch (error) {
-    console.error("[Characters] PUT error:", error);
-    return NextResponse.json(
-      { error: "Failed to update character" },
-      { status: 500 }
-    );
+    logger.error("PUT error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }

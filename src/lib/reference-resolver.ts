@@ -12,7 +12,7 @@
  */
 
 import { getCharacters, getLocations } from "./storage";
-import type { Character, Location, Shot } from "@/types";
+import type { Character, Location, Shot, MoostikPrompt } from "@/types";
 import type {
   ClusterReferences,
   CharacterReference,
@@ -453,16 +453,17 @@ export async function checkGenerationReadiness(
  * Enrichit un prompt JsonMoostik avec les références d'images
  */
 export async function enrichPromptWithReferences(
-  prompt: any, // JsonMoostik ou MoostikPrompt
+  prompt: MoostikPrompt | Record<string, unknown>,
   characterIds: string[],
   locationIds: string[]
-): Promise<{ prompt: any; references: ClusterReferences }> {
+): Promise<{ prompt: MoostikPrompt | Record<string, unknown>; references: ClusterReferences }> {
   // Résoudre les références
   const references = await resolveReferencesForShot(characterIds, locationIds);
 
   // Si c'est un JsonMoostik avec des subjects, enrichir avec les reference_image
-  if (prompt && prompt.subjects && Array.isArray(prompt.subjects)) {
-    const enrichedSubjects = prompt.subjects.map((subject: any) => {
+  const promptRecord = prompt as Record<string, unknown>;
+  if (promptRecord && promptRecord.subjects && Array.isArray(promptRecord.subjects)) {
+    const enrichedSubjects = (promptRecord.subjects as Array<{ id?: string; name?: string }>).map((subject) => {
       // Trouver la référence correspondante
       const charRef = references.characters.find(
         (r) => r.characterId === subject.id || r.characterName === subject.name

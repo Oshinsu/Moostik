@@ -18,7 +18,6 @@ import {
   VideoResolution,
   PROVIDER_CONFIGS,
   REPLICATE_MODELS,
-  MOOSTIK_ANIMATION_PROVIDERS,
   MOOSTIK_BUDGET_TIERS,
   MOOSTIK_SCENE_PROVIDERS,
   getOptimalProvider,
@@ -29,13 +28,21 @@ import {
   generateVideo,
   generateVideoAndWait,
   generateVideoWithRetry,
-  checkVideoStatus,
-  cancelVideo,
   downloadVideo,
   ReplicateVideoError,
 } from "./providers/replicate";
 import { createLogger, trackPerformance } from "../logger";
 import { config as appConfig } from "../config";
+import { VideoPromptOptimizer, OptimizedPrompt, optimizePrompt } from "./prompt-optimizer";
+import { SceneType } from "./prompt-templates";
+import { scorePrompt, PromptScore } from "./prompt-scorer";
+import { 
+  metricsStore, 
+  trackGenerationStart, 
+  trackGenerationComplete,
+  GenerationMetric,
+  ProviderStats,
+} from "./metrics";
 
 const logger = createLogger("VideoManager");
 
@@ -46,14 +53,29 @@ const logger = createLogger("VideoManager");
 export class VideoManager {
   private defaultProvider: VideoProvider = "wan-2.5";
   private budgetTier: keyof typeof MOOSTIK_BUDGET_TIERS = "draft";
+  private promptOptimizer: VideoPromptOptimizer;
+  private enableOptimization: boolean = true;
+  private enableMetrics: boolean = true;
 
-  constructor(options?: { defaultProvider?: VideoProvider; budgetTier?: keyof typeof MOOSTIK_BUDGET_TIERS }) {
+  constructor(options?: { 
+    defaultProvider?: VideoProvider; 
+    budgetTier?: keyof typeof MOOSTIK_BUDGET_TIERS;
+    enableOptimization?: boolean;
+    enableMetrics?: boolean;
+  }) {
     if (options?.defaultProvider) {
       this.defaultProvider = options.defaultProvider;
     }
     if (options?.budgetTier) {
       this.budgetTier = options.budgetTier;
     }
+    if (options?.enableOptimization !== undefined) {
+      this.enableOptimization = options.enableOptimization;
+    }
+    if (options?.enableMetrics !== undefined) {
+      this.enableMetrics = options.enableMetrics;
+    }
+    this.promptOptimizer = new VideoPromptOptimizer();
   }
 
   /**
@@ -66,6 +88,10 @@ export class VideoManager {
       fallbackProviders?: VideoProvider[];
       animationType?: AnimationType;
       sceneType?: string;
+      episodeId?: string;
+      shotId?: string;
+      variationId?: string;
+      skipOptimization?: boolean;
       onProgress?: (output: VideoGenerationOutput) => void;
     } = {}
   ): Promise<VideoGenerationOutput> {
@@ -73,16 +99,62 @@ export class VideoManager {
 
     // Select provider
     const provider = this.selectProvider(input, options);
+    
+    // Optimize prompt if enabled
+    let optimizedPrompt: OptimizedPrompt | null = null;
+    let finalInput = { ...input };
+    
+    if (this.enableOptimization && !options.skipOptimization) {
+      optimizedPrompt = this.promptOptimizer.optimizeForProvider(
+        input.prompt,
+        provider,
+        {
+          sceneType: options.sceneType as SceneType | undefined,
+          cameraMotion: input.cameraMotion?.type,
+        }
+      );
+      
+      finalInput.prompt = optimizedPrompt.optimized;
+      if (optimizedPrompt.negativePrompt && !finalInput.negativePrompt) {
+        finalInput.negativePrompt = optimizedPrompt.negativePrompt;
+      }
+      
+      logger.info(`Prompt optimized`, {
+        originalLength: input.prompt.length,
+        optimizedLength: optimizedPrompt.optimized.length,
+        score: optimizedPrompt.score.overall,
+        transformations: optimizedPrompt.appliedTransformations,
+      });
+    }
 
     logger.info(`Starting video generation`, {
       provider,
       model: REPLICATE_MODELS[provider],
       duration: input.durationSeconds,
       resolution: input.resolution,
+      promptScore: optimizedPrompt?.score.overall,
     });
+    
+    // Start metrics tracking
+    const metricId = `video-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    let metric: GenerationMetric | null = null;
+    
+    if (this.enableMetrics) {
+      metric = trackGenerationStart(metricId, provider, {
+        promptLength: finalInput.prompt.length,
+        promptScore: optimizedPrompt?.score.overall,
+        requestedDurationSec: input.durationSeconds,
+        aspectRatio: input.aspectRatio,
+        resolution: input.resolution,
+        episodeId: options.episodeId,
+        shotId: options.shotId,
+        variationId: options.variationId,
+        sceneType: options.sceneType,
+      });
+    }
 
     try {
-      const result = await generateVideoWithRetry(input, provider, {
+      const result = await generateVideoWithRetry(finalInput, provider, {
         onProgress: options.onProgress,
       });
 
@@ -91,27 +163,77 @@ export class VideoManager {
       result.costUsd = config.pricing.costPerSecond * (result.durationSeconds || input.durationSeconds);
 
       perf.end();
+      
+      // Record success in metrics
+      if (this.enableMetrics && metric) {
+        trackGenerationComplete(metricId, {
+          status: 'completed',
+          success: true,
+          costUsd: result.costUsd,
+          actualDurationSec: result.durationSeconds,
+        });
+      }
+      
       logger.info(`Video generation completed`, {
         provider,
         cost: result.costUsd,
         processingMs: result.actualProcessingMs,
+        promptScore: optimizedPrompt?.score.overall,
       });
 
       return result;
 
     } catch (error) {
       perf.end();
+      
+      // Record failure in metrics
+      if (this.enableMetrics && metric) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        trackGenerationComplete(metricId, {
+          status: 'failed',
+          success: false,
+          errorCode: 'GENERATION_FAILED',
+          errorMessage,
+        });
+      }
 
       // Try fallback providers
-      const fallbacks = options.fallbackProviders || this.getFallbackChain(provider, input);
+      const fallbacks = options.fallbackProviders || this.getFallbackChain(provider, finalInput);
       for (const fallbackProvider of fallbacks) {
         if (fallbackProvider === provider) continue;
 
         logger.warn(`Provider ${provider} failed, trying fallback: ${fallbackProvider}`);
+        
+        // Record retry
+        if (this.enableMetrics) {
+          metricsStore.recordRetry(metricId);
+        }
+        
         try {
-          const result = await generateVideoWithRetry(input, fallbackProvider, {
+          // Re-optimize for new provider
+          if (this.enableOptimization && !options.skipOptimization) {
+            const reOptimized = this.promptOptimizer.optimizeForProvider(
+              input.prompt,
+              fallbackProvider,
+              { sceneType: options.sceneType as SceneType | undefined }
+            );
+            finalInput.prompt = reOptimized.optimized;
+            finalInput.negativePrompt = reOptimized.negativePrompt;
+          }
+          
+          const result = await generateVideoWithRetry(finalInput, fallbackProvider, {
             onProgress: options.onProgress,
           });
+          
+          // Record fallback success
+          if (this.enableMetrics) {
+            trackGenerationComplete(metricId, {
+              status: 'completed',
+              success: true,
+              costUsd: result.costUsd,
+            });
+          }
+          
           return result;
         } catch (fallbackError) {
           logger.warn(`Fallback provider ${fallbackProvider} also failed`);
@@ -500,6 +622,100 @@ export class VideoManager {
       tier: this.budgetTier,
       ...MOOSTIK_BUDGET_TIERS[this.budgetTier],
     };
+  }
+
+  // ============================================
+  // PROMPT OPTIMIZATION
+  // ============================================
+
+  /**
+   * Optimize a prompt for a specific provider
+   */
+  optimizePrompt(
+    prompt: string,
+    provider?: VideoProvider,
+    options?: { sceneType?: SceneType; cameraMotion?: string }
+  ): OptimizedPrompt {
+    const p = provider || this.defaultProvider;
+    return this.promptOptimizer.optimizeForProvider(prompt, p, options);
+  }
+
+  /**
+   * Score a prompt without optimization
+   */
+  scorePrompt(prompt: string, provider?: VideoProvider): PromptScore {
+    const p = provider || this.defaultProvider;
+    return scorePrompt(prompt, p);
+  }
+
+  /**
+   * Enable/disable prompt optimization
+   */
+  setOptimizationEnabled(enabled: boolean): void {
+    this.enableOptimization = enabled;
+    logger.info(`Prompt optimization ${enabled ? 'enabled' : 'disabled'}`);
+  }
+
+  // ============================================
+  // METRICS
+  // ============================================
+
+  /**
+   * Get metrics for a specific provider
+   */
+  getProviderMetrics(provider?: VideoProvider): ProviderStats {
+    const p = provider || this.defaultProvider;
+    return metricsStore.getProviderStats(p);
+  }
+
+  /**
+   * Get all provider metrics
+   */
+  getAllProviderMetrics(): ProviderStats[] {
+    return metricsStore.getAllProviderStats();
+  }
+
+  /**
+   * Get current session metrics
+   */
+  getSessionMetrics() {
+    return metricsStore.getCurrentSession();
+  }
+
+  /**
+   * Start a new metrics session
+   */
+  startMetricsSession(sessionId?: string) {
+    return metricsStore.startSession(sessionId);
+  }
+
+  /**
+   * End current metrics session
+   */
+  endMetricsSession() {
+    return metricsStore.endSession();
+  }
+
+  /**
+   * Export all metrics
+   */
+  exportMetrics() {
+    return metricsStore.exportMetrics();
+  }
+
+  /**
+   * Get quality correlation data
+   */
+  getQualityCorrelation(provider?: VideoProvider) {
+    return metricsStore.getQualityCorrelation(provider);
+  }
+
+  /**
+   * Enable/disable metrics tracking
+   */
+  setMetricsEnabled(enabled: boolean): void {
+    this.enableMetrics = enabled;
+    logger.info(`Metrics tracking ${enabled ? 'enabled' : 'disabled'}`);
   }
 }
 

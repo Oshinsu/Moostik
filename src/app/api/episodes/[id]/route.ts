@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEpisode, saveEpisode, deleteEpisode } from "@/lib/storage";
+import { createErrorResponse, getStatusCode, NotFoundError } from "@/lib/errors";
+import { createLogger } from "@/lib/logger";
+
+const logger = createLogger("API:Episode");
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -12,19 +16,13 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const episode = await getEpisode(id);
 
     if (!episode) {
-      return NextResponse.json(
-        { error: "Episode not found" },
-        { status: 404 }
-      );
+      throw new NotFoundError("Episode", id);
     }
 
     return NextResponse.json(episode);
   } catch (error) {
-    console.error("[Episode] GET error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch episode" },
-      { status: 500 }
-    );
+    logger.error("GET error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -35,10 +33,7 @@ export async function PUT(request: NextRequest, context: RouteContext) {
     const episode = await getEpisode(id);
 
     if (!episode) {
-      return NextResponse.json(
-        { error: "Episode not found" },
-        { status: 404 }
-      );
+      throw new NotFoundError("Episode", id);
     }
 
     const body = await request.json();
@@ -53,11 +48,8 @@ export async function PUT(request: NextRequest, context: RouteContext) {
     await saveEpisode(episode);
     return NextResponse.json(episode);
   } catch (error) {
-    console.error("[Episode] PUT error:", error);
-    return NextResponse.json(
-      { error: "Failed to update episode" },
-      { status: 500 }
-    );
+    logger.error("PUT error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -68,10 +60,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     await deleteEpisode(id);
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("[Episode] DELETE error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete episode" },
-      { status: 500 }
-    );
+    logger.error("DELETE error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }

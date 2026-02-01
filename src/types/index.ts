@@ -10,7 +10,16 @@ export type {
   Variation,
   Shot,
   Episode,
-  Act
+  Act,
+  // Dialogue types
+  DialogueType,
+  DialogueEmotion,
+  DialogueLine,
+  // Audio types
+  AudioTrackType,
+  AudioIntensity,
+  ShotAudioTrack,
+  ShotAudio
 } from "./episode";
 
 // Character types
@@ -62,3 +71,11 @@ export {
   createEmptyClusterReferences,
   getClusterTypeLabel
 } from "./scene-cluster";
+
+// Generated Image types
+export type {
+  GeneratedImage,
+  GeneratedImageWithEpisode,
+  GeneratedImageStats,
+  GeneratedImagesResponse
+} from "./generated-image";

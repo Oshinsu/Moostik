@@ -18,7 +18,6 @@ import {
   Search,
   X,
   Heart,
-  Swords,
   Users,
   MapPin,
   Zap,
@@ -353,7 +352,7 @@ export default function CharactersPage() {
                   <Tabs defaultValue="overview" className="space-y-6">
                     <TabsList className="bg-zinc-900 border-zinc-800">
                       <TabsTrigger value="overview" className="data-[state=active]:bg-red-900">
-                        Vue d'ensemble
+                        Vue d&apos;ensemble
                       </TabsTrigger>
                       <TabsTrigger value="relations" className="data-[state=active]:bg-red-900">
                         Relations
@@ -453,7 +452,7 @@ export default function CharactersPage() {
                                 key={i}
                                 className="border-l-2 border-red-600 pl-4 py-1 text-zinc-300 italic"
                               >
-                                "{quote}"
+                                &quot;{quote}&quot;
                               </blockquote>
                             ))}
                           </div>

@@ -5,7 +5,6 @@ import { Sidebar } from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -19,7 +18,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Download,
   Search,
@@ -34,6 +32,8 @@ import {
   Check,
   Filter,
 } from "lucide-react";
+import { downloadImage, downloadMultipleImages } from "@/lib/download-utils";
+import { getCameraAngleLabel } from "@/data/camera-angles";
 
 interface ImageItem {
   id: string;
@@ -98,29 +98,45 @@ export default function LibraryPage() {
         }
       }
 
-      // Charger les images des épisodes (shots)
+      // Charger les images générées (scan du dossier output)
       const episodesResponse = await fetch("/api/episodes");
       const episodesData = await episodesResponse.json();
 
       for (const episode of episodesData || []) {
-        const epResponse = await fetch(`/api/episodes/${episode.id}`);
-        const epData = await epResponse.json();
-
-        for (const shot of epData.shots || []) {
-          for (const variation of shot.variations || []) {
-            if (variation.imageUrl) {
-              allImages.push({
-                id: `shot-${episode.id}-${shot.id}-${variation.id}`,
-                url: variation.imageUrl,
-                type: "shot",
-                category: `EP${episode.number} - ${shot.sceneType}`,
-                name: `Shot ${shot.number}: ${shot.name}`,
-                description: shot.description,
-                episodeId: episode.id,
-                shotId: shot.id,
-                createdAt: variation.generatedAt,
-              });
+        // Utiliser la nouvelle API de scan d'images générées
+        const generatedRes = await fetch(`/api/episodes/${episode.id}/generated-images`);
+        if (generatedRes.ok) {
+          const generatedData = await generatedRes.json();
+          
+          for (const img of generatedData.images || []) {
+            // Formatter le nom selon le type
+            let name = "";
+            let category = `EP${episode.number}`;
+            
+            if (img.type === "legacy") {
+              // Images legacy: shot-001.png
+              const shotNum = img.filename.match(/shot-(\d+)\.png/)?.[1];
+              name = `Shot ${shotNum || "?"} (Legacy)`;
+              category += " - Legacy";
+            } else {
+              // Variations: var-extreme_wide-xxx.png
+              const shotNum = img.shotId?.match(/shot-(\d+)/)?.[1] || img.shotId;
+              const angleLabel = getCameraAngleLabel(img.cameraAngle || "");
+              name = `Shot ${shotNum} - ${angleLabel}`;
+              category += ` - ${angleLabel}`;
             }
+
+            allImages.push({
+              id: img.id,
+              url: img.url,
+              type: "shot",
+              category,
+              name,
+              description: `Fichier: ${img.filename}`,
+              episodeId: episode.id,
+              shotId: img.shotId,
+              createdAt: img.createdAt,
+            });
           }
         }
       }
@@ -158,38 +174,23 @@ export default function LibraryPage() {
       return 0;
     });
 
-  const downloadImage = async (url: string, filename: string) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = `${filename}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error("Erreur téléchargement:", error);
-      // Fallback: ouvrir dans un nouvel onglet
-      window.open(url, "_blank");
-    }
-  };
-
   const downloadSelected = async () => {
     const selectedItems = images.filter((img) => selectedImages.has(img.id));
-    for (const img of selectedItems) {
-      await downloadImage(img.url, img.name.replace(/[^a-zA-Z0-9]/g, "_"));
-      await new Promise((r) => setTimeout(r, 500)); // Délai entre chaque download
-    }
+    await downloadMultipleImages(
+      selectedItems.map((img) => ({
+        url: img.url,
+        filename: img.name.replace(/[^a-zA-Z0-9]/g, "_"),
+      }))
+    );
   };
 
   const downloadAll = async () => {
-    for (const img of filteredImages) {
-      await downloadImage(img.url, img.name.replace(/[^a-zA-Z0-9]/g, "_"));
-      await new Promise((r) => setTimeout(r, 500));
-    }
+    await downloadMultipleImages(
+      filteredImages.map((img) => ({
+        url: img.url,
+        filename: img.name.replace(/[^a-zA-Z0-9]/g, "_"),
+      }))
+    );
   };
 
   const toggleImageSelection = (id: string) => {

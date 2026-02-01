@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getLocations, saveLocations, initializeLocations } from "@/lib/storage";
 import type { Location } from "@/types/moostik";
+import { createErrorResponse, getStatusCode, ValidationError, NotFoundError, MoostikError } from "@/lib/errors";
+import { createLogger } from "@/lib/logger";
+
+const logger = createLogger("API:Locations");
 
 // GET /api/locations - Get all locations
 export async function GET() {
@@ -14,11 +18,8 @@ export async function GET() {
     
     return NextResponse.json(locations);
   } catch (error) {
-    console.error("[Locations] GET error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch locations" },
-      { status: 500 }
-    );
+    logger.error("GET error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -29,20 +30,14 @@ export async function POST(request: NextRequest) {
     const location = body as Location;
 
     if (!location.id || !location.name) {
-      return NextResponse.json(
-        { error: "Missing required fields: id, name" },
-        { status: 400 }
-      );
+      throw new ValidationError("Missing required fields: id, name");
     }
 
     const locations = await getLocations();
     
     // Check if ID already exists
     if (locations.some(l => l.id === location.id)) {
-      return NextResponse.json(
-        { error: "Location with this ID already exists" },
-        { status: 409 }
-      );
+      throw new MoostikError("Location with this ID already exists", "CONFLICT", 409);
     }
 
     locations.push(location);
@@ -50,11 +45,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(location, { status: 201 });
   } catch (error) {
-    console.error("[Locations] POST error:", error);
-    return NextResponse.json(
-      { error: "Failed to create location" },
-      { status: 500 }
-    );
+    logger.error("POST error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }
 
@@ -65,20 +57,14 @@ export async function PUT(request: NextRequest) {
     const { id, ...updates } = body as Location & { id: string };
 
     if (!id) {
-      return NextResponse.json(
-        { error: "Missing required field: id" },
-        { status: 400 }
-      );
+      throw new ValidationError("Missing required field: id");
     }
 
     const locations = await getLocations();
     const index = locations.findIndex(l => l.id === id);
 
     if (index === -1) {
-      return NextResponse.json(
-        { error: "Location not found" },
-        { status: 404 }
-      );
+      throw new NotFoundError("Location", id);
     }
 
     locations[index] = { ...locations[index], ...updates };
@@ -86,10 +72,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(locations[index]);
   } catch (error) {
-    console.error("[Locations] PUT error:", error);
-    return NextResponse.json(
-      { error: "Failed to update location" },
-      { status: 500 }
-    );
+    logger.error("PUT error", error);
+    return NextResponse.json(createErrorResponse(error), { status: getStatusCode(error) });
   }
 }

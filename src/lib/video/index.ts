@@ -33,3 +33,95 @@ export {
 
 // Legacy provider base (for custom providers)
 export { VideoProviderBase, createProvider } from "./provider-base";
+
+// ============================================
+// SOTA PROMPT OPTIMIZATION (January 2026)
+// ============================================
+
+// Prompt optimizer - adapts prompts per provider
+export {
+  VideoPromptOptimizer,
+  videoPromptOptimizer,
+  optimizePrompt,
+  getNegativePrompt,
+  scoreVideoPrompt,
+  type OptimizedPrompt,
+  type OptimizeOptions,
+} from "./prompt-optimizer";
+
+// Provider-specific prompt configurations
+export {
+  PROVIDER_PROMPT_CONFIGS,
+  getProviderConfig,
+  shouldAvoidTerm,
+  getBoostTerms,
+  getPreferredStyle,
+  getMaxPromptLength,
+  supportsNegativePrompt,
+  type ProviderPromptConfig,
+  type PromptStyle,
+} from "./provider-configs";
+
+// Scene-specific prompt templates
+export {
+  PROMPT_TEMPLATES,
+  getPromptTemplate,
+  applyTemplateToPrompt,
+  getCameraPreset,
+  getStyleGuide,
+  getAllSceneTypes,
+  getRecommendedProviders,
+  type SceneType,
+  type PromptTemplate,
+  type TemplatePlaceholder,
+  type StyleGuide,
+  type CameraPreset,
+} from "./prompt-templates";
+
+// Prompt quality scoring
+export {
+  scorePrompt,
+  quickScore,
+  getScoreGrade,
+  getScoreDescription,
+  type PromptScore,
+  type ScoreBreakdown,
+} from "./prompt-scorer";
+
+// ============================================
+// METRICS & ANALYTICS
+// ============================================
+
+export {
+  metricsStore,
+  trackGenerationStart,
+  trackGenerationComplete,
+  getProviderMetrics,
+  getAllMetrics,
+  startMetricsSession,
+  endMetricsSession,
+  getCurrentSessionMetrics,
+  type GenerationMetric,
+  type ProviderStats,
+  type SessionMetrics,
+  type QualityMetrics,
+} from "./metrics";
+
+// ============================================
+// IMAGE ANALYZER FOR VIDEO PROMPTS (KLING 2.6)
+// ============================================
+
+export {
+  ImageAnalyzer,
+  getImageAnalyzer,
+  generateVideoPromptForImage,
+  generateVideoPromptsForShot,
+  type ImageAnalysis,
+  type DetectedCharacter,
+  type EnvironmentAnalysis,
+  type CompositionAnalysis,
+  type SceneContext,
+  type VideoPromptSuggestion,
+  type CameraMotionSuggestion,
+  type MotionRegion,
+} from "./image-analyzer";

@@ -330,6 +330,11 @@ class PerformanceTracker {
       ...checkpointData,
     });
   }
+
+  /** Alias for finish() for backward compatibility */
+  end(): void {
+    this.finish();
+  }
 }
 
 export function trackPerformance(operation: string, context?: string): PerformanceTracker {

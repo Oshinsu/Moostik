@@ -469,21 +469,21 @@ export class LipSyncManager {
         case "sadtalker":
           result = await withRetry(
             () => generateSadTalker(input, config),
-            { maxAttempts: 3, initialDelayMs: 2000 }
+            { maxRetries: 3, initialDelay: 2000 }
           );
           break;
 
         case "wav2lip":
           result = await withRetry(
             () => generateWav2Lip(input, config),
-            { maxAttempts: 3, initialDelayMs: 1000 }
+            { maxRetries: 3, initialDelay: 1000 }
           );
           break;
 
         case "did":
           result = await withRetry(
             () => generateDID(input, config),
-            { maxAttempts: 3, initialDelayMs: 2000 }
+            { maxRetries: 3, initialDelay: 2000 }
           );
           break;
 

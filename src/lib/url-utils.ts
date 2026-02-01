@@ -140,6 +140,14 @@ export async function localUrlToBase64(url: string): Promise<Base64Result | null
   try {
     const filePath = localUrlToFilePath(url);
     const buffer = await readFile(filePath);
+    
+    // Filtrer les images placeholders (< 1KB sont des fichiers vides ou invalides)
+    const MIN_VALID_IMAGE_SIZE = 1024; // 1KB minimum
+    if (buffer.length < MIN_VALID_IMAGE_SIZE) {
+      console.warn(`[URL Utils] Skipping placeholder image (${buffer.length} bytes < ${MIN_VALID_IMAGE_SIZE}): ${url}`);
+      return null;
+    }
+    
     const base64 = buffer.toString("base64");
     const mimeType = getMimeType(filePath);
     const dataUri = `data:${mimeType};base64,${base64}`;

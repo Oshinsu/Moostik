@@ -64,9 +64,9 @@ export const config = {
     /** Modèle utilisé pour la génération */
     model: "google/nano-banana-pro" as const,
     /** Nombre maximum de générations parallèles */
-    maxParallelGenerations: 2,
+    maxParallelGenerations: 1,
     /** Délai entre les générations (ms) */
-    generationDelayMs: 2000,
+    generationDelayMs: 5000,
     /** Nombre maximum d'images de référence */
     maxReferenceImages: 14,
     /** Timeout pour une génération (ms) */

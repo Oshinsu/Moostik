@@ -13,7 +13,7 @@ import {
   VideoGenerationOutput,
   VideoStatus,
   CameraMotion,
-  DEFAULT_PROVIDER_CONFIGS,
+  PROVIDER_CONFIGS,
 } from "../types";
 import { VideoProviderBase, VideoProviderError, registerProviderFactory } from "../provider-base";
 import { createLogger } from "../../logger";
@@ -81,7 +81,7 @@ export class KlingProvider extends VideoProviderBase {
   }
 
   get name(): VideoProvider {
-    return "kling";
+    return "kling-2.6";
   }
 
   async generate(input: VideoGenerationInput): Promise<VideoGenerationOutput> {
@@ -95,7 +95,7 @@ export class KlingProvider extends VideoProviderBase {
 
       const output: VideoGenerationOutput = {
         id: response.task_id,
-        provider: "kling",
+        provider: "kling-2.6",
         status: this.mapStatus(response.task_status),
         createdAt: new Date(response.created_at * 1000).toISOString(),
       };
@@ -115,7 +115,7 @@ export class KlingProvider extends VideoProviderBase {
 
       const output: VideoGenerationOutput = {
         id: jobId,
-        provider: "kling",
+        provider: "kling-2.6",
         status: this.mapStatus(response.task_status),
         createdAt: new Date(response.created_at * 1000).toISOString(),
       };
@@ -160,13 +160,13 @@ export class KlingProvider extends VideoProviderBase {
     const status = await this.checkStatus(jobId);
 
     if (!status.videoUrl) {
-      throw new VideoProviderError("kling", "NO_VIDEO", "Video URL not available");
+      throw new VideoProviderError("kling-2.6", "NO_VIDEO", "Video URL not available");
     }
 
     // Download video file
     const response = await fetch(status.videoUrl);
     if (!response.ok) {
-      throw new VideoProviderError("kling", "DOWNLOAD_FAILED", `Failed to download video: ${response.status}`);
+      throw new VideoProviderError("kling-2.6", "DOWNLOAD_FAILED", `Failed to download video: ${response.status}`);
     }
 
     const buffer = await response.arrayBuffer();
@@ -187,7 +187,7 @@ export class KlingProvider extends VideoProviderBase {
 
   private buildRequest(input: VideoGenerationInput): KlingCreateRequest {
     const request: KlingCreateRequest = {
-      model: this.config.model,
+      model: this.config.replicateModel || "kling-v2.6-pro",
       prompt: this.preparePrompt(input),
       duration: input.durationSeconds <= 5 ? "5" : "10",
       aspect_ratio: input.aspectRatio as "16:9" | "9:16" | "1:1",
@@ -282,7 +282,7 @@ export class KlingProvider extends VideoProviderBase {
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
       throw new VideoProviderError(
-        "kling",
+        "kling-2.6",
         `HTTP_${response.status}`,
         error.message || `HTTP error ${response.status}`,
         response.status === 429 || response.status >= 500
@@ -303,7 +303,7 @@ export class KlingProvider extends VideoProviderBase {
 
     if (!response.ok) {
       throw new VideoProviderError(
-        "kling",
+        "kling-2.6",
         `HTTP_${response.status}`,
         `Failed to query task: ${response.status}`,
         response.status >= 500
@@ -335,7 +335,7 @@ export class KlingProvider extends VideoProviderBase {
     }
 
     const message = error instanceof Error ? error.message : "Unknown error";
-    return new VideoProviderError("kling", "UNKNOWN", message, true);
+    return new VideoProviderError("kling-2.6", "UNKNOWN", message, true);
   }
 }
 
@@ -344,19 +344,15 @@ export class KlingProvider extends VideoProviderBase {
 // ============================================
 
 export function createKlingProvider(apiKey?: string): KlingProvider {
-  const defaultConfig = DEFAULT_PROVIDER_CONFIGS.kling;
+  const defaultConfig = PROVIDER_CONFIGS["kling-2.6"];
 
   const config: VideoProviderConfig = {
-    provider: "kling",
+    ...defaultConfig,
     apiKey: apiKey || process.env.KLING_API_KEY || "",
-    model: defaultConfig.model!,
-    maxConcurrent: defaultConfig.maxConcurrent!,
-    timeoutMs: defaultConfig.timeoutMs!,
-    capabilities: defaultConfig.capabilities!,
   };
 
   return new KlingProvider(config);
 }
 
 // Register with factory
-registerProviderFactory("kling", (config) => new KlingProvider(config));
+registerProviderFactory("kling-2.6", (config) => new KlingProvider(config));

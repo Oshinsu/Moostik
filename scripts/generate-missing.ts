@@ -6,9 +6,6 @@
 
 const BASE_URL = "http://localhost:3000";
 
-const MISSING_CHARACTERS = ["papy-moostik", "young-papy", "baby-papy", "mama-moostik", "singer-stegomyia"];
-const MISSING_LOCATIONS = ["tire-fortress", "university-culex", "cathedral-sang", "memorial-genocide", "nursery-pods", "blood-bank-vault"];
-
 async function generateOne(type: "character" | "location", id: string): Promise<boolean> {
   try {
     console.log(`\n🎨 Génération ${type}: ${id}...`);
@@ -48,12 +45,12 @@ async function main() {
   const data = await response.json();
   
   const missingChars = data.characters
-    .filter((c: any) => !c.referenceImages || c.referenceImages.length === 0)
-    .map((c: any) => c.id);
+    .filter((c: { id: string; referenceImages?: string[] }) => !c.referenceImages || c.referenceImages.length === 0)
+    .map((c: { id: string }) => c.id);
     
   const missingLocs = data.locations
-    .filter((l: any) => !l.referenceImages || l.referenceImages.length === 0)
-    .map((l: any) => l.id);
+    .filter((l: { id: string; referenceImages?: string[] }) => !l.referenceImages || l.referenceImages.length === 0)
+    .map((l: { id: string }) => l.id);
   
   console.log(`📊 Manquants: ${missingChars.length} personnages + ${missingLocs.length} lieux\n`);
   

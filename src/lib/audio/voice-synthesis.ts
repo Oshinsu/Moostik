@@ -345,14 +345,14 @@ export class VoiceSynthesisManager {
         case "elevenlabs":
           result = await withRetry(
             () => synthesizeElevenLabs(input, config),
-            { maxAttempts: 3, initialDelayMs: 1000 }
+            { maxRetries: 3, initialDelay: 1000 }
           );
           break;
 
         case "fish":
           result = await withRetry(
             () => synthesizeFishAudio(input, config),
-            { maxAttempts: 3, initialDelayMs: 1000 }
+            { maxRetries: 3, initialDelay: 1000 }
           );
           break;
 

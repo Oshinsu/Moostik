@@ -7,7 +7,7 @@ import {
   checkGenerationReadiness 
 } from "@/lib/reference-resolver";
 import type { ParallelShotGeneration } from "@/lib/replicate";
-import type { VariationStatus, ShotStatus } from "@/types/moostik";
+import type { VariationStatus, ShotStatus, MoostikPrompt } from "@/types/moostik";
 
 // POST /api/generate/batch - Generate multiple shots in parallel
 export async function POST(request: NextRequest) {
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 
         return {
           shotId: shot.id,
-          prompt: enrichedPrompt,
+          prompt: enrichedPrompt as MoostikPrompt,
           variations: shot.variations.filter(v => v.status === "pending" || v.status === "failed"),
           referenceImages: references.allImageUrls, // Inject reference images
         };

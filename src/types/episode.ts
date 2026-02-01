@@ -114,16 +114,30 @@ export interface AudioTrack {
   mixNotes?: string;
 }
 
+/** Piste audio simplifiée pour un shot */
+export interface ShotAudioTrack {
+  /** Type de piste */
+  type: AudioTrackType;
+  /** Description de l'audio */
+  description: string;
+  /** Intensité */
+  intensity: AudioIntensity;
+  /** Référence à un morceau existant */
+  reference?: string;
+  /** Volume (0-1) */
+  volume?: number;
+}
+
 /**
  * Spécification audio complète d'un shot
  */
 export interface ShotAudio {
   /** Piste musicale principale */
-  music?: AudioTrack;
+  music?: ShotAudioTrack;
   /** Son d'ambiance */
-  ambience?: AudioTrack;
+  ambience?: ShotAudioTrack;
   /** Effets sonores */
-  sfx?: AudioTrack[];
+  sfx?: ShotAudioTrack[];
   /** Ton émotionnel global */
   emotionalTone: string;
   /** Notes générales pour le sound designer */

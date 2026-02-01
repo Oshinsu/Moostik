@@ -3,12 +3,8 @@
  * Video composition and rendering using FFmpeg
  */
 
-import { spawn, ChildProcess } from "child_process";
+import { spawn } from "child_process";
 import {
-  Timeline,
-  VideoClip,
-  AudioClip,
-  Transition,
   TransitionType,
   OutputSettings,
   CompositionProgress,
@@ -32,7 +28,7 @@ const logger = createLogger("FFmpeg");
 
 export class FFmpegError extends MoostikError {
   constructor(message: string, details?: unknown) {
-    super(message, "FFMPEG_ERROR", 500, details);
+    super(message, "FFMPEG_ERROR", 500, details as Record<string, unknown> | undefined);
   }
 }
 
@@ -302,16 +298,17 @@ export async function executeFFmpeg(
 ): Promise<void> {
   const { onProgress, timeoutMs = 3600000 } = options; // 1 hour default timeout
 
+  const ffmpegPath: string = globalThis.process.env.FFMPEG_PATH || "ffmpeg";
+
   return new Promise((resolve, reject) => {
-    const ffmpegPath = process.env.FFMPEG_PATH || "ffmpeg";
     logger.debug("Executing FFmpeg", { args: args.join(" ").slice(0, 200) });
 
-    const process = spawn(ffmpegPath, args);
+    const ffmpegProcess = spawn(ffmpegPath, args);
     let stderr = "";
     let duration: number | null = null;
     let currentTime = 0;
 
-    process.stderr.on("data", (data) => {
+    ffmpegProcess.stderr.on("data", (data) => {
       const output = data.toString();
       stderr += output;
 
@@ -346,11 +343,11 @@ export async function executeFFmpeg(
     });
 
     const timeout = setTimeout(() => {
-      process.kill();
+      ffmpegProcess.kill();
       reject(new FFmpegError("FFmpeg execution timed out"));
     }, timeoutMs);
 
-    process.on("close", (code) => {
+    ffmpegProcess.on("close", (code) => {
       clearTimeout(timeout);
       if (code === 0) {
         resolve();
@@ -359,7 +356,7 @@ export async function executeFFmpeg(
       }
     });
 
-    process.on("error", (error) => {
+    ffmpegProcess.on("error", (error) => {
       clearTimeout(timeout);
       reject(new FFmpegError(`FFmpeg process error: ${error.message}`));
     });
@@ -452,20 +449,23 @@ export async function mixAudioTracks(
     inputLabels.push(`${i}:a`);
 
     // Build volume/fade filter
+    const track = tracks[i];
+    if (!track) continue;
+    
     const filters: string[] = [];
-    filters.push(`volume=${tracks[i].volume}`);
+    filters.push(`volume=${track.volume}`);
 
-    if (tracks[i].fadeInMs) {
-      filters.push(`afade=t=in:st=0:d=${tracks[i].fadeInMs / 1000}`);
+    if (track.fadeInMs) {
+      filters.push(`afade=t=in:st=0:d=${track.fadeInMs / 1000}`);
     }
 
-    if (tracks[i].fadeOutMs) {
+    if (track.fadeOutMs) {
       // Note: fadeout needs duration info, using adelay for start offset
-      filters.push(`afade=t=out:d=${tracks[i].fadeOutMs / 1000}`);
+      filters.push(`afade=t=out:d=${track.fadeOutMs / 1000}`);
     }
 
-    if (tracks[i].startMs) {
-      filters.unshift(`adelay=${tracks[i].startMs}|${tracks[i].startMs}`);
+    if (track.startMs) {
+      filters.unshift(`adelay=${track.startMs}|${track.startMs}`);
     }
 
     volumeFilters.push(`[${inputLabels[i]}]${filters.join(",")}[a${i}]`);

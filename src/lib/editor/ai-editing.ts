@@ -18,6 +18,7 @@ import type {
   SceneAnalysis,
   Keyframe,
   TransitionType,
+  Effect,
 } from "./types";
 
 // ============================================

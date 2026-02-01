@@ -6,7 +6,7 @@
 import {
   Timeline,
   VideoTrack,
-  AudioTrack,
+  CompositionAudioTrack,
   VideoClip,
   AudioClip,
   CompositionRequest,
@@ -44,7 +44,7 @@ const logger = createLogger("EpisodeAssembler");
 
 export class EpisodeAssemblyError extends MoostikError {
   constructor(message: string, details?: unknown) {
-    super(message, "EPISODE_ASSEMBLY_ERROR", 500, details);
+    super(message, "EPISODE_ASSEMBLY_ERROR", 500, details as Record<string, unknown> | undefined);
   }
 }
 
@@ -460,7 +460,7 @@ export class EpisodeAssembler {
         }
       }
     } catch (error) {
-      logger.warn("Failed to cleanup temp files", error);
+      logger.warn("Failed to cleanup temp files", { error: String(error) });
     }
   }
 

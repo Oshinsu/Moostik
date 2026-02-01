@@ -75,12 +75,11 @@ export abstract class VideoProviderBase {
     input: VideoGenerationInput,
     options?: Partial<RetryOptions>
   ): Promise<VideoGenerationOutput> {
-    const retryOptions: RetryOptions = {
-      maxAttempts: 3,
-      initialDelayMs: 5000,
-      maxDelayMs: 60000,
-      backoffFactor: 2,
-      retryableErrors: ["RATE_LIMITED", "SERVER_ERROR", "TIMEOUT"],
+    const retryOptions: Partial<RetryOptions> = {
+      maxRetries: 3,
+      initialDelay: 5000,
+      maxDelay: 60000,
+      backoffMultiplier: 2,
       ...options,
     };
 
@@ -265,7 +264,7 @@ export class VideoProviderError extends MoostikError {
     retryable = false,
     details?: unknown
   ) {
-    super(`[${provider}] ${message}`, `VIDEO_${code}`, 500, details);
+    super(`[${provider}] ${message}`, `VIDEO_${code}`, 500, details as Record<string, unknown> | undefined);
     this.provider = provider;
     this.retryable = retryable;
   }

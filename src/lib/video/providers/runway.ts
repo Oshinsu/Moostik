@@ -13,7 +13,7 @@ import {
   VideoGenerationOutput,
   VideoStatus,
   CameraMotion,
-  DEFAULT_PROVIDER_CONFIGS,
+  PROVIDER_CONFIGS,
 } from "../types";
 import { VideoProviderBase, VideoProviderError, registerProviderFactory } from "../provider-base";
 import { createLogger } from "../../logger";
@@ -72,7 +72,7 @@ export class RunwayProvider extends VideoProviderBase {
   }
 
   get name(): VideoProvider {
-    return "runway";
+    return "luma-ray-2"; // Runway deprecated, using Luma Ray 2 as fallback
   }
 
   async generate(input: VideoGenerationInput): Promise<VideoGenerationOutput> {
@@ -86,7 +86,7 @@ export class RunwayProvider extends VideoProviderBase {
 
       const output: VideoGenerationOutput = {
         id: response.id,
-        provider: "runway",
+        provider: "luma-ray-2",
         status: this.mapStatus(response.status),
         progress: response.progress || 0,
         createdAt: response.createdAt,
@@ -107,7 +107,7 @@ export class RunwayProvider extends VideoProviderBase {
 
       const output: VideoGenerationOutput = {
         id: jobId,
-        provider: "runway",
+        provider: "luma-ray-2",
         status: this.mapStatus(response.status),
         progress: response.progress || 0,
         createdAt: response.createdAt,
@@ -166,13 +166,13 @@ export class RunwayProvider extends VideoProviderBase {
     const status = await this.checkStatus(jobId);
 
     if (!status.videoUrl) {
-      throw new VideoProviderError("runway", "NO_VIDEO", "Video URL not available");
+      throw new VideoProviderError("luma-ray-2", "NO_VIDEO", "Video URL not available");
     }
 
     const response = await fetch(status.videoUrl);
     if (!response.ok) {
       throw new VideoProviderError(
-        "runway",
+        "luma-ray-2",
         "DOWNLOAD_FAILED",
         `Failed to download video: ${response.status}`
       );
@@ -197,7 +197,7 @@ export class RunwayProvider extends VideoProviderBase {
     const { width, height } = this.getResolutionDimensions(input);
 
     const request: RunwayCreateRequest = {
-      model: this.config.model,
+      model: this.config.replicateModel || "luma/ray-2",
       promptText: this.preparePrompt(input),
       width,
       height,
@@ -312,7 +312,7 @@ export class RunwayProvider extends VideoProviderBase {
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
       throw new VideoProviderError(
-        "runway",
+        "luma-ray-2",
         `HTTP_${response.status}`,
         error.message || error.error || `HTTP error ${response.status}`,
         response.status === 429 || response.status >= 500
@@ -333,7 +333,7 @@ export class RunwayProvider extends VideoProviderBase {
 
     if (!response.ok) {
       throw new VideoProviderError(
-        "runway",
+        "luma-ray-2",
         `HTTP_${response.status}`,
         `Failed to query task: ${response.status}`,
         response.status >= 500
@@ -366,7 +366,7 @@ export class RunwayProvider extends VideoProviderBase {
     }
 
     const message = error instanceof Error ? error.message : "Unknown error";
-    return new VideoProviderError("runway", "UNKNOWN", message, true);
+    return new VideoProviderError("luma-ray-2", "UNKNOWN", message, true);
   }
 }
 
@@ -375,19 +375,16 @@ export class RunwayProvider extends VideoProviderBase {
 // ============================================
 
 export function createRunwayProvider(apiKey?: string): RunwayProvider {
-  const defaultConfig = DEFAULT_PROVIDER_CONFIGS.runway;
+  // Use luma-ray-2 as fallback since Runway is now deprecated in favor of Luma
+  const defaultConfig = PROVIDER_CONFIGS["luma-ray-2"];
 
   const config: VideoProviderConfig = {
-    provider: "runway",
+    ...defaultConfig,
     apiKey: apiKey || process.env.RUNWAY_API_KEY || "",
-    model: defaultConfig.model!,
-    maxConcurrent: defaultConfig.maxConcurrent!,
-    timeoutMs: defaultConfig.timeoutMs!,
-    capabilities: defaultConfig.capabilities!,
   };
 
   return new RunwayProvider(config);
 }
 
 // Register with factory
-registerProviderFactory("runway", (config) => new RunwayProvider(config));
+registerProviderFactory("luma-ray-2", (config) => new RunwayProvider(config));

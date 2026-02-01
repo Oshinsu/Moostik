@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 import path from "path";
 import type { Episode, Shot, Variation, Character, Location } from "@/types";
-import { createEmptyPrompt, createShotVariations } from "@/data/prompt-helpers";
+import { createEmptyPrompt } from "@/data/prompt-helpers";
 import { MOOSTIK_CHARACTERS, HUMAN_CHARACTERS } from "@/data/characters.data";
 import { MOOSTIK_LOCATIONS } from "@/data/locations.data";
 import {
@@ -11,8 +11,31 @@ import {
   getOrSet,
 } from "./cache";
 import { storageLogger as logger } from "./logger";
-import { validateId, createSafePath } from "./validation";
-import { StorageError, NotFoundError } from "./errors";
+import { validateId } from "./validation";
+import { StorageError } from "./errors";
+
+// Mutex simple pour éviter les écritures concurrentes
+const writeLocks = new Map<string, Promise<void>>();
+
+async function acquireWriteLock(key: string): Promise<() => void> {
+  // Attendre que le lock précédent soit libéré
+  while (writeLocks.has(key)) {
+    await writeLocks.get(key);
+  }
+  
+  // Créer un nouveau lock
+  let releaseLock: () => void = () => {};
+  const lockPromise = new Promise<void>((resolve) => {
+    releaseLock = resolve;
+  });
+  
+  writeLocks.set(key, lockPromise);
+  
+  return () => {
+    writeLocks.delete(key);
+    releaseLock();
+  };
+}
 
 const DATA_DIR = path.join(process.cwd(), "data", "episodes");
 const CHARACTERS_FILE = path.join(process.cwd(), "data", "characters.json");
@@ -57,7 +80,8 @@ export async function getEpisode(id: string): Promise<Episode | null> {
 
   return getOrSet(episodesCache, cacheKey, async () => {
     await ensureDataDir();
-    const filePath = createSafePath(DATA_DIR, `${safeId}.json`);
+    // Ne pas utiliser createSafePath avec l'extension - validateId a déjà sécurisé l'ID
+    const filePath = path.join(DATA_DIR, `${safeId}.json`);
 
     try {
       const content = await readFile(filePath, "utf-8");
@@ -73,11 +97,15 @@ export async function getEpisode(id: string): Promise<Episode | null> {
 export async function saveEpisode(episode: Episode): Promise<void> {
   await ensureDataDir();
   const safeId = validateId(episode.id, "episode");
-  const filePath = createSafePath(DATA_DIR, `${safeId}.json`);
+  // Ne pas utiliser createSafePath avec l'extension - validateId a déjà sécurisé l'ID
+  const filePath = path.join(DATA_DIR, `${safeId}.json`);
 
-  episode.updatedAt = new Date().toISOString();
+  // Acquérir un lock exclusif pour cet épisode
+  const releaseLock = await acquireWriteLock(`episode:${safeId}`);
 
   try {
+    episode.updatedAt = new Date().toISOString();
+
     await writeFile(filePath, JSON.stringify(episode, null, 2), "utf-8");
 
     // Invalidate cache for this episode and the list
@@ -88,6 +116,8 @@ export async function saveEpisode(episode: Episode): Promise<void> {
   } catch (error) {
     logger.error("Failed to save episode", error, { id: safeId });
     throw new StorageError("write", filePath, error instanceof Error ? error : undefined);
+  } finally {
+    releaseLock();
   }
 }
 
@@ -163,20 +193,41 @@ export async function updateShot(
   shotId: string,
   updates: Partial<Shot>
 ): Promise<Shot | null> {
-  const episode = await getEpisode(episodeId);
-  if (!episode) return null;
+  // Acquérir un lock exclusif pour cet épisode avant de lire et modifier
+  const safeEpisodeId = validateId(episodeId, "episode");
+  const releaseLock = await acquireWriteLock(`episode:${safeEpisodeId}`);
+  
+  try {
+    // Lire directement depuis le fichier pour avoir la dernière version
+    const filePath = path.join(DATA_DIR, `${safeEpisodeId}.json`);
+    let episode: Episode;
+    try {
+      const content = await readFile(filePath, "utf-8");
+      episode = JSON.parse(content) as Episode;
+    } catch {
+      return null;
+    }
 
-  const shotIndex = episode.shots.findIndex((s) => s.id === shotId);
-  if (shotIndex === -1) return null;
+    const shotIndex = episode.shots.findIndex((s) => s.id === shotId);
+    if (shotIndex === -1) return null;
 
-  episode.shots[shotIndex] = {
-    ...episode.shots[shotIndex],
-    ...updates,
-    updatedAt: new Date().toISOString(),
-  };
+    episode.shots[shotIndex] = {
+      ...episode.shots[shotIndex],
+      ...updates,
+      updatedAt: new Date().toISOString(),
+    };
 
-  await saveEpisode(episode);
-  return episode.shots[shotIndex];
+    episode.updatedAt = new Date().toISOString();
+    await writeFile(filePath, JSON.stringify(episode, null, 2), "utf-8");
+    
+    // Invalider le cache
+    episodesCache.delete(`episode:${safeEpisodeId}`);
+    episodesCache.delete("all-episodes");
+    
+    return episode.shots[shotIndex];
+  } finally {
+    releaseLock();
+  }
 }
 
 export async function deleteShot(

@@ -7,6 +7,9 @@ export {
   SeriesGenerator,
   SeriesGeneratorError,
   getSeriesGenerator,
+} from "./series-generator";
+
+export type {
   GenerationPipeline,
   GenerationOptions,
   GenerationProgress,

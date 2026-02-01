@@ -42,7 +42,7 @@ export class ReplicateVideoError extends MoostikError {
     retryable = false,
     details?: unknown
   ) {
-    super(`[${provider}] ${message}`, `REPLICATE_VIDEO_${code}`, 500, details);
+    super(`[${provider}] ${message}`, `REPLICATE_VIDEO_${code}`, 500, details as Record<string, unknown> | undefined);
     this.provider = provider;
     this.replicateModel = model;
     this.retryable = retryable;
@@ -823,12 +823,11 @@ function sleep(ms: number): Promise<void> {
 // RETRY WRAPPER
 // ============================================
 
-const RETRY_OPTIONS: RetryOptions = {
-  maxAttempts: 3,
-  initialDelayMs: 2000,
-  maxDelayMs: 30000,
-  backoffFactor: 2,
-  retryableErrors: ["RATE_LIMITED", "TIMEOUT", "UNKNOWN"],
+const RETRY_OPTIONS: Partial<RetryOptions> = {
+  maxRetries: 3,
+  initialDelay: 2000,
+  maxDelay: 30000,
+  backoffMultiplier: 2,
 };
 
 /**

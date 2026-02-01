@@ -23,7 +23,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Badge } from "@/components/ui/badge";
 import { LoadingState } from "@/components/shared/LoadingState";
 import { useMoostik } from "@/contexts/MoostikContext";
-import type { Episode, Shot, Variation, ShotStatus, VariationStatus, SceneCluster, GenerationReadinessCheck, Act } from "@/types";
+import type { Episode, Shot, Variation, SceneCluster, GenerationReadinessCheck } from "@/types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
@@ -76,14 +76,7 @@ export default function EpisodePage() {
     fetchEpisode();
   }, [fetchEpisode]);
 
-  // Fetch clusters and readiness when episode changes
-  useEffect(() => {
-    if (episode && episode.shots.length > 0) {
-      fetchClustersAndReadiness();
-    }
-  }, [episode?.id, episode?.shots.length]);
-
-  const fetchClustersAndReadiness = async () => {
+  const fetchClustersAndReadiness = useCallback(async () => {
     if (!episode) return;
     
     try {
@@ -111,7 +104,14 @@ export default function EpisodePage() {
     } catch (error) {
       console.error("Failed to fetch clusters/readiness:", error);
     }
-  };
+  }, [episode, episodeId]);
+
+  // Fetch clusters and readiness when episode changes
+  useEffect(() => {
+    if (episode && episode.shots.length > 0) {
+      fetchClustersAndReadiness();
+    }
+  }, [episode, fetchClustersAndReadiness]);
 
   const addShot = async () => {
     if (!newShotName.trim()) return;

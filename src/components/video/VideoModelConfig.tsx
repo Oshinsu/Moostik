@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -318,9 +319,9 @@ export function VideoModelConfig({
                 Dessinez jusqu'à 6 régions pour contrôler le mouvement individuellement.
                 Chaque région peut être animée, maintenue statique, ou supprimée.
               </p>
-              <div className="aspect-video bg-zinc-900 rounded-lg border border-zinc-800 flex items-center justify-center">
+              <div className="aspect-video bg-zinc-900 rounded-lg border border-zinc-800 flex items-center justify-center relative">
                 {sourceImageUrl ? (
-                  <img src={sourceImageUrl} alt="Source" className="max-h-full max-w-full object-contain" />
+                  <Image src={sourceImageUrl} alt="Source" fill unoptimized className="object-contain" />
                 ) : (
                   <p className="text-xs text-zinc-600">Chargez une image source pour utiliser Motion Brush</p>
                 )}

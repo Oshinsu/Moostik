@@ -173,7 +173,7 @@ export function CinemaStudio({
           </label>
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
             {CINEMA_PRESETS.filter((p) =>
-              p.category === "moostik" || p.category === "blockbuster" || p.category === "cinematic"
+              p.category === "moostik" || p.category === "blockbuster" || p.category === "noir"
             ).map((preset) => (
               <Button
                 key={preset.id}

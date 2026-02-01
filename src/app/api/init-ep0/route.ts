@@ -3,6 +3,7 @@ import { getEpisodes, getCharacters, getLocations, saveEpisode } from "@/lib/sto
 import { EP0_SHOTS_DEFINITIONS, createJsonMoostikForShot } from "@/lib/ep0-generator";
 import { createShot, createShotVariations } from "@/data/prompt-helpers";
 import { jsonMoostikToPrompt } from "@/lib/json-moostik-standard";
+import type { CameraAngle, MoostikPrompt } from "@/types";
 
 export async function POST() {
   try {
@@ -52,7 +53,7 @@ export async function POST() {
       // Note: Dans notre système, shot.prompt est l'objet structuré
       
       // Créer les variations (5 angles par shot pour être SOTA)
-      const angles = ["extreme_wide", "wide", "medium", "close_up", "low_angle"] as any[];
+      const angles: CameraAngle[] = ["extreme_wide", "wide", "medium", "close_up", "low_angle"];
       shot.variations = createShotVariations(shot, angles);
       
       return shot;

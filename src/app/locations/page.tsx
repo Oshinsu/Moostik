@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sidebar } from "@/components/Sidebar";
 import type { Location, Episode } from "@/types/moostik";
@@ -287,7 +286,7 @@ export default function LocationsPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-zinc-100 mb-4 flex items-center gap-2">
                         <span className="text-blood-400">🖼️</span>
-                        Galerie d'Images ({selectedLocation.referenceImages.length})
+                        Galerie d&apos;Images ({selectedLocation.referenceImages.length})
                       </h3>
                       
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

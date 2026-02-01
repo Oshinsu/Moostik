@@ -192,7 +192,7 @@ export function createJsonMoostikForShot(
   };
 
   // Composition
-  const angleToFraming: Record<CameraAngle, any> = {
+  const angleToFraming: Record<CameraAngle, string> = {
     extreme_wide: "extreme_wide",
     wide: "wide",
     medium: "medium",
@@ -206,7 +206,7 @@ export function createJsonMoostikForShot(
   };
 
   json.composition = {
-    framing: angleToFraming[shot.cameraAngle] || "medium",
+    framing: (angleToFraming[shot.cameraAngle] || "medium") as "extreme_wide" | "wide" | "medium" | "close" | "extreme_close" | "macro",
     layout: "Golden ratio",
     depth: "Layered foreground and background"
   };

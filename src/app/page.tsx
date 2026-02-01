@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -17,11 +18,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Sidebar } from "@/components/Sidebar";
 import { Badge } from "@/components/ui/badge";
 import type { Episode, Character, Location } from "@/types/moostik";
+import type { GeneratedImageWithEpisode } from "@/types";
 
 export default function Home() {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [locations, setLocations] = useState<Location[]>([]);
+  const [recentImages, setRecentImages] = useState<GeneratedImageWithEpisode[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [newEpisode, setNewEpisode] = useState({
@@ -44,9 +47,33 @@ export default function Home() {
         locRes.json(),
       ]);
       
-      setEpisodes(Array.isArray(epData) ? epData : []);
+      const episodesList = Array.isArray(epData) ? epData : [];
+      setEpisodes(episodesList);
       setCharacters(Array.isArray(charData) ? charData : []);
       setLocations(Array.isArray(locData) ? locData : []);
+
+      // Charger les images générées de tous les épisodes
+      const allImages: GeneratedImageWithEpisode[] = [];
+      for (const ep of episodesList) {
+        try {
+          const imgRes = await fetch(`/api/episodes/${ep.id}/generated-images`);
+          if (imgRes.ok) {
+            const imgData = await imgRes.json();
+            for (const img of imgData.images || []) {
+              allImages.push({
+                ...img,
+                episodeId: ep.id,
+              });
+            }
+          }
+        } catch {
+          // Ignorer les erreurs de chargement d'images
+        }
+      }
+      
+      // Trier par date et prendre les 12 plus récentes
+      allImages.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setRecentImages(allImages.slice(0, 12));
     } catch (error) {
       console.error("Failed to fetch data:", error);
     } finally {
@@ -76,9 +103,9 @@ export default function Home() {
     }
   };
 
-  // Calculate stats
+  // Calculate stats - utiliser les images générées réelles
   const stats = {
-    totalImages: episodes.reduce(
+    totalImages: recentImages.length > 0 ? recentImages.length : episodes.reduce(
       (sum, ep) => sum + ep.shots.reduce((s, shot) => s + shot.variations.filter(v => v.status === "completed").length, 0),
       0
     ),
@@ -174,6 +201,52 @@ export default function Home() {
             </div>
           ) : (
             <>
+              {/* Recent Generated Images Gallery */}
+              {recentImages.length > 0 && (
+                <section>
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h2 className="text-xl font-semibold text-zinc-100 flex items-center gap-2">
+                        <span className="text-amber-400">🖼️</span>
+                        Images Générées
+                      </h2>
+                      <p className="text-xs text-zinc-500 mt-1">{recentImages.length} images les plus récentes</p>
+                    </div>
+                    <Link href="/library">
+                      <Button variant="ghost" className="text-blood-400 hover:text-amber-400 hover:bg-blood-900/20">
+                        Voir toute la galerie →
+                      </Button>
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-6 gap-3">
+                    {recentImages.map((img) => (
+                      <Link key={img.id} href={`/library/episodes/${img.episodeId}/images`}>
+                        <Card className="bg-[#14131a]/80 border-blood-900/20 hover:border-blood-600/40 transition-all group cursor-pointer moostik-card-hover overflow-hidden">
+                          <div className="aspect-square relative bg-[#0b0b0e]">
+                            <img 
+                              src={img.url} 
+                              alt={img.filename}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0e] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute top-2 right-2">
+                              <Badge className={`text-[9px] ${img.type === "legacy" ? "bg-amber-500/80 text-black" : "bg-emerald-500/80 text-black"}`}>
+                                {img.type === "legacy" ? "Legacy" : img.cameraAngle?.substring(0, 4) || "Var"}
+                              </Badge>
+                            </div>
+                            <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <p className="text-[10px] text-white truncate font-medium">{img.filename}</p>
+                            </div>
+                          </div>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               {/* Featured Characters */}
               <section>
                 <div className="flex items-center justify-between mb-4">
@@ -242,10 +315,12 @@ export default function Home() {
                       <Card className="bg-[#14131a]/80 border-blood-900/20 hover:border-blood-600/40 transition-all group cursor-pointer moostik-card-hover overflow-hidden">
                         <div className="aspect-video relative bg-[#0b0b0e]">
                           {loc.referenceImages && loc.referenceImages[0] ? (
-                            <img 
+                            <Image 
                               src={loc.referenceImages[0]} 
                               alt={loc.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              fill
+                              unoptimized
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-4xl opacity-30">🏛️</div>

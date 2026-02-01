@@ -416,7 +416,7 @@ export class MusicGenerationManager {
         case "suno":
           result = await withRetry(
             () => generateSuno(input, config),
-            { maxAttempts: 3, initialDelayMs: 2000 }
+            { maxRetries: 3, initialDelay: 2000 }
           );
 
           // Poll if not complete
@@ -428,7 +428,7 @@ export class MusicGenerationManager {
         case "udio":
           result = await withRetry(
             () => generateUdio(input, config),
-            { maxAttempts: 3, initialDelayMs: 2000 }
+            { maxRetries: 3, initialDelay: 2000 }
           );
 
           // Poll if not complete

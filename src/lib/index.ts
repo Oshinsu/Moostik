@@ -13,6 +13,7 @@ export * from "./storage";
 export * from "./replicate";
 export * from "./reference-resolver";
 export * from "./scene-cluster-manager";
+export * from "./ep0-generator";
 
 // ============================================================================
 // UTILITIES
@@ -31,7 +32,11 @@ export * from "./config";
 // ============================================================================
 
 export * from "./json-moostik-standard";
+
+// Note: moostik-bible contient les règles narratives et stylistiques de l'univers MOOSTIK.
+// Non utilisé directement mais exporté pour référence future.
 export * from "./moostik-bible";
+
 export { cn } from "./utils";
 
 // ============================================================================
@@ -56,4 +61,10 @@ export * from "./composition";
 // ORCHESTRATION (Automated Series Generation)
 // ============================================================================
 
+// Note: orchestrator contient la logique de génération automatisée d'épisodes complets.
+// Non utilisé directement dans l'UI mais disponible pour les scripts de génération en masse.
 export * from "./orchestrator";
+
+// Note: lib/api/ contient des helpers API client-side pour les composants frontend.
+// Ces helpers peuvent être importés directement depuis "@/lib/api" si nécessaire.
+// Actuellement non utilisés - les composants font des fetch() directs.
