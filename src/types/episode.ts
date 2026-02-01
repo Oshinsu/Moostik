@@ -184,6 +184,12 @@ export interface Variation {
   videoProvider?: string;
   /** Video generation timestamp */
   videoGeneratedAt?: string;
+  /** Optimized video prompt */
+  videoPrompt?: string;
+  /** Video duration in seconds */
+  videoDuration?: number;
+  /** Camera motion type */
+  videoCameraMotion?: string;
 
   // Lip sync
   /** Lip sync status */
