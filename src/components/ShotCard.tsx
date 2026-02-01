@@ -169,8 +169,13 @@ export function ShotCard({
                   ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-400" 
                   : "moostik-btn-blood text-white shadow-lg shadow-blood-900/20"
               )}
-              onClick={() => onGenerateAll(shot)}
-              disabled={isGenerating || (shot.status === "completed" && !confirm("Régénérer toutes les images ?"))}
+              onClick={() => {
+                if (shot.status === "completed") {
+                  if (!confirm("Régénérer toutes les images ?")) return;
+                }
+                onGenerateAll(shot);
+              }}
+              disabled={isGenerating}
             >
               {isGenerating
                 ? "..."
