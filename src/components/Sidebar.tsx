@@ -212,8 +212,8 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
   const navItems = [
     { href: "/", icon: MoostikIcons.dashboard, label: "Quartier Général", sublabel: "Centre de commandement" },
     { href: "/generate", icon: MoostikIcons.generate, label: "Générateur", sublabel: "Images & Vidéos SOTA", badge: "NEW" },
-    { href: "/characters", icon: MoostikIcons.characters, label: "Les Bloodwings", sublabel: "16 âmes" },
-    { href: "/locations", icon: MoostikIcons.locations, label: "Territoires", sublabel: "8 lieux sacrés" },
+    { href: "/characters", icon: MoostikIcons.characters, label: "Les Bloodwings", sublabel: "19 âmes" },
+    { href: "/locations", icon: MoostikIcons.locations, label: "Territoires", sublabel: "12 lieux sacrés" },
     { href: "/shots", icon: MoostikIcons.shots, label: "Shots x9", sublabel: "Grille cinématique" },
     { href: "/cinema", icon: MoostikIcons.cinema, label: "Cinema Studio", sublabel: "Contrôle caméra pro" },
     { href: "/video", icon: MoostikIcons.video, label: "Vidéo I2V", sublabel: "12 modèles SOTA" },
