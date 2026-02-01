@@ -1,5 +1,9 @@
 /**
- * MOOSTIK - Données des personnages
+ * MOOSTIK - Données des personnages (LEGACY)
+ * 
+ * NOTE: La source de vérité est data/characters.json
+ * Ce fichier TypeScript est conservé pour compatibilité mais peut être désynchronisé.
+ * Pour les nouvelles données, utilisez l'API /api/characters qui lit le JSON.
  * 
  * Basé sur la Bible Moostik officielle
  * Style: Pixar démoniaque mignon + Architecture Renaissance Moostik

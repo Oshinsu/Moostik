@@ -1,5 +1,9 @@
 /**
- * MOOSTIK - Données des lieux
+ * MOOSTIK - Données des lieux (LEGACY)
+ * 
+ * NOTE: La source de vérité est data/locations.json
+ * Ce fichier TypeScript est conservé pour compatibilité mais peut être désynchronisé.
+ * Pour les nouvelles données, utilisez l'API /api/locations qui lit le JSON.
  * 
  * Architecture Renaissance Moostik
  */

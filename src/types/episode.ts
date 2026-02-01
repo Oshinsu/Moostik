@@ -158,6 +158,10 @@ export interface Act {
   title: string;
   description: string;
   shotIds: string[];
+  /** IDs des personnages présents dans cet acte */
+  characters?: string[];
+  /** IDs des lieux utilisés dans cet acte */
+  locations?: string[];
 }
 
 // ============================================================================

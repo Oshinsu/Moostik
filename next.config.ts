@@ -2,8 +2,7 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  // Standalone output for optimized serverless deployment
-  output: "standalone",
+  // NOTE: Removed output: "standalone" - @netlify/plugin-nextjs manages build output
   
   images: {
     remotePatterns: [

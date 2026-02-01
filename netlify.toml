@@ -39,10 +39,5 @@
   [headers.values]
     Cache-Control = "no-store, no-cache, must-revalidate"
 
-# Redirects for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Language = ["en"], Role = ["admin"]}
-  force = false
+# NOTE: Removed SPA redirect - breaks Next.js App Router
+# The @netlify/plugin-nextjs handles routing automatically
