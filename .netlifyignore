@@ -1,0 +1,12 @@
+# Ignore large output files for serverless function bundle
+/output/
+/data/
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Dev files
+/scripts/
