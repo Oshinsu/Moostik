@@ -202,7 +202,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Sinon, générer toutes les situations
-    return await generateAllSituations(character);
+    const allResults = await generateAllSituations(character);
+    return NextResponse.json(allResults);
 
   } catch (error) {
     console.error("[CharacterSituations] Error:", error);
