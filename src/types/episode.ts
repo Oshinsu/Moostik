@@ -233,7 +233,64 @@ export interface Shot {
   mixedAudioPath?: string;
   /** Total dialogue duration in milliseconds */
   dialogueDurationMs?: number;
+
+  // ============================================================================
+  // VIDEO GENERATION STRATEGY (SOTA Janvier 2026)
+  // ============================================================================
+  
+  /** Video generation strategy for this shot */
+  videoStrategy?: VideoStrategy;
+  
+  /** Generated frames for chaining */
+  generatedFrames?: GeneratedFrames;
 }
+
+// ============================================================================
+// VIDEO STRATEGY TYPES
+// ============================================================================
+
+/** Frame strategy for video generation */
+export type FrameStrategyType = "single" | "first_last" | "text_only";
+
+/** Video provider type */
+export type VideoProviderType = "kling" | "veo" | "luma" | "replicate";
+
+/**
+ * Video generation strategy for a shot
+ * Determines how the video should be generated
+ */
+export interface VideoStrategy {
+  /** Frame input strategy */
+  frameType: FrameStrategyType;
+  /** Recommended duration in seconds */
+  duration: 4 | 5 | 6 | 8 | 10;
+  /** Preferred video provider */
+  provider: VideoProviderType;
+  /** Shot to chain from (for continuity) */
+  chainFromShot?: string;
+  /** Motion complexity level */
+  motionComplexity?: "static" | "subtle" | "dynamic" | "complex";
+  /** Whether this shot requires chaining with previous */
+  requiresChaining?: boolean;
+  /** AI reasoning for this strategy */
+  reasoning?: string;
+}
+
+/**
+ * Generated frames extracted from video
+ * Used for multi-shot chaining
+ */
+export interface GeneratedFrames {
+  /** URL of first frame (for reference) */
+  first?: string;
+  /** URL of last frame (for chaining to next shot) */
+  last?: string;
+  /** Keyframes for storyboard preview */
+  keyframes?: string[];
+  /** Thumbnail URL */
+  thumbnail?: string;
+  /** When frames were extracted */
+  extractedAt?: string;
 
 /** Episode generation status */
 export type EpisodeGenerationStatus =

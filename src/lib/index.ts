@@ -33,6 +33,10 @@ export * from "./config";
 
 export * from "./json-moostik-standard";
 
+// JSON Standards for Video Providers - SOTA Janvier 2026
+export * from "./json-kling-standard";
+export * from "./json-veo-standard";
+
 // Note: moostik-bible contient les règles narratives et stylistiques de l'univers MOOSTIK.
 // Non utilisé directement mais exporté pour référence future.
 export * from "./moostik-bible";

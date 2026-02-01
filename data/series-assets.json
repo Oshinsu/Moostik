@@ -1,0 +1,850 @@
+{
+  "id": "series-assets",
+  "title": "MOOSTIK Series - Front Assets EXTENDED",
+  "description": "Assets complets pour les pages Front immersives de la série Moostik - 60+ assets",
+  "version": "2.0",
+  "totalAssets": 62,
+  "categories": [
+    {
+      "id": "hero-backgrounds",
+      "title": "Hero Backgrounds",
+      "description": "Backgrounds parallax pour les sections hero",
+      "assetCount": 8,
+      "shots": [
+        {
+          "id": "hero-landing-main",
+          "name": "Landing Hero - Martinique Mystique",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "task_type": "background_environment", "project": "MOOSTIK_SERIES_FRONT", "scene_intent": "Vue panoramique Martinique crépuscule, montagnes tropicales, brume mystérieuse, Pixar-démoniaque" },
+            "goal": "Cinematic establishing shot of Martinique at dusk, tropical mountains silhouetted against blood-red sky, mysterious fog, Pixar-demonic style, epic scale",
+            "invariants": ["Blood-red sky", "Mountain silhouettes", "No characters"],
+            "negative": ["people", "text", "modern buildings"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100001 }
+        },
+        {
+          "id": "hero-genocide-storm",
+          "name": "Hero - Genocide BYSS Storm",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "task_type": "dramatic_environment", "scene_intent": "Nuage BYSS envahissant la Martinique, ciel apocalyptique" },
+            "goal": "Apocalyptic sky during BYSS attack, toxic green-yellow cloud, red lightning, end-of-world atmosphere",
+            "invariants": ["Toxic cloud", "Lightning", "Apocalyptic"],
+            "negative": ["happy", "bright colors", "people"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100002 }
+        },
+        {
+          "id": "hero-night-jungle",
+          "name": "Hero - Night Jungle Moonlit",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "Jungle tropicale nocturne éclairée par la lune, mystérieuse" },
+            "goal": "Moonlit tropical jungle at night, silver light filtering through canopy, mysterious atmosphere, fireflies, Pixar quality",
+            "invariants": ["Moonlight", "Jungle canopy", "Mysterious"],
+            "negative": ["daylight", "people", "buildings"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100003 }
+        },
+        {
+          "id": "hero-sunrise-hope",
+          "name": "Hero - Sunrise of Hope",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "Lever de soleil sur la Martinique, espoir renaissant" },
+            "goal": "Dramatic sunrise over Martinique mountains, golden light breaking through clouds, hope symbolism, epic scale",
+            "invariants": ["Sunrise", "Golden rays", "Mountains"],
+            "negative": ["night", "storm", "dark"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100004 }
+        },
+        {
+          "id": "hero-underwater-blood",
+          "name": "Hero - Underwater Blood Current",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "Vue sous-marine abstraite, courants de sang" },
+            "goal": "Abstract underwater view, blood-red currents swirling, bioluminescent particles, dreamlike atmosphere, cinematic",
+            "invariants": ["Blood-red currents", "Underwater", "Bioluminescence"],
+            "negative": ["fish", "humans", "clear water"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100005 }
+        },
+        {
+          "id": "hero-micro-world",
+          "name": "Hero - Micro World POV",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "POV micro-monde, échelle gigantesque des objets humains" },
+            "goal": "Micro-scale POV showing gigantic everyday objects, grass blades like trees, dust particles like asteroids, magical realism",
+            "invariants": ["Micro-scale", "Giant objects", "Grass forest"],
+            "negative": ["normal scale", "humans", "text"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100006 }
+        },
+        {
+          "id": "hero-eminence-vision",
+          "name": "Hero - Eminence Vision",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "Vision mystique de l'Éminence, abstrait spirituel" },
+            "goal": "Abstract mystical vision, swirling purple and blood-red energies, silhouette of mysterious figure, prophetic atmosphere",
+            "invariants": ["Purple energy", "Mysterious silhouette", "Spiritual"],
+            "negative": ["clear figure", "modern", "realistic"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100007 }
+        },
+        {
+          "id": "hero-bar-interior",
+          "name": "Hero - Bar Ti-Sang Interior Wide",
+          "type": "background",
+          "status": "pending",
+          "prompt": {
+            "meta": { "model_version": "nano-banana-2-pro", "scene_intent": "Intérieur du Bar Ti-Sang, large shot ambiance" },
+            "goal": "Wide interior shot of Bar Ti-Sang speakeasy, amber candlelight, copper fixtures, micro-scale gothic luxury, Pixar quality",
+            "invariants": ["Amber lighting", "Speakeasy interior", "Micro-gothic"],
+            "negative": ["daylight", "modern", "human scale"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100008 }
+        }
+      ]
+    },
+    {
+      "id": "parallax-layers",
+      "title": "Parallax Layers",
+      "description": "Layers individuels pour effets parallax multi-profondeur",
+      "assetCount": 12,
+      "shots": [
+        {
+          "id": "parallax-mountains-far",
+          "name": "Layer - Far Mountains",
+          "type": "parallax_layer",
+          "depth": "far",
+          "status": "pending",
+          "prompt": {
+            "goal": "Isolated mountain silhouette layer, distant tropical mountains, dark blue-purple gradient, clean edges",
+            "invariants": ["Mountain silhouette", "Clean edges"],
+            "negative": ["foreground", "characters"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100010 }
+        },
+        {
+          "id": "parallax-jungle-mid",
+          "name": "Layer - Mid Jungle",
+          "type": "parallax_layer",
+          "depth": "mid",
+          "status": "pending",
+          "prompt": {
+            "goal": "Tropical jungle canopy layer, mid-ground vegetation silhouettes, dark green gradients",
+            "invariants": ["Jungle canopy", "Mid-ground"],
+            "negative": ["sky", "characters"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100011 }
+        },
+        {
+          "id": "parallax-fog-near",
+          "name": "Layer - Near Fog",
+          "type": "parallax_layer",
+          "depth": "near",
+          "status": "pending",
+          "prompt": {
+            "goal": "Atmospheric fog layer, wispy mist tendrils, blood-red tinted, ethereal",
+            "invariants": ["Fog wisps", "Blood-red tint"],
+            "negative": ["solid objects", "characters"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100012 }
+        },
+        {
+          "id": "parallax-stars-sky",
+          "name": "Layer - Star Field",
+          "type": "parallax_layer",
+          "depth": "background",
+          "status": "pending",
+          "prompt": {
+            "goal": "Night sky star field layer, Caribbean night sky, Milky Way visible, magical atmosphere",
+            "invariants": ["Stars", "Night sky"],
+            "negative": ["clouds", "objects"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100013 }
+        },
+        {
+          "id": "parallax-clouds-mid",
+          "name": "Layer - Dramatic Clouds",
+          "type": "parallax_layer",
+          "depth": "mid",
+          "status": "pending",
+          "prompt": {
+            "goal": "Dramatic cloud layer, storm clouds, blood-red lit from below, ominous",
+            "invariants": ["Storm clouds", "Red lighting"],
+            "negative": ["blue sky", "sun"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100014 }
+        },
+        {
+          "id": "parallax-particles-front",
+          "name": "Layer - Floating Particles",
+          "type": "parallax_layer",
+          "depth": "front",
+          "status": "pending",
+          "prompt": {
+            "goal": "Floating dust particles layer, pollen, micro debris, bokeh effect, magical atmosphere",
+            "invariants": ["Particles", "Bokeh"],
+            "negative": ["solid objects"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100015 }
+        },
+        {
+          "id": "parallax-leaves-mid",
+          "name": "Layer - Falling Leaves",
+          "type": "parallax_layer",
+          "depth": "mid",
+          "status": "pending",
+          "prompt": {
+            "goal": "Falling tropical leaves layer, various sizes, gentle fall motion implied, amber tinted",
+            "invariants": ["Leaves", "Various sizes"],
+            "negative": ["branches", "trees"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100016 }
+        },
+        {
+          "id": "parallax-blood-drops",
+          "name": "Layer - Blood Drops",
+          "type": "parallax_layer",
+          "depth": "front",
+          "status": "pending",
+          "prompt": {
+            "goal": "Floating blood drops layer, various sizes, dark crimson, stylized, horror elegant",
+            "invariants": ["Blood drops", "Crimson"],
+            "negative": ["gore", "wounds"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100017 }
+        },
+        {
+          "id": "parallax-fireflies",
+          "name": "Layer - Bioluminescent Fireflies",
+          "type": "parallax_layer",
+          "depth": "mid",
+          "status": "pending",
+          "prompt": {
+            "goal": "Bioluminescent fireflies layer, amber and green glows, scattered pattern, magical night",
+            "invariants": ["Glowing insects", "Scattered"],
+            "negative": ["solid objects"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100018 }
+        },
+        {
+          "id": "parallax-toxic-gas",
+          "name": "Layer - BYSS Toxic Mist",
+          "type": "parallax_layer",
+          "depth": "mid",
+          "status": "pending",
+          "prompt": {
+            "goal": "Toxic gas layer, sickly green-yellow mist, BYSS poison cloud, horror atmosphere",
+            "invariants": ["Green mist", "Toxic look"],
+            "negative": ["clean", "natural"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100019 }
+        },
+        {
+          "id": "parallax-rain-heavy",
+          "name": "Layer - Heavy Rain",
+          "type": "parallax_layer",
+          "depth": "front",
+          "status": "pending",
+          "prompt": {
+            "goal": "Heavy rain layer, diagonal rain streaks, tropical storm, dramatic",
+            "invariants": ["Rain streaks", "Diagonal"],
+            "negative": ["snow", "clear"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100020 }
+        },
+        {
+          "id": "parallax-lightning-effect",
+          "name": "Layer - Lightning Flash",
+          "type": "parallax_layer",
+          "depth": "background",
+          "status": "pending",
+          "prompt": {
+            "goal": "Lightning flash layer, branching lightning bolts, blood-red tinted, dramatic",
+            "invariants": ["Lightning bolts", "Red tint"],
+            "negative": ["clear sky"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100021 }
+        }
+      ]
+    },
+    {
+      "id": "character-portraits",
+      "title": "Character Portraits",
+      "description": "Portraits haute qualité pour les personnages principaux",
+      "assetCount": 12,
+      "shots": [
+        {
+          "id": "portrait-papy-tik",
+          "name": "Portrait - Papy Tik Wise",
+          "characterId": "papy-tik",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Majestic portrait of Papy Tik, elderly wise mosquito, one eye with patch, broken antenna, melancholic gaze, Pixar-demonic, dramatic lighting",
+            "invariants": ["One eye", "Broken antenna", "Wise"],
+            "negative": ["two eyes", "young", "happy"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100100 }
+        },
+        {
+          "id": "portrait-papy-tik-angry",
+          "name": "Portrait - Papy Tik Furious",
+          "characterId": "papy-tik",
+          "type": "portrait",
+          "expression": "angry",
+          "status": "pending",
+          "prompt": {
+            "goal": "Furious portrait of Papy Tik, rage in his single eye, vengeful expression, dramatic red lighting, Pixar intensity",
+            "invariants": ["One eye", "Rage", "Red lighting"],
+            "negative": ["calm", "peaceful"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100101 }
+        },
+        {
+          "id": "portrait-baby-dorval",
+          "name": "Portrait - Baby Dorval Determined",
+          "characterId": "baby-dorval",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of Baby Dorval, young Martinican child, dark skin, Caribbean features, determined expression, haunted eyes, Pixar emotional depth",
+            "invariants": ["Caribbean child", "Dark skin", "Determined"],
+            "negative": ["adult", "caucasian", "happy"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100102 }
+        },
+        {
+          "id": "portrait-baby-dorval-scared",
+          "name": "Portrait - Baby Dorval Terrified",
+          "characterId": "baby-dorval",
+          "type": "portrait",
+          "expression": "scared",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of Baby Dorval terrified, wide eyes, trauma flashback, child fear, Pixar emotional realism",
+            "invariants": ["Wide eyes", "Fear", "Child"],
+            "negative": ["calm", "adult"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100103 }
+        },
+        {
+          "id": "portrait-mama-dorval",
+          "name": "Portrait - Mama Dorval Protective",
+          "characterId": "mama-dorval",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of Mama Dorval, Caribbean mother, protective expression, warm but worried, traditional dress hints, Pixar mother character",
+            "invariants": ["Caribbean woman", "Protective", "Mother"],
+            "negative": ["young girl", "casual"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100104 }
+        },
+        {
+          "id": "portrait-stegomyia",
+          "name": "Portrait - Stegomyia Diva",
+          "characterId": "stegomyia",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of Stegomyia, glamorous female mosquito, jazz singer aesthetic, dramatic eyelashes, confident pose, blood-red lips, femme fatale",
+            "invariants": ["Glamorous", "Female", "Confident"],
+            "negative": ["plain", "male"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100105 }
+        },
+        {
+          "id": "portrait-tik-commander",
+          "name": "Portrait - Elite Hunter Commander",
+          "characterId": "hunter-commander",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of Moostik Hunter Commander, battle-scarred mosquito, military bearing, tactical expression, veteran warrior, Pixar soldier character",
+            "invariants": ["Scarred", "Military", "Determined"],
+            "negative": ["peaceful", "young"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100106 }
+        },
+        {
+          "id": "portrait-eminence-shadow",
+          "name": "Portrait - The Eminence",
+          "characterId": "eminence",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Mysterious portrait of The Eminence, shadowy figure, glowing eyes in darkness, ethereal presence, unknowable deity aesthetic",
+            "invariants": ["Shadowy", "Glowing eyes", "Mysterious"],
+            "negative": ["clear features", "normal"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100107 }
+        },
+        {
+          "id": "portrait-young-survivor-1",
+          "name": "Portrait - Young Survivor Koko",
+          "characterId": "koko-survivor",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of young mosquito survivor, hopeful despite trauma, new generation, determined youth, Pixar young hero aesthetic",
+            "invariants": ["Young", "Hopeful", "Determined"],
+            "negative": ["old", "defeated"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100108 }
+        },
+        {
+          "id": "portrait-child-killer",
+          "name": "Portrait - The Child Killer",
+          "characterId": "child-killer",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of human antagonist, cold calculating expression, BYSS scientist or soldier, morally corrupt, cinematic villain",
+            "invariants": ["Cold eyes", "Human", "Villain"],
+            "negative": ["friendly", "warm"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100109 }
+        },
+        {
+          "id": "portrait-healer-ancient",
+          "name": "Portrait - Ancient Healer",
+          "characterId": "healer-ancient",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of ancient Moostik healer, mystical appearance, glowing antennae, wise and kind, medicine knowledge, Pixar sage character",
+            "invariants": ["Ancient", "Mystical", "Kind"],
+            "negative": ["young", "aggressive"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100110 }
+        },
+        {
+          "id": "portrait-scout-young",
+          "name": "Portrait - Young Scout",
+          "characterId": "scout-young",
+          "type": "portrait",
+          "status": "pending",
+          "prompt": {
+            "goal": "Portrait of young Moostik scout, agile appearance, alert expression, fast wings implied, reconnaissance specialist, Pixar adventure character",
+            "invariants": ["Young", "Alert", "Agile"],
+            "negative": ["old", "slow"]
+          },
+          "parameters": { "aspect_ratio": "1:1", "resolution": "1024x1024", "seed": 100111 }
+        }
+      ]
+    },
+    {
+      "id": "location-establishing",
+      "title": "Location Establishing Shots",
+      "description": "Plans d'établissement des lieux clés du monde Moostik",
+      "assetCount": 15,
+      "shots": [
+        {
+          "id": "establishing-bar-ti-sang-exterior",
+          "name": "Bar Ti-Sang - Exterior Night",
+          "locationId": "bar-ti-sang",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Exterior establishing shot of Bar Ti-Sang at night, secret speakeasy inside old tire, warm amber light spilling, mysterious atmosphere, micro-scale, Pixar-demonic",
+            "invariants": ["Tire structure", "Amber light", "Night"],
+            "negative": ["daylight", "human scale"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100200 }
+        },
+        {
+          "id": "establishing-bar-ti-sang-interior",
+          "name": "Bar Ti-Sang - Interior Wide",
+          "locationId": "bar-ti-sang",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Interior wide shot of Bar Ti-Sang, copper fixtures, amber candlelight, micro-gothic luxury, bar counter, moostik patrons silhouettes",
+            "invariants": ["Interior", "Amber light", "Gothic"],
+            "negative": ["exterior", "bright"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100201 }
+        },
+        {
+          "id": "establishing-cooltik-village-dawn",
+          "name": "Cooltik Village - Dawn Overview",
+          "locationId": "cooltik-village",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Establishing shot of Cooltik Village at dawn, micro-organic architecture, dwellings in leaves and bark, bioluminescent accents, peaceful, Pixar-demonic utopia",
+            "invariants": ["Organic architecture", "Dawn", "Bioluminescence"],
+            "negative": ["modern city", "night"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100202 }
+        },
+        {
+          "id": "establishing-cooltik-village-aerial",
+          "name": "Cooltik Village - Aerial View",
+          "locationId": "cooltik-village",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Aerial view of Cooltik Village, bird's eye perspective, hidden civilization in jungle canopy, organic patterns, micro-scale city planning",
+            "invariants": ["Aerial", "Hidden", "Organic"],
+            "negative": ["ground level", "visible"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100203 }
+        },
+        {
+          "id": "establishing-martinique-coastline",
+          "name": "Martinique - Dramatic Coastline",
+          "locationId": "martinique-exterior",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Dramatic Martinique coastline at sunset, volcanic mountains, tropical vegetation, Caribbean beauty, cinematic wide shot, ominous undertone",
+            "invariants": ["Coastline", "Mountains", "Sunset"],
+            "negative": ["buildings", "tourists"]
+          },
+          "parameters": { "aspect_ratio": "21:9", "resolution": "3840x1646", "seed": 100204 }
+        },
+        {
+          "id": "establishing-jalousies-gateway",
+          "name": "Jalousies Gateway - Portal Scene",
+          "locationId": "jalousies-gateway",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Mysterious gateway at Jalousies village entrance, symbolic threshold, Caribbean architecture mixed with mystical elements, transition point",
+            "invariants": ["Gateway", "Mystical", "Caribbean"],
+            "negative": ["modern", "plain"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100205 }
+        },
+        {
+          "id": "establishing-human-bedroom-giant",
+          "name": "Human Bedroom - Gigantism POV",
+          "locationId": "human-bedroom",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Human bedroom from micro perspective, gigantic furniture, bed like mountain range, lamp like lighthouse, terrifying scale difference",
+            "invariants": ["Micro POV", "Giant furniture", "Terrifying"],
+            "negative": ["normal scale", "cozy"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100206 }
+        },
+        {
+          "id": "establishing-ear-landscape",
+          "name": "Human Ear - Canyon Landscape",
+          "locationId": "human-ear",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Human ear as alien landscape from Moostik POV, ear canal like canyon, hair follicles like forest, skin texture like terrain, blood warmth glow",
+            "invariants": ["Ear anatomy", "Landscape style", "Micro"],
+            "negative": ["normal view", "medical"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100207 }
+        },
+        {
+          "id": "establishing-council-chamber",
+          "name": "Council Chamber - Sacred Space",
+          "locationId": "council-chamber",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik Council Chamber interior, circular seating carved from bark, bioluminescent torches, sacred atmosphere, micro-gothic cathedral vibes",
+            "invariants": ["Circular", "Sacred", "Gothic"],
+            "negative": ["modern", "bright"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100208 }
+        },
+        {
+          "id": "establishing-memorial-grove",
+          "name": "Memorial Grove - Genocide Memorial",
+          "locationId": "memorial-grove",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Memorial grove for genocide victims, thousands of tiny lights representing dead, somber atmosphere, sacred space, overwhelming loss",
+            "invariants": ["Thousands of lights", "Somber", "Memorial"],
+            "negative": ["cheerful", "empty"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100209 }
+        },
+        {
+          "id": "establishing-training-grounds",
+          "name": "Training Grounds - Hunter Academy",
+          "locationId": "training-grounds",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik hunter training grounds, obstacle course in vegetation, young moostiks training, dawn light, military academy aesthetic",
+            "invariants": ["Training", "Obstacle course", "Dawn"],
+            "negative": ["peaceful", "empty"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100210 }
+        },
+        {
+          "id": "establishing-blood-reservoir",
+          "name": "Blood Reservoir - Sacred Storage",
+          "locationId": "blood-reservoir",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Sacred blood reservoir chamber, preserved blood glowing in containers, vital resource storage, temple-like reverence, red ambient light",
+            "invariants": ["Blood containers", "Temple-like", "Red glow"],
+            "negative": ["horror", "medical"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100211 }
+        },
+        {
+          "id": "establishing-watchtower-peak",
+          "name": "Watchtower Peak - Lookout Post",
+          "locationId": "watchtower",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik watchtower at highest point, panoramic view of jungle, sentinel post, dramatic sky, lonely guardian aesthetic",
+            "invariants": ["High vantage", "Watchtower", "Panoramic"],
+            "negative": ["low", "hidden"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100212 }
+        },
+        {
+          "id": "establishing-nursery-chamber",
+          "name": "Nursery Chamber - Next Generation",
+          "locationId": "nursery",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik nursery chamber, protective enclosure, larvae in various stages, caretaker moostiks, hope for future, warm lighting",
+            "invariants": ["Nursery", "Larvae", "Protective"],
+            "negative": ["dark", "threatening"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100213 }
+        },
+        {
+          "id": "establishing-ruins-old-nest",
+          "name": "Ruins - Destroyed Old Nest",
+          "locationId": "old-nest-ruins",
+          "type": "establishing",
+          "status": "pending",
+          "prompt": {
+            "goal": "Ruins of destroyed Moostik nest from genocide, overgrown with vegetation, haunting reminder, ghost town aesthetic, tragic history",
+            "invariants": ["Ruins", "Overgrown", "Haunting"],
+            "negative": ["intact", "lively"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100214 }
+        }
+      ]
+    },
+    {
+      "id": "action-keyframes",
+      "title": "Action Keyframes",
+      "description": "Images clés pour séquences d'action et scènes dramatiques",
+      "assetCount": 10,
+      "shots": [
+        {
+          "id": "action-moostik-dive",
+          "name": "Action - Moostik Attack Dive",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik in attack dive, wings folded, target below, predator intensity, motion blur, dramatic angle, Pixar action quality",
+            "invariants": ["Diving", "Attack pose", "Motion blur"],
+            "negative": ["static", "peaceful"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100300 }
+        },
+        {
+          "id": "action-swarm-formation",
+          "name": "Action - Swarm Attack Formation",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Multiple moostiks in coordinated attack formation, V-shape, military precision, dramatic lighting, epic scale",
+            "invariants": ["Formation", "Multiple moostiks", "Coordinated"],
+            "negative": ["scattered", "alone"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100301 }
+        },
+        {
+          "id": "action-hand-dodge",
+          "name": "Action - Dodge Giant Hand",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik narrowly dodging giant human hand, split-second escape, impact wind, survival instinct, micro-scale action",
+            "invariants": ["Giant hand", "Dodging", "Near miss"],
+            "negative": ["caught", "slow"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100302 }
+        },
+        {
+          "id": "action-byss-escape",
+          "name": "Action - Escaping BYSS Cloud",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostiks fleeing approaching BYSS toxic cloud, desperate escape, green poison behind, survival flight, horror action",
+            "invariants": ["Fleeing", "Toxic cloud", "Desperate"],
+            "negative": ["calm", "safe"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100303 }
+        },
+        {
+          "id": "action-confrontation",
+          "name": "Action - Bar Confrontation",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Tense confrontation scene in Bar Ti-Sang, two moostiks facing off, dramatic lighting, tension peak, western standoff vibes",
+            "invariants": ["Confrontation", "Tension", "Two characters"],
+            "negative": ["friendly", "relaxed"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100304 }
+        },
+        {
+          "id": "action-blood-extraction",
+          "name": "Action - Sacred Blood Ritual",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik performing sacred blood extraction, ritualistic pose, dramatic lighting, ancient ceremony, reverent action",
+            "invariants": ["Ritual", "Blood", "Sacred"],
+            "negative": ["medical", "casual"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100305 }
+        },
+        {
+          "id": "action-flight-chase",
+          "name": "Action - High-Speed Chase",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "High-speed moostik chase scene, pursuer and pursued, through vegetation obstacles, motion blur, adrenaline",
+            "invariants": ["Chase", "High speed", "Two moostiks"],
+            "negative": ["slow", "alone"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100306 }
+        },
+        {
+          "id": "action-genocide-fall",
+          "name": "Action - Genocide Falling Moostiks",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Tragic scene of moostiks falling during genocide, mass death, toxic cloud above, gravity pulling down, horror tragedy",
+            "invariants": ["Falling", "Mass", "Tragic"],
+            "negative": ["flying", "alive"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100307 }
+        },
+        {
+          "id": "action-baby-dorval-run",
+          "name": "Action - Baby Dorval Running",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Baby Dorval running through jungle, child in danger, desperate escape, tropical vegetation blur, survival instinct",
+            "invariants": ["Running child", "Jungle", "Escape"],
+            "negative": ["walking", "calm"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100308 }
+        },
+        {
+          "id": "action-vengeance-strike",
+          "name": "Action - Vengeance Strike",
+          "type": "action_keyframe",
+          "status": "pending",
+          "prompt": {
+            "goal": "Moostik delivering vengeance strike on human target, triumphant attack, justice moment, dramatic backlighting, hero shot",
+            "invariants": ["Attack", "Triumphant", "Vengeance"],
+            "negative": ["defensive", "retreating"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100309 }
+        }
+      ]
+    },
+    {
+      "id": "emotional-moments",
+      "title": "Emotional Moments",
+      "description": "Scènes émotionnelles clés pour la narrative",
+      "assetCount": 5,
+      "shots": [
+        {
+          "id": "emotional-papy-mourning",
+          "name": "Emotional - Papy Tik Mourning",
+          "type": "emotional",
+          "status": "pending",
+          "prompt": {
+            "goal": "Papy Tik alone, mourning the dead, single tear, profound grief, weight of leadership, Pixar emotional depth",
+            "invariants": ["Mourning", "Alone", "Grief"],
+            "negative": ["happy", "crowded"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100400 }
+        },
+        {
+          "id": "emotional-baby-mama",
+          "name": "Emotional - Baby and Mama Last Embrace",
+          "type": "emotional",
+          "status": "pending",
+          "prompt": {
+            "goal": "Baby Dorval embracing Mama Dorval, last moment together, protective love, impending tragedy, Caribbean mother-child bond, Pixar emotional peak",
+            "invariants": ["Embrace", "Mother-child", "Love"],
+            "negative": ["separation", "violence"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100401 }
+        },
+        {
+          "id": "emotional-survivor-dawn",
+          "name": "Emotional - Survivor Sees Dawn",
+          "type": "emotional",
+          "status": "pending",
+          "prompt": {
+            "goal": "Lone moostik survivor watching first dawn after genocide, shell-shocked hope, new beginning potential, emotional landscape",
+            "invariants": ["Survivor", "Dawn", "Hope"],
+            "negative": ["despair", "night"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100402 }
+        },
+        {
+          "id": "emotional-oath-vengeance",
+          "name": "Emotional - Vengeance Oath Scene",
+          "type": "emotional",
+          "status": "pending",
+          "prompt": {
+            "goal": "Survivors taking vengeance oath together, blood mixing ceremony, unified determination, sacred moment, dramatic lighting",
+            "invariants": ["Oath", "Group", "Determination"],
+            "negative": ["individual", "peaceful"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100403 }
+        },
+        {
+          "id": "emotional-eminence-vision",
+          "name": "Emotional - Receiving Eminence Vision",
+          "type": "emotional",
+          "status": "pending",
+          "prompt": {
+            "goal": "Papy Tik receiving mystical vision from the Eminence, transcendent moment, prophecy receiving, divine connection, ethereal lighting",
+            "invariants": ["Vision", "Mystical", "Transcendent"],
+            "negative": ["mundane", "physical"]
+          },
+          "parameters": { "aspect_ratio": "16:9", "resolution": "1920x1080", "seed": 100404 }
+        }
+      ]
+    }
+  ]
+}

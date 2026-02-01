@@ -125,3 +125,54 @@ export {
   type CameraMotionSuggestion,
   type MotionRegion,
 } from "./image-analyzer";
+
+// ============================================
+// SHOT ANALYZER - INTELLIGENT FRAME STRATEGY (SOTA Jan 2026)
+// ============================================
+
+export {
+  analyzeShot,
+  analyzeEpisode,
+  buildEpisodeContext,
+  decideFrameStrategy,
+  needsFirstLastFrame,
+  recommendProvider,
+  type ShotAnalysis,
+  type FrameStrategy,
+  type MotionComplexity,
+  type ChainType,
+  type EpisodeContext,
+} from "./shot-analyzer";
+
+// ============================================
+// REFERENCE CHAIN - MULTI-SHOT CHAINING (SOTA Jan 2026)
+// ============================================
+
+export {
+  buildReferenceChains,
+  analyzeContinuity,
+  resolveChainReferences,
+  getGenerationConfig,
+  getParallelBatch,
+  groupByChainType,
+  type ReferenceChain,
+  type ChainBuildResult,
+  type ContinuityAnalysis,
+} from "./reference-chain";
+
+// ============================================
+// FRAME EXTRACTOR - FIRST/LAST FRAME EXTRACTION
+// ============================================
+
+export {
+  extractFirstFrame,
+  extractLastFrame,
+  extractFirstLastFrames,
+  extractKeyframes,
+  storeGeneratedFrames,
+  batchExtractFrames,
+  getCachedFrame,
+  type ExtractedFrame,
+  type FrameExtractionOptions,
+  type KeyframeSet,
+} from "./frame-extractor";
