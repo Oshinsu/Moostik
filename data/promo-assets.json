@@ -31,7 +31,11 @@
                   "Demon cute meets corporate elegance"
                 ],
                 "look": "clean vector-style 3D render, logo design, perfect symmetry, iconic memorable shape",
-                "palette": ["blood red #8B0015", "obsidian black #0B0B0E", "deep crimson #B0002A"]
+                "palette": [
+                  "blood red #8B0015",
+                  "obsidian black #0B0B0E",
+                  "deep crimson #B0002A"
+                ]
               },
               "environment": {
                 "space": "pure black void background with subtle blood-red vignette",
@@ -54,22 +58,44 @@
                 "minimalist iconic design suitable for logo",
                 "two small amber eye dots glowing"
               ],
-              "must_not_include": ["text", "typography", "busy background", "realistic mosquito anatomy", "multiple colors"]
+              "must_not_include": [
+                "text",
+                "typography",
+                "busy background",
+                "realistic mosquito anatomy",
+                "multiple colors"
+              ]
             },
             "goal": "Iconic Bloodwings Studio logo: stylized Pixar-demonic mosquito silhouette in blood-red (#8B0015), wings spread majestically to form inverted blood-drop negative space, elegant needle proboscis pointing down like royal scepter, two tiny glowing amber eye dots, corporate demon aesthetic, clean minimalist design suitable for animation studio branding, single flat color on pure black background, vector-style 3D render, must work at favicon size",
-            "subjects": [{
-              "type": "logo_element",
-              "description": "Stylized demon mosquito logo silhouette, wings spread perfectly symmetrical forming blood-drop shape when viewed as negative space, elegant needle proboscis pointing down like royal weapon, two small glowing amber dots for eyes, demonic cute aesthetic, flat blood-red color, designed for animation studio branding"
-            }],
+            "subjects": [
+              {
+                "type": "logo_element",
+                "description": "Stylized demon mosquito logo silhouette, wings spread perfectly symmetrical forming blood-drop shape when viewed as negative space, elegant needle proboscis pointing down like royal weapon, two small glowing amber dots for eyes, demonic cute aesthetic, flat blood-red color, designed for animation studio branding"
+              }
+            ],
             "invariants": [
               "BLOOD-RED (#8B0015) silhouette on BLACK (#0B0B0E) background",
               "Perfect bilateral symmetry",
               "Recognizable at small sizes"
             ],
-            "negative": ["realistic mosquito", "multiple colors", "gradients", "text", "complex background", "3D shading", "drop shadows"]
+            "negative": [
+              "realistic mosquito",
+              "multiple colors",
+              "gradients",
+              "text",
+              "complex background",
+              "3D shading",
+              "drop shadows"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "front",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-logos/logo-principal/v1.png",
+              "generatedAt": "2026-02-01T09:44:52.338Z"
+            }
           ]
         },
         {
@@ -94,7 +120,11 @@
                   "Glowing amber eyes as focal point"
                 ],
                 "look": "ultra minimal icon design, favicon optimized",
-                "palette": ["blood red #8B0015", "amber #FFB25A", "obsidian black #0B0B0E"]
+                "palette": [
+                  "blood red #8B0015",
+                  "amber #FFB25A",
+                  "obsidian black #0B0B0E"
+                ]
               },
               "environment": {
                 "space": "pure black background",
@@ -110,18 +140,40 @@
               "guidance_strength": 9.5
             },
             "constraints": {
-              "must_include": ["mosquito head silhouette only", "two glowing amber eyes", "short proboscis hint"],
-              "must_not_include": ["wings", "body", "complex details", "text"]
+              "must_include": [
+                "mosquito head silhouette only",
+                "two glowing amber eyes",
+                "short proboscis hint"
+              ],
+              "must_not_include": [
+                "wings",
+                "body",
+                "complex details",
+                "text"
+              ]
             },
             "goal": "Minimal favicon icon: Moostik head silhouette only in blood-red, two bright glowing amber eyes as focal point, hint of proboscis below, designed to work at 16x16 pixels, ultra simplified",
-            "subjects": [{
-              "type": "icon",
-              "description": "Simplified mosquito head icon, blood-red silhouette, two glowing amber eye dots prominent, minimal proboscis hint, favicon-ready design"
-            }],
-            "negative": ["complex details", "wings", "full body", "text", "gradients"]
+            "subjects": [
+              {
+                "type": "icon",
+                "description": "Simplified mosquito head icon, blood-red silhouette, two glowing amber eye dots prominent, minimal proboscis hint, favicon-ready design"
+              }
+            ],
+            "negative": [
+              "complex details",
+              "wings",
+              "full body",
+              "text",
+              "gradients"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "front",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-logos/logo-icon/v1.png"
+            }
           ]
         },
         {
@@ -146,7 +198,11 @@
                   "Cinematic emergence from shadow"
                 ],
                 "look": "cinematic banner composition, dramatic lighting",
-                "palette": ["blood red #8B0015", "obsidian black #0B0B0E", "subtle crimson glow"]
+                "palette": [
+                  "blood red #8B0015",
+                  "obsidian black #0B0B0E",
+                  "subtle crimson glow"
+                ]
               },
               "environment": {
                 "space": "black void with subtle crimson atmospheric glow around logo",
@@ -159,17 +215,29 @@
               "render_resolution": "2520x1080",
               "seed": 666003,
               "steps": 70,
-              "guidance_strength": 9.0
+              "guidance_strength": 9
             },
             "goal": "Horizontal banner: Bloodwings mosquito logo positioned in left third, emerging from shadow with subtle crimson atmospheric glow, large black negative space on right for studio name typography, cinematic composition, prestige animation studio aesthetic",
-            "subjects": [{
-              "type": "logo_composition",
-              "description": "Bloodwings mosquito logo in left third of frame, blood-red silhouette with subtle crimson rim glow, emerging dramatically from black void, composition leaving right 2/3 as negative space for typography"
-            }],
-            "negative": ["centered logo", "busy background", "text", "cluttered composition"]
+            "subjects": [
+              {
+                "type": "logo_composition",
+                "description": "Bloodwings mosquito logo in left third of frame, blood-red silhouette with subtle crimson rim glow, emerging dramatically from black void, composition leaving right 2/3 as negative space for typography"
+              }
+            ],
+            "negative": [
+              "centered logo",
+              "busy background",
+              "text",
+              "cluttered composition"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-logos/logo-horizontal/v1.png"
+            }
           ]
         },
         {
@@ -195,7 +263,11 @@
                   "Blood-drop motifs in border"
                 ],
                 "look": "premium badge design, aged copper ornaments, medieval nobility",
-                "palette": ["blood red #8B0015", "aged copper #9B6A3A", "obsidian black #0B0B0E"]
+                "palette": [
+                  "blood red #8B0015",
+                  "aged copper #9B6A3A",
+                  "obsidian black #0B0B0E"
+                ]
               },
               "environment": {
                 "space": "black background",
@@ -208,17 +280,29 @@
               "render_resolution": "2048x2048",
               "seed": 666004,
               "steps": 70,
-              "guidance_strength": 9.0
+              "guidance_strength": 9
             },
             "goal": "Circular badge: Bloodwings mosquito logo centered, surrounded by ornate aged copper circular border with blood-drop motifs, medieval seal aesthetic, noble heritage feeling, premium animation studio badge",
-            "subjects": [{
-              "type": "badge",
-              "description": "Circular premium badge with Bloodwings mosquito logo centered in blood-red, ornate aged copper border with intricate blood-drop pattern engravings, medieval wax seal aesthetic, noble demonic heritage design"
-            }],
-            "negative": ["modern design", "simple border", "bright colors", "text"]
+            "subjects": [
+              {
+                "type": "badge",
+                "description": "Circular premium badge with Bloodwings mosquito logo centered in blood-red, ornate aged copper border with intricate blood-drop pattern engravings, medieval wax seal aesthetic, noble demonic heritage design"
+              }
+            ],
+            "negative": [
+              "modern design",
+              "simple border",
+              "bright colors",
+              "text"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "front",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-logos/logo-badge/v1.png"
+            }
           ]
         },
         {
@@ -244,7 +328,12 @@
                   "Animation-ready composition"
                 ],
                 "look": "magical particle effects, floating blood droplets, ethereal demonic",
-                "palette": ["blood red #8B0015", "deep crimson #B0002A", "obsidian black #0B0B0E", "amber glow #FFB25A"]
+                "palette": [
+                  "blood red #8B0015",
+                  "deep crimson #B0002A",
+                  "obsidian black #0B0B0E",
+                  "amber glow #FFB25A"
+                ]
               },
               "environment": {
                 "space": "black void with floating blood particles of various sizes",
@@ -260,14 +349,25 @@
               "guidance_strength": 8.5
             },
             "goal": "Animated logo frame: Bloodwings mosquito logo with floating blood particle effects surrounding it, droplets of various sizes suspended like bloody stars, magical demonic atmosphere, subtle amber glow from logo eyes, ready for motion graphics animation",
-            "subjects": [{
-              "type": "animated_logo",
-              "description": "Bloodwings mosquito logo surrounded by floating blood particles of various sizes, droplets suspended in air like demonic stars, subtle crimson glow emanating, amber eye glow, magical otherworldly atmosphere"
-            }],
-            "negative": ["static feeling", "no particles", "simple background"]
+            "subjects": [
+              {
+                "type": "animated_logo",
+                "description": "Bloodwings mosquito logo surrounded by floating blood particles of various sizes, droplets suspended in air like demonic stars, subtle crimson glow emanating, amber eye glow, magical otherworldly atmosphere"
+              }
+            ],
+            "negative": [
+              "static feeling",
+              "no particles",
+              "simple background"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "front", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "front",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-logos/logo-animated/v1.png"
+            }
           ]
         }
       ]
@@ -300,11 +400,17 @@
                   "Meditative patience, eyes closed"
                 ],
                 "look": "premium 3D animated feature film, Pixar-dark, intricate micro-textures, meditative",
-                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "warm amber glow #FFB25A"]
+                "palette": [
+                  "obsidian black #0B0B0E",
+                  "blood red #8B0015",
+                  "warm amber glow #FFB25A"
+                ]
               },
               "environment": {
                 "space": "dark void with subtle floating amber particles like dust motes in sunbeam",
-                "gigantism_cues": ["single lint fiber beneath as meditation cushion, appears as fluffy cloud"],
+                "gigantism_cues": [
+                  "single lint fiber beneath as meditation cushion, appears as fluffy cloud"
+                ],
                 "mood": "serene demonic patience, Renaissance nobility"
               }
             },
@@ -316,14 +422,27 @@
               "guidance_strength": 8.5
             },
             "goal": "Elegant loading placeholder: single intricate Moostik in serene meditation pose, eyes closed with soft amber glow visible through lids, elegant proboscis held gracefully like noble scepter resting, translucent wings with crimson veins folded like praying hands, blood-red mohawk crest relaxed, Renaissance demon noble aesthetic, sitting on fluffy lint fiber cushion, floating amber dust particles around, peaceful waiting for content",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Single elegant Moostik in peaceful meditation pose, intricate obsidian chitin body with visible micro-textures, eyes closed with soft amber glow seeping through, proboscis held gracefully downward like resting scepter, translucent wings folded elegantly showing crimson vein patterns, blood-red mohawk crest relaxed, serene noble expression, sitting cross-legged on fluffy lint fiber, Renaissance demonic nobility"
-            }],
-            "negative": ["action pose", "aggressive", "open eyes", "busy background", "multiple characters"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Single elegant Moostik in peaceful meditation pose, intricate obsidian chitin body with visible micro-textures, eyes closed with soft amber glow seeping through, proboscis held gracefully downward like resting scepter, translucent wings folded elegantly showing crimson vein patterns, blood-red mohawk crest relaxed, serene noble expression, sitting cross-legged on fluffy lint fiber, Renaissance demonic nobility"
+              }
+            ],
+            "negative": [
+              "action pose",
+              "aggressive",
+              "open eyes",
+              "busy background",
+              "multiple characters"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-placeholders/placeholder-loading/v1.png"
+            }
           ]
         },
         {
@@ -349,7 +468,11 @@
                   "Cute demonic aesthetic"
                 ],
                 "look": "premium 3D animated feature, Pixar-cute demonic, questioning expression",
-                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "amber #FFB25A"]
+                "palette": [
+                  "obsidian black #0B0B0E",
+                  "blood red #8B0015",
+                  "amber #FFB25A"
+                ]
               },
               "environment": {
                 "space": "minimal dark background with subtle spotlight",
@@ -364,14 +487,26 @@
               "steps": 70
             },
             "goal": "Empty state placeholder: single Moostik looking directly at viewer with adorably curious expression, head tilted slightly, glowing amber eyes wide with questioning look, as if asking 'where is the content?', cute demonic aesthetic, minimal background",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Curious Moostik looking at viewer, head tilted adorably, wide glowing amber eyes with questioning expression, proboscis slightly raised in curiosity, wings half-spread in confused gesture, cute demonic 'where is everything?' pose"
-            }],
-            "negative": ["aggressive", "scary", "action", "busy background"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Curious Moostik looking at viewer, head tilted adorably, wide glowing amber eyes with questioning expression, proboscis slightly raised in curiosity, wings half-spread in confused gesture, cute demonic 'where is everything?' pose"
+              }
+            ],
+            "negative": [
+              "aggressive",
+              "scary",
+              "action",
+              "busy background"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-placeholders/placeholder-empty/v1.png"
+            }
           ]
         },
         {
@@ -397,7 +532,12 @@
                   "Self-deprecating humor"
                 ],
                 "look": "premium 3D animated feature, comedic embarrassment, Pixar expression",
-                "palette": ["obsidian black #0B0B0E", "blood red #8B0015", "amber #FFB25A", "blush pink hint"]
+                "palette": [
+                  "obsidian black #0B0B0E",
+                  "blood red #8B0015",
+                  "amber #FFB25A",
+                  "blush pink hint"
+                ]
               },
               "environment": {
                 "space": "dark background with subtle red warning glow",
@@ -412,14 +552,26 @@
               "steps": 70
             },
             "goal": "Error state placeholder: Moostik in embarrassed facepalm pose, one foreleg covering face, wings drooping in shame, amber eyes peeking through with apologetic expression, subtle blush effect, as if saying 'oops our bad', comedic self-deprecating studio humor",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Embarrassed Moostik doing facepalm with foreleg, wings drooped in shame, amber eyes peeking apologetically from behind leg, subtle blush glow on chitin, blood-red crest wilted, comedic 'we messed up' pose"
-            }],
-            "negative": ["confident", "aggressive", "proud", "action"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Embarrassed Moostik doing facepalm with foreleg, wings drooped in shame, amber eyes peeking apologetically from behind leg, subtle blush glow on chitin, blood-red crest wilted, comedic 'we messed up' pose"
+              }
+            ],
+            "negative": [
+              "confident",
+              "aggressive",
+              "proud",
+              "action"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-placeholders/placeholder-error/v1.png"
+            }
           ]
         }
       ]
@@ -452,11 +604,19 @@
                   "Divine creative revelation"
                 ],
                 "look": "premium 3D animated comedy scene, Pixar humor, warm bar lighting",
-                "palette": ["warm amber bar light", "blood red lightbulb", "obsidian black", "nectar gold"]
+                "palette": [
+                  "warm amber bar light",
+                  "blood red lightbulb",
+                  "obsidian black",
+                  "nectar gold"
+                ]
               },
               "environment": {
                 "space": "Bar Ti Sang interior, warm cozy atmosphere, organic chitin bar counter",
-                "gigantism_cues": ["thimble nectar glasses", "lint fiber bar napkins"],
+                "gigantism_cues": [
+                  "thimble nectar glasses",
+                  "lint fiber bar napkins"
+                ],
                 "mood": "comedic eureka moment, tipsy creativity"
               }
             },
@@ -467,14 +627,26 @@
               "steps": 70
             },
             "goal": "Process Step 1 - The Idea: elderly Moostik at Bar Ti Sang with multiple empty thimble nectar glasses, suddenly illuminated by GIANT blood-red lightbulb appearing above his head, expression of divine creative revelation mixed with slight tipsy wonder, warm amber bar lighting, comedic Pixar storytelling moment",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Elderly Moostik (Papy Tik style) sitting at bar, surrounded by empty thimble nectar glasses, looking up in wonder at giant blood-red lightbulb appearing above head, expression mixing 'eureka!' with slight intoxicated wisdom, amber eyes wide with revelation"
-            }],
-            "negative": ["sad", "serious", "aggressive", "dark mood"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Elderly Moostik (Papy Tik style) sitting at bar, surrounded by empty thimble nectar glasses, looking up in wonder at giant blood-red lightbulb appearing above head, expression mixing 'eureka!' with slight intoxicated wisdom, amber eyes wide with revelation"
+              }
+            ],
+            "negative": [
+              "sad",
+              "serious",
+              "aggressive",
+              "dark mood"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "medium", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-1-idea/v1.png"
+            }
           ]
         },
         {
@@ -500,7 +672,12 @@
                   "Religious reverence for code"
                 ],
                 "look": "epic religious painting meets tech humor, divine lighting, comedic reverence",
-                "palette": ["divine gold light", "blood red scroll glow", "obsidian black", "heavenly white rays"]
+                "palette": [
+                  "divine gold light",
+                  "blood red scroll glow",
+                  "obsidian black",
+                  "heavenly white rays"
+                ]
               },
               "environment": {
                 "space": "Dark void below, heavenly light breaking through clouds above",
@@ -515,14 +692,26 @@
               "steps": 70
             },
             "goal": "Process Step 2 - The Brief: sacred glowing scroll/tablet descending from heavenly light above bearing the JSON MOOSTIK BLOODWINGS code, divine rays surrounding it, below several Moostik engineers looking up in tears of joy, some kneeling in reverence, comedic religious tech worship scene",
-            "subjects": [{
-              "type": "scene",
-              "description": "Glowing blood-red bordered scroll with JSON text hints descending from divine golden light rays above, multiple Moostik engineers below looking up in reverent worship, tears of joy, some kneeling, comedic religious tech ceremony"
-            }],
-            "negative": ["casual", "mundane", "dark", "sad"]
+            "subjects": [
+              {
+                "type": "scene",
+                "description": "Glowing blood-red bordered scroll with JSON text hints descending from divine golden light rays above, multiple Moostik engineers below looking up in reverent worship, tears of joy, some kneeling, comedic religious tech ceremony"
+              }
+            ],
+            "negative": [
+              "casual",
+              "mundane",
+              "dark",
+              "sad"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-2-brief/v1.png"
+            }
           ]
         },
         {
@@ -548,7 +737,12 @@
                   "Blood wax seal of approval"
                 ],
                 "look": "dark tribunal scene, cardinal robes, dramatic judgment",
-                "palette": ["cardinal crimson robes", "blood red wax seal", "fire orange rejected piles", "obsidian black"]
+                "palette": [
+                  "cardinal crimson robes",
+                  "blood red wax seal",
+                  "fire orange rejected piles",
+                  "obsidian black"
+                ]
               },
               "environment": {
                 "space": "Dark tribunal chamber, elevated throne, burning paper piles",
@@ -563,14 +757,26 @@
               "steps": 70
             },
             "goal": "Process Step 3 - DA Approval: Moostik Art Director as stern judge/cardinal on elevated throne, wearing crimson robes, stamping document with blood-red wax seal, piles of rejected versions burning around chamber, severe but finally satisfied expression, dark tribunal aesthetic",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Stern Moostik Art Director in cardinal-style crimson robes, sitting on elevated throne, pressing blood-red wax seal stamp onto approved document, severe but satisfied expression, piles of rejected paper versions burning in background"
-            }],
-            "negative": ["happy", "casual", "modern office", "bright"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Stern Moostik Art Director in cardinal-style crimson robes, sitting on elevated throne, pressing blood-red wax seal stamp onto approved document, severe but satisfied expression, piles of rejected paper versions burning in background"
+              }
+            ],
+            "negative": [
+              "happy",
+              "casual",
+              "modern office",
+              "bright"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "low_angle",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-3-approval/v1.png"
+            }
           ]
         },
         {
@@ -596,11 +802,18 @@
                   "Screen showing generation"
                 ],
                 "look": "epic tech worship, machine as deity, flames and energy",
-                "palette": ["GPU green glow", "flame orange", "blood red energy", "obsidian black"]
+                "palette": [
+                  "GPU green glow",
+                  "flame orange",
+                  "blood red energy",
+                  "obsidian black"
+                ]
               },
               "environment": {
                 "space": "Dark tech temple, colossal GPU shrine, flames surrounding",
-                "gigantism_cues": ["GPU appears as massive monolith from Moostik POV"],
+                "gigantism_cues": [
+                  "GPU appears as massive monolith from Moostik POV"
+                ],
                 "mood": "tech worship, epic power, slight fear"
               }
             },
@@ -611,14 +824,26 @@
               "steps": 70
             },
             "goal": "Process Step 4 - Generation: colossal GPU/computer as divine machine from Moostik POV, surrounded by flames and crackling energy, screen showing image forming with '70 STEPS' counter, smoke rising from overheating, Moostik technicians watching in awe and slight fear, epic tech worship scene",
-            "subjects": [{
-              "type": "scene",
-              "description": "Massive GPU shrine from Moostik POV, flames and energy crackling around it, screen displaying image generation in progress, smoke rising dramatically, tiny Moostik technicians looking up in worship and fear, tech deity aesthetic"
-            }],
-            "negative": ["calm", "mundane", "modern office", "peaceful"]
+            "subjects": [
+              {
+                "type": "scene",
+                "description": "Massive GPU shrine from Moostik POV, flames and energy crackling around it, screen displaying image generation in progress, smoke rising dramatically, tiny Moostik technicians looking up in worship and fear, tech deity aesthetic"
+              }
+            ],
+            "negative": [
+              "calm",
+              "mundane",
+              "modern office",
+              "peaceful"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "low_angle",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-4-generation/v1.png"
+            }
           ]
         },
         {
@@ -644,7 +869,12 @@
                   "Confetti celebration"
                 ],
                 "look": "divine revelation, angelic celebration, comedic jealousy",
-                "palette": ["divine gold halo", "blood red confetti", "angel white", "obsidian black"]
+                "palette": [
+                  "divine gold halo",
+                  "blood red confetti",
+                  "angel white",
+                  "obsidian black"
+                ]
               },
               "environment": {
                 "space": "Heavenly void with divine light, generated masterpiece floating",
@@ -659,14 +889,26 @@
               "steps": 70
             },
             "goal": "Process Step 5 - The Miracle: generated image floating in divine golden halo, angel-Moostiks with tiny halos surrounding it in worship, blood-red confetti falling, subtle Pixar lamp shape in background looking jealous, divine revelation celebration scene",
-            "subjects": [{
-              "type": "scene",
-              "description": "Floating generated masterpiece image in golden divine halo, surrounded by celebrating angel-Moostiks with tiny halos, blood-red confetti falling, comedic Pixar lamp silhouette in background looking envious"
-            }],
-            "negative": ["sad", "failure", "dark", "mundane"]
+            "subjects": [
+              {
+                "type": "scene",
+                "description": "Floating generated masterpiece image in golden divine halo, surrounded by celebrating angel-Moostiks with tiny halos, blood-red confetti falling, comedic Pixar lamp silhouette in background looking envious"
+              }
+            ],
+            "negative": [
+              "sad",
+              "failure",
+              "dark",
+              "mundane"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-5-miracle/v1.png"
+            }
           ]
         },
         {
@@ -692,7 +934,11 @@
                   "Historic emotional moment"
                 ],
                 "look": "emotional cinema scene, premiere night, tears of joy",
-                "palette": ["cinema screen glow", "blood red theater seats", "amber emotional lighting"]
+                "palette": [
+                  "cinema screen glow",
+                  "blood red theater seats",
+                  "amber emotional lighting"
+                ]
               },
               "environment": {
                 "space": "Moostik cinema theater, organic chitin seats, large screen",
@@ -707,14 +953,26 @@
               "steps": 70
             },
             "goal": "Process Step 6 - Video: cinema theater scene showing first AI video on screen with Moostik character moving, audience of Moostiks watching in tears of overwhelming joy, some holding hands/forelegs, some fainting from emotion, premiere night of historic achievement",
-            "subjects": [{
-              "type": "scene",
-              "description": "Moostik cinema theater, screen showing first generated video with Moostik character in motion, audience of emotional Moostiks crying tears of joy, holding each other, some dramatically fainting, historic premiere moment"
-            }],
-            "negative": ["bored", "empty theater", "casual", "mundane"]
+            "subjects": [
+              {
+                "type": "scene",
+                "description": "Moostik cinema theater, screen showing first generated video with Moostik character in motion, audience of emotional Moostiks crying tears of joy, holding each other, some dramatically fainting, historic premiere moment"
+              }
+            ],
+            "negative": [
+              "bored",
+              "empty theater",
+              "casual",
+              "mundane"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "wide", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-6-video/v1.png"
+            }
           ]
         },
         {
@@ -740,7 +998,12 @@
                   "Ultimate swag expression"
                 ],
                 "look": "epic victory moment, mic drop pose, maximum swag",
-                "palette": ["blood red explosion", "confetti gold", "obsidian black", "amber victory glow"]
+                "palette": [
+                  "blood red explosion",
+                  "confetti gold",
+                  "obsidian black",
+                  "amber victory glow"
+                ]
               },
               "environment": {
                 "space": "Stage with Bloodwings logo backdrop, confetti explosion",
@@ -755,14 +1018,26 @@
               "steps": 70
             },
             "goal": "Process Step 7 - Masterpiece: badass Moostik doing epic MIC DROP pose, tiny microphone falling from foreleg, massive explosion of blood-red confetti behind, Bloodwings Studio logo glowing in backdrop, expression of ultimate 'we did it' swag, victory trollesque moment",
-            "subjects": [{
-              "type": "moostik",
-              "description": "Badass Moostik in mic drop pose, foreleg releasing tiny microphone falling downward, sunglasses-like eye expression of ultimate swag, massive blood-red confetti explosion behind, Bloodwings logo glowing, victory stance"
-            }],
-            "negative": ["humble", "modest", "sad", "failure"]
+            "subjects": [
+              {
+                "type": "moostik",
+                "description": "Badass Moostik in mic drop pose, foreleg releasing tiny microphone falling downward, sunglasses-like eye expression of ultimate swag, massive blood-red confetti explosion behind, Bloodwings logo glowing, victory stance"
+              }
+            ],
+            "negative": [
+              "humble",
+              "modest",
+              "sad",
+              "failure"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "low_angle", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "low_angle",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-process-carousel/process-7-masterpiece/v1.png"
+            }
           ]
         }
       ]
@@ -795,11 +1070,18 @@
                   "Jalousies as visual prison"
                 ],
                 "look": "theatrical movie poster, epic blockbuster composition, dramatic contrast",
-                "palette": ["obsidian black silhouette", "fire orange", "blood red sky", "smoke gray"]
+                "palette": [
+                  "obsidian black silhouette",
+                  "fire orange",
+                  "blood red sky",
+                  "smoke gray"
+                ]
               },
               "environment": {
                 "space": "foreground hero, middle burning village, background jalousie sky",
-                "gigantism_cues": ["BYSS aerosol can silhouette looming in sky like apocalypse weapon"],
+                "gigantism_cues": [
+                  "BYSS aerosol can silhouette looming in sky like apocalypse weapon"
+                ],
                 "mood": "epic tragedy, hero's burden, vengeance rising"
               }
             },
@@ -808,17 +1090,29 @@
               "render_resolution": "2048x3072",
               "seed": 669001,
               "steps": 70,
-              "guidance_strength": 9.0
+              "guidance_strength": 9
             },
             "goal": "Epic cinema poster EP0 LE GENOCIDE: elderly Papy Tik mosquito silhouette in heroic pose foreground looking up, behind him burning Cooltik village with flames reaching sky, falling Moostik bodies in flames, toxic BYSS cloud, top of frame Martinique jalousie wooden slats like prison bars, clear space at top for title, Hollywood blockbuster poster composition",
-            "subjects": [{
-              "type": "poster_composition",
-              "description": "Papy Tik heroic silhouette in foreground, cane visible, looking up at sky, burning village middle ground, falling bodies, BYSS cloud, jalousie bars top framing, poster layout with title space"
-            }],
-            "negative": ["horizontal", "close up only", "no background", "happy scene"]
+            "subjects": [
+              {
+                "type": "poster_composition",
+                "description": "Papy Tik heroic silhouette in foreground, cane visible, looking up at sky, burning village middle ground, falling bodies, BYSS cloud, jalousie bars top framing, poster layout with title space"
+              }
+            ],
+            "negative": [
+              "horizontal",
+              "close up only",
+              "no background",
+              "happy scene"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "hero_shot", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "hero_shot",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-promo-images/promo-poster-cinema/v1.png"
+            }
           ]
         },
         {
@@ -844,11 +1138,20 @@
                   "Giant child hand with aerosol"
                 ],
                 "look": "widescreen epic action, disaster movie aesthetic, Moostik POV",
-                "palette": ["toxic green BYSS", "blood red warning", "obsidian black", "fire orange"]
+                "palette": [
+                  "toxic green BYSS",
+                  "blood red warning",
+                  "obsidian black",
+                  "fire orange"
+                ]
               },
               "environment": {
                 "space": "interior Martinique creole house, BYSS cloud spreading",
-                "gigantism_cues": ["furniture as mountains", "child hand COLOSSAL holding death weapon", "ceiling fan as spinning blade above"],
+                "gigantism_cues": [
+                  "furniture as mountains",
+                  "child hand COLOSSAL holding death weapon",
+                  "ceiling fan as spinning blade above"
+                ],
                 "mood": "apocalyptic action, desperate survival"
               }
             },
@@ -859,14 +1162,26 @@
               "steps": 70
             },
             "goal": "Widescreen action banner: genocide scene inside Martinique house, toxic green BYSS cloud spreading from right, Moostiks fleeing in terror in all directions, COLOSSAL child hand visible holding aerosol weapon, furniture looming as mountains, desperate survival action scene, widescreen epic composition",
-            "subjects": [{
-              "type": "action_scene",
-              "description": "Wide interior with BYSS toxic cloud spreading, multiple Moostiks fleeing in panic, giant child hand with aerosol visible, creole house furniture colossal, chaos and desperation"
-            }],
-            "negative": ["calm", "peaceful", "portrait", "single subject"]
+            "subjects": [
+              {
+                "type": "action_scene",
+                "description": "Wide interior with BYSS toxic cloud spreading, multiple Moostiks fleeing in panic, giant child hand with aerosol visible, creole house furniture colossal, chaos and desperation"
+              }
+            ],
+            "negative": [
+              "calm",
+              "peaceful",
+              "portrait",
+              "single subject"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "extreme_wide", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "extreme_wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-promo-images/promo-display-horizontal/v1.png"
+            }
           ]
         },
         {
@@ -892,7 +1207,12 @@
                   "Tears and courage"
                 ],
                 "look": "emotional close-up, Pixar heart moment, sacrifice scene",
-                "palette": ["blood red", "toxic green approaching", "amber tears", "obsidian black"]
+                "palette": [
+                  "blood red",
+                  "toxic green approaching",
+                  "amber tears",
+                  "obsidian black"
+                ]
               },
               "environment": {
                 "space": "close-up focus on mother and baby, BYSS cloud approaching behind",
@@ -907,14 +1227,26 @@
               "steps": 70
             },
             "goal": "Emotional square format: Mama Dorval in protective pose shielding Baby Dorval with her body, BYSS cloud approaching from behind, mother's expression of absolute maternal determination, amber eyes glistening with tears but fierce with courage, heartbreaking sacrifice moment",
-            "subjects": [{
-              "type": "emotional_moment",
-              "description": "Mama Dorval holding Baby Dorval close, body positioned as shield, wings spread protectively, expression fierce maternal determination with tears, Baby's terrified huge eyes looking at mother, BYSS cloud approaching from behind"
-            }],
-            "negative": ["wide shot", "action", "multiple characters", "happy"]
+            "subjects": [
+              {
+                "type": "emotional_moment",
+                "description": "Mama Dorval holding Baby Dorval close, body positioned as shield, wings spread protectively, expression fierce maternal determination with tears, Baby's terrified huge eyes looking at mother, BYSS cloud approaching from behind"
+              }
+            ],
+            "negative": [
+              "wide shot",
+              "action",
+              "multiple characters",
+              "happy"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "close_up", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "close_up",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-promo-images/promo-meta-square/v1.png"
+            }
           ]
         },
         {
@@ -940,11 +1272,18 @@
                   "Jalousies as escape route"
                 ],
                 "look": "dynamic vertical composition, escape scene, light vs dark contrast",
-                "palette": ["golden hope light top", "toxic green BYSS bottom", "obsidian wood jalousies"]
+                "palette": [
+                  "golden hope light top",
+                  "toxic green BYSS bottom",
+                  "obsidian wood jalousies"
+                ]
               },
               "environment": {
                 "space": "vertical jalousie slats composition, light above, toxic cloud below",
-                "gigantism_cues": ["jalousie wooden slats COLOSSAL like ladder rungs", "light through gaps like divine beams"],
+                "gigantism_cues": [
+                  "jalousie wooden slats COLOSSAL like ladder rungs",
+                  "light through gaps like divine beams"
+                ],
                 "mood": "desperate escape, hope above, death below"
               }
             },
@@ -955,14 +1294,26 @@
               "steps": 70
             },
             "goal": "Vertical story format: dramatic escape through Martinique jalousie shutters, COLOSSAL wooden slats as vertical ladder, Baby Dorval climbing up toward golden light of hope above, toxic green BYSS cloud rising from below pursuing, light vs dark vertical composition",
-            "subjects": [{
-              "type": "escape_scene",
-              "description": "Baby Dorval climbing up through massive jalousie slat gaps, golden divine light streaming from above, toxic green BYSS cloud rising from below, vertical composition with hope above and death below"
-            }],
-            "negative": ["horizontal", "calm", "indoor", "static"]
+            "subjects": [
+              {
+                "type": "escape_scene",
+                "description": "Baby Dorval climbing up through massive jalousie slat gaps, golden divine light streaming from above, toxic green BYSS cloud rising from below, vertical composition with hope above and death below"
+              }
+            ],
+            "negative": [
+              "horizontal",
+              "calm",
+              "indoor",
+              "static"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "dynamic_vertical", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "dynamic_vertical",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-promo-images/promo-story-vertical/v1.png"
+            }
           ]
         },
         {
@@ -988,7 +1339,12 @@
                   "Text space on right"
                 ],
                 "look": "YouTube thumbnail optimized, extreme contrast, eye-catching",
-                "palette": ["fire orange reflection", "blood red", "amber terror eyes", "black depth"]
+                "palette": [
+                  "fire orange reflection",
+                  "blood red",
+                  "amber terror eyes",
+                  "black depth"
+                ]
               },
               "environment": {
                 "space": "extreme close-up on eyes, fire reflected in pupils",
@@ -1004,14 +1360,26 @@
               "guidance_strength": 9.5
             },
             "goal": "YouTube thumbnail: extreme close-up on Baby Dorval's terrified HUGE amber eyes, flames of genocide reflecting in pupils, extreme contrast and saturation for thumbnail visibility, composition weighted to left leaving right third empty for title text overlay",
-            "subjects": [{
-              "type": "thumbnail",
-              "description": "Baby Dorval's massive terrified eyes in extreme close-up, flames reflecting in amber pupils, tears forming, extreme contrast and saturation, positioned left with right space for text"
-            }],
-            "negative": ["wide shot", "low contrast", "muted colors", "centered"]
+            "subjects": [
+              {
+                "type": "thumbnail",
+                "description": "Baby Dorval's massive terrified eyes in extreme close-up, flames reflecting in amber pupils, tears forming, extreme contrast and saturation, positioned left with right space for text"
+              }
+            ],
+            "negative": [
+              "wide shot",
+              "low contrast",
+              "muted colors",
+              "centered"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "extreme_close_up", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "extreme_close_up",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-promo-images/promo-thumbnail-yt/v1.png"
+            }
           ]
         }
       ]
@@ -1044,7 +1412,11 @@
                   "Production sketch aesthetic"
                 ],
                 "look": "rough pencil sketch, animation production design sheet, construction lines visible",
-                "palette": ["pencil gray", "red annotation marks", "light paper background"]
+                "palette": [
+                  "pencil gray",
+                  "red annotation marks",
+                  "light paper background"
+                ]
               },
               "environment": {
                 "space": "clean paper background with sketch grid hints",
@@ -1059,14 +1431,26 @@
               "steps": 70
             },
             "goal": "Character design sketch sheet: elderly Moostik patriarch Papy Tik in THREE VIEWS (front, three-quarter, profile), rough pencil sketch style with visible construction lines, red annotation marks pointing to key features (proboscis, cane, amber eyes, silver wings, mohawk crest), production design sheet aesthetic",
-            "subjects": [{
-              "type": "character_sheet",
-              "description": "Papy Tik in three views arranged horizontally, rough sketch lines visible, red annotations pointing to: 'trompe ancestrale', 'canne rubis', 'yeux ambrés hantés', 'ailes argentées cicatrisées', 'crête mohawk argentée'"
-            }],
-            "negative": ["finished render", "single view", "no annotations", "clean lines"]
+            "subjects": [
+              {
+                "type": "character_sheet",
+                "description": "Papy Tik in three views arranged horizontally, rough sketch lines visible, red annotations pointing to: 'trompe ancestrale', 'canne rubis', 'yeux ambrés hantés', 'ailes argentées cicatrisées', 'crête mohawk argentée'"
+              }
+            ],
+            "negative": [
+              "finished render",
+              "single view",
+              "no annotations",
+              "clean lines"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "turnaround", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "turnaround",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-papy-tik/v1.png"
+            }
           ]
         },
         {
@@ -1092,7 +1476,11 @@
                   "Emotional range display"
                 ],
                 "look": "expression sheet, rough sketch, emotion annotations",
-                "palette": ["pencil gray", "emotional color hints", "paper background"]
+                "palette": [
+                  "pencil gray",
+                  "emotional color hints",
+                  "paper background"
+                ]
               },
               "environment": {
                 "space": "clean paper with expression grid",
@@ -1107,14 +1495,25 @@
               "steps": 70
             },
             "goal": "Expression sheet sketch: Baby Dorval tiny Moostik larva with 6 different expressions arranged in grid - TERREUR (huge eyes, trembling), INNOCENCE (curious wide eyes), PLEURS (tears streaming), ESPOIR (tiny smile), CONFUSION (head tilt), SOMMEIL (peaceful closed eyes), rough sketch style with emotion labels",
-            "subjects": [{
-              "type": "expression_sheet",
-              "description": "Baby Dorval head in 6 expressions: terror, innocence, crying, hope, confusion, peaceful sleep - sketch style with French emotion labels under each"
-            }],
-            "negative": ["single expression", "full body", "finished render"]
+            "subjects": [
+              {
+                "type": "expression_sheet",
+                "description": "Baby Dorval head in 6 expressions: terror, innocence, crying, hope, confusion, peaceful sleep - sketch style with French emotion labels under each"
+              }
+            ],
+            "negative": [
+              "single expression",
+              "full body",
+              "finished render"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "expression_grid", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "expression_grid",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-baby-dorval/v1.png"
+            }
           ]
         },
         {
@@ -1140,7 +1539,11 @@
                   "Maternal fierce expression"
                 ],
                 "look": "action pose sketch, dynamic lines, protective stance",
-                "palette": ["pencil gray", "motion line red", "paper background"]
+                "palette": [
+                  "pencil gray",
+                  "motion line red",
+                  "paper background"
+                ]
               },
               "environment": {
                 "space": "clean paper with action lines",
@@ -1155,14 +1558,25 @@
               "steps": 70
             },
             "goal": "Action pose sketch: Mama Dorval in maximum protective stance, wings spread wide as shield, body curved over invisible baby, expression of fierce maternal determination, dynamic red motion lines showing protective movement, sketch annotation 'LE SACRIFICE'",
-            "subjects": [{
-              "type": "action_pose",
-              "description": "Mama Dorval in protective crouch, wings spread as shield, motion lines indicating protective sweep, fierce determined expression, sketch style with 'LE SACRIFICE' label"
-            }],
-            "negative": ["static pose", "relaxed", "no motion lines"]
+            "subjects": [
+              {
+                "type": "action_pose",
+                "description": "Mama Dorval in protective crouch, wings spread as shield, motion lines indicating protective sweep, fierce determined expression, sketch style with 'LE SACRIFICE' label"
+              }
+            ],
+            "negative": [
+              "static pose",
+              "relaxed",
+              "no motion lines"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "action_pose", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "action_pose",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-mama-dorval/v1.png"
+            }
           ]
         },
         {
@@ -1188,7 +1602,11 @@
                   "Material callouts"
                 ],
                 "look": "environment concept sketch, architectural perspective, production notes",
-                "palette": ["pencil gray", "amber lighting hints", "warm tone washes"]
+                "palette": [
+                  "pencil gray",
+                  "amber lighting hints",
+                  "warm tone washes"
+                ]
               },
               "environment": {
                 "space": "Bar Ti Sang interior perspective",
@@ -1203,14 +1621,25 @@
               "steps": 70
             },
             "goal": "Environment concept sketch: Bar Ti Sang interior one-point perspective toward stage, rough sketch with annotations - 'WARM AMBER LIGHTING' arrows, 'ORGANIC CHITIN ARCHITECTURE' labels, 'INTIMATE CANTINA ATMOSPHERE' note, architectural concept art style",
-            "subjects": [{
-              "type": "environment_concept",
-              "description": "Bar Ti Sang interior sketch perspective, organic bar counter left, small stage back center, booth seating right, annotations pointing to lighting sources, materials, atmosphere notes"
-            }],
-            "negative": ["finished render", "no annotations", "exterior"]
+            "subjects": [
+              {
+                "type": "environment_concept",
+                "description": "Bar Ti Sang interior sketch perspective, organic bar counter left, small stage back center, booth seating right, annotations pointing to lighting sources, materials, atmosphere notes"
+              }
+            ],
+            "negative": [
+              "finished render",
+              "no annotations",
+              "exterior"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "interior_perspective", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "interior_perspective",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-bar-ti-sang/v1.png"
+            }
           ]
         },
         {
@@ -1236,11 +1665,18 @@
                   "AVANT label prominent"
                 ],
                 "look": "nostalgic concept sketch, golden hour wash, peaceful melancholy",
-                "palette": ["golden warm wash", "pencil gray", "peaceful green hints"]
+                "palette": [
+                  "golden warm wash",
+                  "pencil gray",
+                  "peaceful green hints"
+                ]
               },
               "environment": {
                 "space": "Village Cooltik establishing view",
-                "gigantism_cues": ["fabric fiber cottages", "lint pathways"],
+                "gigantism_cues": [
+                  "fabric fiber cottages",
+                  "lint pathways"
+                ],
                 "mood": "peaceful nostalgia, what was lost"
               }
             },
@@ -1251,14 +1687,26 @@
               "steps": 70
             },
             "goal": "Concept sketch: Village Cooltik before genocide, peaceful organic cottages, warm golden afternoon light wash, happy Moostik silhouettes suggested, large 'AVANT' label at top, nostalgic melancholy of what was lost, production concept art style",
-            "subjects": [{
-              "type": "environment_concept",
-              "description": "Village Cooltik establishing sketch, organic cottages, warm golden light, peaceful atmosphere, 'AVANT' label top center, annotation 'ce qui a été perdu...'"
-            }],
-            "negative": ["destruction", "fire", "dark", "APRES"]
+            "subjects": [
+              {
+                "type": "environment_concept",
+                "description": "Village Cooltik establishing sketch, organic cottages, warm golden light, peaceful atmosphere, 'AVANT' label top center, annotation 'ce qui a été perdu...'"
+              }
+            ],
+            "negative": [
+              "destruction",
+              "fire",
+              "dark",
+              "APRES"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "establishing", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "establishing",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-cooltik-village/v1.png"
+            }
           ]
         },
         {
@@ -1284,11 +1732,19 @@
                   "Dramatic perspective"
                 ],
                 "look": "dramatic concept sketch, hostile environment, danger annotations",
-                "palette": ["toxic green BYSS wash", "pencil dark", "danger red annotations"]
+                "palette": [
+                  "toxic green BYSS wash",
+                  "pencil dark",
+                  "danger red annotations"
+                ]
               },
               "environment": {
                 "space": "Creole house interior from Moostik POV",
-                "gigantism_cues": ["furniture COLOSSAL", "ceiling fan DEADLY", "BYSS can MASSIVE"],
+                "gigantism_cues": [
+                  "furniture COLOSSAL",
+                  "ceiling fan DEADLY",
+                  "BYSS can MASSIVE"
+                ],
                 "mood": "hostile territory, death zone"
               }
             },
@@ -1299,14 +1755,26 @@
               "steps": 70
             },
             "goal": "Concept sketch: Martinique house interior during genocide from Moostik POV, dramatic low angle showing COLOSSAL hostile architecture, BYSS toxic cloud sketched in green wash, red danger annotations pointing to threats - 'VENTILATEUR MORTEL', 'NUAGE BYSS', 'SANS ISSUE'",
-            "subjects": [{
-              "type": "environment_concept",
-              "description": "Hostile interior sketch, low angle showing massive furniture, ceiling fan above, BYSS cloud in green wash, red danger annotations, dramatic genocide location concept"
-            }],
-            "negative": ["peaceful", "safe", "warm colors", "no danger"]
+            "subjects": [
+              {
+                "type": "environment_concept",
+                "description": "Hostile interior sketch, low angle showing massive furniture, ceiling fan above, BYSS cloud in green wash, red danger annotations, dramatic genocide location concept"
+              }
+            ],
+            "negative": [
+              "peaceful",
+              "safe",
+              "warm colors",
+              "no danger"
+            ]
           },
           "variations": [
-            { "id": "v1", "cameraAngle": "dramatic_low", "status": "pending" }
+            {
+              "id": "v1",
+              "cameraAngle": "dramatic_low",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-sketches/sketch-maison-genocide/v1.png"
+            }
           ]
         }
       ]
@@ -1332,22 +1800,53 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Three survivors at bar", "Intimate testimony moment", "Warm bar atmosphere", "Story beginning"],
+                "usp_core": [
+                  "Three survivors at bar",
+                  "Intimate testimony moment",
+                  "Warm bar atmosphere",
+                  "Story beginning"
+                ],
                 "look": "BD panel composition, warm intimate, storytelling moment",
-                "palette": ["warm amber bar light", "blood red accents", "shadow depth"]
+                "palette": [
+                  "warm amber bar light",
+                  "blood red accents",
+                  "shadow depth"
+                ]
               },
               "environment": {
                 "space": "Bar Ti Sang interior, survivors' table",
-                "gigantism_cues": ["thimble nectar glasses"],
+                "gigantism_cues": [
+                  "thimble nectar glasses"
+                ],
                 "mood": "intimate testimony, memories surfacing"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671001 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671001
+            },
             "goal": "BD panel 1: Bar Ti Sang warm interior, three elderly survivor Moostiks (Koko scarred warrior, Mila wise sage, Trez alert scout) sitting together at table with thimble nectar drinks, one beginning to speak, intimate testimony atmosphere, BD panel composition",
-            "subjects": [{ "type": "group_scene", "description": "Three elderly survivors at bar table, each showing their survivor traits, one speaking, others listening intently" }],
-            "negative": ["happy", "young characters", "action"]
+            "subjects": [
+              {
+                "type": "group_scene",
+                "description": "Three elderly survivors at bar table, each showing their survivor traits, one speaking, others listening intently"
+              }
+            ],
+            "negative": [
+              "happy",
+              "young characters",
+              "action"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-01-bar-present/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-02-transition",
@@ -1365,18 +1864,51 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Eyes becoming unfocused", "Present dissolving", "Golden memories emerging", "Flashback transition"],
+                "usp_core": [
+                  "Eyes becoming unfocused",
+                  "Present dissolving",
+                  "Golden memories emerging",
+                  "Flashback transition"
+                ],
                 "look": "dreamy transition, dissolve effect, memory emergence",
-                "palette": ["present dark fading", "golden memory glow emerging", "blur effect"]
+                "palette": [
+                  "present dark fading",
+                  "golden memory glow emerging",
+                  "blur effect"
+                ]
               },
-              "environment": { "space": "abstract transition space", "gigantism_cues": [], "mood": "dreamlike memory transition" }
+              "environment": {
+                "space": "abstract transition space",
+                "gigantism_cues": [],
+                "mood": "dreamlike memory transition"
+              }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671002 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671002
+            },
             "goal": "BD panel 2 transition: close-up on elderly Moostik's amber eyes becoming unfocused and dreamy, present bar scene dissolving around edges, golden warm light of memories beginning to emerge, flashback transition effect",
-            "subjects": [{ "type": "transition", "description": "Eyes in close-up, present fading to memory glow" }],
-            "negative": ["sharp focus", "present day", "action"]
+            "subjects": [
+              {
+                "type": "transition",
+                "description": "Eyes in close-up, present fading to memory glow"
+              }
+            ],
+            "negative": [
+              "sharp focus",
+              "present day",
+              "action"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "close_up", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "close_up",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-02-transition/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-03-village-peaceful",
@@ -1394,22 +1926,55 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Idyllic village life", "Golden afternoon light", "Families at peace", "Innocence before horror"],
+                "usp_core": [
+                  "Idyllic village life",
+                  "Golden afternoon light",
+                  "Families at peace",
+                  "Innocence before horror"
+                ],
                 "look": "golden hour idyllic, pastoral peace, heartbreaking beauty",
-                "palette": ["golden warm light", "peaceful greens", "happy amber eyes"]
+                "palette": [
+                  "golden warm light",
+                  "peaceful greens",
+                  "happy amber eyes"
+                ]
               },
               "environment": {
                 "space": "Village Cooltik exterior",
-                "gigantism_cues": ["fabric fiber cottages", "lint gardens"],
+                "gigantism_cues": [
+                  "fabric fiber cottages",
+                  "lint gardens"
+                ],
                 "mood": "idyllic peace, innocence"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671003 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671003
+            },
             "goal": "BD panel 3 flashback: Village Cooltik in golden afternoon light, organic cottages, Moostik families going about peaceful life, children playing, flowers blooming, idyllic pastoral scene before the horror",
-            "subjects": [{ "type": "establishing", "description": "Peaceful village, happy families, golden light" }],
-            "negative": ["danger", "dark", "fire", "BYSS"]
+            "subjects": [
+              {
+                "type": "establishing",
+                "description": "Peaceful village, happy families, golden light"
+              }
+            ],
+            "negative": [
+              "danger",
+              "dark",
+              "fire",
+              "BYSS"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "wide", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-03-village-peaceful/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-04-mama-baby",
@@ -1427,22 +1992,54 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Maternal love moment", "Mother cradling baby", "Tender exchange", "Last peaceful moment"],
+                "usp_core": [
+                  "Maternal love moment",
+                  "Mother cradling baby",
+                  "Tender exchange",
+                  "Last peaceful moment"
+                ],
                 "look": "intimate maternal scene, tender lighting, emotional warmth",
-                "palette": ["warm amber", "soft pink love", "safe darkness around"]
+                "palette": [
+                  "warm amber",
+                  "soft pink love",
+                  "safe darkness around"
+                ]
               },
               "environment": {
                 "space": "Cozy nest in cottage",
-                "gigantism_cues": ["fabric fiber nest"],
+                "gigantism_cues": [
+                  "fabric fiber nest"
+                ],
                 "mood": "maternal love, peaceful intimacy"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671004 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671004
+            },
             "goal": "BD panel 4: intimate scene of Mama Dorval in cozy fabric nest, tenderly cradling Baby Dorval, loving gazes exchanged between mother and child, warm amber lighting, peaceful maternal moment - last happiness before tragedy",
-            "subjects": [{ "type": "intimate", "description": "Mother holding baby in nest, loving gazes, tender moment" }],
-            "negative": ["danger", "fear", "action", "others present"]
+            "subjects": [
+              {
+                "type": "intimate",
+                "description": "Mother holding baby in nest, loving gazes, tender moment"
+              }
+            ],
+            "negative": [
+              "danger",
+              "fear",
+              "action",
+              "others present"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-04-mama-baby/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-05-shadow-arrives",
@@ -1460,22 +2057,55 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Giant shadow falling", "Child hand silhouette", "BYSS can visible", "Confusion turning to fear"],
+                "usp_core": [
+                  "Giant shadow falling",
+                  "Child hand silhouette",
+                  "BYSS can visible",
+                  "Confusion turning to fear"
+                ],
                 "look": "dramatic shadow, tension building, threat appearing",
-                "palette": ["dark shadow", "ominous backlight", "fear amber eyes"]
+                "palette": [
+                  "dark shadow",
+                  "ominous backlight",
+                  "fear amber eyes"
+                ]
               },
               "environment": {
                 "space": "Village with giant shadow",
-                "gigantism_cues": ["COLOSSAL child hand", "BYSS can as weapon of mass destruction"],
+                "gigantism_cues": [
+                  "COLOSSAL child hand",
+                  "BYSS can as weapon of mass destruction"
+                ],
                 "mood": "dread, threat appearing"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671005 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671005
+            },
             "goal": "BD panel 5 tension: giant shadow falling over village, silhouette of COLOSSAL child hand holding BYSS aerosol visible against light, Moostiks below looking up in confusion turning to fear, dramatic threat appearing",
-            "subjects": [{ "type": "threat", "description": "Giant shadow, child hand silhouette with BYSS, confused/fearful Moostiks below" }],
-            "negative": ["peaceful", "calm", "happy", "no shadow"]
+            "subjects": [
+              {
+                "type": "threat",
+                "description": "Giant shadow, child hand silhouette with BYSS, confused/fearful Moostiks below"
+              }
+            ],
+            "negative": [
+              "peaceful",
+              "calm",
+              "happy",
+              "no shadow"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "low_angle", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "low_angle",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-05-shadow-arrives/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-06-byss-cloud",
@@ -1493,9 +2123,19 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Toxic cloud spreading", "Moostiks falling", "Chaos and screaming", "Genocide horror"],
+                "usp_core": [
+                  "Toxic cloud spreading",
+                  "Moostiks falling",
+                  "Chaos and screaming",
+                  "Genocide horror"
+                ],
                 "look": "horror scene, toxic atmosphere, mass death",
-                "palette": ["toxic green BYSS", "death black", "panic amber", "suffocation blue"]
+                "palette": [
+                  "toxic green BYSS",
+                  "death black",
+                  "panic amber",
+                  "suffocation blue"
+                ]
               },
               "environment": {
                 "space": "Village engulfed in BYSS",
@@ -1503,12 +2143,33 @@
                 "mood": "pure horror, genocide"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671006 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671006
+            },
             "goal": "BD panel 6 HORROR: toxic green BYSS cloud spreading through air, Moostiks falling from sky, convulsing, suffocating, chaos and silent screams, genocide in progress, traumatic but necessary depiction",
-            "subjects": [{ "type": "horror", "description": "BYSS cloud spreading, Moostiks falling/dying, chaos, genocide" }],
-            "negative": ["peaceful", "survivors", "escape", "hope"]
+            "subjects": [
+              {
+                "type": "horror",
+                "description": "BYSS cloud spreading, Moostiks falling/dying, chaos, genocide"
+              }
+            ],
+            "negative": [
+              "peaceful",
+              "survivors",
+              "escape",
+              "hope"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "wide", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "wide",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-06-byss-cloud/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-07-sacrifice",
@@ -1526,9 +2187,19 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Mother as shield", "Wings spread protection", "Absorbing poison", "Farewell in eyes"],
+                "usp_core": [
+                  "Mother as shield",
+                  "Wings spread protection",
+                  "Absorbing poison",
+                  "Farewell in eyes"
+                ],
                 "look": "heroic sacrifice, maternal protection, emotional peak",
-                "palette": ["protective amber glow", "toxic green behind", "sacrifice crimson", "love pink"]
+                "palette": [
+                  "protective amber glow",
+                  "toxic green behind",
+                  "sacrifice crimson",
+                  "love pink"
+                ]
               },
               "environment": {
                 "space": "Amid BYSS cloud",
@@ -1536,12 +2207,32 @@
                 "mood": "ultimate sacrifice, fierce maternal love"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671007 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671007
+            },
             "goal": "BD panel 7 EMOTIONAL CLIMAX: Mama Dorval as living shield, wings spread wide protecting Baby Dorval beneath her, toxic BYSS cloud hitting her body, her eyes meeting baby's - farewell but fierce determination, ultimate maternal sacrifice",
-            "subjects": [{ "type": "sacrifice", "description": "Mother shielding baby with body, wings as barrier, poison hitting her, fierce loving eyes" }],
-            "negative": ["baby exposed", "mother fleeing", "both dying"]
+            "subjects": [
+              {
+                "type": "sacrifice",
+                "description": "Mother shielding baby with body, wings as barrier, poison hitting her, fierce loving eyes"
+              }
+            ],
+            "negative": [
+              "baby exposed",
+              "mother fleeing",
+              "both dying"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "close_up", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "close_up",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-07-sacrifice/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-08-escape",
@@ -1559,22 +2250,54 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Escape through jalousies", "Light of hope ahead", "BYSS behind", "Threshold moment"],
+                "usp_core": [
+                  "Escape through jalousies",
+                  "Light of hope ahead",
+                  "BYSS behind",
+                  "Threshold moment"
+                ],
                 "look": "dramatic escape, light vs dark, hope emerging",
-                "palette": ["golden hope light", "toxic green behind", "dark jalousie wood"]
+                "palette": [
+                  "golden hope light",
+                  "toxic green behind",
+                  "dark jalousie wood"
+                ]
               },
               "environment": {
                 "space": "Jalousie threshold",
-                "gigantism_cues": ["COLOSSAL wooden slats"],
+                "gigantism_cues": [
+                  "COLOSSAL wooden slats"
+                ],
                 "mood": "desperate hope, escape to life"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671008 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671008
+            },
             "goal": "BD panel 8 HOPE: Baby Dorval squeezing through gap in massive jalousie slats, toxic green BYSS cloud behind, golden rays of light and freedom ahead, threshold between death and life, desperate escape to survival",
-            "subjects": [{ "type": "escape", "description": "Baby escaping through jalousie gap, BYSS behind, light ahead" }],
-            "negative": ["trapped", "caught", "no light", "no escape"]
+            "subjects": [
+              {
+                "type": "escape",
+                "description": "Baby escaping through jalousie gap, BYSS behind, light ahead"
+              }
+            ],
+            "negative": [
+              "trapped",
+              "caught",
+              "no light",
+              "no escape"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "medium", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "medium",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-08-escape/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-09-oath",
@@ -1592,9 +2315,18 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Survivors at memorial", "Oath hands raised", "Eternal flame", "Never forget never forgive"],
+                "usp_core": [
+                  "Survivors at memorial",
+                  "Oath hands raised",
+                  "Eternal flame",
+                  "Never forget never forgive"
+                ],
                 "look": "solemn oath scene, memorial setting, resolve born",
-                "palette": ["eternal flame red", "memorial obsidian", "determined amber eyes"]
+                "palette": [
+                  "eternal flame red",
+                  "memorial obsidian",
+                  "determined amber eyes"
+                ]
               },
               "environment": {
                 "space": "Genocide memorial, eternal flame",
@@ -1602,12 +2334,32 @@
                 "mood": "solemn oath, vengeance born"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671009 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671009
+            },
             "goal": "BD panel 9 OATH: survivors standing before genocide memorial eternal flame, forelegs raised in solemn oath, scarred faces resolved and determined, 'never forget never forgive', birth of Bloodwings vengeance",
-            "subjects": [{ "type": "oath", "description": "Survivors at memorial, oath gesture, eternal flame, determined faces" }],
-            "negative": ["sad collapse", "giving up", "no flame"]
+            "subjects": [
+              {
+                "type": "oath",
+                "description": "Survivors at memorial, oath gesture, eternal flame, determined faces"
+              }
+            ],
+            "negative": [
+              "sad collapse",
+              "giving up",
+              "no flame"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "low_angle", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "low_angle",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-09-oath/v1.png"
+            }
+          ]
         },
         {
           "id": "bd-10-return-present",
@@ -1625,9 +2377,18 @@
             },
             "scene_graph": {
               "style_bible": {
-                "usp_core": ["Return to present", "Papy Tik's eyes", "All history in gaze", "Hope for new generation"],
+                "usp_core": [
+                  "Return to present",
+                  "Papy Tik's eyes",
+                  "All history in gaze",
+                  "Hope for new generation"
+                ],
                 "look": "emotional close-up, aged wise eyes, history in gaze",
-                "palette": ["amber wise eyes", "warm bar light", "hint of hope gold"]
+                "palette": [
+                  "amber wise eyes",
+                  "warm bar light",
+                  "hint of hope gold"
+                ]
               },
               "environment": {
                 "space": "Bar Ti Sang, present",
@@ -1635,12 +2396,32 @@
                 "mood": "reflection, burden, hope"
               }
             },
-            "parameters": { "aspect_ratio": "4:3", "render_resolution": "1600x1200", "seed": 671010 },
+            "parameters": {
+              "aspect_ratio": "4:3",
+              "render_resolution": "1600x1200",
+              "seed": 671010
+            },
             "goal": "BD panel 10 CLOSURE: back in Bar Ti Sang, extreme close-up on elderly Papy Tik's amber eyes, carrying weight of all we've seen - trauma, loss, vengeance - but also hint of hope as young listeners are reflected in his eyes, full circle",
-            "subjects": [{ "type": "closure", "description": "Papy Tik's aged eyes close-up, all history visible, young Moostiks reflected" }],
-            "negative": ["action", "violence", "despair only"]
+            "subjects": [
+              {
+                "type": "closure",
+                "description": "Papy Tik's aged eyes close-up, all history visible, young Moostiks reflected"
+              }
+            ],
+            "negative": [
+              "action",
+              "violence",
+              "despair only"
+            ]
           },
-          "variations": [{ "id": "v1", "cameraAngle": "extreme_close_up", "status": "pending" }]
+          "variations": [
+            {
+              "id": "v1",
+              "cameraAngle": "extreme_close_up",
+              "status": "completed",
+              "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/promo-bd-moodboard/bd-10-return-present/v1.png"
+            }
+          ]
         }
       ]
     }

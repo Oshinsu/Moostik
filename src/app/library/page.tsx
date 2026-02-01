@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Sidebar } from "@/components/Sidebar";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import {
   Select,
   SelectContent,
@@ -13,35 +15,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  Download,
-  Search,
-  Grid3X3,
-  LayoutList,
-  Image as ImageIcon,
-  User,
-  MapPin,
-  Film,
-  ZoomIn,
-  X,
-  Check,
-  Filter,
-  Video,
-  FileImage,
-  FileVideo,
-} from "lucide-react";
-import { downloadImage, downloadMultipleImages } from "@/lib/download-utils";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { ImmersiveLightbox } from "@/components/shared/ImmersiveLightbox";
+import { SkeletonImage } from "@/components/shared/SkeletonImage";
+import { downloadImage } from "@/lib/download-utils";
 import { getCameraAngleLabel } from "@/data/camera-angles";
+
+// ============================================================================
+// TYPES
+// ============================================================================
 
 interface ImageItem {
   id: string;
   url: string;
-  type: "character" | "location" | "shot";
+  type: "character" | "location" | "shot" | "promo";
   category: string;
   name: string;
   description?: string;
@@ -50,32 +40,107 @@ interface ImageItem {
   shotId?: string;
   videoUrl?: string;
   videoStatus?: string;
+  metadata?: {
+    seed?: number;
+    resolution?: string;
+    prompt?: string;
+  };
 }
+
+interface CategoryData {
+  id: string;
+  title: string;
+  icon: string;
+  color: string;
+  images: ImageItem[];
+}
+
+// ============================================================================
+// CATEGORY CONFIGURATION - SOTA DAM Structure
+// ============================================================================
+
+const CATEGORY_CONFIG = {
+  character: {
+    title: "👤 Personnages",
+    icon: "👤",
+    color: "purple",
+    folder: "01-personnages",
+  },
+  location: {
+    title: "📍 Lieux",
+    icon: "📍",
+    color: "blue",
+    folder: "02-lieux",
+  },
+  shot: {
+    title: "🎬 Shots Générés",
+    icon: "🎬",
+    color: "amber",
+    folder: "03-shots",
+  },
+  promo: {
+    title: "🩸 Assets Promo",
+    icon: "🩸",
+    color: "blood",
+    folder: "04-promo",
+  },
+};
+
+const COLOR_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
+  purple: {
+    bg: "bg-purple-500/10",
+    text: "text-purple-400",
+    border: "border-purple-500/30",
+  },
+  blue: {
+    bg: "bg-blue-500/10",
+    text: "text-blue-400",
+    border: "border-blue-500/30",
+  },
+  amber: {
+    bg: "bg-amber-500/10",
+    text: "text-amber-400",
+    border: "border-amber-500/30",
+  },
+  blood: {
+    bg: "bg-blood-500/10",
+    text: "text-blood-400",
+    border: "border-blood-500/30",
+  },
+};
+
+// ============================================================================
+// COMPONENT
+// ============================================================================
 
 export default function LibraryPage() {
   const [images, setImages] = useState<ImageItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterType, setFilterType] = useState<string>("all");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
-  const [selectedImages, setSelectedImages] = useState<Set<string>>(new Set());
   const [sortBy, setSortBy] = useState<"name" | "type" | "date">("type");
+  const [openCategories, setOpenCategories] = useState<string[]>(["character", "shot"]);
+  const [selectedImages, setSelectedImages] = useState<Set<string>>(new Set());
+  const [downloadingZip, setDownloadingZip] = useState<string | null>(null);
+  
+  // Lightbox
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxCategory, setLightboxCategory] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadAllImages();
-  }, []);
-
-  const loadAllImages = async () => {
+  // ========================================================================
+  // DATA LOADING
+  // ========================================================================
+  
+  const loadAllImages = useCallback(async () => {
     setLoading(true);
     try {
       const allImages: ImageItem[] = [];
 
-      // Charger les références (personnages et lieux)
+      // Load references (characters and locations)
       const refsResponse = await fetch("/api/references");
       const refsData = await refsResponse.json();
 
-      // Ajouter les images de personnages
+      // Add character images
       for (const char of refsData.characters || []) {
         for (let i = 0; i < (char.referenceImages || []).length; i++) {
           allImages.push({
@@ -85,11 +150,14 @@ export default function LibraryPage() {
             category: char.type === "human" ? "Humain" : "Moostik",
             name: char.name,
             description: char.description,
+            metadata: {
+              prompt: char.referencePrompt?.slice(0, 200),
+            },
           });
         }
       }
 
-      // Ajouter les images de lieux
+      // Add location images
       for (const loc of refsData.locations || []) {
         for (let i = 0; i < (loc.referenceImages || []).length; i++) {
           allImages.push({
@@ -99,703 +167,639 @@ export default function LibraryPage() {
             category: loc.type,
             name: loc.name,
             description: loc.description,
+            metadata: {
+              prompt: loc.referencePrompt?.slice(0, 200),
+            },
           });
         }
       }
 
-      // Charger les images générées (scan du dossier output)
+      // Load generated images from episodes
       const episodesResponse = await fetch("/api/episodes");
       const episodesData = await episodesResponse.json();
 
       for (const episode of episodesData || []) {
-        // Utiliser la nouvelle API de scan d'images générées
         const generatedRes = await fetch(`/api/episodes/${episode.id}/generated-images`);
         if (generatedRes.ok) {
           const generatedData = await generatedRes.json();
           
           for (const img of generatedData.images || []) {
-            // Formatter le nom selon le type
-            let name = "";
-            let category = `EP${episode.number}`;
-            
-            if (img.type === "legacy") {
-              // Images legacy: shot-001.png
-              const shotNum = img.filename.match(/shot-(\d+)\.png/)?.[1];
-              name = `Shot ${shotNum || "?"} (Legacy)`;
-              category += " - Legacy";
-            } else {
-              // Variations: var-extreme_wide-xxx.png
-              const shotNum = img.shotId?.match(/shot-(\d+)/)?.[1] || img.shotId;
-              const angleLabel = getCameraAngleLabel(img.cameraAngle || "");
-              name = `Shot ${shotNum} - ${angleLabel}`;
-              category += ` - ${angleLabel}`;
-            }
+            const shotNum = img.shotId?.match(/shot-(\d+)/)?.[1] || img.shotId;
+            const angleLabel = getCameraAngleLabel(img.cameraAngle || "");
 
             allImages.push({
               id: img.id,
               url: img.url,
               type: "shot",
-              category,
-              name,
+              category: `EP${episode.number} - ${angleLabel}`,
+              name: `Shot ${shotNum} - ${angleLabel}`,
               description: `Fichier: ${img.filename}`,
               episodeId: episode.id,
               shotId: img.shotId,
               createdAt: img.createdAt,
               videoUrl: img.videoUrl,
               videoStatus: img.videoStatus,
+              metadata: {
+                seed: img.seed,
+                resolution: img.resolution,
+              },
             });
           }
         }
       }
 
+      // Load promo assets
+      try {
+        const promoRes = await fetch("/api/promo");
+        if (promoRes.ok) {
+          const promoData = await promoRes.json();
+          for (const category of promoData.categories || []) {
+            for (const shot of category.shots || []) {
+              for (const variation of shot.variations || []) {
+                if (variation.status === "completed" && variation.imageUrl) {
+                  allImages.push({
+                    id: `promo-${shot.id}-${variation.id}`,
+                    url: variation.imageUrl,
+                    type: "promo",
+                    category: category.title,
+                    name: shot.name,
+                    description: shot.description,
+                    metadata: {
+                      seed: shot.prompt?.parameters?.seed,
+                      resolution: shot.prompt?.parameters?.render_resolution,
+                      prompt: shot.prompt?.meta?.scene_intent?.slice(0, 200),
+                    },
+                  });
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.log("No promo assets yet");
+      }
+
       setImages(allImages);
     } catch (error) {
-      console.error("Erreur chargement images:", error);
+      console.error("Error loading images:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const filteredImages = images
-    .filter((img) => {
-      // Filtre par type
-      if (filterType !== "all" && img.type !== filterType) return false;
+  useEffect(() => {
+    loadAllImages();
+  }, [loadAllImages]);
 
-      // Filtre par recherche
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        return (
-          img.name.toLowerCase().includes(query) ||
-          img.category.toLowerCase().includes(query) ||
-          img.description?.toLowerCase().includes(query)
-        );
+  // ========================================================================
+  // FILTERING & SORTING
+  // ========================================================================
+
+  const filteredImages = useMemo(() => {
+    return images
+      .filter((img) => {
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          return (
+            img.name.toLowerCase().includes(query) ||
+            img.category.toLowerCase().includes(query) ||
+            img.description?.toLowerCase().includes(query)
+          );
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        if (sortBy === "name") return a.name.localeCompare(b.name);
+        if (sortBy === "type") return a.type.localeCompare(b.type);
+        if (sortBy === "date") {
+          return (b.createdAt || "").localeCompare(a.createdAt || "");
+        }
+        return 0;
+      });
+  }, [images, searchQuery, sortBy]);
+
+  // Group by category
+  const categories = useMemo((): CategoryData[] => {
+    const grouped: Record<string, ImageItem[]> = {
+      character: [],
+      location: [],
+      shot: [],
+      promo: [],
+    };
+
+    for (const img of filteredImages) {
+      if (grouped[img.type]) {
+        grouped[img.type].push(img);
       }
-      return true;
-    })
-    .sort((a, b) => {
-      if (sortBy === "name") return a.name.localeCompare(b.name);
-      if (sortBy === "type") return a.type.localeCompare(b.type);
-      if (sortBy === "date") {
-        return (b.createdAt || "").localeCompare(a.createdAt || "");
-      }
-      return 0;
-    });
+    }
 
-  const downloadVideo = async (url: string, filename: string) => {
-    await downloadImage(url, filename, "mp4");
-  };
+    return Object.entries(CATEGORY_CONFIG).map(([key, config]) => ({
+      id: key,
+      title: config.title,
+      icon: config.icon,
+      color: config.color,
+      images: grouped[key] || [],
+    }));
+  }, [filteredImages]);
 
-  const downloadSelected = async () => {
-    const selectedItems = images.filter((img) => selectedImages.has(img.id));
-    await downloadMultipleImages(
-      selectedItems.map((img) => ({
-        url: img.url,
-        filename: img.name.replace(/[^a-zA-Z0-9]/g, "_"),
-      }))
-    );
-  };
+  // ========================================================================
+  // ACTIONS
+  // ========================================================================
 
-  const downloadAll = async () => {
-    await downloadMultipleImages(
-      filteredImages.map((img) => ({
-        url: img.url,
-        filename: img.name.replace(/[^a-zA-Z0-9]/g, "_"),
-      }))
+  const toggleCategory = (categoryId: string) => {
+    setOpenCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
     );
   };
 
   const toggleImageSelection = (id: string) => {
-    const newSelection = new Set(selectedImages);
-    if (newSelection.has(id)) {
-      newSelection.delete(id);
-    } else {
-      newSelection.add(id);
-    }
-    setSelectedImages(newSelection);
+    setSelectedImages((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
   };
 
-  const selectAll = () => {
-    setSelectedImages(new Set(filteredImages.map((img) => img.id)));
-  };
-
-  const deselectAll = () => {
-    setSelectedImages(new Set());
-  };
-
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case "character":
-        return <User className="h-4 w-4" />;
-      case "location":
-        return <MapPin className="h-4 w-4" />;
-      case "shot":
-        return <Film className="h-4 w-4" />;
-      default:
-        return <ImageIcon className="h-4 w-4" />;
+  const selectAllInCategory = (categoryId: string) => {
+    const category = categories.find((c) => c.id === categoryId);
+    if (category) {
+      setSelectedImages((prev) => {
+        const next = new Set(prev);
+        category.images.forEach((img) => next.add(img.id));
+        return next;
+      });
     }
   };
 
-  const getTypeBadgeColor = (type: string) => {
-    switch (type) {
-      case "character":
-        return "bg-purple-500/20 text-purple-300 border-purple-500/30";
-      case "location":
-        return "bg-blue-500/20 text-blue-300 border-blue-500/30";
-      case "shot":
-        return "bg-amber-500/20 text-amber-300 border-amber-500/30";
-      default:
-        return "bg-gray-500/20 text-gray-300 border-gray-500/30";
+  const openLightboxForCategory = (categoryId: string, index: number) => {
+    setLightboxCategory(categoryId);
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  // Download ZIP for category
+  const downloadCategoryZip = async (categoryType: string) => {
+    setDownloadingZip(categoryType);
+    try {
+      const response = await fetch(`/api/library/download-zip?type=${categoryType}`);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `bloodwings-${categoryType}-${new Date().toISOString().split("T")[0]}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }
+    } catch (error) {
+      console.error("ZIP download failed:", error);
+    } finally {
+      setDownloadingZip(null);
     }
   };
 
-  const stats = {
+  // Download ALL as ZIP
+  const downloadAllZip = async () => {
+    setDownloadingZip("all");
+    try {
+      const response = await fetch("/api/library/download-zip");
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `bloodwings-library-${new Date().toISOString().split("T")[0]}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }
+    } catch (error) {
+      console.error("ZIP download failed:", error);
+    } finally {
+      setDownloadingZip(null);
+    }
+  };
+
+  // Lightbox images for current category
+  const lightboxImages = useMemo(() => {
+    if (!lightboxCategory) return [];
+    const category = categories.find((c) => c.id === lightboxCategory);
+    return (category?.images || []).map((img) => ({
+      id: img.id,
+      url: img.url,
+      shotName: img.name,
+      shotNumber: 0,
+      cameraAngle: img.category,
+      sceneType: img.type,
+      seed: img.metadata?.seed,
+      videoUrl: img.videoUrl,
+      prompt: img.metadata?.prompt ? { meta: { scene_intent: img.metadata.prompt } } : undefined,
+    }));
+  }, [lightboxCategory, categories]);
+
+  // Stats
+  const stats = useMemo(() => ({
     total: images.length,
     characters: images.filter((i) => i.type === "character").length,
     locations: images.filter((i) => i.type === "location").length,
     shots: images.filter((i) => i.type === "shot").length,
-  };
+    promo: images.filter((i) => i.type === "promo").length,
+  }), [images]);
+
+  // ========================================================================
+  // RENDER
+  // ========================================================================
 
   return (
-    <div className="flex h-screen bg-[#0b0b0e]">
-      <Sidebar episodes={[]} onCreateEpisode={() => {}} />
+    <div className="min-h-screen bg-[#0b0b0e] text-zinc-100">
+      {/* Lightbox */}
+      <ImmersiveLightbox
+        images={lightboxImages}
+        initialIndex={lightboxIndex}
+        open={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
 
-      <main className="flex-1 overflow-hidden">
-        <div className="h-full flex flex-col">
-          {/* Header - MOOSTIK Bloodwings Style */}
-          <div className="relative p-6 border-b border-blood-900/30 overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-crimson-900/15 via-[#0b0b0e] to-blood-900/10" />
+      {/* ================================================================ */}
+      {/* HEADER */}
+      {/* ================================================================ */}
+      <header className="relative border-b border-blood-900/30 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blood-900/20 via-[#0b0b0e] to-purple-900/10" />
+        
+        {/* Navigation */}
+        <nav className="relative z-10 flex items-center justify-between p-4 border-b border-blood-900/20">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-blood-400 hover:text-blood-300 text-sm font-medium flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              QG Moostik
+            </Link>
+            <span className="text-zinc-700">|</span>
+            <Link href="/ep0" className="text-zinc-500 hover:text-white text-sm">EP0</Link>
+            <Link href="/promo" className="text-zinc-500 hover:text-white text-sm">Promo</Link>
+          </div>
+          <Badge className="bg-blood-900/50 text-blood-400 border-blood-700/30">
+            BIBLIOTHÈQUE SOTA
+          </Badge>
+        </nav>
 
-            {/* Animated blood veins */}
-            <div className="absolute inset-0 opacity-15">
-              <div className="absolute top-0 left-1/5 w-px h-full bg-gradient-to-b from-crimson-700/50 via-blood-600/30 to-transparent animate-pulse" />
-              <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blood-600/30 to-crimson-700/50 animate-pulse" style={{ animationDelay: '0.7s' }} />
+        {/* Hero */}
+        <div className="relative z-10 px-8 py-12 max-w-7xl mx-auto">
+          <div className="flex items-end justify-between">
+            <div>
+              <Badge className="bg-blood-600 text-white border-0 mb-4">BLOODWINGS STUDIO</Badge>
+              <h1 className="text-5xl font-black tracking-tighter uppercase mb-2">
+                <span className="text-blood-500">Bibliothèque</span> d'Assets
+              </h1>
+              <p className="text-zinc-500 max-w-xl">
+                Tous vos assets générés, organisés par catégorie. Téléchargez en ZIP ou individuellement.
+              </p>
             </div>
+            
+            {/* Global Download */}
+            <Button
+              onClick={downloadAllZip}
+              disabled={downloadingZip !== null}
+              className="moostik-btn-blood text-white font-bold h-12 px-6"
+            >
+              {downloadingZip === "all" ? (
+                <>
+                  <span className="animate-spin mr-2">⏳</span>
+                  Préparation...
+                </>
+              ) : (
+                <>
+                  📦 Télécharger TOUT ({stats.total})
+                </>
+              )}
+            </Button>
+          </div>
 
-            <div className="relative">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 rounded-full bg-crimson-500 animate-pulse" />
-                  <span className="text-xs text-crimson-400 uppercase tracking-widest font-medium">Archives</span>
+          {/* Stats */}
+          <div className="flex gap-4 mt-8">
+            {Object.entries(CATEGORY_CONFIG).map(([key, config]) => {
+              const count = stats[key as keyof typeof stats] || 0;
+              const colors = COLOR_CLASSES[config.color];
+              return (
+                <div
+                  key={key}
+                  className={`flex items-center gap-2 px-4 py-2 ${colors.bg} rounded-xl border ${colors.border}`}
+                >
+                  <span>{config.icon}</span>
+                  <span className={`${colors.text} font-bold`}>{count}</span>
+                  <span className="text-zinc-500 text-sm">{config.title.split(" ")[1]}</span>
                 </div>
-                <h1 className="text-3xl font-bold">
-                  <span className="bg-gradient-to-r from-crimson-400 via-blood-500 to-crimson-500 bg-clip-text text-transparent">
-                    Bibliothèque Bloodwings
-                  </span>
-                </h1>
-                <p className="text-zinc-500 mt-1">
-                  Toutes les images générées • {stats.total} images
-                </p>
-              </div>
+              );
+            })}
+          </div>
+        </div>
+      </header>
 
-              <div className="flex items-center gap-2">
-                {selectedImages.size > 0 && (
-                  <>
-                    <Badge variant="outline" className="border-red-500/50">
-                      {selectedImages.size} sélectionnées
-                    </Badge>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={downloadSelected}
-                      className="border-red-500/50 text-red-400 hover:bg-red-500/20"
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Télécharger sélection
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={deselectAll}
-                      className="text-gray-400"
-                    >
-                      <X className="h-4 w-4 mr-2" />
-                      Désélectionner
-                    </Button>
-                  </>
-                )}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={downloadAll}
-                  className="border-amber-500/50 text-amber-400 hover:bg-amber-500/20"
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Tout télécharger ({filteredImages.length})
-                </Button>
-              </div>
-            </div>
+      {/* ================================================================ */}
+      {/* FILTERS */}
+      {/* ================================================================ */}
+      <div className="border-b border-blood-900/20 bg-[#0b0b0e]/95 backdrop-blur-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto p-4 flex items-center gap-4">
+          {/* Search */}
+          <div className="relative flex-1 max-w-md">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <Input
+              placeholder="Rechercher par nom, catégorie..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-zinc-900/50 border-zinc-800 focus:border-blood-500 text-white"
+            />
+          </div>
 
-            {/* Stats */}
-            <div className="flex gap-4 mb-4">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 rounded-lg border border-purple-500/30">
-                <User className="h-4 w-4 text-purple-400" />
-                <span className="text-purple-300 text-sm">
-                  {stats.characters} personnages
-                </span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 rounded-lg border border-blue-500/30">
-                <MapPin className="h-4 w-4 text-blue-400" />
-                <span className="text-blue-300 text-sm">
-                  {stats.locations} lieux
-                </span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 rounded-lg border border-amber-500/30">
-                <Film className="h-4 w-4 text-amber-400" />
-                <span className="text-amber-300 text-sm">
-                  {stats.shots} shots
-                </span>
-              </div>
-            </div>
+          {/* Sort */}
+          <Select value={sortBy} onValueChange={(v: "name" | "type" | "date") => setSortBy(v)}>
+            <SelectTrigger className="w-40 bg-zinc-900/50 border-zinc-800 text-white">
+              <SelectValue placeholder="Trier par" />
+            </SelectTrigger>
+            <SelectContent className="bg-[#14131a] border-zinc-800">
+              <SelectItem value="type">Par type</SelectItem>
+              <SelectItem value="name">Par nom</SelectItem>
+              <SelectItem value="date">Par date</SelectItem>
+            </SelectContent>
+          </Select>
 
-            {/* Filtres */}
-            <div className="flex items-center gap-4">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
-                <Input
-                  placeholder="Rechercher par nom, catégorie..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-[#14131a] border-blood-900/30 focus:border-blood-600"
-                />
-              </div>
+          {/* Expand/Collapse All */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              setOpenCategories((prev) =>
+                prev.length === Object.keys(CATEGORY_CONFIG).length
+                  ? []
+                  : Object.keys(CATEGORY_CONFIG)
+              )
+            }
+            className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
+          >
+            {openCategories.length === Object.keys(CATEGORY_CONFIG).length
+              ? "Replier tout"
+              : "Déplier tout"}
+          </Button>
 
-              <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger className="w-40 bg-[#14131a] border-blood-900/30">
-                  <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder="Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Tous les types</SelectItem>
-                  <SelectItem value="character">Personnages</SelectItem>
-                  <SelectItem value="location">Lieux</SelectItem>
-                  <SelectItem value="shot">Shots</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={sortBy} onValueChange={(v: "name" | "type" | "date") => setSortBy(v)}>
-                <SelectTrigger className="w-40 bg-[#14131a] border-blood-900/30">
-                  <SelectValue placeholder="Trier par" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="type">Par type</SelectItem>
-                  <SelectItem value="name">Par nom</SelectItem>
-                  <SelectItem value="date">Par date</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <div className="flex border border-blood-900/30 rounded-md overflow-hidden">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className={viewMode === "grid" ? "moostik-btn-blood" : ""}
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("list")}
-                  className={viewMode === "list" ? "moostik-btn-blood" : ""}
-                >
-                  <LayoutList className="h-4 w-4" />
-                </Button>
-              </div>
-
+          {/* Selection info */}
+          {selectedImages.size > 0 && (
+            <div className="flex items-center gap-2">
+              <Badge className="bg-blood-600 text-white border-0">
+                {selectedImages.size} sélectionnés
+              </Badge>
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={selectAll}
-                className="text-zinc-400 hover:text-blood-400"
+                onClick={() => setSelectedImages(new Set())}
+                className="text-zinc-400"
               >
-                Sélectionner tout
+                ✕ Désélectionner
               </Button>
             </div>
-            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* CONTENT - ACCORDIONS */}
+      {/* ================================================================ */}
+      <main className="max-w-7xl mx-auto p-8 space-y-6">
+        {loading ? (
+          // Loading skeletons
+          <div className="space-y-6">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="bg-zinc-900/30 border-zinc-800 p-6">
+                <div className="animate-pulse">
+                  <div className="h-8 bg-zinc-800 rounded w-1/4 mb-4" />
+                  <div className="grid grid-cols-6 gap-4">
+                    {[1, 2, 3, 4, 5, 6].map((j) => (
+                      <div key={j} className="aspect-video bg-zinc-800 rounded-lg" />
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
+        ) : (
+          categories.map((category) => {
+            const isOpen = openCategories.includes(category.id);
+            const colors = COLOR_CLASSES[category.color];
+            const hasImages = category.images.length > 0;
 
-          {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
-            {loading ? (
-              <div className="flex items-center justify-center h-64">
-                <div className="text-gray-400">Chargement des images...</div>
-              </div>
-            ) : filteredImages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-64 text-gray-500">
-                <ImageIcon className="h-16 w-16 mb-4 opacity-50" />
-                <p>Aucune image trouvée</p>
-                {searchQuery && (
-                  <p className="text-sm mt-2">
-                    Essayez de modifier votre recherche
-                  </p>
-                )}
-              </div>
-            ) : viewMode === "grid" ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {filteredImages.map((img) => (
-                  <div
-                    key={img.id}
-                    className={`group relative bg-gray-900 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                      selectedImages.has(img.id)
-                        ? "border-red-500 ring-2 ring-red-500/50"
-                        : "border-gray-800 hover:border-gray-700"
-                    }`}
-                    onClick={() => toggleImageSelection(img.id)}
+            return (
+              <Collapsible
+                key={category.id}
+                open={isOpen}
+                onOpenChange={() => toggleCategory(category.id)}
+              >
+                <Card className="bg-zinc-900/30 border-zinc-800 overflow-hidden">
+                  {/* Accordion Header */}
+                  <CollapsibleTrigger
+                    className="w-full"
+                    aria-expanded={isOpen}
+                    aria-controls={`content-${category.id}`}
                   >
-                    {/* Selection indicator */}
-                    <div
-                      className={`absolute top-2 left-2 z-10 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                        selectedImages.has(img.id)
-                          ? "bg-red-500 border-red-500"
-                          : "bg-black/50 border-white/50 opacity-0 group-hover:opacity-100"
-                      }`}
-                    >
-                      {selectedImages.has(img.id) && (
-                        <Check className="h-4 w-4 text-white" />
-                      )}
-                    </div>
+                    <div className="p-6 flex items-center gap-4 hover:bg-zinc-900/50 transition-colors cursor-pointer">
+                      {/* Icon */}
+                      <div className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center text-2xl`}>
+                        {category.icon}
+                      </div>
 
-                    {/* Image */}
-                    <div className="aspect-square relative">
-                      <img
-                        src={img.url}
-                        alt={img.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
+                      {/* Title & Stats */}
+                      <div className="flex-1 text-left">
+                        <h2 className="text-xl font-bold text-white">{category.title}</h2>
+                        <p className="text-zinc-500 text-sm">
+                          {category.images.length} assets • {hasImages ? "Prêts à télécharger" : "Aucun asset"}
+                        </p>
+                      </div>
 
-                      {/* Video indicator */}
-                      {img.videoUrl && img.videoStatus === "completed" && (
-                        <div className="absolute top-2 right-2 z-10 px-1.5 py-0.5 bg-emerald-500/90 rounded text-[10px] font-bold text-white flex items-center gap-1">
-                          <Video className="h-3 w-3" />
-                          MP4
+                      {/* Progress */}
+                      {hasImages && (
+                        <div className="w-32">
+                          <Progress value={100} className="h-1.5 bg-zinc-800" />
                         </div>
                       )}
 
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="absolute bottom-2 right-2 flex gap-2">
+                      {/* Actions */}
+                      {hasImages && (
+                        <div className="flex items-center gap-2">
                           <Button
+                            variant="outline"
                             size="sm"
-                            variant="secondary"
-                            className="h-8 w-8 p-0"
                             onClick={(e) => {
                               e.stopPropagation();
-                              setSelectedImage(img);
+                              selectAllInCategory(category.id);
                             }}
+                            className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 text-xs"
                           >
-                            <ZoomIn className="h-4 w-4" />
+                            Tout sélectionner
                           </Button>
                           <Button
+                            variant="outline"
                             size="sm"
-                            variant="secondary"
-                            className="h-8 w-8 p-0"
-                            title="Télécharger PNG"
                             onClick={(e) => {
                               e.stopPropagation();
-                              downloadImage(
-                                img.url,
-                                img.name.replace(/[^a-zA-Z0-9]/g, "_")
-                              );
+                              downloadCategoryZip(category.id);
                             }}
+                            disabled={downloadingZip !== null}
+                            className={`${colors.border} ${colors.text} hover:bg-zinc-800 text-xs`}
                           >
-                            <FileImage className="h-4 w-4" />
+                            {downloadingZip === category.id ? (
+                              <span className="animate-spin">⏳</span>
+                            ) : (
+                              <>📦 ZIP ({category.images.length})</>
+                            )}
                           </Button>
-                          {img.videoUrl && img.videoStatus === "completed" && (
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="h-8 w-8 p-0 bg-emerald-600 hover:bg-emerald-700"
-                              title="Télécharger MP4"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                downloadVideo(
-                                  img.videoUrl!,
-                                  img.name.replace(/[^a-zA-Z0-9]/g, "_")
-                                );
-                              }}
-                            >
-                              <FileVideo className="h-4 w-4" />
-                            </Button>
+                        </div>
+                      )}
+
+                      {/* Chevron */}
+                      <svg
+                        className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </CollapsibleTrigger>
+
+                  {/* Accordion Content */}
+                  <CollapsibleContent id={`content-${category.id}`}>
+                    <div className="px-6 pb-6 border-t border-zinc-800 pt-4">
+                      {!hasImages ? (
+                        <div className="flex flex-col items-center justify-center py-12 text-zinc-600">
+                          <span className="text-4xl mb-3 opacity-30">{category.icon}</span>
+                          <p>Aucun asset dans cette catégorie</p>
+                          {category.id === "promo" && (
+                            <Link href="/promo">
+                              <Button variant="outline" size="sm" className="mt-4 border-blood-700/50 text-blood-400">
+                                Générer des assets promo →
+                              </Button>
+                            </Link>
                           )}
                         </div>
-                      </div>
-                    </div>
+                      ) : (
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                          {category.images.map((img, index) => (
+                            <div
+                              key={img.id}
+                              className={`group relative rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                                selectedImages.has(img.id)
+                                  ? "border-blood-500 ring-2 ring-blood-500/30"
+                                  : "border-zinc-800 hover:border-zinc-700"
+                              }`}
+                              onClick={() => toggleImageSelection(img.id)}
+                            >
+                              {/* Selection indicator */}
+                              <div
+                                className={`absolute top-2 left-2 z-20 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                                  selectedImages.has(img.id)
+                                    ? "bg-blood-500 border-blood-500"
+                                    : "bg-black/50 border-white/50 opacity-0 group-hover:opacity-100"
+                                }`}
+                              >
+                                {selectedImages.has(img.id) && (
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                )}
+                              </div>
 
-                    {/* Info */}
-                    <div className="p-3">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Badge
-                          variant="outline"
-                          className={`text-xs ${getTypeBadgeColor(img.type)}`}
-                        >
-                          {getTypeIcon(img.type)}
-                          <span className="ml-1">
-                            {img.type === "character"
-                              ? "Perso"
-                              : img.type === "location"
-                                ? "Lieu"
-                                : "Shot"}
-                          </span>
-                        </Badge>
-                      </div>
-                      <h3 className="text-sm font-medium text-white truncate">
-                        {img.name}
-                      </h3>
-                      <p className="text-xs text-gray-500 truncate">
-                        {img.category}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {filteredImages.map((img) => (
-                  <div
-                    key={img.id}
-                    className={`flex items-center gap-4 p-3 bg-gray-900 rounded-lg border-2 transition-all cursor-pointer ${
-                      selectedImages.has(img.id)
-                        ? "border-red-500 ring-2 ring-red-500/50"
-                        : "border-gray-800 hover:border-gray-700"
-                    }`}
-                    onClick={() => toggleImageSelection(img.id)}
-                  >
-                    {/* Selection */}
-                    <div
-                      className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                        selectedImages.has(img.id)
-                          ? "bg-red-500 border-red-500"
-                          : "bg-gray-800 border-gray-600"
-                      }`}
-                    >
-                      {selectedImages.has(img.id) && (
-                        <Check className="h-4 w-4 text-white" />
+                              {/* Video badge */}
+                              {img.videoUrl && img.videoStatus === "completed" && (
+                                <Badge className="absolute top-2 right-2 z-20 bg-emerald-600 text-white text-[9px] border-0">
+                                  🎬 MP4
+                                </Badge>
+                              )}
+
+                              {/* Image with skeleton */}
+                              <SkeletonImage
+                                src={img.url}
+                                alt={img.name}
+                                aspectRatio="square"
+                                showMetadata
+                                metadata={img.metadata}
+                              />
+
+                              {/* Hover actions */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                <div className="absolute bottom-2 right-2 flex gap-1">
+                                  <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    className="h-8 w-8 p-0 bg-white/10 backdrop-blur-sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      openLightboxForCategory(category.id, index);
+                                    }}
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                    </svg>
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    className="h-8 w-8 p-0 bg-white/10 backdrop-blur-sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      downloadImage(img.url, img.name.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase());
+                                    }}
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                  </Button>
+                                </div>
+                              </div>
+
+                              {/* Info */}
+                              <div className="p-3 bg-zinc-900">
+                                <h3 className="text-sm font-medium text-white truncate">{img.name}</h3>
+                                <p className="text-[10px] text-zinc-500 truncate">{img.category}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       )}
                     </div>
-
-                    {/* Thumbnail */}
-                    <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
-                      <img
-                        src={img.url}
-                        alt={img.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Badge
-                          variant="outline"
-                          className={`text-xs ${getTypeBadgeColor(img.type)}`}
-                        >
-                          {getTypeIcon(img.type)}
-                          <span className="ml-1">
-                            {img.type === "character"
-                              ? "Personnage"
-                              : img.type === "location"
-                                ? "Lieu"
-                                : "Shot"}
-                          </span>
-                        </Badge>
-                        <span className="text-xs text-gray-500">
-                          {img.category}
-                        </span>
-                      </div>
-                      <h3 className="font-medium text-white truncate">
-                        {img.name}
-                      </h3>
-                      {img.description && (
-                        <p className="text-sm text-gray-400 truncate">
-                          {img.description}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Video indicator */}
-                    {img.videoUrl && img.videoStatus === "completed" && (
-                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 flex-shrink-0">
-                        <Video className="h-3 w-3 mr-1" />
-                        MP4
-                      </Badge>
-                    )}
-
-                    {/* Actions */}
-                    <div className="flex gap-2 flex-shrink-0">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        title="Aperçu"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedImage(img);
-                        }}
-                      >
-                        <ZoomIn className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        title="Télécharger PNG"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          downloadImage(
-                            img.url,
-                            img.name.replace(/[^a-zA-Z0-9]/g, "_")
-                          );
-                        }}
-                      >
-                        <FileImage className="h-4 w-4" />
-                      </Button>
-                      {img.videoUrl && img.videoStatus === "completed" && (
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="text-emerald-400 hover:text-emerald-300"
-                          title="Télécharger MP4"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            downloadVideo(
-                              img.videoUrl!,
-                              img.name.replace(/[^a-zA-Z0-9]/g, "_")
-                            );
-                          }}
-                        >
-                          <FileVideo className="h-4 w-4" />
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+                  </CollapsibleContent>
+                </Card>
+              </Collapsible>
+            );
+          })
+        )}
       </main>
 
-      {/* Image Preview Dialog */}
-      <Dialog
-        open={!!selectedImage}
-        onOpenChange={() => setSelectedImage(null)}
-      >
-        <DialogContent className="max-w-4xl bg-gray-950 border-gray-800">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-3">
-              <Badge
-                variant="outline"
-                className={getTypeBadgeColor(selectedImage?.type || "")}
-              >
-                {getTypeIcon(selectedImage?.type || "")}
-                <span className="ml-1">
-                  {selectedImage?.type === "character"
-                    ? "Personnage"
-                    : selectedImage?.type === "location"
-                      ? "Lieu"
-                      : "Shot"}
-                </span>
-              </Badge>
-              <span>{selectedImage?.name}</span>
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="space-y-4">
-            {/* Full image */}
-            <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
-              {selectedImage && (
-                <img
-                  src={selectedImage.url}
-                  alt={selectedImage.name}
-                  className="w-full h-full object-contain"
-                />
-              )}
-            </div>
-
-            {/* Details */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="text-sm font-medium text-gray-400 mb-1">
-                  Catégorie
-                </h4>
-                <p className="text-white">{selectedImage?.category}</p>
-              </div>
-              {selectedImage?.description && (
-                <div>
-                  <h4 className="text-sm font-medium text-gray-400 mb-1">
-                    Description
-                  </h4>
-                  <p className="text-white text-sm">
-                    {selectedImage.description}
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Actions */}
-            <div className="flex flex-col gap-3 pt-4 border-t border-gray-800">
-              {/* Format download section */}
-              <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-400">
-                  Formats disponibles:
-                </div>
-                <div className="flex gap-2">
-                  <Badge variant="outline" className="bg-crimson-500/10 text-crimson-300 border-crimson-500/30">
-                    <FileImage className="h-3 w-3 mr-1" />
-                    PNG
-                  </Badge>
-                  {selectedImage?.videoUrl && selectedImage?.videoStatus === "completed" && (
-                    <Badge variant="outline" className="bg-emerald-500/10 text-emerald-300 border-emerald-500/30">
-                      <FileVideo className="h-3 w-3 mr-1" />
-                      MP4
-                    </Badge>
-                  )}
-                </div>
-              </div>
-
-              {/* Download buttons */}
-              <div className="flex justify-end gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => window.open(selectedImage?.url, "_blank")}
-                >
-                  Ouvrir en plein écran
-                </Button>
-                <Button
-                  onClick={() =>
-                    selectedImage &&
-                    downloadImage(
-                      selectedImage.url,
-                      selectedImage.name.replace(/[^a-zA-Z0-9]/g, "_")
-                    )
-                  }
-                  className="bg-crimson-600 hover:bg-crimson-700"
-                >
-                  <FileImage className="h-4 w-4 mr-2" />
-                  Télécharger PNG
-                </Button>
-                {selectedImage?.videoUrl && selectedImage?.videoStatus === "completed" && (
-                  <Button
-                    onClick={() =>
-                      selectedImage &&
-                      downloadVideo(
-                        selectedImage.videoUrl!,
-                        selectedImage.name.replace(/[^a-zA-Z0-9]/g, "_")
-                      )
-                    }
-                    className="bg-emerald-600 hover:bg-emerald-700"
-                  >
-                    <FileVideo className="h-4 w-4 mr-2" />
-                    Télécharger MP4
-                  </Button>
-                )}
-              </div>
-            </div>
+      {/* ================================================================ */}
+      {/* FOOTER */}
+      {/* ================================================================ */}
+      <footer className="border-t border-blood-900/30 p-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="text-zinc-500 text-sm">
+            © 2026 BLOODWINGS STUDIO — Bibliothèque SOTA Janvier 2026
           </div>
-        </DialogContent>
-      </Dialog>
+          <div className="flex items-center gap-4">
+            <span className="text-zinc-600 text-xs">
+              Naming: projet-type-nom-version-seed-resolution.ext
+            </span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
