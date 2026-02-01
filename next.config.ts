@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  // Standalone output for optimized serverless deployment
+  output: "standalone",
+  
   images: {
     remotePatterns: [
       {
@@ -14,8 +17,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  
+  // Externalize heavy packages from serverless bundle
+  serverExternalPackages: ["sharp", "jszip"],
+  
   turbopack: {
     root: path.resolve(__dirname),
+  },
+  
+  // Optimize bundle
+  experimental: {
+    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
   },
 };
 
