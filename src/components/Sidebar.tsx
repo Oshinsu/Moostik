@@ -169,6 +169,13 @@ const MoostikIcons = {
       <circle cx="19" cy="12" r="2" fill="currentColor" />
     </svg>
   ),
+  generate: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      {/* Sparkles / Magic wand */}
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2m0 14v2M5.64 5.64l1.41 1.41m9.9 9.9l1.41 1.41M3 12h2m14 0h2M5.64 18.36l1.41-1.41m9.9-9.9l1.41-1.41" />
+      <circle cx="12" cy="12" r="3" strokeWidth={1.5} fill="currentColor" />
+    </svg>
+  ),
   episode: (
     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
       <path 
@@ -204,12 +211,13 @@ export function Sidebar({ episodes = [], onCreateEpisode = () => {} }: SidebarPr
 
   const navItems = [
     { href: "/", icon: MoostikIcons.dashboard, label: "Quartier Général", sublabel: "Centre de commandement" },
+    { href: "/generate", icon: MoostikIcons.generate, label: "Générateur", sublabel: "Images & Vidéos SOTA", badge: "NEW" },
     { href: "/characters", icon: MoostikIcons.characters, label: "Les Bloodwings", sublabel: "16 âmes" },
     { href: "/locations", icon: MoostikIcons.locations, label: "Territoires", sublabel: "8 lieux sacrés" },
-    { href: "/shots", icon: MoostikIcons.shots, label: "Shots x9", sublabel: "Grille cinématique", badge: "NEW" },
-    { href: "/cinema", icon: MoostikIcons.cinema, label: "Cinema Studio", sublabel: "Contrôle caméra pro", badge: "NEW" },
+    { href: "/shots", icon: MoostikIcons.shots, label: "Shots x9", sublabel: "Grille cinématique" },
+    { href: "/cinema", icon: MoostikIcons.cinema, label: "Cinema Studio", sublabel: "Contrôle caméra pro" },
     { href: "/video", icon: MoostikIcons.video, label: "Vidéo I2V", sublabel: "12 modèles SOTA" },
-    { href: "/editor", icon: MoostikIcons.editor, label: "Montage IA", sublabel: "Timeline & export", badge: "NEW" },
+    { href: "/editor", icon: MoostikIcons.editor, label: "Montage IA", sublabel: "Timeline & export" },
     { href: "/lore", icon: MoostikIcons.lore, label: "Bible Sacrée", sublabel: "Le savoir ancestral" },
     { href: "/references", icon: MoostikIcons.references, label: "Galerie des Âmes", sublabel: "Références visuelles" },
     { href: "/library", icon: MoostikIcons.library, label: "Archives", sublabel: "Toutes les images" },

@@ -362,6 +362,55 @@ export default function VideoPage() {
                         );
                       })()}
                     </div>
+
+                    {/* Shot Thumbnails Grid */}
+                    {selectedEpisode.shots.length > 0 && (
+                      <div className="mt-4">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600 mb-2">
+                          Shots ({selectedEpisode.shots.length})
+                        </p>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {selectedEpisode.shots.slice(0, 8).map((shot) => {
+                            const completedVariation = shot.variations.find(v => v.status === "completed");
+                            const hasVideo = completedVariation?.videoStatus === "completed";
+                            return (
+                              <div
+                                key={shot.id}
+                                className="relative aspect-video rounded-md overflow-hidden bg-zinc-900 border border-blood-900/20"
+                              >
+                                {completedVariation?.imageUrl ? (
+                                  <>
+                                    <img
+                                      src={completedVariation.imageUrl}
+                                      alt={shot.prompt.slice(0, 30)}
+                                      className="w-full h-full object-cover"
+                                    />
+                                    {/* Video status indicator */}
+                                    <div className={cn(
+                                      "absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full border border-black/50",
+                                      hasVideo ? "bg-emerald-500" : "bg-amber-500"
+                                    )} />
+                                    {/* Shot number */}
+                                    <div className="absolute top-0.5 left-0.5 px-1 py-0.5 bg-black/70 rounded text-[8px] font-mono text-white">
+                                      {shot.number}
+                                    </div>
+                                  </>
+                                ) : (
+                                  <div className="w-full h-full flex items-center justify-center">
+                                    <Film className="w-3 h-3 text-zinc-700" />
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        {selectedEpisode.shots.length > 8 && (
+                          <p className="text-[9px] text-zinc-600 mt-1.5 text-center">
+                            +{selectedEpisode.shots.length - 8} shots supplémentaires
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (
