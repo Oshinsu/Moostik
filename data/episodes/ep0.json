@@ -3488,22 +3488,31 @@
         {
           "id": "var-medium-1769888806981-10",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-medium-1769888806981-10.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-011/var-medium-1769888806981-10.png",
+          "generatedAt": "2026-02-01T08:25:56.808Z"
         },
         {
           "id": "var-close_up-1769888806981-10",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-close_up-1769888806981-10.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-011/var-close_up-1769888806981-10.png",
+          "generatedAt": "2026-02-01T08:26:58.678Z"
         },
         {
           "id": "var-low_angle-1769888806981-10",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-low_angle-1769888806981-10.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-011/var-low_angle-1769888806981-10.png",
+          "generatedAt": "2026-02-01T08:27:55.049Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "createdAt": "2026-01-31T17:43:16.616Z",
-      "updatedAt": "2026-01-31T21:02:50.112Z",
+      "updatedAt": "2026-02-01T08:56:18.966Z",
       "durationSeconds": 10
     },
     {
@@ -3722,22 +3731,31 @@
         {
           "id": "var-medium-1769888806981-11",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-medium-1769888806981-11.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-012/var-medium-1769888806981-11.png",
+          "generatedAt": "2026-02-01T08:26:06.849Z"
         },
         {
           "id": "var-close_up-1769888806981-11",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-close_up-1769888806981-11.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-012/var-close_up-1769888806981-11.png",
+          "generatedAt": "2026-02-01T08:27:01.019Z"
         },
         {
           "id": "var-low_angle-1769888806981-11",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-low_angle-1769888806981-11.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-012/var-low_angle-1769888806981-11.png",
+          "generatedAt": "2026-02-01T08:27:48.937Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "createdAt": "2026-01-31T17:43:24.063Z",
-      "updatedAt": "2026-01-31T21:07:48.966Z",
+      "updatedAt": "2026-02-01T08:56:18.990Z",
       "durationSeconds": 10
     },
     {
@@ -3949,22 +3967,31 @@
         {
           "id": "var-medium-1769888806981-12",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-medium-1769888806981-12.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-013/var-medium-1769888806981-12.png",
+          "generatedAt": "2026-02-01T08:24:38.477Z"
         },
         {
           "id": "var-close_up-1769888806981-12",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-close_up-1769888806981-12.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-013/var-close_up-1769888806981-12.png",
+          "generatedAt": "2026-02-01T08:25:21.369Z"
         },
         {
           "id": "var-low_angle-1769888806981-12",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-low_angle-1769888806981-12.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-013/var-low_angle-1769888806981-12.png",
+          "generatedAt": "2026-02-01T08:26:16.445Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "createdAt": "2026-01-31T17:43:30.958Z",
-      "updatedAt": "2026-01-31T21:07:48.985Z",
+      "updatedAt": "2026-02-01T08:56:19.005Z",
       "durationSeconds": 10
     },
     {
@@ -4197,22 +4224,31 @@
         {
           "id": "var-medium-1769888806981-13",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-medium-1769888806981-13.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-014/var-medium-1769888806981-13.png",
+          "generatedAt": "2026-02-01T08:30:26.013Z"
         },
         {
           "id": "var-close_up-1769888806981-13",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-close_up-1769888806981-13.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-014/var-close_up-1769888806981-13.png",
+          "generatedAt": "2026-02-01T08:31:16.517Z"
         },
         {
           "id": "var-low_angle-1769888806981-13",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-low_angle-1769888806981-13.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-014/var-low_angle-1769888806981-13.png",
+          "generatedAt": "2026-02-01T08:32:11.989Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "createdAt": "2026-01-31T17:43:37.619Z",
-      "updatedAt": "2026-01-31T21:02:50.142Z",
+      "updatedAt": "2026-02-01T08:56:19.020Z",
       "durationSeconds": 10
     },
     {
@@ -4434,22 +4470,31 @@
         {
           "id": "var-medium-1769888806981-14",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-medium-1769888806981-14.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-015/var-medium-1769888806981-14.png",
+          "generatedAt": "2026-02-01T08:28:39.739Z"
         },
         {
           "id": "var-close_up-1769888806981-14",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-close_up-1769888806981-14.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-015/var-close_up-1769888806981-14.png",
+          "generatedAt": "2026-02-01T08:29:30.705Z"
         },
         {
           "id": "var-low_angle-1769888806981-14",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-low_angle-1769888806981-14.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-015/var-low_angle-1769888806981-14.png",
+          "generatedAt": "2026-02-01T08:31:42.597Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "createdAt": "2026-01-31T17:43:45.739Z",
-      "updatedAt": "2026-01-31T21:15:02.612Z",
+      "updatedAt": "2026-02-01T08:56:19.036Z",
       "durationSeconds": 10
     },
     {
@@ -4657,28 +4702,40 @@
         {
           "id": "var-wide-1769889794560-16",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-wide-1769889794560-16.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-16/var-wide-1769889794560-16.png",
+          "generatedAt": "2026-02-01T08:30:11.881Z"
         },
         {
           "id": "var-medium-1769889794560-16",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-medium-1769889794560-16.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-16/var-medium-1769889794560-16.png",
+          "generatedAt": "2026-02-01T08:31:06.664Z"
         },
         {
           "id": "var-close_up-1769889794560-16",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-close_up-1769889794560-16.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-16/var-close_up-1769889794560-16.png",
+          "generatedAt": "2026-02-01T08:32:10.876Z"
         },
         {
           "id": "var-low_angle-1769889794560-16",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-low_angle-1769889794560-16.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-16/var-low_angle-1769889794560-16.png",
+          "generatedAt": "2026-02-01T08:12:22.987Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.561Z",
-      "updatedAt": "2026-01-31T21:15:02.623Z"
+      "updatedAt": "2026-02-01T08:56:19.050Z"
     },
     {
       "id": "shot-exp-1769889794560-17",
@@ -4876,33 +4933,48 @@
         {
           "id": "var-extreme_wide-1769889794560-17",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-extreme_wide-1769889794560-17.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-17/var-extreme_wide-1769889794560-17.png",
+          "generatedAt": "2026-02-01T08:34:06.696Z"
         },
         {
           "id": "var-wide-1769889794560-17",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-wide-1769889794560-17.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-17/var-wide-1769889794560-17.png",
+          "generatedAt": "2026-02-01T08:35:04.931Z"
         },
         {
           "id": "var-medium-1769889794560-17",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-medium-1769889794560-17.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-17/var-medium-1769889794560-17.png",
+          "generatedAt": "2026-02-01T08:36:00.751Z"
         },
         {
           "id": "var-close_up-1769889794560-17",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-close_up-1769889794560-17.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-17/var-close_up-1769889794560-17.png",
+          "generatedAt": "2026-02-01T08:36:43.844Z"
         },
         {
           "id": "var-low_angle-1769889794560-17",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-low_angle-1769889794560-17.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-17/var-low_angle-1769889794560-17.png",
+          "generatedAt": "2026-02-01T08:37:24.236Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.561Z",
-      "updatedAt": "2026-01-31T21:07:49.041Z"
+      "updatedAt": "2026-02-01T08:56:19.066Z"
     },
     {
       "id": "shot-exp-1769889794560-18",
@@ -5098,33 +5170,48 @@
         {
           "id": "var-extreme_wide-1769889794560-18",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-extreme_wide-1769889794560-18.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-18/var-extreme_wide-1769889794560-18.png",
+          "generatedAt": "2026-02-01T08:33:54.146Z"
         },
         {
           "id": "var-wide-1769889794560-18",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-wide-1769889794560-18.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-18/var-wide-1769889794560-18.png",
+          "generatedAt": "2026-02-01T08:34:36.194Z"
         },
         {
           "id": "var-medium-1769889794560-18",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-medium-1769889794560-18.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-18/var-medium-1769889794560-18.png",
+          "generatedAt": "2026-02-01T08:35:24.463Z"
         },
         {
           "id": "var-close_up-1769889794560-18",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-close_up-1769889794560-18.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-18/var-close_up-1769889794560-18.png",
+          "generatedAt": "2026-02-01T08:36:07.484Z"
         },
         {
           "id": "var-low_angle-1769889794560-18",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-low_angle-1769889794560-18.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-18/var-low_angle-1769889794560-18.png",
+          "generatedAt": "2026-02-01T08:11:22.680Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.561Z",
-      "updatedAt": "2026-01-31T21:15:02.641Z"
+      "updatedAt": "2026-02-01T08:56:19.082Z"
     },
     {
       "id": "shot-exp-1769889794560-19",
@@ -5323,33 +5410,48 @@
         {
           "id": "var-extreme_wide-1769889794560-19",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-extreme_wide-1769889794560-19.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-19/var-extreme_wide-1769889794560-19.png",
+          "generatedAt": "2026-02-01T08:34:32.874Z"
         },
         {
           "id": "var-wide-1769889794560-19",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-wide-1769889794560-19.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-19/var-wide-1769889794560-19.png",
+          "generatedAt": "2026-02-01T08:36:00.433Z"
         },
         {
           "id": "var-medium-1769889794560-19",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-medium-1769889794560-19.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-19/var-medium-1769889794560-19.png",
+          "generatedAt": "2026-02-01T08:36:48.997Z"
         },
         {
           "id": "var-close_up-1769889794560-19",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-close_up-1769889794560-19.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-19/var-close_up-1769889794560-19.png",
+          "generatedAt": "2026-02-01T08:37:28.985Z"
         },
         {
           "id": "var-low_angle-1769889794560-19",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-low_angle-1769889794560-19.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-19/var-low_angle-1769889794560-19.png",
+          "generatedAt": "2026-02-01T08:10:49.758Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.562Z",
-      "updatedAt": "2026-01-31T21:15:02.652Z"
+      "updatedAt": "2026-02-01T08:56:19.096Z"
     },
     {
       "id": "shot-exp-1769889794560-20",
@@ -5548,33 +5650,48 @@
         {
           "id": "var-extreme_wide-1769889794560-20",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-extreme_wide-1769889794560-20.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-20/var-extreme_wide-1769889794560-20.png",
+          "generatedAt": "2026-02-01T08:39:39.352Z"
         },
         {
           "id": "var-wide-1769889794560-20",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-wide-1769889794560-20.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-20/var-wide-1769889794560-20.png",
+          "generatedAt": "2026-02-01T08:40:24.700Z"
         },
         {
           "id": "var-medium-1769889794560-20",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-medium-1769889794560-20.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-20/var-medium-1769889794560-20.png",
+          "generatedAt": "2026-02-01T08:41:15.764Z"
         },
         {
           "id": "var-close_up-1769889794560-20",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-close_up-1769889794560-20.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-20/var-close_up-1769889794560-20.png",
+          "generatedAt": "2026-02-01T08:42:36.875Z"
         },
         {
           "id": "var-low_angle-1769889794560-20",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-low_angle-1769889794560-20.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-20/var-low_angle-1769889794560-20.png",
+          "generatedAt": "2026-02-01T08:14:15.037Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.562Z",
-      "updatedAt": "2026-01-31T21:15:02.665Z"
+      "updatedAt": "2026-02-01T08:56:19.112Z"
     },
     {
       "id": "shot-exp-1769889794560-21",
@@ -5773,33 +5890,48 @@
         {
           "id": "var-extreme_wide-1769889794560-21",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-extreme_wide-1769889794560-21.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-21/var-extreme_wide-1769889794560-21.png",
+          "generatedAt": "2026-02-01T08:39:25.653Z"
         },
         {
           "id": "var-wide-1769889794560-21",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-wide-1769889794560-21.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-21/var-wide-1769889794560-21.png",
+          "generatedAt": "2026-02-01T08:40:23.408Z"
         },
         {
           "id": "var-medium-1769889794560-21",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-medium-1769889794560-21.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-21/var-medium-1769889794560-21.png",
+          "generatedAt": "2026-02-01T08:41:24.617Z"
         },
         {
           "id": "var-close_up-1769889794560-21",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-close_up-1769889794560-21.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-21/var-close_up-1769889794560-21.png",
+          "generatedAt": "2026-02-01T08:42:59.619Z"
         },
         {
           "id": "var-low_angle-1769889794560-21",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-low_angle-1769889794560-21.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-21/var-low_angle-1769889794560-21.png",
+          "generatedAt": "2026-02-01T08:14:04.971Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.562Z",
-      "updatedAt": "2026-01-31T21:15:02.675Z"
+      "updatedAt": "2026-02-01T08:56:19.128Z"
     },
     {
       "id": "shot-exp-1769889794560-22",
@@ -5997,33 +6129,48 @@
         {
           "id": "var-extreme_wide-1769889794560-22",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-extreme_wide-1769889794560-22.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-22/var-extreme_wide-1769889794560-22.png",
+          "generatedAt": "2026-02-01T08:38:24.290Z"
         },
         {
           "id": "var-wide-1769889794560-22",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-wide-1769889794560-22.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-22/var-wide-1769889794560-22.png",
+          "generatedAt": "2026-02-01T08:39:17.483Z"
         },
         {
           "id": "var-medium-1769889794560-22",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-medium-1769889794560-22.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-22/var-medium-1769889794560-22.png",
+          "generatedAt": "2026-02-01T08:40:26.739Z"
         },
         {
           "id": "var-close_up-1769889794560-22",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-close_up-1769889794560-22.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-22/var-close_up-1769889794560-22.png",
+          "generatedAt": "2026-02-01T08:41:15.913Z"
         },
         {
           "id": "var-low_angle-1769889794560-22",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-low_angle-1769889794560-22.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-22/var-low_angle-1769889794560-22.png",
+          "generatedAt": "2026-02-01T08:13:04.583Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.563Z",
-      "updatedAt": "2026-01-31T21:15:02.685Z"
+      "updatedAt": "2026-02-01T08:56:19.142Z"
     },
     {
       "id": "shot-exp-1769889794560-23",
@@ -6221,33 +6368,48 @@
         {
           "id": "var-extreme_wide-1769889794560-23",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-extreme_wide-1769889794560-23.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-23/var-extreme_wide-1769889794560-23.png",
+          "generatedAt": "2026-02-01T08:45:04.834Z"
         },
         {
           "id": "var-wide-1769889794560-23",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-wide-1769889794560-23.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-23/var-wide-1769889794560-23.png",
+          "generatedAt": "2026-02-01T08:45:49.984Z"
         },
         {
           "id": "var-medium-1769889794560-23",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-medium-1769889794560-23.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-23/var-medium-1769889794560-23.png",
+          "generatedAt": "2026-02-01T08:47:20.016Z"
         },
         {
           "id": "var-close_up-1769889794560-23",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-close_up-1769889794560-23.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-23/var-close_up-1769889794560-23.png",
+          "generatedAt": "2026-02-01T08:48:05.320Z"
         },
         {
           "id": "var-low_angle-1769889794560-23",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-low_angle-1769889794560-23.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889794560-23/var-low_angle-1769889794560-23.png",
+          "generatedAt": "2026-02-01T08:16:05.249Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:14.563Z",
-      "updatedAt": "2026-01-31T21:15:02.700Z"
+      "updatedAt": "2026-02-01T08:56:19.158Z"
     },
     {
       "id": "shot-exp-1769889802112-24",
@@ -6444,33 +6606,48 @@
         {
           "id": "var-extreme_wide-1769889802112-24",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-extreme_wide-1769889802112-24.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-24/var-extreme_wide-1769889802112-24.png",
+          "generatedAt": "2026-02-01T08:44:00.527Z"
         },
         {
           "id": "var-wide-1769889802112-24",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-wide-1769889802112-24.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-24/var-wide-1769889802112-24.png",
+          "generatedAt": "2026-02-01T08:44:37.493Z"
         },
         {
           "id": "var-medium-1769889802112-24",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-medium-1769889802112-24.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-24/var-medium-1769889802112-24.png",
+          "generatedAt": "2026-02-01T08:45:27.258Z"
         },
         {
           "id": "var-close_up-1769889802112-24",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-close_up-1769889802112-24.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-24/var-close_up-1769889802112-24.png",
+          "generatedAt": "2026-02-01T08:47:24.277Z"
         },
         {
           "id": "var-low_angle-1769889802112-24",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-low_angle-1769889802112-24.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-24/var-low_angle-1769889802112-24.png",
+          "generatedAt": "2026-02-01T08:48:06.660Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:22.112Z",
-      "updatedAt": "2026-01-31T21:15:02.712Z"
+      "updatedAt": "2026-02-01T08:56:19.175Z"
     },
     {
       "id": "shot-exp-1769889802112-25",
@@ -6667,33 +6844,48 @@
         {
           "id": "var-extreme_wide-1769889802112-25",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-extreme_wide-1769889802112-25.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-25/var-extreme_wide-1769889802112-25.png",
+          "generatedAt": "2026-02-01T08:44:32.269Z"
         },
         {
           "id": "var-wide-1769889802112-25",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-wide-1769889802112-25.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-25/var-wide-1769889802112-25.png",
+          "generatedAt": "2026-02-01T08:45:50.966Z"
         },
         {
           "id": "var-medium-1769889802112-25",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-medium-1769889802112-25.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-25/var-medium-1769889802112-25.png",
+          "generatedAt": "2026-02-01T08:47:43.581Z"
         },
         {
           "id": "var-close_up-1769889802112-25",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-close_up-1769889802112-25.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-25/var-close_up-1769889802112-25.png",
+          "generatedAt": "2026-02-01T08:49:22.138Z"
         },
         {
           "id": "var-low_angle-1769889802112-25",
           "cameraAngle": "low_angle",
-          "status": "failed"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-low_angle-1769889802112-25.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-25/var-low_angle-1769889802112-25.png",
+          "generatedAt": "2026-02-01T08:14:58.495Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:22.113Z",
-      "updatedAt": "2026-01-31T21:15:02.723Z"
+      "updatedAt": "2026-02-01T08:56:19.189Z"
     },
     {
       "id": "shot-exp-1769889802112-26",
@@ -6890,33 +7082,48 @@
         {
           "id": "var-extreme_wide-1769889802112-26",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-extreme_wide-1769889802112-26.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-26/var-extreme_wide-1769889802112-26.png",
+          "generatedAt": "2026-02-01T08:50:43.742Z"
         },
         {
           "id": "var-wide-1769889802112-26",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-wide-1769889802112-26.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-26/var-wide-1769889802112-26.png",
+          "generatedAt": "2026-02-01T08:51:54.624Z"
         },
         {
           "id": "var-medium-1769889802112-26",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-medium-1769889802112-26.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-26/var-medium-1769889802112-26.png",
+          "generatedAt": "2026-02-01T08:53:05.524Z"
         },
         {
           "id": "var-close_up-1769889802112-26",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-close_up-1769889802112-26.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-26/var-close_up-1769889802112-26.png",
+          "generatedAt": "2026-02-01T08:55:03.020Z"
         },
         {
           "id": "var-low_angle-1769889802112-26",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-low_angle-1769889802112-26.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-26/var-low_angle-1769889802112-26.png",
+          "generatedAt": "2026-02-01T08:56:18.963Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:22.113Z",
-      "updatedAt": "2026-01-31T21:15:02.733Z"
+      "updatedAt": "2026-02-01T08:56:19.204Z"
     },
     {
       "id": "shot-exp-1769889802112-27",
@@ -7114,33 +7321,48 @@
         {
           "id": "var-extreme_wide-1769889802112-27",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-extreme_wide-1769889802112-27.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-27/var-extreme_wide-1769889802112-27.png",
+          "generatedAt": "2026-02-01T08:53:01.461Z"
         },
         {
           "id": "var-wide-1769889802112-27",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-wide-1769889802112-27.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-27/var-wide-1769889802112-27.png",
+          "generatedAt": "2026-02-01T08:53:03.828Z"
         },
         {
           "id": "var-medium-1769889802112-27",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-medium-1769889802112-27.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-27/var-medium-1769889802112-27.png",
+          "generatedAt": "2026-02-01T08:54:02.466Z"
         },
         {
           "id": "var-close_up-1769889802112-27",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-close_up-1769889802112-27.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-27/var-close_up-1769889802112-27.png",
+          "generatedAt": "2026-02-01T08:54:50.454Z"
         },
         {
           "id": "var-low_angle-1769889802112-27",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-low_angle-1769889802112-27.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-27/var-low_angle-1769889802112-27.png",
+          "generatedAt": "2026-02-01T08:55:31.566Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:22.114Z",
-      "updatedAt": "2026-01-31T21:07:49.183Z"
+      "updatedAt": "2026-02-01T08:56:19.218Z"
     },
     {
       "id": "shot-exp-1769889802112-28",
@@ -7338,35 +7560,50 @@
         {
           "id": "var-extreme_wide-1769889802112-28",
           "cameraAngle": "extreme_wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-extreme_wide-1769889802112-28.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-28/var-extreme_wide-1769889802112-28.png",
+          "generatedAt": "2026-02-01T08:50:07.079Z"
         },
         {
           "id": "var-wide-1769889802112-28",
           "cameraAngle": "wide",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-wide-1769889802112-28.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-28/var-wide-1769889802112-28.png",
+          "generatedAt": "2026-02-01T08:50:45.484Z"
         },
         {
           "id": "var-medium-1769889802112-28",
           "cameraAngle": "medium",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-medium-1769889802112-28.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-28/var-medium-1769889802112-28.png",
+          "generatedAt": "2026-02-01T08:51:27.700Z"
         },
         {
           "id": "var-close_up-1769889802112-28",
           "cameraAngle": "close_up",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-close_up-1769889802112-28.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-28/var-close_up-1769889802112-28.png",
+          "generatedAt": "2026-02-01T08:53:27.553Z"
         },
         {
           "id": "var-low_angle-1769889802112-28",
           "cameraAngle": "low_angle",
-          "status": "generating"
+          "status": "completed",
+          "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-low_angle-1769889802112-28.png",
+          "localPath": "/Users/pascalbeecee/Moostik/output/images/ep0/shot-exp-1769889802112-28/var-low_angle-1769889802112-28.png",
+          "generatedAt": "2026-02-01T08:54:47.940Z"
         }
       ],
-      "status": "in_progress",
+      "status": "completed",
       "durationSeconds": 10,
       "createdAt": "2026-01-31T20:03:22.114Z",
-      "updatedAt": "2026-01-31T21:15:02.746Z"
+      "updatedAt": "2026-02-01T08:56:19.233Z"
     }
   ],
   "createdAt": "2026-01-29T18:30:22.868Z",
-  "updatedAt": "2026-01-31T23:25:27.504Z"
+  "updatedAt": "2026-02-01T08:56:19.233Z"
 }
