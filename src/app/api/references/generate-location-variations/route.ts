@@ -131,7 +131,7 @@ const LOCATION_VARIATIONS: {
   },
 ];
 
-export async function POST() {
+export async function POST(request: Request) {
   const results: {
     locationId: string;
     locationName: string;
@@ -139,21 +139,43 @@ export async function POST() {
   }[] = [];
 
   try {
+    // Check if specific location/variation requested
+    const body = await request.json().catch(() => ({}));
+    const { locationId, variationType } = body as { locationId?: string; variationType?: string };
+
     const locations = await getLocations();
     const outputDir = path.join(process.cwd(), "output", "references", "locations");
 
-    console.log(`[LocationVariations] Generating 5 JSON MOOSTIK variations for ${locations.length} locations`);
+    // Filter to specific location if requested
+    const targetLocations = locationId 
+      ? locations.filter(l => l.id === locationId)
+      : locations;
 
-    for (let locIdx = 0; locIdx < locations.length; locIdx++) {
-      const location = locations[locIdx];
-      console.log(`\n[LocationVariations] Location ${locIdx + 1}/${locations.length}: ${location.name}`);
+    if (locationId && targetLocations.length === 0) {
+      return NextResponse.json({ error: `Location not found: ${locationId}` }, { status: 404 });
+    }
+
+    // Filter to specific variation if requested
+    const targetVariations = variationType
+      ? LOCATION_VARIATIONS.filter(v => v.id === variationType)
+      : LOCATION_VARIATIONS;
+
+    if (variationType && targetVariations.length === 0) {
+      return NextResponse.json({ error: `Invalid variation: ${variationType}` }, { status: 400 });
+    }
+
+    console.log(`[LocationVariations] Generating ${targetVariations.length} variations for ${targetLocations.length} locations`);
+
+    for (let locIdx = 0; locIdx < targetLocations.length; locIdx++) {
+      const location = targetLocations[locIdx];
+      console.log(`\n[LocationVariations] Location ${locIdx + 1}/${targetLocations.length}: ${location.name}`);
       
       const locationResults: { id: string; success: boolean; url?: string; error?: string }[] = [];
       const imageUrls: string[] = [];
 
-      for (let varIdx = 0; varIdx < LOCATION_VARIATIONS.length; varIdx++) {
-        const variation = LOCATION_VARIATIONS[varIdx];
-        console.log(`  [${varIdx + 1}/5] ${variation.name}...`);
+      for (let varIdx = 0; varIdx < targetVariations.length; varIdx++) {
+        const variation = targetVariations[varIdx];
+        console.log(`  [${varIdx + 1}/${targetVariations.length}] ${variation.name}...`);
 
         // Délai entre générations pour éviter rate limiting
         if (varIdx > 0 || locIdx > 0) {
@@ -198,7 +220,7 @@ export async function POST() {
     }
 
     const totalSuccess = results.reduce((sum, r) => sum + r.variations.filter(v => v.success).length, 0);
-    const totalImages = locations.length * 5;
+    const totalImages = targetLocations.length * targetVariations.length;
 
     return NextResponse.json({
       success: true,

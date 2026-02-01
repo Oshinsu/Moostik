@@ -21,8 +21,14 @@
       "Fairy-tale castle atmosphere"
     ],
     "referencePrompt": "Breathtaking microscopic Moostik Renaissance fantasy city built inside abandoned car tire filled with dew-water, organic chitin spires rising from reflective water surface, elegant bridges spanning canals, domed wing-membrane structures, blood-drop shaped stained glass windows glowing crimson and gold, bioluminescent amber lanterns casting warm glow everywhere, Gothic proboscis-shaped ornamental arches, fairy-tale castle meets insect biology, swarms of tiny Moostik flying in formations, NO human architecture, entirely alien Renaissance aesthetic, Pixar-dark 3D feature film quality, warm amber and crimson lighting reflecting on water, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/tire-city-aerial.png",
+      "/api/images/references/locations/tire-city-atmosphere.png",
+      "/api/images/references/locations/tire-city-detail.png",
+      "/api/images/references/locations/tire-city-entrance.png",
+      "/api/images/references/locations/tire-city-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "fort-sang-noir",
@@ -45,8 +51,14 @@
       "Medieval military atmosphere"
     ],
     "referencePrompt": "Imposing microscopic Moostik medieval military fortress called Fort Sang-Noir, Gothic defensive chitin architecture with organic curves, watchtowers with bioluminescent crimson beacons, training grounds showing Moostik warriors practicing proboscis combat techniques NO modern weapons, disciplined formations drilling, war council chamber with strategic maps on parchment, medieval castle aesthetic entirely Moostik no human elements, Pixar-dark 3D feature film quality, harsh crimson military lighting, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/fort-sang-noir-aerial.png",
+      "/api/images/references/locations/fort-sang-noir-atmosphere.png",
+      "/api/images/references/locations/fort-sang-noir-detail.png",
+      "/api/images/references/locations/fort-sang-noir-entrance.png",
+      "/api/images/references/locations/fort-sang-noir-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "bar-ti-sang",
@@ -70,8 +82,14 @@
       "NOT a club - sophisticated quiet bar"
     ],
     "referencePrompt": "Cozy intimate microscopic Moostik cantina bar called Ti Sang, Renaissance Moostik organic architecture with warm bioluminescent amber lanterns, small elevated stage with charismatic Moostik singer performing showcase, scattered organic chitin tables with Moostik patrons, curved bar counter serving nectar drinks in thimble vessels, blood-drop motif decorations throughout, chill relaxed cantina atmosphere like Star Wars Cantina Band but demon mosquito aesthetic, warm intimate amber lighting, NOT a nightclub quiet sophisticated bar, Pixar-dark 3D feature film quality, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/bar-ti-sang-aerial.png",
+      "/api/images/references/locations/bar-ti-sang-atmosphere.png",
+      "/api/images/references/locations/bar-ti-sang-detail.png",
+      "/api/images/references/locations/bar-ti-sang-entrance.png",
+      "/api/images/references/locations/bar-ti-sang-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "academy-of-blood",
@@ -94,8 +112,14 @@
       "Medieval dark academia aesthetic"
     ],
     "referencePrompt": "Medieval Renaissance microscopic Moostik monastery university called Academy of Blood, scriptorium with scholar Moostik monks copying illuminated manuscripts, towering library stacks of leaf-parchment scrolls, anatomical amphitheater for lectures on human weaknesses, Gothic vaulted organic ceilings with blood-drop stained glass, chitin astrolabes and medieval tools ONLY no modern technology, nectar-wax candles casting warm amber glow, quiet scholarly dark academia atmosphere, medieval aesthetic no human architecture, Pixar-dark 3D feature film quality, warm candlelit medieval lighting, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/academy-of-blood-aerial.png",
+      "/api/images/references/locations/academy-of-blood-atmosphere.png",
+      "/api/images/references/locations/academy-of-blood-detail.png",
+      "/api/images/references/locations/academy-of-blood-entrance.png",
+      "/api/images/references/locations/academy-of-blood-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "cathedral-of-blood",
@@ -118,8 +142,14 @@
       "Mourning and determination"
     ],
     "referencePrompt": "Majestic microscopic Moostik Gothic cathedral called Cathedral of Sacred Blood, massive wing-membrane dome creating sacred space, proboscis-organ pipes producing haunting music, blood-drop shaped stained glass windows depicting ancestral mythology in crimson and gold divine light, ornate altar of the First Feeding with blood-ruby offerings, memorial walls etched with thousands of genocide victim names, chitin-carved pews for congregation, sacred nectar incense smoke curling through air, reverent atmosphere honoring the fallen, Pixar-dark 3D feature film quality, divine dramatic cathedral lighting, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/cathedral-of-blood-aerial.png",
+      "/api/images/references/locations/cathedral-of-blood-atmosphere.png",
+      "/api/images/references/locations/cathedral-of-blood-detail.png",
+      "/api/images/references/locations/cathedral-of-blood-entrance.png",
+      "/api/images/references/locations/cathedral-of-blood-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "genocide-memorial",
@@ -141,8 +171,14 @@
       "Never forget never forgive"
     ],
     "referencePrompt": "Solemn microscopic Moostik genocide memorial built in burned fabric fibers, obsidian-like memorial walls carved from charred remains with thousands of names etched in glowing bioluminescent script, central eternal flame burning sacred blood-red, heroic statue of Protecting Mother shielding baby in center plaza, museum chambers with preserved BYSS aerosol fragments, solemn atmosphere of sacred mourning mixed with burning determination, this is why we fight, Pixar-dark 3D feature film quality, somber dramatic lighting with blood-red flame glow, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/genocide-memorial-aerial.png",
+      "/api/images/references/locations/genocide-memorial-atmosphere.png",
+      "/api/images/references/locations/genocide-memorial-detail.png",
+      "/api/images/references/locations/genocide-memorial-entrance.png",
+      "/api/images/references/locations/genocide-memorial-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "nursery-pods",
@@ -164,8 +200,14 @@
       "Future of the Bloodwings"
     ],
     "referencePrompt": "Heartwarming microscopic Moostik nursery pods called Les Cocons Sacres, cluster of egg-shaped organic nursery pods glowing with warm amber life-light, suspended from delicate silk threads like demon lanterns, translucent membrane walls showing cute larval silhouettes, feeding stations with sacred nectar, nurse Moostik caretakers tending to young, warm nurturing atmosphere contrasting dark surroundings, hope and future amidst genocide trauma, adorable demon babies incubating, Pixar-dark 3D feature film quality, warm intimate nurturing lighting, 8K micro-textures, establishing shot",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/nursery-pods-aerial.png",
+      "/api/images/references/locations/nursery-pods-atmosphere.png",
+      "/api/images/references/locations/nursery-pods-detail.png",
+      "/api/images/references/locations/nursery-pods-entrance.png",
+      "/api/images/references/locations/nursery-pods-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "creole-house-enemy",
@@ -187,8 +229,14 @@
       "Human architecture as alien threat"
     ],
     "referencePrompt": "COLOSSAL traditional Martinique creole house at night from microscopic Moostik POV, wooden jalousie shutters appearing as massive fortress gates, ceiling fan overhead as deadly spinning blade of death, furniture looming as mountain ranges, BYSS aerosol can visible as weapon of mass destruction, this is ENEMY TERRITORY where genocide happened, human architecture seen as hostile alien landscape, terrifying scale difference showing Moostik vulnerability, tropical humid dangerous atmosphere, Pixar-dark 3D feature film quality, threatening dramatic lighting, 8K textures, establishing shot from victim perspective",
-    "referenceImages": [],
-    "validated": true
+    "referenceImages": [
+      "/api/images/references/locations/creole-house-enemy-aerial.png",
+      "/api/images/references/locations/creole-house-enemy-atmosphere.png",
+      "/api/images/references/locations/creole-house-enemy-detail.png",
+      "/api/images/references/locations/creole-house-enemy-entrance.png",
+      "/api/images/references/locations/creole-house-enemy-establishing.png"
+    ],
+    "validated": false
   },
   {
     "id": "cooltik-village",
@@ -214,9 +262,14 @@
     ],
     "referencePrompt": "Peaceful idyllic microscopic Moostik village BEFORE genocide, humble organic chitin cottages with warm glowing windows, small communal gathering areas with families, simple nectar fountain in village center, family nests woven into soft fabric fibers, modest marketplace stalls, Moostik children playing innocently, NO fortifications or defenses they felt SAFE, warm golden afternoon sunshine lighting, peaceful happy community that doesn't know horror is coming, innocent daily life, heartbreaking contrast knowing what happens next, Pixar-heartwarming 3D feature film quality, warm idyllic pastoral lighting, 8K micro-textures, establishing shot",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/cooltik-village.png"
+      "/api/images/references/locations/cooltik-village-aerial.png",
+      "/api/images/references/locations/cooltik-village-atmosphere.png",
+      "/api/images/references/locations/cooltik-village-detail.png",
+      "/api/images/references/locations/cooltik-village-entrance.png",
+      "/api/images/references/locations/cooltik-village-establishing.png",
+      "/api/images/references/locations/cooltik-village.png"
     ],
-    "validated": true
+    "validated": false
   },
   {
     "id": "martinique-house-interior",
@@ -241,9 +294,13 @@
     ],
     "referencePrompt": "HORRIFYING microscopic POV inside Martinique creole house DURING genocide, COLOSSAL wooden jalousie shutters like prison bars, massive deadly ceiling fan spinning, toxic green-yellow BYSS chemical cloud billowing through air, Moostik bodies falling and convulsing, chaos and terror, human child hands visible in background holding aerosol weapon, furniture as colossal obstacles, suffocating death atmosphere, this is genocide in progress, Moostik POV showing absolute helplessness and horror, Pixar-dark TRAUMATIC 3D feature film quality, toxic sickly green lighting mixed with shadow, 8K textures, massacre scene",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/martinique-house-interior.png"
+      "/api/images/references/locations/martinique-house-interior-aerial.png",
+      "/api/images/references/locations/martinique-house-interior-atmosphere.png",
+      "/api/images/references/locations/martinique-house-interior-detail.png",
+      "/api/images/references/locations/martinique-house-interior-entrance.png",
+      "/api/images/references/locations/martinique-house-interior.png"
     ],
-    "validated": true
+    "validated": false
   },
   {
     "id": "jalousies-gateway",
@@ -267,9 +324,14 @@
     ],
     "referencePrompt": "DRAMATIC microscopic POV extreme close-up of Martinique wooden jalousie shutters as GATEWAY between worlds, massive wooden slats appearing as colossal barriers, thin strips of golden escape light streaming through gaps, toxic BYSS cloud visible behind in shadows, freedom and survival light visible through gaps ahead, this is the threshold between genocide death and survival hope, liminal transition space, Moostik escaping through narrow gap between slats, desperate escape moment, Pixar-dark 3D feature film quality, dramatic contrast lighting toxic behind golden ahead, 8K textures, threshold escape scene",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/jalousies-gateway.png"
+      "/api/images/references/locations/jalousies-gateway-aerial.png",
+      "/api/images/references/locations/jalousies-gateway-atmosphere.png",
+      "/api/images/references/locations/jalousies-gateway-detail.png",
+      "/api/images/references/locations/jalousies-gateway-entrance.png",
+      "/api/images/references/locations/jalousies-gateway-establishing.png",
+      "/api/images/references/locations/jalousies-gateway.png"
     ],
-    "validated": true
+    "validated": false
   },
   {
     "id": "martinique-exterior-storm",
@@ -293,8 +355,13 @@
     ],
     "referencePrompt": "DRAMATIC microscopic POV outside Martinique creole house during tropical storm, COLOSSAL house silhouette visible through sheets of rain, massive tropical vegetation leaves as giant umbrellas, individual rain drops falling as dangerous water bombs from Moostik perspective, lightning bolt illumination revealing landscape, muddy ground as treacherous terrain, howling wind moving giant leaves, torrential downpour atmosphere, nature as both threat and temporary ally, dramatic storm lighting with lightning flashes and dark shadows, Pixar-dark 3D feature film quality, intense weather dramatic lighting, 8K textures, exterior storm scene",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/locations/martinique-exterior-storm.png"
+      "/api/images/references/locations/martinique-exterior-storm-aerial.png",
+      "/api/images/references/locations/martinique-exterior-storm-atmosphere.png",
+      "/api/images/references/locations/martinique-exterior-storm-detail.png",
+      "/api/images/references/locations/martinique-exterior-storm-entrance.png",
+      "/api/images/references/locations/martinique-exterior-storm-establishing.png",
+      "/api/images/references/locations/martinique-exterior-storm.png"
     ],
-    "validated": true
+    "validated": false
   }
 ]
