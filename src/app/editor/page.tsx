@@ -152,7 +152,7 @@ export default function EditorPage() {
       if (completedVariation) {
         videoItems.push({
           id: shot.id,
-          name: `Shot ${shot.number}: ${shot.prompt.slice(0, 20)}...`,
+          name: `Shot ${shot.number}: ${shot.name}`,
           start: currentTime,
           duration: 5, // Default 5s per shot
           thumbnail: completedVariation.imageUrl,
