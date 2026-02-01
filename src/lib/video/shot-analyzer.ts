@@ -240,9 +240,9 @@ function detectSceneCharacteristics(description: string, shot: Shot): ShotAnalys
     isEstablishing: ESTABLISHING_KEYWORDS.some(kw => descLower.includes(kw)) ||
                     shot.sceneType === "establishing",
     isTransition: TRANSITION_KEYWORDS.some(kw => descLower.includes(kw)) ||
-                  shot.sceneType === "flashback" || shot.sceneType === "dream",
+                  (shot.sceneType as string) === "flashback" || (shot.sceneType as string) === "dream",
     isFlashback: descLower.includes("flashback") || descLower.includes("souvenir") ||
-                 shot.sceneType === "flashback",
+                 (shot.sceneType as string) === "flashback",
     emotionalIntensity: detectEmotionalIntensity(descLower, shot),
   };
 }
@@ -255,13 +255,14 @@ function detectEmotionalIntensity(
     return "high";
   }
   
-  // Check scene type
-  if (shot.sceneType === "dramatic" || shot.sceneType === "climax" || 
-      shot.sceneType === "battle" || shot.sceneType === "genocide") {
+  // Check scene type (casting to string for broader compatibility)
+  const sceneType = shot.sceneType as string;
+  if (sceneType === "dramatic" || sceneType === "climax" || 
+      sceneType === "battle" || sceneType === "genocide") {
     return "high";
   }
   
-  if (shot.sceneType === "peaceful" || shot.sceneType === "establishing") {
+  if (sceneType === "peaceful" || sceneType === "establishing") {
     return "low";
   }
   
@@ -351,10 +352,11 @@ function analyzeChaining(
     lId => prevShot.locationIds?.includes(lId)
   );
   
-  // Check for transition markers
-  const isTransition = shot.sceneType === "flashback" || 
-                       shot.sceneType === "transition" ||
-                       shot.sceneType === "dream";
+  // Check for transition markers (casting to string for broader compatibility)
+  const shotSceneType = shot.sceneType as string;
+  const isTransition = shotSceneType === "flashback" || 
+                       shotSceneType === "transition" ||
+                       shotSceneType === "dream";
   
   // Determine chain type
   if (isTransition) {

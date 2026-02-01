@@ -56,13 +56,13 @@ export function VariationGrid({
   return (
     <TooltipProvider>
       <div className="grid grid-cols-2 gap-4">
-        {variations.map((variation) => {
+        {variations.map((variation, index) => {
           const angleInfo = getAngleInfo(variation.cameraAngle);
           const isReference = variation.id === referenceId;
 
           return (
             <div
-              key={variation.id}
+              key={`${variation.id}-${index}`}
               className={cn(
                 "group relative rounded-2xl overflow-hidden bg-[#14131a] border transition-all duration-500",
                 isReference

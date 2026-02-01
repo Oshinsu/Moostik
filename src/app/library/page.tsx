@@ -606,76 +606,69 @@ export default function LibraryPage() {
               >
                 <Card className="bg-zinc-900/30 border-zinc-800 overflow-hidden">
                   {/* Accordion Header */}
-                  <CollapsibleTrigger
-                    className="w-full"
-                    aria-expanded={isOpen}
-                    aria-controls={`content-${category.id}`}
-                  >
-                    <div className="p-6 flex items-center gap-4 hover:bg-zinc-900/50 transition-colors cursor-pointer">
-                      {/* Icon */}
-                      <div className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center text-2xl`}>
-                        {category.icon}
-                      </div>
-
-                      {/* Title & Stats */}
-                      <div className="flex-1 text-left">
-                        <h2 className="text-xl font-bold text-white">{category.title}</h2>
-                        <p className="text-zinc-500 text-sm">
-                          {category.images.length} assets • {hasImages ? "Prêts à télécharger" : "Aucun asset"}
-                        </p>
-                      </div>
-
-                      {/* Progress */}
-                      {hasImages && (
-                        <div className="w-32">
-                          <Progress value={100} className="h-1.5 bg-zinc-800" />
+                  <div className="p-6 flex items-center gap-4 hover:bg-zinc-900/50 transition-colors">
+                    {/* Clickable area for collapse trigger */}
+                    <CollapsibleTrigger asChild>
+                      <div className="flex items-center gap-4 flex-1 cursor-pointer">
+                        {/* Icon */}
+                        <div className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center text-2xl`}>
+                          {category.icon}
                         </div>
-                      )}
 
-                      {/* Actions */}
-                      {hasImages && (
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              selectAllInCategory(category.id);
-                            }}
-                            className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 text-xs"
-                          >
-                            Tout sélectionner
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              downloadCategoryZip(category.id);
-                            }}
-                            disabled={downloadingZip !== null}
-                            className={`${colors.border} ${colors.text} hover:bg-zinc-800 text-xs`}
-                          >
-                            {downloadingZip === category.id ? (
-                              <span className="animate-spin">⏳</span>
-                            ) : (
-                              <>📦 ZIP ({category.images.length})</>
-                            )}
-                          </Button>
+                        {/* Title & Stats */}
+                        <div className="flex-1 text-left">
+                          <h2 className="text-xl font-bold text-white">{category.title}</h2>
+                          <p className="text-zinc-500 text-sm">
+                            {category.images.length} assets • {hasImages ? "Prêts à télécharger" : "Aucun asset"}
+                          </p>
                         </div>
-                      )}
 
-                      {/* Chevron */}
-                      <svg
-                        className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </CollapsibleTrigger>
+                        {/* Progress */}
+                        {hasImages && (
+                          <div className="w-32">
+                            <Progress value={100} className="h-1.5 bg-zinc-800" />
+                          </div>
+                        )}
+
+                        {/* Chevron */}
+                        <svg
+                          className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </CollapsibleTrigger>
+
+                    {/* Actions - Outside the trigger to avoid nested buttons */}
+                    {hasImages && (
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => selectAllInCategory(category.id)}
+                          className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 text-xs"
+                        >
+                          Tout sélectionner
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => downloadCategoryZip(category.id)}
+                          disabled={downloadingZip !== null}
+                          className={`${colors.border} ${colors.text} hover:bg-zinc-800 text-xs`}
+                        >
+                          {downloadingZip === category.id ? (
+                            <span className="animate-spin">⏳</span>
+                          ) : (
+                            <>📦 ZIP ({category.images.length})</>
+                          )}
+                        </Button>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Accordion Content */}
                   <CollapsibleContent id={`content-${category.id}`}>

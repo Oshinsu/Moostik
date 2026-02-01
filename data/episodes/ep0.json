@@ -473,7 +473,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-8kbh0-0-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-1-1769759484234/var-extreme_wide-1769759484235.png",
@@ -485,7 +485,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-bvvzm-0-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-1-1769759484234/var-wide-1769759484235.png",
@@ -497,7 +497,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-erdfb-0-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-1-1769759484234/var-medium-1769759484235.png",
@@ -509,7 +509,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-vvncb-0-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-1-1769759484234/var-close_up-1769759484235.png",
@@ -521,7 +521,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-uu0ks-0-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-1-1769759484234/var-low_angle-1769759484235.png",
@@ -533,7 +533,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-legacy-shot-1-1769759484234",
+          "id": "var-establishing-1769974935536-1dvhq-0-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-001.png",
@@ -777,7 +777,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-ch588-1-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-2-1769759484235/var-extreme_wide-1769759484235.png",
@@ -789,7 +789,7 @@
           "videoCameraMotion": "static"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-40vdf-1-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-2-1769759484235/var-wide-1769759484235.png",
@@ -801,7 +801,7 @@
           "videoCameraMotion": "static"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-mnmdl-1-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-2-1769759484235/var-medium-1769759484235.png",
@@ -813,7 +813,7 @@
           "videoCameraMotion": "static"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-kwboq-1-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-2-1769759484235/var-close_up-1769759484235.png",
@@ -825,7 +825,7 @@
           "videoCameraMotion": "static"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-67658-1-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-2-1769759484235/var-low_angle-1769759484235.png",
@@ -837,7 +837,7 @@
           "videoCameraMotion": "static"
         },
         {
-          "id": "var-legacy-shot-2-1769759484235",
+          "id": "var-establishing-1769974935536-89tun-1-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-002.png",
@@ -1068,7 +1068,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-mpsci-2-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-3-1769759484235/var-extreme_wide-1769759484235.png",
@@ -1080,7 +1080,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-axl1a-2-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-3-1769759484235/var-wide-1769759484235.png",
@@ -1092,7 +1092,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-zx0x9-2-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-3-1769759484235/var-medium-1769759484235.png",
@@ -1104,7 +1104,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-wznm3-2-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-3-1769759484235/var-close_up-1769759484235.png",
@@ -1116,7 +1116,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-nnzs4-2-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-3-1769759484235/var-low_angle-1769759484235.png",
@@ -1128,7 +1128,7 @@
           "videoCameraMotion": "dolly"
         },
         {
-          "id": "var-legacy-shot-3-1769759484235",
+          "id": "var-establishing-1769974935536-03vfw-2-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-003.png",
@@ -1362,7 +1362,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-dkhi6-3-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-4-1769759484235/var-extreme_wide-1769759484235.png",
@@ -1374,7 +1374,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-402ti-3-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-4-1769759484235/var-wide-1769759484235.png",
@@ -1386,7 +1386,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-nt6n4-3-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-4-1769759484235/var-medium-1769759484235.png",
@@ -1398,7 +1398,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-zwawn-3-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-4-1769759484235/var-close_up-1769759484235.png",
@@ -1410,7 +1410,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-0ivkg-3-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-4-1769759484235/var-low_angle-1769759484235.png",
@@ -1422,7 +1422,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-legacy-shot-4-1769759484235",
+          "id": "var-establishing-1769974935536-5v8nq-3-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-004.png",
@@ -1665,7 +1665,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-2crwr-4-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-5-1769759484235/var-extreme_wide-1769759484235.png",
@@ -1677,7 +1677,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-tpkme-4-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-5-1769759484235/var-wide-1769759484235.png",
@@ -1689,7 +1689,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-hsixf-4-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-5-1769759484235/var-medium-1769759484235.png",
@@ -1701,7 +1701,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-rjrlk-4-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-5-1769759484235/var-close_up-1769759484235.png",
@@ -1713,7 +1713,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-ueobl-4-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-5-1769759484235/var-low_angle-1769759484235.png",
@@ -1725,7 +1725,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-legacy-shot-5-1769759484235",
+          "id": "var-establishing-1769974935536-oyk0z-4-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-005.png",
@@ -1970,7 +1970,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-t5gzr-5-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-6-1769759484235/var-extreme_wide-1769759484235.png",
@@ -1982,7 +1982,7 @@
           "videoCameraMotion": "orbit"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-hathz-5-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-6-1769759484235/var-wide-1769759484235.png",
@@ -1994,7 +1994,7 @@
           "videoCameraMotion": "orbit"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-ummbt-5-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-6-1769759484235/var-medium-1769759484235.png",
@@ -2006,7 +2006,7 @@
           "videoCameraMotion": "orbit"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-hzvke-5-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-6-1769759484235/var-close_up-1769759484235.png",
@@ -2018,7 +2018,7 @@
           "videoCameraMotion": "orbit"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-ldmo8-5-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-6-1769759484235/var-low_angle-1769759484235.png",
@@ -2030,7 +2030,7 @@
           "videoCameraMotion": "orbit"
         },
         {
-          "id": "var-legacy-shot-6-1769759484235",
+          "id": "var-establishing-1769974935536-1xbni-5-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-006.png",
@@ -2274,7 +2274,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-4ciqa-6-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-7-1769759484235/var-extreme_wide-1769759484235.png",
@@ -2286,7 +2286,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-0qntz-6-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-7-1769759484235/var-wide-1769759484235.png",
@@ -2298,7 +2298,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-jczfb-6-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-7-1769759484235/var-medium-1769759484235.png",
@@ -2310,7 +2310,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-wx1ah-6-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-7-1769759484235/var-close_up-1769759484235.png",
@@ -2322,7 +2322,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-u0guw-6-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-7-1769759484235/var-low_angle-1769759484235.png",
@@ -2334,7 +2334,7 @@
           "videoCameraMotion": "crane"
         },
         {
-          "id": "var-legacy-shot-7-1769759484235",
+          "id": "var-establishing-1769974935536-ck9td-6-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-007.png",
@@ -2581,7 +2581,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-fzmym-7-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-8-1769759484235/var-extreme_wide-1769759484235.png",
@@ -2593,7 +2593,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-6pv25-7-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-8-1769759484235/var-wide-1769759484235.png",
@@ -2605,7 +2605,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-mvvma-7-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-8-1769759484235/var-medium-1769759484235.png",
@@ -2617,7 +2617,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-wg1g8-7-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-8-1769759484235/var-close_up-1769759484235.png",
@@ -2629,7 +2629,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-qdocr-7-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-8-1769759484235/var-low_angle-1769759484235.png",
@@ -2641,7 +2641,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-legacy-shot-8-1769759484235",
+          "id": "var-establishing-1769974935536-a5u6d-7-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-008.png",
@@ -2879,7 +2879,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-8njf5-8-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-9-1769759484235/var-extreme_wide-1769759484235.png",
@@ -2891,7 +2891,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-00cf7-8-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-9-1769759484235/var-wide-1769759484235.png",
@@ -2903,7 +2903,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-n3jpm-8-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-9-1769759484235/var-medium-1769759484235.png",
@@ -2915,7 +2915,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-6cinc-8-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-9-1769759484235/var-close_up-1769759484235.png",
@@ -2927,7 +2927,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-bc8hw-8-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-9-1769759484235/var-low_angle-1769759484235.png",
@@ -2939,7 +2939,7 @@
           "videoCameraMotion": "pan"
         },
         {
-          "id": "var-legacy-shot-9-1769759484235",
+          "id": "var-establishing-1769974935536-5insn-8-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-009.png",
@@ -3179,7 +3179,7 @@
       },
       "variations": [
         {
-          "id": "var-extreme_wide-1769759484235",
+          "id": "var-extreme_wide-1769974935536-1eu4e-9-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-10-1769759484235/var-extreme_wide-1769759484235.png",
@@ -3191,7 +3191,7 @@
           "videoCameraMotion": "handheld"
         },
         {
-          "id": "var-wide-1769759484235",
+          "id": "var-wide-1769974935536-lkjzg-9-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-10-1769759484235/var-wide-1769759484235.png",
@@ -3203,7 +3203,7 @@
           "videoCameraMotion": "handheld"
         },
         {
-          "id": "var-medium-1769759484235",
+          "id": "var-medium-1769974935536-8zo71-9-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-10-1769759484235/var-medium-1769759484235.png",
@@ -3215,7 +3215,7 @@
           "videoCameraMotion": "handheld"
         },
         {
-          "id": "var-close_up-1769759484235",
+          "id": "var-close_up-1769974935536-nq903-9-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-10-1769759484235/var-close_up-1769759484235.png",
@@ -3227,7 +3227,7 @@
           "videoCameraMotion": "handheld"
         },
         {
-          "id": "var-low_angle-1769759484235",
+          "id": "var-low_angle-1769974935536-1mmi0-9-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-10-1769759484235/var-low_angle-1769759484235.png",
@@ -3239,7 +3239,7 @@
           "videoCameraMotion": "handheld"
         },
         {
-          "id": "var-legacy-shot-10-1769759484235",
+          "id": "var-establishing-1769974935536-g3hmt-9-5",
           "cameraAngle": "establishing",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-010.png",
@@ -3472,21 +3472,21 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769888806981-10",
+          "id": "var-extreme_wide-1769974935536-nngn6-10-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011.png",
           "generatedAt": "2026-02-01T06:49:05.065Z"
         },
         {
-          "id": "var-wide-1769888806981-10",
+          "id": "var-wide-1769974935536-oz94y-10-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-medium-1769888806981-10",
+          "id": "var-medium-1769974935536-rtj7x-10-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-medium-1769888806981-10.png",
@@ -3494,7 +3494,7 @@
           "generatedAt": "2026-02-01T08:25:56.808Z"
         },
         {
-          "id": "var-close_up-1769888806981-10",
+          "id": "var-close_up-1769974935536-rdwwh-10-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-close_up-1769888806981-10.png",
@@ -3502,7 +3502,7 @@
           "generatedAt": "2026-02-01T08:26:58.678Z"
         },
         {
-          "id": "var-low_angle-1769888806981-10",
+          "id": "var-low_angle-1769974935536-g95qg-10-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-011/var-low_angle-1769888806981-10.png",
@@ -3715,21 +3715,21 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769888806981-11",
+          "id": "var-extreme_wide-1769974935536-6zzdd-11-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012.png",
           "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
-          "id": "var-wide-1769888806981-11",
+          "id": "var-wide-1769974935536-l0xn0-11-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-medium-1769888806981-11",
+          "id": "var-medium-1769974935536-jmjj7-11-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-medium-1769888806981-11.png",
@@ -3737,7 +3737,7 @@
           "generatedAt": "2026-02-01T08:26:06.849Z"
         },
         {
-          "id": "var-close_up-1769888806981-11",
+          "id": "var-close_up-1769974935536-af0ft-11-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-close_up-1769888806981-11.png",
@@ -3745,7 +3745,7 @@
           "generatedAt": "2026-02-01T08:27:01.019Z"
         },
         {
-          "id": "var-low_angle-1769888806981-11",
+          "id": "var-low_angle-1769974935536-y2cw8-11-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-012/var-low_angle-1769888806981-11.png",
@@ -3951,21 +3951,21 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769888806981-12",
+          "id": "var-extreme_wide-1769974935536-p7vma-12-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013.png",
           "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
-          "id": "var-wide-1769888806981-12",
+          "id": "var-wide-1769974935536-gxoff-12-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-medium-1769888806981-12",
+          "id": "var-medium-1769974935536-anux7-12-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-medium-1769888806981-12.png",
@@ -3973,7 +3973,7 @@
           "generatedAt": "2026-02-01T08:24:38.477Z"
         },
         {
-          "id": "var-close_up-1769888806981-12",
+          "id": "var-close_up-1769974935536-o5gmf-12-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-close_up-1769888806981-12.png",
@@ -3981,7 +3981,7 @@
           "generatedAt": "2026-02-01T08:25:21.369Z"
         },
         {
-          "id": "var-low_angle-1769888806981-12",
+          "id": "var-low_angle-1769974935536-brrws-12-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-013/var-low_angle-1769888806981-12.png",
@@ -4208,21 +4208,21 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769888806981-13",
+          "id": "var-extreme_wide-1769974935536-pw202-13-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014.png",
           "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
-          "id": "var-wide-1769888806981-13",
+          "id": "var-wide-1769974935536-16i6b-13-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-medium-1769888806981-13",
+          "id": "var-medium-1769974935536-q1ycn-13-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-medium-1769888806981-13.png",
@@ -4230,7 +4230,7 @@
           "generatedAt": "2026-02-01T08:30:26.013Z"
         },
         {
-          "id": "var-close_up-1769888806981-13",
+          "id": "var-close_up-1769974935536-4aio7-13-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-close_up-1769888806981-13.png",
@@ -4238,7 +4238,7 @@
           "generatedAt": "2026-02-01T08:31:16.517Z"
         },
         {
-          "id": "var-low_angle-1769888806981-13",
+          "id": "var-low_angle-1769974935536-rfnzd-13-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-014/var-low_angle-1769888806981-13.png",
@@ -4454,21 +4454,21 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769888806981-14",
+          "id": "var-extreme_wide-1769974935536-35tr5-14-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015.png",
           "generatedAt": "2026-02-01T06:49:05.066Z"
         },
         {
-          "id": "var-wide-1769888806981-14",
+          "id": "var-wide-1769974935536-biffa-14-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-medium-1769888806981-14",
+          "id": "var-medium-1769974935536-qgy7j-14-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-medium-1769888806981-14.png",
@@ -4476,7 +4476,7 @@
           "generatedAt": "2026-02-01T08:28:39.739Z"
         },
         {
-          "id": "var-close_up-1769888806981-14",
+          "id": "var-close_up-1769974935536-x99a9-14-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-close_up-1769888806981-14.png",
@@ -4484,7 +4484,7 @@
           "generatedAt": "2026-02-01T08:29:30.705Z"
         },
         {
-          "id": "var-low_angle-1769888806981-14",
+          "id": "var-low_angle-1769974935536-11x63-14-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-015/var-low_angle-1769888806981-14.png",
@@ -4693,14 +4693,14 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-16",
+          "id": "var-extreme_wide-1769974935536-ruerh-15-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-016.png",
           "generatedAt": "2026-02-01T06:49:34.831Z"
         },
         {
-          "id": "var-wide-1769889794560-16",
+          "id": "var-wide-1769974935536-zq2kq-15-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-wide-1769889794560-16.png",
@@ -4708,7 +4708,7 @@
           "generatedAt": "2026-02-01T08:30:11.881Z"
         },
         {
-          "id": "var-medium-1769889794560-16",
+          "id": "var-medium-1769974935536-eeurp-15-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-medium-1769889794560-16.png",
@@ -4716,7 +4716,7 @@
           "generatedAt": "2026-02-01T08:31:06.664Z"
         },
         {
-          "id": "var-close_up-1769889794560-16",
+          "id": "var-close_up-1769974935536-t0bby-15-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-close_up-1769889794560-16.png",
@@ -4724,7 +4724,7 @@
           "generatedAt": "2026-02-01T08:32:10.876Z"
         },
         {
-          "id": "var-low_angle-1769889794560-16",
+          "id": "var-low_angle-1769974935536-3869y-15-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-16/var-low_angle-1769889794560-16.png",
@@ -4931,7 +4931,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-17",
+          "id": "var-extreme_wide-1769974935536-nitkx-16-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-extreme_wide-1769889794560-17.png",
@@ -4939,7 +4939,7 @@
           "generatedAt": "2026-02-01T08:34:06.696Z"
         },
         {
-          "id": "var-wide-1769889794560-17",
+          "id": "var-wide-1769974935536-z74hn-16-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-wide-1769889794560-17.png",
@@ -4947,7 +4947,7 @@
           "generatedAt": "2026-02-01T08:35:04.931Z"
         },
         {
-          "id": "var-medium-1769889794560-17",
+          "id": "var-medium-1769974935536-5h8k0-16-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-medium-1769889794560-17.png",
@@ -4955,7 +4955,7 @@
           "generatedAt": "2026-02-01T08:36:00.751Z"
         },
         {
-          "id": "var-close_up-1769889794560-17",
+          "id": "var-close_up-1769974935536-qfh2o-16-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-close_up-1769889794560-17.png",
@@ -4963,7 +4963,7 @@
           "generatedAt": "2026-02-01T08:36:43.844Z"
         },
         {
-          "id": "var-low_angle-1769889794560-17",
+          "id": "var-low_angle-1769974935536-v1q89-16-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-17/var-low_angle-1769889794560-17.png",
@@ -5168,7 +5168,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-18",
+          "id": "var-extreme_wide-1769974935536-4351z-17-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-extreme_wide-1769889794560-18.png",
@@ -5176,7 +5176,7 @@
           "generatedAt": "2026-02-01T08:33:54.146Z"
         },
         {
-          "id": "var-wide-1769889794560-18",
+          "id": "var-wide-1769974935536-t5313-17-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-wide-1769889794560-18.png",
@@ -5184,7 +5184,7 @@
           "generatedAt": "2026-02-01T08:34:36.194Z"
         },
         {
-          "id": "var-medium-1769889794560-18",
+          "id": "var-medium-1769974935536-wf235-17-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-medium-1769889794560-18.png",
@@ -5192,7 +5192,7 @@
           "generatedAt": "2026-02-01T08:35:24.463Z"
         },
         {
-          "id": "var-close_up-1769889794560-18",
+          "id": "var-close_up-1769974935536-gpu1e-17-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-close_up-1769889794560-18.png",
@@ -5200,7 +5200,7 @@
           "generatedAt": "2026-02-01T08:36:07.484Z"
         },
         {
-          "id": "var-low_angle-1769889794560-18",
+          "id": "var-low_angle-1769974935536-27h0h-17-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-18/var-low_angle-1769889794560-18.png",
@@ -5408,7 +5408,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-19",
+          "id": "var-extreme_wide-1769974935536-9csnc-18-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-extreme_wide-1769889794560-19.png",
@@ -5416,7 +5416,7 @@
           "generatedAt": "2026-02-01T08:34:32.874Z"
         },
         {
-          "id": "var-wide-1769889794560-19",
+          "id": "var-wide-1769974935536-asl8e-18-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-wide-1769889794560-19.png",
@@ -5424,7 +5424,7 @@
           "generatedAt": "2026-02-01T08:36:00.433Z"
         },
         {
-          "id": "var-medium-1769889794560-19",
+          "id": "var-medium-1769974935536-malxw-18-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-medium-1769889794560-19.png",
@@ -5432,7 +5432,7 @@
           "generatedAt": "2026-02-01T08:36:48.997Z"
         },
         {
-          "id": "var-close_up-1769889794560-19",
+          "id": "var-close_up-1769974935536-cditj-18-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-close_up-1769889794560-19.png",
@@ -5440,7 +5440,7 @@
           "generatedAt": "2026-02-01T08:37:28.985Z"
         },
         {
-          "id": "var-low_angle-1769889794560-19",
+          "id": "var-low_angle-1769974935536-hog1n-18-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-19/var-low_angle-1769889794560-19.png",
@@ -5648,7 +5648,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-20",
+          "id": "var-extreme_wide-1769974935536-o44j2-19-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-extreme_wide-1769889794560-20.png",
@@ -5656,7 +5656,7 @@
           "generatedAt": "2026-02-01T08:39:39.352Z"
         },
         {
-          "id": "var-wide-1769889794560-20",
+          "id": "var-wide-1769974935536-om7dh-19-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-wide-1769889794560-20.png",
@@ -5664,7 +5664,7 @@
           "generatedAt": "2026-02-01T08:40:24.700Z"
         },
         {
-          "id": "var-medium-1769889794560-20",
+          "id": "var-medium-1769974935536-btwr8-19-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-medium-1769889794560-20.png",
@@ -5672,7 +5672,7 @@
           "generatedAt": "2026-02-01T08:41:15.764Z"
         },
         {
-          "id": "var-close_up-1769889794560-20",
+          "id": "var-close_up-1769974935536-p4spm-19-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-close_up-1769889794560-20.png",
@@ -5680,7 +5680,7 @@
           "generatedAt": "2026-02-01T08:42:36.875Z"
         },
         {
-          "id": "var-low_angle-1769889794560-20",
+          "id": "var-low_angle-1769974935536-9ma53-19-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-20/var-low_angle-1769889794560-20.png",
@@ -5888,7 +5888,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-21",
+          "id": "var-extreme_wide-1769974935536-tmi7y-20-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-extreme_wide-1769889794560-21.png",
@@ -5896,7 +5896,7 @@
           "generatedAt": "2026-02-01T08:39:25.653Z"
         },
         {
-          "id": "var-wide-1769889794560-21",
+          "id": "var-wide-1769974935536-kilkf-20-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-wide-1769889794560-21.png",
@@ -5904,7 +5904,7 @@
           "generatedAt": "2026-02-01T08:40:23.408Z"
         },
         {
-          "id": "var-medium-1769889794560-21",
+          "id": "var-medium-1769974935536-ur3z7-20-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-medium-1769889794560-21.png",
@@ -5912,7 +5912,7 @@
           "generatedAt": "2026-02-01T08:41:24.617Z"
         },
         {
-          "id": "var-close_up-1769889794560-21",
+          "id": "var-close_up-1769974935536-f5jqg-20-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-close_up-1769889794560-21.png",
@@ -5920,7 +5920,7 @@
           "generatedAt": "2026-02-01T08:42:59.619Z"
         },
         {
-          "id": "var-low_angle-1769889794560-21",
+          "id": "var-low_angle-1769974935536-r410r-20-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-21/var-low_angle-1769889794560-21.png",
@@ -6127,7 +6127,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-22",
+          "id": "var-extreme_wide-1769974935536-a0zb1-21-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-extreme_wide-1769889794560-22.png",
@@ -6135,7 +6135,7 @@
           "generatedAt": "2026-02-01T08:38:24.290Z"
         },
         {
-          "id": "var-wide-1769889794560-22",
+          "id": "var-wide-1769974935536-jg4ym-21-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-wide-1769889794560-22.png",
@@ -6143,7 +6143,7 @@
           "generatedAt": "2026-02-01T08:39:17.483Z"
         },
         {
-          "id": "var-medium-1769889794560-22",
+          "id": "var-medium-1769974935536-hmkzx-21-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-medium-1769889794560-22.png",
@@ -6151,7 +6151,7 @@
           "generatedAt": "2026-02-01T08:40:26.739Z"
         },
         {
-          "id": "var-close_up-1769889794560-22",
+          "id": "var-close_up-1769974935536-l7147-21-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-close_up-1769889794560-22.png",
@@ -6159,7 +6159,7 @@
           "generatedAt": "2026-02-01T08:41:15.913Z"
         },
         {
-          "id": "var-low_angle-1769889794560-22",
+          "id": "var-low_angle-1769974935536-2s0ml-21-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-22/var-low_angle-1769889794560-22.png",
@@ -6366,7 +6366,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889794560-23",
+          "id": "var-extreme_wide-1769974935536-a2ghd-22-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-extreme_wide-1769889794560-23.png",
@@ -6374,7 +6374,7 @@
           "generatedAt": "2026-02-01T08:45:04.834Z"
         },
         {
-          "id": "var-wide-1769889794560-23",
+          "id": "var-wide-1769974935536-2pmvk-22-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-wide-1769889794560-23.png",
@@ -6382,7 +6382,7 @@
           "generatedAt": "2026-02-01T08:45:49.984Z"
         },
         {
-          "id": "var-medium-1769889794560-23",
+          "id": "var-medium-1769974935536-yrvh1-22-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-medium-1769889794560-23.png",
@@ -6390,7 +6390,7 @@
           "generatedAt": "2026-02-01T08:47:20.016Z"
         },
         {
-          "id": "var-close_up-1769889794560-23",
+          "id": "var-close_up-1769974935536-mgkes-22-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-close_up-1769889794560-23.png",
@@ -6398,7 +6398,7 @@
           "generatedAt": "2026-02-01T08:48:05.320Z"
         },
         {
-          "id": "var-low_angle-1769889794560-23",
+          "id": "var-low_angle-1769974935536-is0ex-22-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889794560-23/var-low_angle-1769889794560-23.png",
@@ -6604,7 +6604,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889802112-24",
+          "id": "var-extreme_wide-1769974935536-bzf93-23-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-extreme_wide-1769889802112-24.png",
@@ -6612,7 +6612,7 @@
           "generatedAt": "2026-02-01T08:44:00.527Z"
         },
         {
-          "id": "var-wide-1769889802112-24",
+          "id": "var-wide-1769974935536-7jwb7-23-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-wide-1769889802112-24.png",
@@ -6620,7 +6620,7 @@
           "generatedAt": "2026-02-01T08:44:37.493Z"
         },
         {
-          "id": "var-medium-1769889802112-24",
+          "id": "var-medium-1769974935536-oc19o-23-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-medium-1769889802112-24.png",
@@ -6628,7 +6628,7 @@
           "generatedAt": "2026-02-01T08:45:27.258Z"
         },
         {
-          "id": "var-close_up-1769889802112-24",
+          "id": "var-close_up-1769974935536-vca1o-23-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-close_up-1769889802112-24.png",
@@ -6636,7 +6636,7 @@
           "generatedAt": "2026-02-01T08:47:24.277Z"
         },
         {
-          "id": "var-low_angle-1769889802112-24",
+          "id": "var-low_angle-1769974935536-vo1ew-23-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-24/var-low_angle-1769889802112-24.png",
@@ -6842,7 +6842,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889802112-25",
+          "id": "var-extreme_wide-1769974935536-ma1dh-24-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-extreme_wide-1769889802112-25.png",
@@ -6850,7 +6850,7 @@
           "generatedAt": "2026-02-01T08:44:32.269Z"
         },
         {
-          "id": "var-wide-1769889802112-25",
+          "id": "var-wide-1769974935536-kd4zu-24-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-wide-1769889802112-25.png",
@@ -6858,7 +6858,7 @@
           "generatedAt": "2026-02-01T08:45:50.966Z"
         },
         {
-          "id": "var-medium-1769889802112-25",
+          "id": "var-medium-1769974935536-c42v3-24-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-medium-1769889802112-25.png",
@@ -6866,7 +6866,7 @@
           "generatedAt": "2026-02-01T08:47:43.581Z"
         },
         {
-          "id": "var-close_up-1769889802112-25",
+          "id": "var-close_up-1769974935536-tkypp-24-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-close_up-1769889802112-25.png",
@@ -6874,7 +6874,7 @@
           "generatedAt": "2026-02-01T08:49:22.138Z"
         },
         {
-          "id": "var-low_angle-1769889802112-25",
+          "id": "var-low_angle-1769974935536-4pygk-24-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-25/var-low_angle-1769889802112-25.png",
@@ -7080,7 +7080,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889802112-26",
+          "id": "var-extreme_wide-1769974935536-yk9z7-25-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-extreme_wide-1769889802112-26.png",
@@ -7088,7 +7088,7 @@
           "generatedAt": "2026-02-01T08:50:43.742Z"
         },
         {
-          "id": "var-wide-1769889802112-26",
+          "id": "var-wide-1769974935536-vi3rl-25-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-wide-1769889802112-26.png",
@@ -7096,7 +7096,7 @@
           "generatedAt": "2026-02-01T08:51:54.624Z"
         },
         {
-          "id": "var-medium-1769889802112-26",
+          "id": "var-medium-1769974935536-gdwud-25-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-medium-1769889802112-26.png",
@@ -7104,7 +7104,7 @@
           "generatedAt": "2026-02-01T08:53:05.524Z"
         },
         {
-          "id": "var-close_up-1769889802112-26",
+          "id": "var-close_up-1769974935536-lt6hb-25-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-close_up-1769889802112-26.png",
@@ -7112,7 +7112,7 @@
           "generatedAt": "2026-02-01T08:55:03.020Z"
         },
         {
-          "id": "var-low_angle-1769889802112-26",
+          "id": "var-low_angle-1769974935536-7b5lu-25-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-26/var-low_angle-1769889802112-26.png",
@@ -7319,7 +7319,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889802112-27",
+          "id": "var-extreme_wide-1769974935536-kw87s-26-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-extreme_wide-1769889802112-27.png",
@@ -7327,7 +7327,7 @@
           "generatedAt": "2026-02-01T08:53:01.461Z"
         },
         {
-          "id": "var-wide-1769889802112-27",
+          "id": "var-wide-1769974935536-r8zie-26-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-wide-1769889802112-27.png",
@@ -7335,7 +7335,7 @@
           "generatedAt": "2026-02-01T08:53:03.828Z"
         },
         {
-          "id": "var-medium-1769889802112-27",
+          "id": "var-medium-1769974935536-n8oss-26-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-medium-1769889802112-27.png",
@@ -7343,7 +7343,7 @@
           "generatedAt": "2026-02-01T08:54:02.466Z"
         },
         {
-          "id": "var-close_up-1769889802112-27",
+          "id": "var-close_up-1769974935536-a505d-26-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-close_up-1769889802112-27.png",
@@ -7351,7 +7351,7 @@
           "generatedAt": "2026-02-01T08:54:50.454Z"
         },
         {
-          "id": "var-low_angle-1769889802112-27",
+          "id": "var-low_angle-1769974935536-a9gis-26-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-27/var-low_angle-1769889802112-27.png",
@@ -7558,7 +7558,7 @@
       ],
       "variations": [
         {
-          "id": "var-extreme_wide-1769889802112-28",
+          "id": "var-extreme_wide-1769974935536-37k4b-27-0",
           "cameraAngle": "extreme_wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-extreme_wide-1769889802112-28.png",
@@ -7566,7 +7566,7 @@
           "generatedAt": "2026-02-01T08:50:07.079Z"
         },
         {
-          "id": "var-wide-1769889802112-28",
+          "id": "var-wide-1769974935536-1j9e1-27-1",
           "cameraAngle": "wide",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-wide-1769889802112-28.png",
@@ -7574,7 +7574,7 @@
           "generatedAt": "2026-02-01T08:50:45.484Z"
         },
         {
-          "id": "var-medium-1769889802112-28",
+          "id": "var-medium-1769974935536-6kvev-27-2",
           "cameraAngle": "medium",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-medium-1769889802112-28.png",
@@ -7582,7 +7582,7 @@
           "generatedAt": "2026-02-01T08:51:27.700Z"
         },
         {
-          "id": "var-close_up-1769889802112-28",
+          "id": "var-close_up-1769974935536-rxhxj-27-3",
           "cameraAngle": "close_up",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-close_up-1769889802112-28.png",
@@ -7590,7 +7590,7 @@
           "generatedAt": "2026-02-01T08:53:27.553Z"
         },
         {
-          "id": "var-low_angle-1769889802112-28",
+          "id": "var-low_angle-1769974935536-9iax3-27-4",
           "cameraAngle": "low_angle",
           "status": "completed",
           "imageUrl": "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/generated-images/ep0/shot-exp-1769889802112-28/var-low_angle-1769889802112-28.png",

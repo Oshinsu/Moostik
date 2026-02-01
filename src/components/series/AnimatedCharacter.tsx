@@ -99,16 +99,13 @@ export function AnimatedCharacter({
     ? expressions[currentExpression]?.image || staticImage
     : staticImage;
 
-  const Wrapper = href ? Link : "div";
-  const wrapperProps = href ? { href } : {};
+  const commonProps = {
+    className: `block ${className}`,
+    onMouseEnter: () => setIsHovered(true),
+    onMouseLeave: () => setIsHovered(false),
+  };
 
-  return (
-    <Wrapper
-      {...wrapperProps}
-      className={`block ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+  const content = (
       <Card
         className={`
           ${config.card}
@@ -200,7 +197,20 @@ export function AnimatedCharacter({
           </div>
         )}
       </Card>
-    </Wrapper>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} {...commonProps}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div {...commonProps}>
+      {content}
+    </div>
   );
 }
 

@@ -16,6 +16,7 @@ import {
   ReplicateVideoError,
 } from "@/lib/video/providers/replicate";
 import { getEpisode, updateShot } from "@/lib/storage";
+import type { Variation } from "@/types";
 
 export const maxDuration = 60; // 60s max for Vercel hobby plan
 
@@ -132,11 +133,11 @@ export async function POST(request: NextRequest) {
                 videoGeneratedAt: new Date().toISOString(),
                 videoDuration: input.durationSeconds,
                 videoPrompt: input.prompt,
-                videoCameraMotion: input.cameraMotion,
+                videoCameraMotion: input.cameraMotion as string | undefined,
               }
             : v
         );
-        await updateShot(body.episodeId, body.shotId, { variations: completedVariations });
+        await updateShot(body.episodeId, body.shotId, { variations: completedVariations as Variation[] });
         console.log(`[Video] Updated variation ${body.variationId} with videoUrl: ${result.videoUrl}`);
       }
 

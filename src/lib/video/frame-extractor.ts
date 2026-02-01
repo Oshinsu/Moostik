@@ -449,11 +449,10 @@ export async function uploadExtractedFrame(
         buffer,
         episodeId,
         shotId,
-        `${frameType}-frame`,
-        "image/png"
+        `${frameType}-frame`
       );
       
-      return result.url;
+      return result.publicUrl || null;
     }
     
     // If it's already a remote URL, return as-is or re-upload

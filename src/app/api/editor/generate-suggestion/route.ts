@@ -8,9 +8,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEpisode, getCharacters, getLocations, saveEpisode } from "@/lib/storage";
 import { generateAndSave } from "@/lib/replicate";
-import { buildJsonMoostikPrompt, type JsonMoostik } from "@/lib/json-moostik-standard";
 import type { ShotSuggestion } from "@/lib/editor/blood-director";
-import type { Shot, Variation, MoostikPrompt } from "@/types";
+import type { Shot, Variation, MoostikPrompt, SceneType, CameraAngle } from "@/types";
 
 interface GenerateSuggestionRequest {
   episodeId: string;
@@ -48,10 +47,10 @@ export async function POST(request: NextRequest) {
     
     // Get character and location details
     const character = suggestion.characterIds?.[0] 
-      ? characters.find(c => c.id === suggestion.characterIds![0])
+      ? characters.find(c => c.id === suggestion.characterIds![0]) || null
       : null;
     const location = suggestion.locationId
-      ? locations.find(l => l.id === suggestion.locationId)
+      ? locations.find(l => l.id === suggestion.locationId) || null
       : null;
     
     // Build prompt based on suggestion type
@@ -64,12 +63,12 @@ export async function POST(request: NextRequest) {
       number: newShotNumber,
       name: suggestion.name,
       description: suggestion.description,
-      sceneType: mapSuggestionTypeToSceneType(suggestion.type),
-      prompt: prompt as MoostikPrompt,
+      sceneType: mapSuggestionTypeToSceneType(suggestion.type) as SceneType,
+      prompt: { text: buildPromptText(prompt) } as unknown as MoostikPrompt,
       variations: [
         {
-          id: `var-${Date.now()}-1`,
-          cameraAngle: mapToCameraAngle(suggestion.cameraAngle),
+          id: `var-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+          cameraAngle: mapToCameraAngle(suggestion.cameraAngle) as CameraAngle,
           status: "pending",
         },
       ],
@@ -159,73 +158,34 @@ export async function POST(request: NextRequest) {
   }
 }
 
+interface SimplifiedPrompt {
+  characterName?: string;
+  characterDescription?: string;
+  locationName?: string;
+  locationDescription?: string;
+  suggestionType: string;
+  suggestionName: string;
+  suggestionDescription: string;
+  emotionalTone?: string;
+  cameraAngle?: string;
+}
+
 function buildSuggestionPrompt(
   suggestion: ShotSuggestion,
   character: { name: string; physicalDescription?: string; referencePrompt?: string } | null,
   location: { name: string; description?: string; referencePrompt?: string } | null
-): Partial<JsonMoostik> {
-  const prompt: Partial<JsonMoostik> = {
-    meta: {
-      type: "image",
-      model_target: "flux_kontext" as const,
-      version: "1.0.0",
-      created: new Date().toISOString(),
-    },
-    references: {
-      characters: character ? [{
-        id: "char_main",
-        name: character.name,
-        description: character.physicalDescription || character.name,
-        ref_weight: 0.85,
-      }] : [],
-      environment: location ? {
-        id: "env_main",
-        name: location.name,
-        description: location.description || location.name,
-        ref_weight: 0.7,
-      } : undefined,
-    },
-    scene_graph: {
-      setting: location?.name || "Scene",
-      subjects: character ? [{
-        id: "subj_main",
-        label: character.name,
-        appearance: character.physicalDescription || character.name,
-        pose_action: getPoseForSuggestionType(suggestion.type),
-        expression_emotion: suggestion.emotionalTone || "neutral",
-        depth_layer: "foreground",
-      }] : [],
-      camera: {
-        angle: suggestion.cameraAngle || "medium",
-        movement: "static",
-        lens_mm: getLensForSuggestionType(suggestion.type),
-        depth_of_field: suggestion.type === "detail" ? "shallow" : "deep",
-      },
-      lighting: {
-        style: "cinematic",
-        direction: "side",
-        mood: suggestion.emotionalTone || "dramatic",
-      },
-      atmosphere: suggestion.emotionalTone || "tense",
-    },
-    parameters: {
-      aspect_ratio: "16:9",
-      quality: "ultra",
-      style_preset: "bloodwing_cinematic",
-    },
-    constraints: {
-      mandatory_include: [
-        character?.name || suggestion.name,
-        location?.name || "environment",
-      ].filter(Boolean) as string[],
-      negative_prompts: [
-        "low quality", "blurry", "text", "watermark",
-        "deformed", "ugly", "bad anatomy",
-      ],
-    },
+): SimplifiedPrompt {
+  return {
+    characterName: character?.name,
+    characterDescription: character?.physicalDescription || character?.referencePrompt,
+    locationName: location?.name,
+    locationDescription: location?.description || location?.referencePrompt,
+    suggestionType: suggestion.type,
+    suggestionName: suggestion.name,
+    suggestionDescription: suggestion.description,
+    emotionalTone: suggestion.emotionalTone,
+    cameraAngle: suggestion.cameraAngle,
   };
-  
-  return prompt;
 }
 
 function getPoseForSuggestionType(type: string): string {
@@ -282,37 +242,35 @@ function mapToCameraAngle(angle?: string): string {
   return mapping[angle || "medium"] || "medium";
 }
 
-function buildPromptText(prompt: Partial<JsonMoostik>): string {
+function buildPromptText(prompt: SimplifiedPrompt): string {
   const parts: string[] = [];
   
-  if (prompt.scene_graph?.setting) {
-    parts.push(prompt.scene_graph.setting);
-  }
-  
-  if (prompt.scene_graph?.subjects?.[0]) {
-    const subject = prompt.scene_graph.subjects[0];
-    parts.push(`${subject.label}, ${subject.appearance}, ${subject.pose_action}`);
-    if (subject.expression_emotion) {
-      parts.push(`${subject.expression_emotion} expression`);
+  if (prompt.locationName) {
+    parts.push(prompt.locationName);
+    if (prompt.locationDescription) {
+      parts.push(prompt.locationDescription);
     }
   }
   
-  if (prompt.scene_graph?.camera) {
-    parts.push(`${prompt.scene_graph.camera.angle} shot`);
-    if (prompt.scene_graph.camera.lens_mm) {
-      parts.push(`${prompt.scene_graph.camera.lens_mm}mm lens`);
+  if (prompt.characterName) {
+    parts.push(prompt.characterName);
+    if (prompt.characterDescription) {
+      parts.push(prompt.characterDescription);
     }
+    parts.push(getPoseForSuggestionType(prompt.suggestionType));
   }
   
-  if (prompt.scene_graph?.lighting) {
-    parts.push(`${prompt.scene_graph.lighting.style} lighting`);
+  if (prompt.emotionalTone) {
+    parts.push(`${prompt.emotionalTone} expression`);
   }
   
-  if (prompt.scene_graph?.atmosphere) {
-    parts.push(`${prompt.scene_graph.atmosphere} atmosphere`);
+  if (prompt.cameraAngle) {
+    parts.push(`${prompt.cameraAngle} shot`);
   }
   
-  parts.push("cinematic, high quality, detailed, bloodwing style");
+  parts.push(`${getLensForSuggestionType(prompt.suggestionType)}mm lens`);
+  parts.push("cinematic lighting");
+  parts.push("cinematic, high quality, detailed, bloodwing style, moostik universe");
   
   return parts.join(", ");
 }

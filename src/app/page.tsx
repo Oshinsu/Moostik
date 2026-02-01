@@ -332,19 +332,33 @@ export default function Home() {
                         })()}
 
                         {/* Quick actions */}
-                        <div className="flex gap-2 mt-4">
-                          <Link href={`/video?episode=${latestEpisode.id}`}>
-                            <Button size="sm" variant="outline" className="text-xs h-7 bg-emerald-900/20 border-emerald-700/30 text-emerald-400 hover:bg-emerald-900/40">
-                              <Video className="w-3 h-3 mr-1" />
-                              Vidéos
-                            </Button>
-                          </Link>
-                          <Link href={`/editor?episode=${latestEpisode.id}`}>
-                            <Button size="sm" variant="outline" className="text-xs h-7 bg-fuchsia-900/20 border-fuchsia-700/30 text-fuchsia-400 hover:bg-fuchsia-900/40">
-                              <Scissors className="w-3 h-3 mr-1" />
-                              Montage
-                            </Button>
-                          </Link>
+                        <div className="flex gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-xs h-7 bg-emerald-900/20 border-emerald-700/30 text-emerald-400 hover:bg-emerald-900/40"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.location.href = `/video?episode=${latestEpisode.id}`;
+                            }}
+                          >
+                            <Video className="w-3 h-3 mr-1" />
+                            Vidéos
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-xs h-7 bg-fuchsia-900/20 border-fuchsia-700/30 text-fuchsia-400 hover:bg-fuchsia-900/40"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.location.href = `/editor?episode=${latestEpisode.id}`;
+                            }}
+                          >
+                            <Scissors className="w-3 h-3 mr-1" />
+                            Montage
+                          </Button>
                         </div>
                       </Card>
                     </Link>

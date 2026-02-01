@@ -12,7 +12,17 @@
 export * from "./storage";
 export * from "./replicate";
 export * from "./reference-resolver";
-export * from "./scene-cluster-manager";
+// scene-cluster-manager: Export specific functions to avoid conflict with video/analyzeEpisode
+export { 
+  resolveClusterReferences, 
+  prepareClusterReferenceMap, 
+  prepareShotsForClusterGeneration,
+  getOptimalGenerationOrder,
+  findBestClusterForShot,
+  getClusterStats,
+  mergeClusters,
+  // Note: analyzeEpisode is not exported here to avoid conflict with video module
+} from "./scene-cluster-manager";
 export * from "./ep0-generator";
 
 // ============================================================================

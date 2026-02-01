@@ -196,7 +196,7 @@ Format: projet-type-nom-version-seed-resolution.ext
       : `bloodwings-promo-pack-${dateStr}.zip`;
 
     // Return ZIP file
-    return new NextResponse(zipBuffer, {
+    return new NextResponse(new Uint8Array(zipBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/zip",
@@ -283,7 +283,7 @@ export async function POST(request: NextRequest) {
     const zipBuffer = zip.toBuffer();
     const dateStr = new Date().toISOString().split("T")[0];
 
-    return new NextResponse(zipBuffer, {
+    return new NextResponse(new Uint8Array(zipBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/zip",

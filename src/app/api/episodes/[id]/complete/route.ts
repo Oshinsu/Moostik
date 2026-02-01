@@ -78,7 +78,7 @@ export async function POST(
       // Add variations if missing
       if (addMissingVariations && (!shot.variations || shot.variations.length === 0)) {
         const newVariations: Variation[] = CAMERA_ANGLES.map((angle, angleIndex) => ({
-          id: `var-${angle}-${timestamp}-${shotIndex}`,
+          id: `var-${angle}-${timestamp}-${shotIndex}-${angleIndex}`,
           cameraAngle: angle as CameraAngle,
           status: "pending" as const,
         }));

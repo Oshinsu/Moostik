@@ -158,14 +158,15 @@ export function createShot(
   };
 }
 
-export function createVariation(cameraAngle: CameraAngle): Variation {
+export function createVariation(cameraAngle: CameraAngle, index?: number): Variation {
+  const uniqueSuffix = `${Date.now()}-${Math.random().toString(36).substring(2, 7)}${index !== undefined ? `-${index}` : ''}`;
   return {
-    id: `var-${cameraAngle}-${Date.now()}`,
+    id: `var-${cameraAngle}-${uniqueSuffix}`,
     cameraAngle,
     status: "pending"
   };
 }
 
 export function createShotVariations(shot: Shot, angles: CameraAngle[]): Variation[] {
-  return angles.map(angle => createVariation(angle));
+  return angles.map((angle, index) => createVariation(angle, index));
 }

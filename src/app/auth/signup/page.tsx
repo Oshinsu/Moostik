@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth";
@@ -22,7 +22,7 @@ import {
   Loader2,
 } from "lucide-react";
 
-export default function SignUpPage() {
+function SignUpContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedPlan = searchParams.get("plan");
@@ -269,5 +269,17 @@ export default function SignUpPage() {
         </p>
       </Card>
     </div>
+  );
+}
+
+export default function SignUpPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0b0b0e] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-blood-500" />
+      </div>
+    }>
+      <SignUpContent />
+    </Suspense>
   );
 }

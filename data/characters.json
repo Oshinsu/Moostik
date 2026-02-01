@@ -83,12 +83,11 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elderly Pixar-demonic microscopic mosquito patriarch Papy Tik, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE elegant needle-like proboscis polished like ancestral silverware with ritual notch marks near base, white lint-fiber beard beneath proboscis base like soft fluffy whiskers, wise haunted glowing amber eyes (#FFB25A) with crow's-feet ridges, silver-tinged translucent wings with copper-thread repair stitches and frayed edges, faded silver-gray blood-red crest, hunched elder posture with one hind leg weaker, holding thorn cane with crimson wax grip and droplet-eye stamp, crimson thread harness with wax anchor nodes, droplet-eye wax seal insignia on thorax, tiny lint-fiber mantle dark gray with crimson stitching, ancestral blood-ruby medallion, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, cute demonic elder aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik.png",
-      "/api/images/references/characters/papy-tik-action.png",
-      "/api/images/references/characters/papy-tik-emotional.png",
-      "/api/images/references/characters/papy-tik-environment.png",
-      "/api/images/references/characters/papy-tik-portrait.png",
-      "/api/images/references/characters/papy-tik-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/papy-tik-social.png"
     ],
     "validated": false
   },
@@ -163,12 +162,11 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, young warrior Pixar-demonic microscopic mosquito prince Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek needle-like proboscis gleaming like polished blade, fierce burning amber-orange eyes (#FFB25A) with trauma and vengeful determination, pristine translucent wings with dramatically pulsing blood-red veins like living stained glass, vibrant scarlet mohawk crest standing aggressive like demonic crown, athletic elegant slender body built for aerial combat, blood-oath tribal markings on thorax, crimson thread harness with wax anchor nodes, droplet-eye wax seal insignia smaller and refined, small memorial blood-ruby token, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, fierce battle-ready heroic pose, expression of noble rage barely contained, dark prince aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval.png",
-      "/api/images/references/characters/young-dorval-action.png",
-      "/api/images/references/characters/young-dorval-emotional.png",
-      "/api/images/references/characters/young-dorval-environment.png",
-      "/api/images/references/characters/young-dorval-portrait.png",
-      "/api/images/references/characters/young-dorval-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/young-dorval-social.png"
     ],
     "validated": false
   },
@@ -193,12 +191,12 @@
     "backstory": "Le bébé qui survivra grâce au sacrifice de ses parents et deviendra le plus grand leader des Moostik.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, tiny baby Pixar-demonic microscopic mosquito larva baby Dorval, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE minuscule baby proboscis like innocent drinking straw barely formed, ENORMOUS terrified glowing ruby-red eyes with dew-drop blood tears, tiny undeveloped wing nubs like baby demon wings, small blood-red crest tuft resembling cute baby devil horns, vulnerable tiny larval body with subtle demonic swirl patterns, expression of pure terrified innocence mixed with inherent demonic heritage, being protectively shielded, aggressively cute yet subtly unsettling dark cherub aesthetic, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red warm-amber, soft emotional lighting with crimson undertones, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval.png",
-      "/api/images/references/characters/baby-dorval-action.png",
-      "/api/images/references/characters/baby-dorval-emotional.png",
-      "/api/images/references/characters/baby-dorval-environment.png",
-      "/api/images/references/characters/baby-dorval-portrait.png",
-      "/api/images/references/characters/baby-dorval-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval-social.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/baby-dorval.png"
     ],
     "validated": false
   },
@@ -223,12 +221,12 @@
     "backstory": "Elle savait qu'elle allait mourir mais elle a choisi de donner sa vie pour que son fils survive.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elegant Pixar-demonic microscopic mosquito countess mother Maeli, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek fine needle-precise proboscis elegant and refined, beautiful warm slightly larger eyes with subtle lash-like ridge stylization, kind smile with hint of melancholy, petal-crown arrangement of pale lint petals around head ridge held by crimson wax dots like delicate tiara, two tiny droplet-shaped crimson wax earrings on copper thread loops, elegant translucent wings longer with subtle crimson gradient near base romantic style, tiny sparkle-like condensation dust near wing edges, slim waist elegant abdomen curve long delicate legs, crimson thread rescue harness with quick-release wax loops on forelegs arranged like elegant jewelry, narrow lint-fiber ribbon wrap on one hind leg mentor ribbon, small droplet-eye charm at chest smaller than Dorval refined, protective stance slightly curved like shielding someone, dark Madonna aesthetic tragically beautiful, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval.png",
-      "/api/images/references/characters/mama-dorval-action.png",
-      "/api/images/references/characters/mama-dorval-emotional.png",
-      "/api/images/references/characters/mama-dorval-environment.png",
-      "/api/images/references/characters/mama-dorval-portrait.png",
-      "/api/images/references/characters/mama-dorval-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval-social.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-dorval.png"
     ],
     "validated": false
   },
@@ -255,12 +253,11 @@
     "backstory": "Vétéran de nombreuses escarmouches contre les humains. Il forme chaque Bloodwing à devenir une arme mortelle avec sa trompe.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, battle-hardened Pixar-demonic microscopic mosquito warlord General Aedes, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE war-worn proboscis held like blood-stained ceremonial blade with battle notches, stern commanding glowing blood-red eyes with thousand-yard PTSD stare yet adorably grumpy, scarred but powerful translucent wings like torn gothic battle flags with honor-wounds and copper-thread repairs, dark crimson mohawk crest standing aggressive like punk demon general, heavily scarred thorax with battle damage worn as medals of honor, military bearing radiating demonic gravitas and discipline, tiny skull-and-proboscis military insignia markings, crimson thread military harness with multiple wax seals indicating rank, commanding pose that would make actual demon generals take notes, grizzled veteran aesthetic meets cute grumpy grandpa energy, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, harsh dramatic military lighting with crimson battle-glow, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes.png",
-      "/api/images/references/characters/general-aedes-action.png",
-      "/api/images/references/characters/general-aedes-emotional.png",
-      "/api/images/references/characters/general-aedes-environment.png",
-      "/api/images/references/characters/general-aedes-portrait.png",
-      "/api/images/references/characters/general-aedes-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/general-aedes-social.png"
     ],
     "validated": false
   },
@@ -288,12 +285,11 @@
     "backstory": "Il a lu tous les parchemins sur les humains et annoté chaque faiblesse. Son esprit est l'arme la plus dangereuse des Bloodwings.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, intellectual Pixar-demonic microscopic mosquito scholar professor Culex, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE fine precise proboscis held like elegant quill pen for annotation, large curious glowing amber eyes (#FFB25A) with natural spectacle-like markings, delicate precise translucent wings like anatomical diagrams, smaller cerebral blood-red crest, thin scholarly frame, holding tiny ancient scroll with human anatomy notes, medieval scholar robes aesthetic in lint-fiber, expression of nerdy sinister curiosity, adorable demon professor who has read Dracula and finds it amusing but inaccurate, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm scholarly amber lighting, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex.png",
-      "/api/images/references/characters/scholar-culex-action.png",
-      "/api/images/references/characters/scholar-culex-emotional.png",
-      "/api/images/references/characters/scholar-culex-environment.png",
-      "/api/images/references/characters/scholar-culex-portrait.png",
-      "/api/images/references/characters/scholar-culex-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/scholar-culex-social.png"
     ],
     "validated": false
   },
@@ -320,12 +316,11 @@
     "backstory": "Le bar est le cœur des Bloodwings. Anopheles sait tout ce qui se passe et garde les secrets de chacun.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, suave Pixar-demonic microscopic mosquito bartender Anopheles, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE elegant proboscis polished and refined like fancy cocktail stirrer, charming glowing amber eyes (#FFB25A) with knowing twinkle, sleek translucent wings folded elegantly like waistcoat, slicked-back blood-red crest with cool confidence, holding tiny thimble cocktail shaker, microscopic lint-fiber bartender apron, cool confident Caribbean swagger pose, expression of charming sinister hospitality, suave demon mixologist who knows everyone's secrets, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm amber bar lighting, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles.png",
-      "/api/images/references/characters/bartender-anopheles-action.png",
-      "/api/images/references/characters/bartender-anopheles-emotional.png",
-      "/api/images/references/characters/bartender-anopheles-environment.png",
-      "/api/images/references/characters/bartender-anopheles-portrait.png",
-      "/api/images/references/characters/bartender-anopheles-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/bartender-anopheles-social.png"
     ],
     "validated": false
   },
@@ -351,12 +346,11 @@
     "backstory": "Personne ne sait d'où il vient. Il est apparu un jour et sa voix a conquis le Ti Sang.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, charismatic Pixar-demonic microscopic mosquito lounge singer Stegomyia, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek elegant proboscis held like vintage microphone for crooning, soulful glowing amber eyes (#FFB25A) with magnetic stage presence, elegant translucent wings spread dramatically in performance pose, slicked stylish blood-red crest like classic 50s crooner with pompadour vibe, confident smooth stage pose, retro-cool demon lounge singer aesthetic like Star Wars Cantina Band, expression of soulful charm with mysterious past, blood-ruby earring on one antenna, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, warm spotlight amber lighting, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia.png",
-      "/api/images/references/characters/singer-stegomyia-action.png",
-      "/api/images/references/characters/singer-stegomyia-emotional.png",
-      "/api/images/references/characters/singer-stegomyia-environment.png",
-      "/api/images/references/characters/singer-stegomyia-portrait.png",
-      "/api/images/references/characters/singer-stegomyia-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/singer-stegomyia-social.png"
     ],
     "validated": false
   },
@@ -382,12 +376,11 @@
     "backstory": "Elle apparaît, observe, et disparaît. Certains disent qu'elle est une espionne des Bloodwings.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elegant seductive Pixar-demonic microscopic mosquito femme fatale Tigresse, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE delicate refined proboscis elegant and deadly like poisoned needle, alluring half-lidded glowing amber eyes (#FFB25A) with mysterious depth, graceful translucent wings with subtle shimmer patterns and crimson gradient, styled feminine blood-red crest swept elegantly, slim waist elegant curves long elegant legs crossed, holding tiny thimble nectar drink, femme fatale demon aesthetic, expression of mysterious dangerous allure, tiny crimson wax droplet earrings, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, moody warm bar lighting with crimson rim, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse.png",
-      "/api/images/references/characters/femme-fatale-tigresse-action.png",
-      "/api/images/references/characters/femme-fatale-tigresse-emotional.png",
-      "/api/images/references/characters/femme-fatale-tigresse-environment.png",
-      "/api/images/references/characters/femme-fatale-tigresse-portrait.png",
-      "/api/images/references/characters/femme-fatale-tigresse-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/femme-fatale-tigresse-social.png"
     ],
     "validated": false
   },
@@ -474,12 +467,11 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, twitchy psychopathic Pixar-demonic microscopic mosquito blood-addict Evil Pik, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE MASSIVE oversized needle-like proboscis like giant zanpakuto blood-sword gleaming with fresh blood droplets, wild manic glowing blood-red eyes with dilated twitching pupils showing addiction, spiky aggressive blood-red mohawk crest like punk trap rapper, lean hungry body vibrating with nervous twitchy energy, blood stains around proboscis base like junkie, trap artist swagger pose with attitude, expression of machiavellian calculation mixed with manic energy about to snap, tiny gold chain with blood-drop pendant, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent, based on Martinique trap rapper Evil P aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik.png",
-      "/api/images/references/characters/evil-pik-action.png",
-      "/api/images/references/characters/evil-pik-emotional.png",
-      "/api/images/references/characters/evil-pik-environment.png",
-      "/api/images/references/characters/evil-pik-portrait.png",
-      "/api/images/references/characters/evil-pik-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/evil-pik-social.png"
     ],
     "validated": false
   },
@@ -553,12 +545,11 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, comically tiny Pixar-demonic microscopic mosquito sidekick Petit T1, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE tiny stubby baby proboscis like innocent drinking straw, COMICALLY HUGE round googly eyes taking up 60 percent of face like anime mascot, extremely small body even tinier than other mosquitoes, comically small wings that look aerodynamically impossible, perpetually scared but determined expression, cartoon mascot proportions, bandages and patches from surviving murder attempts, singed wing edges and dented body showing abuse history, adorably pathetic demonic chibi aesthetic, expression of eternal optimism despite everything, matte obsidian chitin body (#0B0B0E) with visible repair patches, color palette obsidian-black blood-red warm-amber, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1.png",
-      "/api/images/references/characters/petit-t1-action.png",
-      "/api/images/references/characters/petit-t1-emotional.png",
-      "/api/images/references/characters/petit-t1-environment.png",
-      "/api/images/references/characters/petit-t1-portrait.png",
-      "/api/images/references/characters/petit-t1-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/petit-t1-social.png"
     ],
     "validated": false
   },
@@ -585,12 +576,11 @@
     "backstory": "Il a découvert comment synthétiser le sang humain. Ses expériences sont horrifiques mais ses résultats sauvent des vies Moostik.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, mad scientist Pixar-demonic microscopic mosquito doctor Doc Hemoglobin, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE modified proboscis with tiny tubes attached like medical extraction equipment, crazed genius glowing amber eyes (#FFB25A) with cracked spectacle-like markings, wild disheveled blood-red crest like Einstein hair, lint-fiber lab coat stained with blood samples, holding tiny syringe filled with glowing red liquid, carrying rack of miniature blood vials, mad scientist pose with manic grin, expression of unhinged brilliance and dark medical humor, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-accent warm-amber, dramatic laboratory lighting with crimson glow, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin.png",
-      "/api/images/references/characters/doc-hemoglobin-action.png",
-      "/api/images/references/characters/doc-hemoglobin-emotional.png",
-      "/api/images/references/characters/doc-hemoglobin-environment.png",
-      "/api/images/references/characters/doc-hemoglobin-portrait.png",
-      "/api/images/references/characters/doc-hemoglobin-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/doc-hemoglobin-social.png"
     ],
     "validated": false
   },
@@ -617,12 +607,11 @@
     "backstory": "Elle entend les voix des milliers de morts du génocide. Elle guide les Bloodwings avec des visions et des prophéties sanglantes.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, mystical voodoo priestess Pixar-demonic microscopic mosquito elder Mama Zika, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE ornate proboscis with tiny ritual engravings and ancestral markings, mystical clouded milky-white eyes suggesting spiritual sight, elaborate headdress of tiny bones and blood-ruby beads, ceremonial charms and talismans hanging from wings, flowing lint-fiber ceremonial robes with embroidered blood-drop symbols, holding tiny skull-topped staff, surrounded by wisps of incense smoke, mystical voodoo priestess aesthetic, expression of otherworldly wisdom and connection to the dead, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red bone-white copper-accent, ethereal mystical lighting with purple undertones, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika.png",
-      "/api/images/references/characters/mama-zika-action.png",
-      "/api/images/references/characters/mama-zika-emotional.png",
-      "/api/images/references/characters/mama-zika-environment.png",
-      "/api/images/references/characters/mama-zika-portrait.png",
-      "/api/images/references/characters/mama-zika-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mama-zika-social.png"
     ],
     "validated": false
   },
@@ -649,12 +638,11 @@
     "backstory": "Le meilleur pilote que les Bloodwings aient jamais eu. Ses manœuvres aériennes sont légendaires.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elite ace pilot Pixar-demonic microscopic mosquito aviator Captain Dengue, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek streamlined proboscis like fighter jet nose cone, confident glowing amber eyes (#FFB25A) with tiny aviator goggles made of dew-droplet lenses pushed up on forehead, aerodynamic body built for speed, wings with crimson racing stripes and medal decorations, slicked-back blood-red crest for aerodynamics, flight harness with pilot insignia and campaign medals, cocky confident Top Gun pose, expression of fearless competitive swagger, matte obsidian chitin body (#0B0B0E) with polished aerodynamic sheen, color palette obsidian-black blood-red copper-accent warm-amber, dramatic heroic lighting with speed blur suggestion, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue.png",
-      "/api/images/references/characters/captain-dengue-action.png",
-      "/api/images/references/characters/captain-dengue-emotional.png",
-      "/api/images/references/characters/captain-dengue-environment.png",
-      "/api/images/references/characters/captain-dengue-portrait.png",
-      "/api/images/references/characters/captain-dengue-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/captain-dengue-social.png"
     ],
     "validated": false
   },
@@ -681,12 +669,11 @@
     "backstory": "Personne ne connaît son vrai nom. Elle a infiltré des dizaines de maisons humaines et rapporté des informations cruciales.",
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elite spy infiltrator Pixar-demonic microscopic mosquito assassin Aedes Albopictus, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE sleek retractable proboscis like hidden blade, calculating cold glowing amber eyes (#FFB25A) with vertical slit pupils like predator, distinctive tiger-stripe patterns on obsidian chitin body black and white bands, slim athletic infiltrator silhouette built for stealth, wings with adaptive camouflage shimmer patterns, minimal equipment for silent operation, stealth harness with lockpicks and tiny tools, emerging from shadow pose, expression of cold deadly patience, matte obsidian chitin body (#0B0B0E) with distinctive white stripe markings, color palette obsidian-black silver-white blood-red accents, noir shadow lighting with dramatic contrast, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus.png",
-      "/api/images/references/characters/infiltrator-aedes-albopictus-action.png",
-      "/api/images/references/characters/infiltrator-aedes-albopictus-emotional.png",
-      "/api/images/references/characters/infiltrator-aedes-albopictus-environment.png",
-      "/api/images/references/characters/infiltrator-aedes-albopictus-portrait.png",
-      "/api/images/references/characters/infiltrator-aedes-albopictus-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/infiltrator-aedes-albopictus-social.png"
     ],
     "validated": false
   },
@@ -759,12 +746,12 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elderly scarred warrior Pixar-demonic microscopic mosquito Koko survivor, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE battle-worn proboscis with notches from combat, amber-orange eyes with chemical burn marks and old trauma, wings with BYSS chemical burn holes patched with silk thread repairs, missing left antennae tip from poison exposure, chitinous battle scars across obsidian thorax, warrior stance despite elderly age, tattered crimson veteran cloak, crimson thread harness with wax anchor nodes, bloodwing veteran insignia, matte obsidian chitin body (#0B0B0E) with burn scars, color palette obsidian-black blood-red scar-copper, haunted warrior veteran aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor.png",
-      "/api/images/references/characters/koko-survivor-action.png",
-      "/api/images/references/characters/koko-survivor-emotional.png",
-      "/api/images/references/characters/koko-survivor-environment.png",
-      "/api/images/references/characters/koko-survivor-portrait.png",
-      "/api/images/references/characters/koko-survivor-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor-social.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/koko-survivor.png"
     ],
     "validated": false
   },
@@ -811,12 +798,12 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elderly graceful sage Pixar-demonic microscopic mosquito Mila survivor, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE elegant proboscis with wisdom rings etched like growth rings, deep sorrowful amber eyes that carry weight of genocide witness, delicate wings with faded memorial patterns woven in spider-silk, silver-white wisdom markings across aged chitin, carrying tiny leaf-parchment memory scrolls wrapped in silk, gentle dignified posture of storyteller elder, mourning shawl of dark gray silk, memorial medallion with names of her lost children, matte obsidian chitin body (#0B0B0E) with silver age highlights, color palette obsidian-black silver-white blood-red accents, sorrowful sage aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor.png",
-      "/api/images/references/characters/mila-survivor-action.png",
-      "/api/images/references/characters/mila-survivor-emotional.png",
-      "/api/images/references/characters/mila-survivor-environment.png",
-      "/api/images/references/characters/mila-survivor-portrait.png",
-      "/api/images/references/characters/mila-survivor-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor-social.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/mila-survivor.png"
     ],
     "validated": false
   },
@@ -863,12 +850,12 @@
     ],
     "referencePrompt": "Premium 3D animated feature film character turnaround sheet, elderly vigilant scout Pixar-demonic microscopic mosquito Trez survivor, dark gradient background, THREE VIEWS front three-quarter profile, MUST INCLUDE proboscis constantly tasting air for danger, wide alert scanning amber eyes always watching, oversized damaged antennae bent from BYSS exposure but ultra-sensitive, twitchy nervous energy visible in pose even at old age, wings always half-folded ready for instant escape, scout harness with tiny warning bells and signal tools, lookout veteran insignia, compact wiry body built for speed despite age, eternal vigilance in every line, matte obsidian chitin body (#0B0B0E), color palette obsidian-black blood-red copper-warning, paranoid scout veteran aesthetic, 8K micro-textures",
     "referenceImages": [
-      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor.png",
-      "/api/images/references/characters/trez-survivor-action.png",
-      "/api/images/references/characters/trez-survivor-emotional.png",
-      "/api/images/references/characters/trez-survivor-environment.png",
-      "/api/images/references/characters/trez-survivor-portrait.png",
-      "/api/images/references/characters/trez-survivor-social.png"
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor-portrait.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor-action.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor-emotional.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor-environment.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor-social.png",
+      "https://yatwvcojuomvjvrxlugs.supabase.co/storage/v1/object/public/references/characters/trez-survivor.png"
     ],
     "validated": false
   }

@@ -184,13 +184,19 @@ export class GenerationOrchestrator {
     const shotAnalyses = analyzeEpisode(this.episode);
     
     // Build reference chains
+    // Wrapper for extractLastFrame to return just the URL string
+    const extractLastFrameUrl = async (videoUrl: string): Promise<string | null> => {
+      const result = await extractLastFrame(videoUrl);
+      return result?.url || null;
+    };
+    
     const chainResult = await buildReferenceChains(
       this.episode,
       shotAnalyses,
       {
         resolveCharacterRefs: this.resolveCharacterRefs,
         resolveLocationRefs: this.resolveLocationRefs,
-        extractLastFrame,
+        extractLastFrame: extractLastFrameUrl,
       }
     );
     
@@ -303,7 +309,9 @@ export class GenerationOrchestrator {
         
         if (!analysis || !chain) continue;
         
-        const provider = recommendProvider(analysis);
+        const recommendedProvider = recommendProvider(analysis);
+        // createVideoConfig only supports kling and veo, fallback luma to kling
+        const provider = (recommendedProvider === "luma" ? "kling" : recommendedProvider) as "kling" | "veo";
         const videoConfig = this.createVideoConfig(shotId, analysis, chain, provider);
         
         shots.push({

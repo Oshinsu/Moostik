@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     }
     
     if (role) {
-      query = query.eq("role", role);
+      query = query.eq("role", role as "user" | "member" | "creator" | "admin" | "super_admin");
     }
     
     if (plan) {

@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { generateVariation } from "@/lib/replicate";
 import type { JsonMoostik } from "@/lib/json-moostik-standard";
-import type { CameraAngle } from "@/data/camera-angles";
+import type { CameraAngle } from "@/types";
 
 // POST /api/promo/generate - Generate promo assets
 export async function POST(request: NextRequest) {
@@ -70,15 +70,17 @@ export async function POST(request: NextRequest) {
           const styleB = sceneGraph.style_bible || {};
           const env = sceneGraph.environment || {};
           
-          const jsonMoostik: JsonMoostik = {
-            deliverable: "image",
+          const jsonMoostik = {
+            deliverable: {
+              type: "cinematic_still" as const,
+              aspect_ratio: "16:9" as const,
+              resolution: "4K" as const,
+            },
             goal: prompt.goal || prompt.meta?.scene_intent || "Generate promotional image",
             subjects: prompt.subjects || [],
             scene: {
               location: env.space || "studio",
               time: "day",
-              timeOfDay: "neutral",
-              weather: "neutral",
               atmosphere: typeof env.mood === "string" ? [env.mood] : (env.mood || ["cinematic"]),
               materials: styleB.palette || ["neutral tones"],
             },
@@ -87,22 +89,21 @@ export async function POST(request: NextRequest) {
               mood: sceneGraph.lighting?.accent || "dramatic",
             },
             camera: {
+              format: "large_format",
+              lens_mm: 50,
+              aperture: "f/2.8",
               angle: sceneGraph.camera?.shot_type || variation.cameraAngle || "front",
-              movement: sceneGraph.camera?.motion_suggestion || "static",
             },
             composition: {
-              framing: "medium",
+              framing: "medium" as const,
+              layout: "centered",
               depth: "medium",
             },
             invariants: prompt.invariants || [],
             negative: prompt.negative || prompt.constraints?.must_not_include || [],
-            // Include SOTA fields
             meta: prompt.meta,
-            scene_graph: prompt.scene_graph,
-            parameters: prompt.parameters,
-            constraints: prompt.constraints,
             references: prompt.references,
-          };
+          } as unknown as JsonMoostik;
 
           console.log(`[Promo Generate] Goal: ${jsonMoostik.goal?.slice(0, 100)}...`);
 

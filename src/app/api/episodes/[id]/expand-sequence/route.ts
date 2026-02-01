@@ -360,8 +360,8 @@ function createShotFromExpansion(
     ],
   };
 
-  const variations: Variation[] = CAMERA_ANGLES.map((angle) => ({
-    id: `var-${angle}-${timestamp}-${shotNumber}`,
+  const variations: Variation[] = CAMERA_ANGLES.map((angle, angleIndex) => ({
+    id: `var-${angle}-${timestamp}-${shotNumber}-${angleIndex}`,
     cameraAngle: angle,
     status: "pending" as const,
   }));

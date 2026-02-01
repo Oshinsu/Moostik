@@ -75,9 +75,10 @@ export function prepareVideoRequest(
   const context = buildEpisodeContext(episode, shotIndex);
   const analysis = analyzeShot(shot, context);
 
-  // Select provider
+  // Select provider (fallback luma to kling since we don't have luma config)
+  const recommendedProvider = provider === "auto" ? recommendProvider(analysis) : provider;
   const selectedProvider: "kling" | "veo" = 
-    provider === "auto" ? recommendProvider(analysis) : provider;
+    recommendedProvider === "luma" ? "kling" : recommendedProvider as "kling" | "veo";
 
   // Get previous shot for chaining
   const prevShot = shotIndex > 0 ? episode.shots[shotIndex - 1] : undefined;

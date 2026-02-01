@@ -4,6 +4,7 @@ import path from "path";
 import { generateVariation } from "@/lib/replicate";
 import { jsonMoostikToPrompt } from "@/lib/json-moostik-standard";
 import type { JsonMoostik } from "@/lib/json-moostik-standard";
+import type { CameraAngle } from "@/types";
 
 // ============================================================================
 // TYPES
@@ -104,48 +105,40 @@ export async function POST(request: NextRequest) {
     }
 
     // Build JsonMoostik from shot prompt
-    const jsonMoostik: JsonMoostik = {
+    const jsonMoostik = {
       meta: {
         model_version: "nano-banana-2-pro",
-        task_type: shot.type || "image_generation",
+        task_type: "cinematic_keyframe",
         project: "MOOSTIK_SERIES_ASSETS",
         asset_id: shot.id.toUpperCase(),
-        scene_intent: shot.prompt.meta?.scene_intent as string || shot.prompt.goal || "",
+        scene_intent: shot.prompt.meta?.scene_intent || shot.prompt.goal || "",
       },
       goal: shot.prompt.goal || shot.name,
-      subjects: (shot.prompt.subjects || []).map((s) => ({
-        type: s.type as "character" | "location" | "object",
+      subjects: (shot.prompt.subjects || []).map((s: { id: string; description?: string }, idx: number) => ({
         id: s.id,
+        priority: idx + 1,
         description: s.description || "",
-        action: undefined,
-        reference_image: undefined,
       })),
       scene: {
-        location: shot.locationId,
-        time_of_day: undefined,
-        weather: undefined,
+        location: shot.locationId || "unknown",
+        time: "cinematic",
         materials: shot.prompt.invariants || [],
-        atmosphere: [],
-        lighting: undefined,
+        atmosphere: ["cinematic"],
       },
       camera: {
-        angle: (shot.variations?.[0]?.cameraAngle || "wide") as import("@/types/prompt").CameraAngle,
-        framing: "full",
-        movement: undefined,
-        focus: undefined,
+        format: "large_format",
+        lens_mm: 50,
+        aperture: "f/2.8",
+        angle: shot.variations?.[0]?.cameraAngle || "wide",
       },
-      parameters: {
-        aspect_ratio: shot.parameters.aspect_ratio,
-        render_resolution: shot.parameters.resolution,
-        output_count: 1,
-        seed: shot.parameters.seed,
+      composition: {
+        framing: "medium" as const,
+        layout: "centered",
+        depth: "medium",
       },
       invariants: shot.prompt.invariants || [],
-      constraints: {
-        must_include: shot.prompt.invariants || [],
-        must_not_include: shot.prompt.negative || [],
-      },
-    };
+      negative: shot.prompt.negative || [],
+    } as unknown as JsonMoostik;
 
     // Convert to prompt string
     const promptString = jsonMoostikToPrompt(jsonMoostik);
@@ -155,16 +148,11 @@ export async function POST(request: NextRequest) {
 
     // Generate image
     const result = await generateVariation(
-      promptString,
-      {
-        aspectRatio: shot.parameters.aspect_ratio as any,
-        seed: shot.parameters.seed,
-      },
-      {
-        episodeId: "series-assets",
-        shotId: shot.id,
-        variationId: "v1",
-      }
+      jsonMoostik,
+      (shot.variations?.[0]?.cameraAngle || "wide") as CameraAngle,
+      "series-assets",
+      shot.id,
+      "v1"
     );
 
     if (!result.url) {

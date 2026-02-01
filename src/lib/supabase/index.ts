@@ -5,7 +5,7 @@
 
 export { supabase, createServerClient } from "./client";
 export type { Database, SupabaseClient } from "./client";
-export type { Tables, Enums, Views } from "./database.types";
+export type { Tables, Enums } from "./database.types";
 
 // Storage exports
 export {

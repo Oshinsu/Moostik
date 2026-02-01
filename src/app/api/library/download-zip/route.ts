@@ -304,7 +304,7 @@ Format: projet-type-nom-version-seed-resolution.ext
       ? `bloodwings-${typeFilter}-${dateStr}.zip`
       : `bloodwings-library-${dateStr}.zip`;
 
-    return new NextResponse(zipBuffer, {
+    return new NextResponse(new Uint8Array(zipBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/zip",

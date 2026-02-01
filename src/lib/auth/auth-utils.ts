@@ -150,7 +150,7 @@ export async function logAdminAction(
       action,
       target_type: targetType,
       target_id: targetId,
-      details: details || {},
+      details: (details || {}) as import("@/lib/supabase/database.types").Json,
       ip_address: ipAddress,
     });
   } catch (error) {
