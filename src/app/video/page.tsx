@@ -382,7 +382,7 @@ export default function VideoPage() {
                                   <>
                                     <img
                                       src={completedVariation.imageUrl}
-                                      alt={shot.prompt.slice(0, 30)}
+                                      alt={shot.name}
                                       className="w-full h-full object-cover"
                                     />
                                     {/* Video status indicator */}
