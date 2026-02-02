@@ -81,8 +81,10 @@ import {
 } from "lucide-react";
 import { PLATFORM_PRESETS } from "@/lib/editor/export";
 import { Sidebar } from "@/components/Sidebar";
+import { BeatSyncEditor } from "@/components/editor";
 import type { Episode } from "@/types/moostik";
 import type { EditingStyle, TimelineGap, ShotSuggestion, BloodDirectorOutput } from "@/lib/editor/blood-director";
+import type { EditTimeline } from "@/lib/audio/beat-sync";
 
 // ============================================
 // TYPES
@@ -190,6 +192,10 @@ export default function EditorPage() {
   // Export State
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  
+  // Beat Sync State
+  const [showBeatSync, setShowBeatSync] = useState(false);
+  const [beatSyncTimeline, setBeatSyncTimeline] = useState<EditTimeline | null>(null);
   
   // Refs
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -800,6 +806,23 @@ export default function EditorPage() {
 
                 {/* Right - AI & Export */}
                 <div className="flex items-center gap-2">
+                  {/* Beat Sync Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className={cn(
+                      "h-8",
+                      showBeatSync 
+                        ? "bg-emerald-900/30 border-emerald-600/50 text-emerald-400" 
+                        : "bg-zinc-900/50 border-zinc-700 text-zinc-400 hover:text-emerald-400 hover:border-emerald-700"
+                    )}
+                    onClick={() => setShowBeatSync(!showBeatSync)}
+                    disabled={!selectedEpisodeId}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    Beat Sync
+                  </Button>
+                  
                   {/* Blood Director Button */}
                   <Button
                     variant="outline"
@@ -1332,6 +1355,63 @@ export default function EditorPage() {
                 )}
               </Button>
             </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Beat Sync Dialog */}
+        <Dialog open={showBeatSync} onOpenChange={setShowBeatSync}>
+          <DialogContent className="max-w-5xl h-[80vh] bg-[#0b0b0e] border-blood-900/30 text-zinc-100 p-0 overflow-hidden">
+            <DialogHeader className="px-6 py-4 border-b border-blood-900/30">
+              <DialogTitle className="text-xl font-bold flex items-center gap-2">
+                <Music className="w-6 h-6 text-emerald-500" />
+                Beat Sync Editor
+                <Badge className="bg-emerald-900/50 text-emerald-400 border-emerald-700/30 ml-2">SOTA</Badge>
+              </DialogTitle>
+              <DialogDescription className="text-zinc-500">
+                Montage automatique synchronisé sur le tempo musical • Noires, blanches, croches
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="flex-1 overflow-hidden">
+              {selectedEpisode && (
+                <BeatSyncEditor
+                  videos={selectedEpisode.shots
+                    .filter(s => s.variations.some(v => v.status === "completed"))
+                    .map(shot => {
+                      const variation = shot.variations.find(v => v.status === "completed")!;
+                      return {
+                        shotId: shot.id,
+                        variationId: variation.id,
+                        url: variation.videoUrl || variation.imageUrl || "",
+                        thumbnailUrl: variation.imageUrl,
+                        duration: shot.durationSeconds || 5,
+                        shotName: shot.name,
+                        sceneType: shot.sceneType,
+                      };
+                    })
+                  }
+                  initialBpm={120}
+                  duration={selectedEpisode.shots.reduce((sum, s) => sum + (s.durationSeconds || 5), 0)}
+                  onTimelineGenerated={(timeline) => {
+                    setBeatSyncTimeline(timeline);
+                    // Apply to main timeline
+                    const videoItems = timeline.videoSegments.map((seg, i) => ({
+                      id: `bs-${seg.shotId}-${i}`,
+                      name: selectedEpisode.shots.find(s => s.id === seg.shotId)?.name || `Shot ${i+1}`,
+                      start: seg.startTime,
+                      duration: seg.endTime - seg.startTime,
+                      thumbnail: selectedEpisode.shots.find(s => s.id === seg.shotId)?.variations.find(v => v.status === "completed")?.imageUrl,
+                      src: seg.sourceUrl,
+                      type: "clip" as const,
+                      shotId: seg.shotId,
+                    }));
+                    setTracks(prev => prev.map(t => 
+                      t.id === "v1" ? { ...t, items: videoItems } : t
+                    ));
+                  }}
+                />
+              )}
+            </div>
           </DialogContent>
         </Dialog>
 

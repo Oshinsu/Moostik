@@ -1,0 +1,1 @@
+export { BeatSyncEditor } from "./BeatSyncEditor";
