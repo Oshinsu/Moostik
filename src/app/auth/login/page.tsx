@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MoostikLogo } from "@/components/MoostikLogo";
+import { BloodwingsLogo } from "@/components/bloodwings";
 import {
   Mail,
   Lock,
@@ -21,6 +21,7 @@ import {
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { signIn, signInWithGoogle } = useAuth();
   
   const [email, setEmail] = useState("");
@@ -28,6 +29,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const redirectTo = searchParams.get("redirect") || "/app";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +43,7 @@ export default function LoginPage() {
       setError(result.error);
       setIsLoading(false);
     } else {
-      router.push("/");
+      router.push(redirectTo);
     }
   };
 
@@ -65,8 +68,8 @@ export default function LoginPage() {
       <Card className="relative w-full max-w-md bg-[#14131a] border-blood-900/30 p-8">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/">
-            <MoostikLogo size="md" />
+          <Link href="/" className="inline-block">
+            <BloodwingsLogo size="md" />
           </Link>
           <p className="text-zinc-500 text-sm mt-4">
             Connectez-vous pour accéder au studio
