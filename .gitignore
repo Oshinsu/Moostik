@@ -60,3 +60,7 @@ next-env.d.ts
 .vscode/
 *.swp
 *.swo
+
+# Downloads exports
+downloads/
+output/export-*/

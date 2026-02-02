@@ -4,305 +4,365 @@ import path from "path";
 import AdmZip from "adm-zip";
 
 // ============================================================================
-// SOTA NAMING CONVENTION - Janvier 2026
-// Format: projet-type-nom-version-seed-resolution.ext
+// STRUCTURE DES DOSSIERS POUR LE ZIP
 // ============================================================================
 
-function generateSOTAFilename(options: {
-  project?: string;
-  type: string;
-  name: string;
-  seed?: number;
-  resolution?: string;
-  extension?: string;
-}): string {
-  const {
-    project = "bloodwings",
-    type,
-    name,
-    seed,
-    resolution,
-    extension = "png",
-  } = options;
-
-  const normalize = (str: string) =>
-    str
-      .toLowerCase()
-      .replace(/[_\s]+/g, "-")
-      .replace(/[^a-z0-9-]/g, "")
-      .replace(/-+/g, "-")
-      .slice(0, 40);
-
-  const parts = [normalize(project), normalize(type), normalize(name), "v1"];
-
-  if (seed) {
-    parts.push(`seed${seed}`);
-  }
-
-  if (resolution) {
-    parts.push(normalize(resolution));
-  }
-
-  return `${parts.join("-")}.${extension}`;
-}
-
-// Folder structure
-const TYPE_FOLDERS: Record<string, string> = {
-  character: "01-personnages",
-  location: "02-lieux",
-  shot: "03-shots",
-  promo: "04-promo",
+const FOLDER_STRUCTURE = {
+  references: {
+    characters: "01-References/01-Personnages",
+    locations: "01-References/02-Lieux",
+  },
+  episodes: "02-Episodes",
+  promo: "03-Promo",
+  videos: "04-Videos",
 };
 
-// GET /api/library/download-zip
-// Query params: ?type=character|location|shot|promo (optional)
+// ============================================================================
+// HELPERS
+// ============================================================================
+
+/**
+ * Récupère tous les fichiers d'un dossier récursivement
+ */
+async function getAllFiles(
+  dirPath: string,
+  baseDir: string = dirPath
+): Promise<Array<{ path: string; relativePath: string }>> {
+  const results: Array<{ path: string; relativePath: string }> = [];
+
+  try {
+    const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
+
+      if (entry.isDirectory()) {
+        const subFiles = await getAllFiles(fullPath, baseDir);
+        results.push(...subFiles);
+      } else if (entry.isFile()) {
+        const ext = path.extname(entry.name).toLowerCase();
+        if ([".png", ".jpg", ".jpeg", ".webp", ".gif", ".mp4", ".webm"].includes(ext)) {
+          results.push({
+            path: fullPath,
+            relativePath: path.relative(baseDir, fullPath),
+          });
+        }
+      }
+    }
+  } catch {
+    // Dossier n'existe pas
+  }
+
+  return results;
+}
+
+/**
+ * Normalise un nom pour le ZIP
+ */
+function normalizeName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[_\s]+/g, "-")
+    .replace(/[^a-z0-9-_.]/g, "")
+    .replace(/-+/g, "-");
+}
+
+/**
+ * Divise un tableau en chunks
+ */
+function chunkArray<T>(array: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  return chunks;
+}
+
+/**
+ * Ajoute des fichiers au ZIP en parallèle
+ */
+async function addFilesToZipParallel(
+  zip: AdmZip,
+  files: Array<{ path: string; relativePath: string }>,
+  zipBasePath: string,
+  batchSize: number = 20
+): Promise<number> {
+  let count = 0;
+  const batches = chunkArray(files, batchSize);
+  
+  for (const batch of batches) {
+    const results = await Promise.all(
+      batch.map(async (file) => {
+        try {
+          const buffer = await fs.readFile(file.path);
+          return { file, buffer, success: true };
+        } catch {
+          return { file, buffer: null, success: false };
+        }
+      })
+    );
+    
+    for (const { file, buffer, success } of results) {
+      if (success && buffer) {
+        const zipPath = `${zipBasePath}/${file.relativePath}`;
+        zip.addFile(zipPath, buffer);
+        count++;
+      }
+    }
+  }
+  
+  return count;
+}
+
+// ============================================================================
+// MAIN API
+// ============================================================================
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const typeFilter = searchParams.get("type");
+    const typeFilter = searchParams.get("type"); // character, location, shot, video, all
 
     const zip = new AdmZip();
-    let totalFiles = 0;
-    let downloadedFiles = 0;
+    const stats = {
+      references: { characters: 0, locations: 0 },
+      episodes: {} as Record<string, number>,
+      promo: 0,
+      videos: 0,
+      total: 0,
+    };
 
-    // ========================================================================
-    // LOAD ALL IMAGES
-    // ========================================================================
-
-    // 1. Load references (characters and locations)
+    const outputDir = path.join(process.cwd(), "output");
     const dataDir = path.join(process.cwd(), "data");
+
+    console.log("[ZIP] Starting full library export...");
+
+    // ========================================================================
+    // 1. REFERENCES - Personnages et Lieux (lecture parallèle)
+    // ========================================================================
     
-    // Characters
-    if (!typeFilter || typeFilter === "character") {
-      try {
-        const charsData = JSON.parse(
-          await fs.readFile(path.join(dataDir, "characters.json"), "utf-8")
-        );
-
-        for (const char of charsData) {
-          for (let i = 0; i < (char.referenceImages || []).length; i++) {
-            totalFiles++;
-            const imageUrl = char.referenceImages[i];
-            if (!imageUrl) continue;
-
-            try {
-              const response = await fetch(imageUrl);
-              if (!response.ok) continue;
-
-              const buffer = Buffer.from(await response.arrayBuffer());
-              const filename = generateSOTAFilename({
-                type: "character",
-                name: char.name,
-                extension: "png",
-              });
-
-              zip.addFile(
-                `bloodwings-library/${TYPE_FOLDERS.character}/${filename}`,
-                buffer
-              );
-              downloadedFiles++;
-            } catch (e) {
-              console.error(`Failed to download character ${char.name}:`, e);
-            }
-          }
-        }
-      } catch (e) {
-        console.log("No characters.json found");
-      }
+    if (!typeFilter || typeFilter === "character" || typeFilter === "all") {
+      const charRefDir = path.join(outputDir, "references", "characters");
+      const charFiles = await getAllFiles(charRefDir);
+      
+      stats.references.characters = await addFilesToZipParallel(
+        zip,
+        charFiles,
+        `MOOSTIK-Library/${FOLDER_STRUCTURE.references.characters}`,
+        30
+      );
+      stats.total += stats.references.characters;
+      console.log(`[ZIP] ✅ ${stats.references.characters} character references`);
     }
 
-    // Locations
-    if (!typeFilter || typeFilter === "location") {
-      try {
-        const locsData = JSON.parse(
-          await fs.readFile(path.join(dataDir, "locations.json"), "utf-8")
-        );
-
-        for (const loc of locsData) {
-          for (let i = 0; i < (loc.referenceImages || []).length; i++) {
-            totalFiles++;
-            const imageUrl = loc.referenceImages[i];
-            if (!imageUrl) continue;
-
-            try {
-              const response = await fetch(imageUrl);
-              if (!response.ok) continue;
-
-              const buffer = Buffer.from(await response.arrayBuffer());
-              const filename = generateSOTAFilename({
-                type: "location",
-                name: loc.name,
-                extension: "png",
-              });
-
-              zip.addFile(
-                `bloodwings-library/${TYPE_FOLDERS.location}/${filename}`,
-                buffer
-              );
-              downloadedFiles++;
-            } catch (e) {
-              console.error(`Failed to download location ${loc.name}:`, e);
-            }
-          }
-        }
-      } catch (e) {
-        console.log("No locations.json found");
-      }
+    if (!typeFilter || typeFilter === "location" || typeFilter === "all") {
+      const locRefDir = path.join(outputDir, "references", "locations");
+      const locFiles = await getAllFiles(locRefDir);
+      
+      stats.references.locations = await addFilesToZipParallel(
+        zip,
+        locFiles,
+        `MOOSTIK-Library/${FOLDER_STRUCTURE.references.locations}`,
+        30
+      );
+      stats.total += stats.references.locations;
+      console.log(`[ZIP] ✅ ${stats.references.locations} location references`);
     }
 
-    // 2. Load episode shots
-    if (!typeFilter || typeFilter === "shot") {
-      const episodesDir = path.join(dataDir, "episodes");
+    // ========================================================================
+    // 2. EPISODES - Tous les shots générés (lecture parallèle)
+    // ========================================================================
+    
+    if (!typeFilter || typeFilter === "shot" || typeFilter === "all") {
+      const imagesDir = path.join(outputDir, "images");
+      
       try {
-        const episodes = await fs.readdir(episodesDir);
-
-        for (const epFile of episodes) {
-          if (!epFile.endsWith(".json")) continue;
-
-          const epData = JSON.parse(
-            await fs.readFile(path.join(episodesDir, epFile), "utf-8")
+        const episodeDirs = await fs.readdir(imagesDir);
+        
+        for (const epDir of episodeDirs) {
+          const epPath = path.join(imagesDir, epDir);
+          const epStat = await fs.stat(epPath);
+          
+          if (!epStat.isDirectory()) continue;
+          
+          let epNumber = epDir;
+          try {
+            const epData = JSON.parse(
+              await fs.readFile(path.join(dataDir, "episodes", `${epDir}.json`), "utf-8")
+            );
+            epNumber = `EP${epData.number || epDir}`;
+          } catch {
+            epNumber = epDir.toUpperCase();
+          }
+          
+          const epFiles = await getAllFiles(epPath);
+          const count = await addFilesToZipParallel(
+            zip,
+            epFiles,
+            `MOOSTIK-Library/${FOLDER_STRUCTURE.episodes}/${epNumber}`,
+            30 // Plus gros batch pour les images
           );
-
-          for (const shot of epData.shots || []) {
-            for (const variation of shot.variations || []) {
-              if (variation.status !== "completed" || !variation.imageUrl) continue;
-              totalFiles++;
-
-              try {
-                const response = await fetch(variation.imageUrl);
-                if (!response.ok) continue;
-
-                const buffer = Buffer.from(await response.arrayBuffer());
-                const filename = generateSOTAFilename({
-                  project: `ep${epData.number}`,
-                  type: "shot",
-                  name: `${shot.name}-${variation.cameraAngle}`,
-                  seed: shot.prompt?.parameters?.seed,
-                  extension: "png",
-                });
-
-                zip.addFile(
-                  `bloodwings-library/${TYPE_FOLDERS.shot}/ep${epData.number}/${filename}`,
-                  buffer
-                );
-                downloadedFiles++;
-              } catch (e) {
-                console.error(`Failed to download shot ${shot.name}:`, e);
-              }
-            }
-          }
+          
+          stats.episodes[epNumber] = count;
+          stats.total += count;
+          console.log(`[ZIP] ✅ ${count} images for ${epNumber}`);
         }
-      } catch (e) {
-        console.log("No episodes directory found");
-      }
-    }
-
-    // 3. Load promo assets
-    if (!typeFilter || typeFilter === "promo") {
-      try {
-        const promoData = JSON.parse(
-          await fs.readFile(path.join(dataDir, "promo-assets.json"), "utf-8")
-        );
-
-        for (const category of promoData.categories || []) {
-          for (const shot of category.shots || []) {
-            for (const variation of shot.variations || []) {
-              if (variation.status !== "completed" || !variation.imageUrl) continue;
-              totalFiles++;
-
-              try {
-                const response = await fetch(variation.imageUrl);
-                if (!response.ok) continue;
-
-                const buffer = Buffer.from(await response.arrayBuffer());
-                const filename = generateSOTAFilename({
-                  type: category.id,
-                  name: shot.name,
-                  seed: shot.prompt?.parameters?.seed,
-                  resolution: shot.prompt?.parameters?.render_resolution?.replace("x", "-"),
-                  extension: "png",
-                });
-
-                zip.addFile(
-                  `bloodwings-library/${TYPE_FOLDERS.promo}/${category.id}/${filename}`,
-                  buffer
-                );
-                downloadedFiles++;
-              } catch (e) {
-                console.error(`Failed to download promo ${shot.name}:`, e);
-              }
-            }
-          }
-        }
-      } catch (e) {
-        console.log("No promo-assets.json found");
+      } catch {
+        console.log("[ZIP] No images directory found");
       }
     }
 
     // ========================================================================
-    // ADD METADATA FILES
+    // 3. PROMO ASSETS (lecture parallèle)
+    // ========================================================================
+    
+    if (!typeFilter || typeFilter === "promo" || typeFilter === "all") {
+      const promoDir = path.join(outputDir, "promo");
+      const promoFiles = await getAllFiles(promoDir);
+      
+      stats.promo = await addFilesToZipParallel(
+        zip,
+        promoFiles,
+        `MOOSTIK-Library/${FOLDER_STRUCTURE.promo}`,
+        30
+      );
+      stats.total += stats.promo;
+      console.log(`[ZIP] ✅ ${stats.promo} promo assets`);
+    }
+
+    // ========================================================================
+    // 4. VIDEOS (lecture parallèle)
+    // ========================================================================
+    
+    if (!typeFilter || typeFilter === "video" || typeFilter === "all") {
+      const videosDir = path.join(outputDir, "videos");
+      const videoFiles = await getAllFiles(videosDir);
+      
+      stats.videos = await addFilesToZipParallel(
+        zip,
+        videoFiles,
+        `MOOSTIK-Library/${FOLDER_STRUCTURE.videos}`,
+        10 // Plus petit batch pour les vidéos (plus lourdes)
+      );
+      stats.total += stats.videos;
+      console.log(`[ZIP] ✅ ${stats.videos} videos`);
+    }
+
+    // ========================================================================
+    // 5. README & MANIFEST
     // ========================================================================
 
-    // README
-    const readme = `# BLOODWINGS STUDIO - LIBRARY EXPORT
-═══════════════════════════════════════════════════════════════
+    const readme = `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                      MOOSTIK - BIBLIOTHÈQUE COMPLÈTE                        ║
+║                         Rise of the Bloodwings                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-Generated: ${new Date().toISOString().split("T")[0]}
-Total Assets: ${downloadedFiles}/${totalFiles}
-Filter: ${typeFilter || "ALL"}
+📅 Exporté le: ${new Date().toLocaleString("fr-FR")}
+📊 Total assets: ${stats.total}
 
-## Structure
-${Object.entries(TYPE_FOLDERS)
-  .map(([type, folder]) => `- ${folder}/`)
+═══════════════════════════════════════════════════════════════════════════════
+                              STRUCTURE DES DOSSIERS
+═══════════════════════════════════════════════════════════════════════════════
+
+MOOSTIK-Library/
+│
+├── 01-References/
+│   ├── 01-Personnages/       ${stats.references.characters} fichiers
+│   │   ├── baby-dorval.png
+│   │   ├── mama-dorval.png
+│   │   └── ...
+│   │
+│   └── 02-Lieux/             ${stats.references.locations} fichiers
+│       ├── cooltik-village.png
+│       ├── bar-ti-sang.png
+│       └── ...
+│
+├── 02-Episodes/
+${Object.entries(stats.episodes)
+  .map(([ep, count]) => `│   ├── ${ep}/                   ${count} fichiers`)
+  .join("\n")}
+│   │   ├── shot-001/
+│   │   │   ├── main.png
+│   │   │   ├── chaos-wide.png
+│   │   │   └── ...
+│   │   └── shot-002/
+│   │       └── ...
+│
+├── 03-Promo/                 ${stats.promo} fichiers
+│   └── ...
+│
+└── 04-Videos/                ${stats.videos} fichiers
+    └── ...
+
+═══════════════════════════════════════════════════════════════════════════════
+                                 STATISTIQUES
+═══════════════════════════════════════════════════════════════════════════════
+
+📸 Images de référence:
+   • Personnages: ${stats.references.characters}
+   • Lieux: ${stats.references.locations}
+
+🎬 Shots par épisode:
+${Object.entries(stats.episodes)
+  .map(([ep, count]) => `   • ${ep}: ${count} images`)
   .join("\n")}
 
-## Naming Convention (SOTA Janvier 2026)
-Format: projet-type-nom-version-seed-resolution.ext
-- Lowercase only
-- Hyphens as separators
-- ISO 8601 dates (YYYY-MM-DD)
-- Version control (v1, v2, etc.)
-- Seed for reproducibility
+🎨 Assets promo: ${stats.promo}
+🎥 Vidéos: ${stats.videos}
 
-## Credits
-- Studio: Bloodwings Studio
-- Project: MOOSTIK - Rise of Bloodwings
-- Generation: Nano Banana 2 Pro
-- Website: https://moostik.vercel.app
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             TOTAL: ${stats.total} FICHIERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+═══════════════════════════════════════════════════════════════════════════════
+                                  CRÉDITS
+═══════════════════════════════════════════════════════════════════════════════
+
+🩸 Studio: Bloodwings Studio
+📽️ Projet: MOOSTIK - Rise of the Bloodwings  
+🤖 Génération: Flux Kontext Pro / Nano Banana 2 Pro
+🌐 Site: https://moostik.vercel.app
 
 "We are the real vampires." 🩸
 
-═══════════════════════════════════════════════════════════════
 © 2026 Bloodwings Studio - All Rights Reserved
 `;
 
-    zip.addFile("bloodwings-library/README.txt", Buffer.from(readme, "utf-8"));
+    zip.addFile("MOOSTIK-Library/README.txt", Buffer.from(readme, "utf-8"));
 
-    // Manifest
     const manifest = {
-      generated_at: new Date().toISOString(),
-      total_assets: downloadedFiles,
-      filter: typeFilter || "all",
-      folders: TYPE_FOLDERS,
-      naming_convention: "projet-type-nom-version-seed-resolution.ext",
-      project: "MOOSTIK - Rise of Bloodwings",
+      export_date: new Date().toISOString(),
+      project: "MOOSTIK - Rise of the Bloodwings",
       studio: "Bloodwings Studio",
+      filter: typeFilter || "all",
+      statistics: stats,
+      folder_structure: FOLDER_STRUCTURE,
     };
 
     zip.addFile(
-      "bloodwings-library/manifest.json",
+      "MOOSTIK-Library/manifest.json",
       Buffer.from(JSON.stringify(manifest, null, 2), "utf-8")
     );
 
     // ========================================================================
-    // RETURN ZIP
+    // 6. GÉNÉRATION DU ZIP
     // ========================================================================
+
+    if (stats.total === 0) {
+      return NextResponse.json(
+        { error: "Aucun fichier trouvé à exporter", stats },
+        { status: 404 }
+      );
+    }
 
     const zipBuffer = zip.toBuffer();
     const dateStr = new Date().toISOString().split("T")[0];
-    const zipFilename = typeFilter
-      ? `bloodwings-${typeFilter}-${dateStr}.zip`
-      : `bloodwings-library-${dateStr}.zip`;
+    const zipFilename = typeFilter && typeFilter !== "all"
+      ? `moostik-${typeFilter}-${dateStr}.zip`
+      : `moostik-library-complete-${dateStr}.zip`;
+
+    console.log(`[ZIP] ✅ Export complete: ${stats.total} files, ${(zipBuffer.length / 1024 / 1024).toFixed(2)} MB`);
 
     return new NextResponse(new Uint8Array(zipBuffer), {
       status: 200,
@@ -315,7 +375,7 @@ Format: projet-type-nom-version-seed-resolution.ext
   } catch (error) {
     console.error("[Library ZIP] Error:", error);
     return NextResponse.json(
-      { error: "Failed to generate ZIP" },
+      { error: error instanceof Error ? error.message : "Failed to generate ZIP" },
       { status: 500 }
     );
   }

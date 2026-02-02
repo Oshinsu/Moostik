@@ -127,6 +127,22 @@ export {
 } from "./image-analyzer";
 
 // ============================================
+// NARRATIVE VIDEO PROMPT GENERATOR (SOTA Jan 2026)
+// ============================================
+// Le nouveau système qui génère des prompts CONTEXTUELS et NARRATIFS
+// basés sur l'intention dramatique, pas juste la description technique.
+
+export {
+  NarrativePromptGenerator,
+  getNarrativePromptGenerator,
+  generateNarrativeVideoPrompt,
+  detectDramaticIntention,
+  type DramaticIntention,
+  type NarrativeContext,
+  type NarrativeVideoPrompt,
+} from "./narrative-prompt-generator";
+
+// ============================================
 // SHOT ANALYZER - INTELLIGENT FRAME STRATEGY (SOTA Jan 2026)
 // ============================================
 

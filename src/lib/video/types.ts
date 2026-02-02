@@ -333,22 +333,41 @@ export interface BatchVideoResult {
 // ============================================
 
 export const REPLICATE_MODELS: Record<VideoProvider, string> = {
+  // Budget tier - Wan video (fast & cheap)
   "wan-2.2": "wan-video/wan-2.2-i2v-fast",
-  "wan-2.5": "wan-video/wan-2.5-i2v",
-  "wan-2.6": "wan-video/wan-2.6-i2v",
-  "kling-2.6": "kwaivgi/kling-v2.6-pro",
-  "veo-3.1": "google/veo-3-1",
-  "veo-3.1-fast": "google/veo-3.1-fast",           // SOTA Janvier 2026
-  "hailuo-2.3": "minimax/hailuo-2.3",
-  "hailuo-2.3-fast": "minimax/hailuo-2.3-fast",   // SOTA Janvier 2026
-  "luma-ray-2": "luma/ray-2",
-  "luma-ray-3": "luma/ray-3",
-  "ltx-2": "lightricks/ltx-video-2",
-  "sora-2": "openai/sora-2",
-  "hunyuan-1.5": "tencent/hunyuan-video",
-  "pixverse-4": "pixverse/pixverse-v4",
-  "seedance-1.5-pro": "bytedance/seedance-1.5-pro", // SOTA Janvier 2026
-  "seedance-1-lite": "bytedance/seedance-1-lite",   // Budget SOTA
+  "wan-2.5": "wavespeedai/wan-2.1-i2v-720p",      // CORRIGÉ: Wan 2.1 720p accéléré
+  "wan-2.6": "wan-video/wan-2.2-i2v-a14b",        // CORRIGÉ: Wan 2.2 A14B I2V
+  
+  // Premium tier - Kling (cinematic motion)
+  "kling-2.6": "kwaivgi/kling-v2.6",              // CORRIGÉ Fév 2026: Kling v2.6 Pro
+  
+  // Google Veo (best quality)
+  "veo-3.1": "google/veo-3.1",                    // CORRIGÉ Fév 2026: Veo 3.1 (latest)
+  "veo-3.1-fast": "google/veo-3.1-fast",          // CORRIGÉ Fév 2026: Veo 3.1 Fast
+  
+  // MiniMax Hailuo (expressions, dance)
+  "hailuo-2.3": "minimax/hailuo-2.3",             // CORRIGÉ Fév 2026: Hailuo 2.3 (T2V + I2V)
+  "hailuo-2.3-fast": "minimax/hailuo-2.3",        // CORRIGÉ Fév 2026: Same model (fast = I2V only)
+  
+  // Luma Ray (physics, interpolation)
+  "luma-ray-2": "luma/ray-flash-2-720p",          // CORRIGÉ: Ray Flash 2 720p
+  "luma-ray-3": "luma/ray-flash-2-540p",          // CORRIGÉ: Ray Flash 2 540p (faster)
+  
+  // Lightricks LTX
+  "ltx-2": "lightricks/audio-to-video",           // CORRIGÉ: Audio to video
+  
+  // OpenAI Sora (N/A on Replicate - fallback)
+  "sora-2": "google/veo-3",                       // FALLBACK: Veo 3 (Sora N/A)
+  
+  // Tencent Hunyuan
+  "hunyuan-1.5": "wavespeedai/hunyuan-video-fast", // CORRIGÉ: Hunyuan Video Fast
+  
+  // PixVerse
+  "pixverse-4": "pixverse/pixverse-v4.5",         // CORRIGÉ: PixVerse v4.5 (latest)
+  
+  // ByteDance Seedance
+  "seedance-1.5-pro": "bytedance/seedance-1.5-pro", // CORRIGÉ Fév 2026: Seedance 1.5 Pro (264K runs)
+  "seedance-1-lite": "bytedance/seedance-1-lite",
 };
 
 export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
@@ -588,7 +607,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
   "kling-2.6": {
     provider: "kling-2.6",
     tier: "premium",
-    replicateModel: "kwaivgi/kling-v2.6-pro",
+    replicateModel: "kwaivgi/kling-v2.6",
     maxConcurrent: 3,
     timeoutMs: 600000, // 10 min
     capabilities: {
@@ -626,7 +645,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
   "hailuo-2.3": {
     provider: "hailuo-2.3",
     tier: "premium",
-    replicateModel: "minimax/hailuo-02-pro",
+    replicateModel: "minimax/hailuo-2.3",
     maxConcurrent: 2,
     timeoutMs: 600000,
     capabilities: {
@@ -813,7 +832,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
   "hailuo-2.3-fast": {
     provider: "hailuo-2.3-fast",
     tier: "standard",
-    replicateModel: "minimax/hailuo-2.3-fast",
+    replicateModel: "minimax/hailuo-2.3",
     maxConcurrent: 3,
     timeoutMs: 240000,
     capabilities: {

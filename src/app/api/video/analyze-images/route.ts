@@ -1,23 +1,24 @@
 /**
- * API Route: Analyze Images for Video Prompts
+ * API Route: Analyze Images for NARRATIVE Video Prompts
  * POST /api/video/analyze-images
  * 
- * Analyzes generated images and produces optimized video prompts for Kling 2.6
+ * Utilise le nouveau système NarrativePromptGenerator qui génère des prompts
+ * basés sur l'INTENTION DRAMATIQUE et le CONTEXTE NARRATIF.
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { getEpisode } from "@/lib/storage";
 import {
-  getImageAnalyzer,
-  generateVideoPromptsForShot,
-  type SceneContext,
-  type VideoPromptSuggestion,
+  getNarrativePromptGenerator,
+  detectDramaticIntention,
+  type NarrativeContext,
+  type NarrativeVideoPrompt,
 } from "@/lib/video";
-import type { SceneType } from "@/lib/video/prompt-templates";
+import type { Episode, Shot, Variation } from "@/types";
 
 interface AnalyzeRequest {
   episodeId: string;
-  shotIds?: string[]; // Optional: specific shots, otherwise all shots
+  shotIds?: string[];
   duration?: 5 | 10;
   includeEmptyVariations?: boolean;
 }
@@ -25,13 +26,13 @@ interface AnalyzeRequest {
 interface ShotAnalysis {
   shotId: string;
   shotName: string;
-  sceneType: string;
+  dramaticIntention: string;
   variationCount: number;
   prompts: Array<{
     variationId: string;
     imagePath: string;
     cameraAngle: string;
-    videoPrompt: VideoPromptSuggestion;
+    narrativePrompt: NarrativeVideoPrompt;
   }>;
   averageScore: number;
 }
@@ -39,15 +40,110 @@ interface ShotAnalysis {
 interface AnalyzeResponse {
   episodeId: string;
   episodeTitle: string;
+  system: "NARRATIVE_PROMPT_GENERATOR";
   totalShots: number;
   analyzedShots: number;
   totalVariations: number;
   shotAnalyses: ShotAnalysis[];
   summary: {
-    averagePromptScore: number;
+    averageNarrativeScore: number;
+    intentionBreakdown: Record<string, number>;
     recommendedDurations: Record<string, number>;
     totalEstimatedDuration: number;
-    kling26Optimized: boolean;
+  };
+}
+
+/**
+ * Construit le contexte narratif pour un shot
+ */
+function buildNarrativeContext(
+  episode: Episode,
+  shot: Shot,
+  variation: Variation
+): NarrativeContext {
+  let partNumber = 1;
+  let partTitle = "Unknown";
+  let partAtmosphere = "Unknown";
+  let sequenceNumber = 1;
+  let sequenceTitle = "Unknown";
+  let sequenceDescription = "";
+  let shotPositionInSequence = 1;
+  let totalShotsInSequence = 1;
+  let previousShotDescription: string | undefined;
+  let nextShotDescription: string | undefined;
+
+  const acts = episode.acts || [];
+  for (const act of acts) {
+    if (act.shotIds?.includes(shot.id)) {
+      sequenceNumber = act.number;
+      sequenceTitle = act.title;
+      sequenceDescription = act.description || "";
+      
+      const shotIndex = act.shotIds.indexOf(shot.id);
+      shotPositionInSequence = shotIndex + 1;
+      totalShotsInSequence = act.shotIds.length;
+      
+      if (shotIndex > 0) {
+        const prevShotId = act.shotIds[shotIndex - 1];
+        const prevShot = episode.shots.find(s => s.id === prevShotId);
+        previousShotDescription = prevShot?.description;
+      }
+      if (shotIndex < act.shotIds.length - 1) {
+        const nextShotId = act.shotIds[shotIndex + 1];
+        const nextShot = episode.shots.find(s => s.id === nextShotId);
+        nextShotDescription = nextShot?.description;
+      }
+      break;
+    }
+  }
+
+  // Parts sont une structure enrichie optionnelle
+  const episodeData = episode as unknown as Record<string, unknown>;
+  const parts = (episodeData.parts as Array<{
+    number: number;
+    title: string;
+    description?: string;
+    palette?: { atmosphere?: string };
+    actIds?: string[];
+  }>) || [];
+  
+  for (const part of parts) {
+    if (part.actIds?.includes(`seq-${sequenceNumber}`)) {
+      partNumber = part.number;
+      partTitle = part.title;
+      partAtmosphere = part.palette?.atmosphere || part.description || "";
+      break;
+    }
+  }
+
+  const visualGoal = shot.prompt?.goal || shot.description;
+  const { intention, targetEmotion } = detectDramaticIntention(
+    shot.description,
+    shot.name,
+    sequenceDescription,
+    visualGoal
+  );
+
+  return {
+    shotId: shot.id,
+    shotName: shot.name,
+    shotDescription: shot.description,
+    partNumber,
+    partTitle,
+    partAtmosphere,
+    sequenceNumber,
+    sequenceTitle,
+    sequenceDescription,
+    shotPositionInSequence,
+    totalShotsInSequence,
+    characterIds: shot.characterIds || [],
+    locationIds: shot.locationIds || [],
+    previousShotDescription,
+    nextShotDescription,
+    dramaticIntention: intention,
+    targetEmotion,
+    visualGoal: visualGoal || shot.description,
+    cameraAngle: variation.cameraAngle || "medium",
   };
 }
 
@@ -56,9 +152,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const body: AnalyzeRequest = await request.json();
     const { episodeId, shotIds, duration = 10, includeEmptyVariations = false } = body;
 
-    console.log(`[Analyze] Starting image analysis for episode ${episodeId}`);
+    console.log(`[NarrativeAnalyze] Starting for episode ${episodeId}`);
 
-    // Load episode
     const episode = await getEpisode(episodeId);
     if (!episode) {
       return NextResponse.json(
@@ -67,70 +162,58 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const analyzer = getImageAnalyzer();
+    const narrativeGenerator = getNarrativePromptGenerator();
     const shotAnalyses: ShotAnalysis[] = [];
     let totalVariations = 0;
     const durationCounts: Record<number, number> = { 5: 0, 10: 0 };
+    const intentionCounts: Record<string, number> = {};
 
-    // Filter shots if specific IDs provided
     const shotsToAnalyze = shotIds
       ? episode.shots.filter(s => shotIds.includes(s.id))
       : episode.shots;
 
-    console.log(`[Analyze] Analyzing ${shotsToAnalyze.length} shots`);
+    console.log(`[NarrativeAnalyze] Analyzing ${shotsToAnalyze.length} shots with NARRATIVE system`);
 
     for (const shot of shotsToAnalyze) {
-      // Skip shots without variations unless explicitly requested
       if (!includeEmptyVariations && (!shot.variations || shot.variations.length === 0)) {
-        console.log(`[Analyze] Skipping shot ${shot.id} - no variations`);
         continue;
       }
 
       const prompts: ShotAnalysis["prompts"] = [];
+      let shotIntention = "";
 
       for (const variation of (shot.variations || [])) {
-        // Only analyze completed variations with images
         if (variation.status !== "completed" || !variation.imageUrl) {
           continue;
         }
 
-        const context: SceneContext = {
-          shotId: shot.id,
-          shotName: shot.name,
-          sceneType: (shot.sceneType || "establishing") as SceneType,
-          description: shot.description,
-          characterIds: shot.characterIds || [],
-          locationIds: shot.locationIds || [],
-          cameraAngle: variation.cameraAngle,
-        };
+        // Construire le contexte narratif COMPLET
+        const context = buildNarrativeContext(episode, shot, variation);
+        shotIntention = context.dramaticIntention;
+        
+        // Générer le prompt NARRATIF
+        const narrativePrompt = narrativeGenerator.generateNarrativePrompt(context);
 
-        const videoPrompt = analyzer.analyzeAndGeneratePrompt(
-          variation.imageUrl,
-          context,
-          {
-            preferredDuration: duration,
-            emphasizeEmotion: ["genocide", "emotional", "flashback"].includes(shot.sceneType || ""),
-          }
-        );
+        // Track
+        intentionCounts[context.dramaticIntention] = (intentionCounts[context.dramaticIntention] || 0) + 1;
+        durationCounts[narrativePrompt.recommendedDuration]++;
+        totalVariations++;
 
         prompts.push({
           variationId: variation.id,
           imagePath: variation.imageUrl!,
           cameraAngle: variation.cameraAngle,
-          videoPrompt,
+          narrativePrompt,
         });
-
-        durationCounts[videoPrompt.recommendedDuration]++;
-        totalVariations++;
       }
 
       if (prompts.length > 0) {
-        const averageScore = prompts.reduce((sum, p) => sum + p.videoPrompt.promptScore, 0) / prompts.length;
+        const averageScore = prompts.reduce((sum, p) => sum + p.narrativePrompt.narrativeScore, 0) / prompts.length;
 
         shotAnalyses.push({
           shotId: shot.id,
           shotName: shot.name,
-          sceneType: shot.sceneType || "establishing",
+          dramaticIntention: shotIntention,
           variationCount: prompts.length,
           prompts,
           averageScore,
@@ -138,9 +221,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     }
 
-    // Calculate summary statistics
-    const allScores = shotAnalyses.flatMap(s => s.prompts.map(p => p.videoPrompt.promptScore));
-    const averagePromptScore = allScores.length > 0
+    const allScores = shotAnalyses.flatMap(s => s.prompts.map(p => p.narrativePrompt.narrativeScore));
+    const averageNarrativeScore = allScores.length > 0
       ? allScores.reduce((a, b) => a + b, 0) / allScores.length
       : 0;
 
@@ -149,24 +231,45 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const response: AnalyzeResponse = {
       episodeId,
       episodeTitle: episode.title,
+      system: "NARRATIVE_PROMPT_GENERATOR",
       totalShots: episode.shots.length,
       analyzedShots: shotAnalyses.length,
       totalVariations,
-      shotAnalyses,
+      shotAnalyses: shotAnalyses.map(s => ({
+        ...s,
+        prompts: s.prompts.map(p => ({
+          ...p,
+          narrativePrompt: {
+            ...p.narrativePrompt,
+            // Inclure les infos clés dans la réponse
+            prompt: p.narrativePrompt.prompt,
+            negativePrompt: p.narrativePrompt.negativePrompt,
+            dramaticIntention: p.narrativePrompt.dramaticIntention,
+            emotionalCore: p.narrativePrompt.emotionalCore,
+            motionDescription: p.narrativePrompt.motionDescription,
+            cameraInstruction: p.narrativePrompt.cameraInstruction,
+            narrativeScore: p.narrativePrompt.narrativeScore,
+            rationale: p.narrativePrompt.rationale,
+            recommendedDuration: p.narrativePrompt.recommendedDuration,
+            recommendedProvider: p.narrativePrompt.recommendedProvider,
+          },
+        })),
+      })),
       summary: {
-        averagePromptScore: Math.round(averagePromptScore * 10) / 10,
+        averageNarrativeScore: Math.round(averageNarrativeScore * 10) / 10,
+        intentionBreakdown: intentionCounts,
         recommendedDurations: durationCounts,
         totalEstimatedDuration,
-        kling26Optimized: true,
       },
     };
 
-    console.log(`[Analyze] Complete: ${totalVariations} variations analyzed, avg score: ${averagePromptScore.toFixed(1)}`);
+    console.log(`[NarrativeAnalyze] Complete: ${totalVariations} variations, avg narrative score: ${averageNarrativeScore.toFixed(1)}`);
+    console.log(`[NarrativeAnalyze] Intentions:`, intentionCounts);
 
     return NextResponse.json(response);
 
   } catch (error) {
-    console.error("[Analyze] Error:", error);
+    console.error("[NarrativeAnalyze] Error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
@@ -174,10 +277,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 }
 
-/**
- * GET /api/video/analyze-images?episodeId=ep0
- * Quick analysis summary
- */
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const episodeId = searchParams.get("episodeId");
@@ -189,7 +288,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  // Redirect to POST with default options
   const body: AnalyzeRequest = {
     episodeId,
     duration: 10,

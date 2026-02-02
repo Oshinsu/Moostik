@@ -146,45 +146,24 @@ function buildWanInput(input: VideoGenerationInput, provider: VideoProvider): Re
 }
 
 /**
- * Build input for Kling 2.6
+ * Build input for Kling v2.1-master (kwaivgi/kling-v2.1-master)
+ * Schema: prompt (required), start_image (optional), duration, aspect_ratio, negative_prompt
  */
 function buildKlingInput(input: VideoGenerationInput): ReplicateInput {
   const klingInput: ReplicateInput = {
-    image_url: input.sourceImage,
     prompt: input.prompt,
-    duration: input.durationSeconds <= 5 ? "5" : "10",
+    duration: input.durationSeconds <= 5 ? 5 : 10, // Number, not string
     aspect_ratio: input.aspectRatio === "9:16" ? "9:16" : input.aspectRatio === "1:1" ? "1:1" : "16:9",
-    mode: input.quality === "cinematic" || input.quality === "high" ? "pro" : "std",
   };
+
+  // Image source (optional for Kling - supports Text-to-Video AND Image-to-Video)
+  if (input.sourceImage) {
+    klingInput.start_image = input.sourceImage; // CORRIGÉ: start_image, pas image_url
+  }
 
   // Negative prompt
   if (input.negativePrompt) {
     klingInput.negative_prompt = input.negativePrompt;
-  }
-
-  // Camera control
-  if (input.cameraMotion?.klingConfig) {
-    klingInput.camera_control = {
-      type: "custom",
-      config: input.cameraMotion.klingConfig,
-    };
-  } else if (input.cameraMotion) {
-    klingInput.camera_control = buildKlingCameraControl(input.cameraMotion);
-  }
-
-  // Motion transfer
-  if (input.motionTransfer) {
-    klingInput.motion_video_url = input.motionTransfer.referenceVideoUrl;
-  }
-
-  // CFG scale
-  if (input.cfgScale) {
-    klingInput.cfg_scale = input.cfgScale;
-  }
-
-  // Audio
-  if (input.generateAudio) {
-    klingInput.enable_audio = true;
   }
 
   return klingInput;
@@ -223,27 +202,35 @@ function buildKlingCameraControl(motion: CameraMotion): Record<string, unknown> 
 }
 
 /**
- * Build input for Google Veo 3.1
+ * Build input for Google Veo 3 (google/veo-3)
+ * Schema: prompt (required), image (optional), duration, aspect_ratio, generate_audio, resolution, negative_prompt, seed
  */
 function buildVeoInput(input: VideoGenerationInput): ReplicateInput {
   const veoInput: ReplicateInput = {
-    image: input.sourceImage,
     prompt: input.prompt,
   };
 
-  // Duration (4, 6, or 8 seconds)
-  const duration = input.durationSeconds;
-  veoInput.duration = duration <= 4 ? 4 : duration <= 6 ? 6 : 8;
-
-  // Aspect ratio
-  veoInput.aspect_ratio = input.aspectRatio || "16:9";
-
-  // Resolution
-  if (input.resolution === "4k") {
-    veoInput.output_resolution = "4k";
+  // Image source (optional - supports Text-to-Video AND Image-to-Video)
+  if (input.sourceImage) {
+    veoInput.image = input.sourceImage;
   }
 
-  // Audio
+  // Duration (Veo 3 supports various durations)
+  if (input.durationSeconds) {
+    veoInput.duration = input.durationSeconds;
+  }
+
+  // Aspect ratio
+  if (input.aspectRatio) {
+    veoInput.aspect_ratio = input.aspectRatio;
+  }
+
+  // Resolution
+  if (input.resolution) {
+    veoInput.resolution = input.resolution;
+  }
+
+  // Audio (Veo 3 generates audio natively)
   if (input.generateAudio !== false) {
     veoInput.generate_audio = true;
   }
@@ -262,32 +249,27 @@ function buildVeoInput(input: VideoGenerationInput): ReplicateInput {
 }
 
 /**
- * Build input for Hailuo 2.3
+ * Build input for MiniMax Video-01-Live (minimax/video-01-live)
+ * Schema: prompt (REQUIRED), first_frame_image (REQUIRED), prompt_optimizer (optional)
+ * IMPORTANT: Ce modèle est UNIQUEMENT Image-to-Video, l'image source est OBLIGATOIRE
  */
 function buildHailuoInput(input: VideoGenerationInput): ReplicateInput {
+  // VALIDATION: first_frame_image est OBLIGATOIRE pour ce modèle
+  if (!input.sourceImage) {
+    throw new ReplicateVideoError(
+      "hailuo-2.3",
+      "minimax/video-01-live",
+      "MISSING_IMAGE",
+      "MiniMax Video-01-Live requires a source image (first_frame_image). This model does not support text-to-video.",
+      false
+    );
+  }
+
   const hailuoInput: ReplicateInput = {
-    image: input.sourceImage,
     prompt: input.prompt,
+    first_frame_image: input.sourceImage, // CORRIGÉ: Clé correcte selon le schéma API
+    prompt_optimizer: true, // Recommandé par MiniMax
   };
-
-  // Duration (6 or 10 seconds)
-  hailuoInput.duration = input.durationSeconds <= 6 ? 6 : 10;
-
-  // Resolution
-  hailuoInput.resolution = input.resolution === "1080p" ? "1080p" : "768p";
-
-  // Aspect ratio
-  hailuoInput.aspect_ratio = input.aspectRatio || "16:9";
-
-  // Negative prompt
-  if (input.negativePrompt) {
-    hailuoInput.negative_prompt = input.negativePrompt;
-  }
-
-  // Seed
-  if (input.seed) {
-    hailuoInput.seed = input.seed;
-  }
 
   return hailuoInput;
 }

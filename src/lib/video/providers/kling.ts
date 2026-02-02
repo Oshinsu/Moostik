@@ -187,7 +187,7 @@ export class KlingProvider extends VideoProviderBase {
 
   private buildRequest(input: VideoGenerationInput): KlingCreateRequest {
     const request: KlingCreateRequest = {
-      model: this.config.replicateModel || "kling-v2.6-pro",
+      model: this.config.replicateModel || "kwaivgi/kling-v2.6",
       prompt: this.preparePrompt(input),
       duration: input.durationSeconds <= 5 ? "5" : "10",
       aspect_ratio: input.aspectRatio as "16:9" | "9:16" | "1:1",

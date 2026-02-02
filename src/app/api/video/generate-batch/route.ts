@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Replicate from "replicate";
+import { promises as fs } from "fs";
+import path from "path";
 import { getEpisode, updateShot } from "@/lib/storage";
 import { uploadVideoFromUrl } from "@/lib/supabase/storage";
 import { REPLICATE_MODELS, VideoProvider } from "@/lib/video/types";
@@ -58,70 +60,101 @@ function buildReplicateInput(
   videoPrompt: VideoPromptData,
   imageUrl: string
 ): Record<string, unknown> {
-  const baseInput = {
-    image: imageUrl,
-    prompt: videoPrompt.prompt,
-  };
-
+  // SOTA Février 2026 - Paramètres corrects pour chaque provider
   switch (provider) {
+    // ============================================
+    // HAILUO 2.3 - MiniMax (text-to-video + image-to-video)
+    // Paramètres: prompt, image_url (optionnel), duration (6 ou 10)
+    // ============================================
     case "hailuo-2.3-fast":
     case "hailuo-2.3":
       return {
-        ...baseInput,
-        negative_prompt: videoPrompt.negativePrompt,
-        duration: videoPrompt.duration,
-        aspect_ratio: videoPrompt.aspectRatio,
+        prompt: videoPrompt.prompt,
+        first_frame_image: imageUrl, // CORRECT: Replicate uses first_frame_image
+        duration: videoPrompt.duration <= 6 ? 6 : 10, // Must be 6 or 10
+        resolution: "768p", // 1080p only supports 6s, use 768p for flexibility
+        prompt_optimizer: false, // CORRECT param name, keep our SOTA prompts
       };
 
+    // ============================================
+    // VEO 3.1 - Google (text-to-video + image-to-video)
+    // Schema: prompt, image, duration, aspect_ratio, resolution, generate_audio, last_frame
+    // ============================================
     case "veo-3.1-fast":
     case "veo-3.1":
       return {
-        ...baseInput,
-        negative_prompt: videoPrompt.negativePrompt,
-        duration: videoPrompt.duration,
-        end_image: videoPrompt.lastFrame, // First/Last frame interpolation
-        audio: true,
+        prompt: videoPrompt.prompt,
+        image: imageUrl, // CORRECT: Veo uses "image"
+        duration: Math.min(videoPrompt.duration, 8),
+        aspect_ratio: videoPrompt.aspectRatio || "16:9",
+        resolution: "720p",
+        generate_audio: true,
       };
 
+    // ============================================
+    // SEEDANCE 1.5 PRO - ByteDance (image-to-video with audio)
+    // Schema: prompt, image, duration, aspect_ratio, generate_audio, fps, camera_fixed
+    // ============================================
     case "seedance-1.5-pro":
+      return {
+        prompt: videoPrompt.prompt,
+        image: imageUrl, // CORRECT: Seedance uses "image"
+        duration: Math.min(videoPrompt.duration, 10), // Up to 10s
+        aspect_ratio: videoPrompt.aspectRatio || "16:9",
+        generate_audio: true, // Native audio generation
+        fps: 24,
+      };
+    
     case "seedance-1-lite":
       return {
-        ...baseInput,
-        duration: videoPrompt.duration,
-        // Seedance doesn't support negative prompts
-        lip_sync: true,
-        language: "fr",
+        prompt: videoPrompt.prompt,
+        image: imageUrl,
+        duration: Math.min(videoPrompt.duration, 5),
+        aspect_ratio: videoPrompt.aspectRatio || "16:9",
       };
 
+    // ============================================
+    // KLING 2.6 - Kuaishou (image-to-video with audio)
+    // Schema: prompt, start_image, duration, aspect_ratio, generate_audio, negative_prompt
+    // ============================================
     case "kling-2.6":
       return {
-        ...baseInput,
-        negative_prompt: videoPrompt.negativePrompt,
-        duration: videoPrompt.duration,
-        mode: "pro",
-        motion_amount: videoPrompt.modelConfig?.motion_amount || 0.5,
-        audio_mode: "auto",
+        prompt: videoPrompt.prompt,
+        start_image: imageUrl, // CORRECT: Kling uses "start_image"
+        duration: videoPrompt.duration <= 5 ? 5 : 10, // Integer 5 or 10
+        aspect_ratio: videoPrompt.aspectRatio || "16:9",
+        generate_audio: true,
       };
 
+    // ============================================
+    // WAN - Fast & cheap
+    // ============================================
     case "wan-2.6":
     case "wan-2.5":
     case "wan-2.2":
       return {
-        ...baseInput,
-        negative_prompt: videoPrompt.negativePrompt,
+        prompt: videoPrompt.prompt,
+        image: imageUrl,
         duration: Math.min(videoPrompt.duration, 5), // Wan max 5s
       };
 
+    // ============================================
+    // LUMA RAY - Interpolation
+    // ============================================
     case "luma-ray-2":
     case "luma-ray-3":
       return {
-        ...baseInput,
-        end_image: videoPrompt.lastFrame, // Interpolation
+        prompt: videoPrompt.prompt,
+        start_image: imageUrl,
+        end_image: videoPrompt.lastFrame,
         duration: videoPrompt.duration,
       };
 
     default:
-      return baseInput;
+      return {
+        prompt: videoPrompt.prompt,
+        image: imageUrl,
+      };
   }
 }
 
@@ -148,16 +181,41 @@ async function generateVideo(
     input,
   });
 
-  // Handle different output formats from Replicate
+  // Handle different output formats from Replicate (SOTA Février 2026)
   let videoUrl: string;
+  
+  console.log(`[Video] Raw output type: ${typeof output}`);
+  console.log(`[Video] Raw output preview: ${JSON.stringify(output).slice(0, 200)}`);
+  
   if (typeof output === "string") {
+    // Direct URL string
     videoUrl = output;
   } else if (Array.isArray(output) && output.length > 0) {
-    videoUrl = output[0];
-  } else if (output && typeof output === "object" && "video" in output) {
-    videoUrl = (output as { video: string }).video;
+    // Array of URLs (common for many models)
+    videoUrl = typeof output[0] === "string" ? output[0] : (output[0] as { url?: string }).url || "";
+  } else if (output && typeof output === "object") {
+    const obj = output as Record<string, unknown>;
+    // Try multiple possible keys for video URL
+    if ("video" in obj && typeof obj.video === "string") {
+      videoUrl = obj.video;
+    } else if ("video" in obj && typeof obj.video === "object" && obj.video !== null) {
+      videoUrl = (obj.video as { url?: string }).url || "";
+    } else if ("output" in obj && typeof obj.output === "string") {
+      videoUrl = obj.output;
+    } else if ("url" in obj && typeof obj.url === "string") {
+      videoUrl = obj.url;
+    } else if ("uri" in obj && typeof obj.uri === "string") {
+      videoUrl = obj.uri;
+    } else {
+      console.error(`[Video] Unknown output structure: ${JSON.stringify(obj)}`);
+      throw new Error(`Unexpected output format from Replicate: ${JSON.stringify(obj).slice(0, 100)}`);
+    }
   } else {
-    throw new Error("Unexpected output format from Replicate");
+    throw new Error(`Unexpected output format from Replicate: ${typeof output}`);
+  }
+  
+  if (!videoUrl || !videoUrl.startsWith("http")) {
+    throw new Error(`Invalid video URL received: ${videoUrl}`);
   }
 
   return {
@@ -175,6 +233,7 @@ interface BatchResult {
   variationId: string;
   success: boolean;
   videoUrl?: string;
+  localPath?: string;
   error?: string;
   provider: string;
   cost: number;
@@ -216,8 +275,15 @@ async function processVariation(
     const provider = videoPrompt.provider as VideoProvider;
     const result = await generateVideo(provider, videoPrompt, variation.imageUrl);
 
-    // Upload to Supabase
+    // 1. TOUJOURS sauvegarder localement d'abord (comme les images)
+    const localPath = await saveVideoLocally(result.url, episodeId, shot.id, variation.id, provider);
+    console.log(`[Video] ✅ Saved locally: ${localPath}`);
+
+    // 2. PUIS uploader vers Supabase (backup cloud)
     const supabaseUrl = await uploadVideoToSupabaseStorage(result.url, episodeId, shot.id, variation.id);
+    
+    // URL finale : Supabase si dispo, sinon API locale
+    const finalUrl = supabaseUrl || `/api/videos/${episodeId}/${shot.id}/${variation.id}.mp4`;
 
     onProgress(`completed`);
 
@@ -225,7 +291,8 @@ async function processVariation(
       shotId: shot.id,
       variationId: variation.id,
       success: true,
-      videoUrl: supabaseUrl || result.url,
+      videoUrl: finalUrl,
+      localPath,
       provider: provider,
       cost: videoPrompt.estimatedCost,
     };
@@ -242,6 +309,46 @@ async function processVariation(
       cost: 0,
     };
   }
+}
+
+/**
+ * Sauvegarde une vidéo localement (output/videos/...)
+ * Même logique que pour les images
+ */
+async function saveVideoLocally(
+  videoUrl: string,
+  episodeId: string,
+  shotId: string,
+  variationId: string,
+  provider: string
+): Promise<string> {
+  console.log(`[Video] Downloading from Replicate: ${videoUrl.slice(0, 80)}...`);
+  
+  const response = await fetch(videoUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to download video: ${response.status}`);
+  }
+  
+  const buffer = await response.arrayBuffer();
+  console.log(`[Video] Downloaded ${(buffer.byteLength / 1024 / 1024).toFixed(2)} MB`);
+  
+  // Structure: output/videos/{episodeId}/by-shot/{shotId}/{variationId}.mp4
+  const outputDir = path.join(process.cwd(), "output", "videos", episodeId, "by-shot", shotId);
+  await fs.mkdir(outputDir, { recursive: true });
+  
+  const filename = `${variationId}.mp4`;
+  const localPath = path.join(outputDir, filename);
+  
+  await fs.writeFile(localPath, Buffer.from(buffer));
+  console.log(`[Video] ✅ Saved: ${localPath}`);
+  
+  // Aussi sauvegarder par provider pour organisation
+  const providerDir = path.join(process.cwd(), "output", "videos", episodeId, "by-provider", provider);
+  await fs.mkdir(providerDir, { recursive: true });
+  const providerPath = path.join(providerDir, `${shotId}-${variationId}.mp4`);
+  await fs.writeFile(providerPath, Buffer.from(buffer));
+  
+  return localPath;
 }
 
 async function uploadVideoToSupabaseStorage(
