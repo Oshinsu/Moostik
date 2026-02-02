@@ -106,9 +106,9 @@ export default function SeriesLandingPage() {
           className="relative z-10 text-center px-4 max-w-5xl mx-auto"
           style={{ transform: `translateY(${scrollY * -0.3}px)`, opacity: Math.max(0, 1 - scrollY / 500) }}
         >
-          {/* Studio Badge */}
-          <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 mb-6 text-sm">
-            PROOF OF CONCEPT — PIPELINE GÉNÉRATIF
+          {/* Badge */}
+          <Badge className="bg-blood-900/50 text-blood-300 border-blood-700/50 mb-6 text-sm">
+            ÉPISODE 0 — GENÈSE
           </Badge>
 
           {/* Title */}
@@ -116,21 +116,9 @@ export default function SeriesLandingPage() {
             <span className="block text-blood-500 moostik-text-glow">MOOSTIK</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-2xl md:text-3xl text-zinc-400 font-light tracking-wide mb-2">
-            T0.5 — Genèse des Bloodwings
-          </p>
-
           {/* Tagline */}
-          <p className="text-lg text-blood-400 italic mb-8">
-            43 shots. 5 parties. 100% généré.
-          </p>
-
-          {/* Synopsis factuel */}
-          <p className="text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Une série sur des moustiques anthropomorphes. Du génocide à la reconstruction.
-            Esthétique Pixar-démoniaque. Fait pour prouver que le pipeline fonctionne.
-            Le reste, c&apos;est de la narration.
+          <p className="text-2xl md:text-3xl text-zinc-300 font-light tracking-wide mb-8">
+            &ldquo;Nous sommes les vrais vampires.&rdquo;
           </p>
 
           {/* CTAs */}
@@ -138,12 +126,12 @@ export default function SeriesLandingPage() {
             <Link href="/watch/t05">
               <Button size="lg" className="moostik-btn-blood text-white font-bold px-8 py-6 text-lg group">
                 <span className="mr-2 group-hover:scale-110 transition-transform">▶</span>
-                Voir T0.5
+                Regarder l&apos;Épisode 0
               </Button>
             </Link>
             <Link href="/library">
               <Button size="lg" variant="outline" className="border-blood-700/50 text-blood-400 hover:bg-blood-900/20 px-8 py-6 text-lg">
-                Explorer les assets
+                Explorer la galerie
               </Button>
             </Link>
           </div>
@@ -161,39 +149,204 @@ export default function SeriesLandingPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* TECH SECTION */}
+      {/* SYNOPSIS - L'HISTOIRE COMPLÈTE */}
       {/* ================================================================ */}
       <section className="py-24 px-4 relative">
         <div className="max-w-4xl mx-auto">
-          <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 mb-6">PIPELINE</Badge>
+          <Badge className="bg-blood-900/50 text-blood-300 border-blood-700/50 mb-6">SYNOPSIS</Badge>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="text-blood-500">Comment</span> c&apos;est fait
+            <span className="text-blood-500">Genèse</span> des Bloodwings
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6 text-zinc-400">
+          {/* Introduction */}
+          <div className="prose prose-invert prose-lg max-w-none mb-16">
+            <p className="text-zinc-300 text-xl leading-relaxed mb-6">
+              Dans les murs d&apos;une maison créole de Martinique vit un peuple que personne ne soupçonne.
+              Les <span className="text-amber-400 font-semibold">Moostik</span> — des moustiques aux yeux d&apos;ambre,
+              dotés d&apos;une intelligence millénaire — ont bâti une civilisation entière dans l&apos;ombre des humains.
+              Leur village, niché entre les lames des persiennes, pulse d&apos;une vie invisible.
+            </p>
+            <p className="text-zinc-400 leading-relaxed mb-6">
+              Mama Dorval berce son nouveau-né. Koko affûte sa trompe. Mila prépare le repas du soir.
+              Trez raconte des histoires aux plus jeunes. C&apos;est une nuit comme les autres dans le village Cooltik.
+            </p>
+            <p className="text-zinc-500 leading-relaxed">
+              Personne ne voit venir ce qui va suivre.
+            </p>
+          </div>
+
+          {/* PARTIE 1: APOCALYPSE */}
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl">🔥</span>
+              <div>
+                <Badge className="bg-red-900/50 text-red-300 border-red-700/50 mb-1">PARTIE I</Badge>
+                <h3 className="text-2xl font-black text-white">APOCALYPSE</h3>
+              </div>
+            </div>
+            <div className="pl-14 space-y-4 text-zinc-400 border-l-2 border-red-900/50">
               <p>
-                <span className="text-blood-400 font-bold">Génération image.</span> Chaque shot
-                commence par une image. Références de personnages et lieux injectées automatiquement
-                pour maintenir la cohérence sur 43 shots.
+                Un enfant de cinq ans. Une bombe aérosol rouge et noir : <span className="text-red-400 font-bold">BYSS</span>.
+                Un geste innocent qui va déclencher l&apos;enfer.
               </p>
               <p>
-                <span className="text-amber-400 font-bold">Image-to-video.</span> First frame,
-                last frame, interpolation. Le système chain les shots pour une continuité narrative
-                sans intervention manuelle.
+                Le nuage toxique se répand. Les flammes noires et rouges engloutissent tout.
+                Du point de vue des Moostik, les doigts de l&apos;enfant sont des <span className="text-red-400">titans</span> —
+                des colonnes de chair gigantesques qui écrasent les structures, balaient les familles,
+                transforment leur monde en cauchemar.
+              </p>
+              <p>
+                La fuite commence. Cinq survivants courent entre les gouttes de poison :
+                <span className="text-amber-400"> Koko</span>, <span className="text-purple-400">Mila</span>,
+                <span className="text-blue-400"> Trez</span>, <span className="text-pink-400">Mama Dorval</span>
+                et son bébé dans les bras.
+              </p>
+              <p className="text-red-400 font-semibold">
+                Trez n&apos;y arrivera pas. Les doigts titans l&apos;écrasent. Premier mort. Premier cri.
               </p>
             </div>
-            <div className="space-y-6 text-zinc-400">
+          </div>
+
+          {/* PARTIE 2: ÉVASION */}
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl">🏃</span>
+              <div>
+                <Badge className="bg-blue-900/50 text-blue-300 border-blue-700/50 mb-1">PARTIE II</Badge>
+                <h3 className="text-2xl font-black text-white">ÉVASION</h3>
+              </div>
+            </div>
+            <div className="pl-14 space-y-4 text-zinc-400 border-l-2 border-blue-900/50">
               <p>
-                <span className="text-purple-400 font-bold">Beat sync.</span> Analyse BPM de la track
-                (Requiem for Attack on Titan), calage automatique des cuts sur le tempo.
-                Le montage se construit sur la musique.
+                Les quatre survivants atteignent les persiennes — la frontière entre leur monde et l&apos;extérieur.
+                De l&apos;autre côté : le déluge. Chaque goutte de pluie est une <span className="text-blue-400">bombe</span>
+                qui peut les écraser.
               </p>
               <p>
-                <span className="text-emerald-400 font-bold">Composition.</span> Audio, transitions,
-                export EDL. Le résultat sort prêt pour post-prod ou diffusion directe.
+                Ils esquivent. Ils volent. Ils survivent — jusqu&apos;à ce qu&apos;une ombre noire fonde du ciel.
+                Un corbeau. Ses yeux fixent le bébé Dorval.
               </p>
+              <p className="text-pink-400 font-semibold">
+                Mama n&apos;hésite pas une seconde. Elle se jette entre le bec et son enfant.
+                Son corps protège le bébé. Son sacrifice leur offre le temps de fuir.
+              </p>
+              <p>
+                Trois survivants. Un bébé orphelin. Et quelque part au loin, un vieux pneu abandonné
+                dans la végétation tropicale.
+              </p>
+            </div>
+          </div>
+
+          {/* PARTIE 3: RECONSTRUCTION */}
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl">🏗️</span>
+              <div>
+                <Badge className="bg-amber-900/50 text-amber-300 border-amber-700/50 mb-1">PARTIE III</Badge>
+                <h3 className="text-2xl font-black text-white">RECONSTRUCTION</h3>
+              </div>
+            </div>
+            <div className="pl-14 space-y-4 text-zinc-400 border-l-2 border-amber-900/50">
+              <p>
+                Le Pneu devient leur refuge. Dans cette chambre à air géante, le silence remplace les cris.
+                Le deuil commence.
+              </p>
+              <p>
+                Mais la vie continue. <span className="text-purple-400">Mila</span> pond. Des dizaines de cocons
+                lumineux apparaissent dans la nurserie improvisée. Une nouvelle génération naît des cendres.
+              </p>
+              <p>
+                Le bébé Dorval grandit. <span className="text-amber-400">Koko</span> lui apprend à se battre —
+                le maniement de la trompe, l&apos;art du combat aérien. Mila lui transmet la mémoire —
+                les noms des morts, l&apos;histoire du génocide, le serment de ne jamais oublier.
+              </p>
+              <p className="text-amber-400 font-semibold">
+                L&apos;enfant devient adolescent. L&apos;adolescent devient leader.
+                Et le leader a une vision.
+              </p>
+            </div>
+          </div>
+
+          {/* PARTIE 4: BLOODWINGS */}
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl">⚔️</span>
+              <div>
+                <Badge className="bg-blood-900/50 text-blood-300 border-blood-700/50 mb-1">PARTIE IV</Badge>
+                <h3 className="text-2xl font-black text-white">BLOODWINGS</h3>
+              </div>
+            </div>
+            <div className="pl-14 space-y-4 text-zinc-400 border-l-2 border-blood-900/50">
+              <p>
+                Le Pneu devient <span className="text-blood-400 font-bold">Tire City</span>. Une vraie cité
+                émerge — architecture bio-organique, forges, académies, places publiques.
+                Les survivants ne se cachent plus. Ils se préparent.
+              </p>
+              <p>
+                Dorval fonde la secte des <span className="text-blood-400 font-bold">Bloodwings</span>.
+                Leur emblème : la Goutte-Œil, symbole du sang versé et de la vigilance éternelle.
+                Leurs serments se font dans le sang. Leur objectif est simple : la vengeance.
+              </p>
+              <p>
+                L&apos;Académie du Sang forme les guerriers. Combat à la trompe. Tactiques d&apos;essaim.
+                Science du venin. Fort Sang-Noir devient le cœur militaire de la résistance.
+              </p>
+              <p className="text-blood-400 font-semibold">
+                Vingt ans passent. Le bébé Dorval est devenu Papy Tik — patriarche, stratège, légende.
+              </p>
+            </div>
+          </div>
+
+          {/* PARTIE 5: 20 ANS PLUS TARD */}
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-4xl">🍷</span>
+              <div>
+                <Badge className="bg-purple-900/50 text-purple-300 border-purple-700/50 mb-1">PARTIE V</Badge>
+                <h3 className="text-2xl font-black text-white">20 ANS PLUS TARD</h3>
+              </div>
+            </div>
+            <div className="pl-14 space-y-4 text-zinc-400 border-l-2 border-purple-900/50">
+              <p>
+                <span className="text-amber-400 font-bold">Bar Ti Sang</span>. Lumières tamisées.
+                Cocktails de nectar. Musique langoureuse. Les femelles Moostik dansent —
+                abdomens voluptueux, ailes irisées, regards de braise.
+              </p>
+              <p>
+                Papy Tik traverse la salle. Les conversations s&apos;arrêtent sur son passage.
+                Respect. Crainte. Dévotion. Vingt ans de préparation. Vingt ans d&apos;attente.
+              </p>
+              <p className="text-blood-400 font-semibold text-lg">
+                Un messager arrive. Il murmure quelque chose à l&apos;oreille du patriarche.
+                Pour la première fois depuis des années, Papy Tik sourit.
+              </p>
+              <p className="text-white font-bold text-xl text-center mt-8">
+                La vengeance peut enfin commencer.
+              </p>
+              <p className="text-blood-500 font-black text-2xl text-center mt-4">
+                TO BE CONTINUED...
+              </p>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-zinc-800">
+            <div className="text-center">
+              <p className="text-3xl font-black text-blood-500">5</p>
+              <p className="text-zinc-500 text-sm">Parties</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-black text-blood-500">19</p>
+              <p className="text-zinc-500 text-sm">Séquences</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-black text-blood-500">43</p>
+              <p className="text-zinc-500 text-sm">Shots</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-black text-blood-500">~8</p>
+              <p className="text-zinc-500 text-sm">Minutes</p>
             </div>
           </div>
         </div>
@@ -375,21 +528,23 @@ export default function SeriesLandingPage() {
 
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <h2 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="text-blood-500">Tu veux</span> le même pipeline ?
+            <span className="text-blood-500">Plonge</span> dans l&apos;univers
           </h2>
-          <p className="text-xl text-zinc-500 mb-10">
-            Early access. Places limitées. Projets sérieux uniquement.
+          <p className="text-xl text-zinc-400 mb-10">
+            Explore les personnages, les lieux, le lore complet.
+            Ou regarde l&apos;épisode 0 maintenant.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/studio">
+            <Link href="/watch/t05">
               <Button size="lg" className="moostik-btn-blood text-white font-bold px-10 py-6 text-lg group">
-                Voir comment ça marche
+                <span className="mr-2">▶</span>
+                Regarder l&apos;Épisode 0
               </Button>
             </Link>
-            <Link href="/library">
+            <Link href="/series/lore">
               <Button size="lg" variant="outline" className="border-blood-700/50 text-blood-400 hover:bg-blood-900/20 px-10 py-6 text-lg">
-                Explorer les assets
+                Explorer le lore
               </Button>
             </Link>
           </div>
