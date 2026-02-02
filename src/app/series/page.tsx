@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { PublicHeader } from "@/components/public";
 
 // ============================================================================
 // TYPES
@@ -68,12 +69,15 @@ export default function SeriesLandingPage() {
 
   return (
     <div className="min-h-screen bg-[#0b0b0e] text-white overflow-x-hidden">
+      {/* Public Navigation */}
+      <PublicHeader />
+
       {/* ================================================================ */}
       {/* HERO SECTION - Parallax */}
       {/* ================================================================ */}
       <section 
         ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative h-screen flex items-center justify-center overflow-hidden -mt-16"
       >
         {/* Background Layers (Parallax) */}
         <div 
@@ -131,14 +135,15 @@ export default function SeriesLandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/series/ep0">
-              <Button size="lg" className="moostik-btn-blood text-white font-bold px-8 py-6 text-lg">
+            <Link href="/watch/ep0">
+              <Button size="lg" className="moostik-btn-blood text-white font-bold px-8 py-6 text-lg group">
+                <span className="mr-2 group-hover:scale-110 transition-transform">▶</span>
                 Regarder l'Episode 0
               </Button>
             </Link>
-            <Link href="/series/characters">
+            <Link href="/ep0">
               <Button size="lg" variant="outline" className="border-blood-700/50 text-blood-400 hover:bg-blood-900/20 px-8 py-6 text-lg">
-                Découvrir l'Univers
+                Voir la Galerie
               </Button>
             </Link>
           </div>
@@ -379,8 +384,9 @@ export default function SeriesLandingPage() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/series/ep0">
-              <Button size="lg" className="moostik-btn-blood text-white font-bold px-10 py-6 text-lg">
+            <Link href="/watch/ep0">
+              <Button size="lg" className="moostik-btn-blood text-white font-bold px-10 py-6 text-lg group">
+                <span className="mr-2 group-hover:scale-110 transition-transform">▶</span>
                 Commencer l'aventure
               </Button>
             </Link>

@@ -70,6 +70,26 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    title: "Site Public",
+    items: [
+      { 
+        href: "/series", 
+        icon: ExternalLink, 
+        label: "Page d'Accueil", 
+        sublabel: "Landing page",
+        color: "text-blue-400",
+      },
+      { 
+        href: "/watch/ep0", 
+        icon: Play, 
+        label: "Regarder EP0", 
+        sublabel: "Mode cinéma",
+        badge: "LIVE",
+        color: "text-emerald-400",
+      },
+    ],
+  },
+  {
     title: "Création",
     items: [
       { 
