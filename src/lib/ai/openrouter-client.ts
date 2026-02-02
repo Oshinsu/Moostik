@@ -52,6 +52,49 @@ export interface CompletionOptions {
   stream?: boolean;
 }
 
+// ============================================================================
+// VISION TYPES
+// ============================================================================
+
+export interface ImageContent {
+  type: "image_url";
+  image_url: {
+    url: string;
+    detail?: "auto" | "low" | "high";
+  };
+}
+
+export interface TextContent {
+  type: "text";
+  text: string;
+}
+
+export type MessageContent = string | Array<TextContent | ImageContent>;
+
+export interface VisionMessage {
+  role: "system" | "user" | "assistant";
+  content: MessageContent;
+}
+
+export interface VisionOptions {
+  systemPrompt?: string;
+  model?: ModelId;
+  temperature?: number;
+  maxTokens?: number;
+  detail?: "auto" | "low" | "high";
+}
+
+export interface VisionAnalysisResult {
+  content: string;
+  model: string;
+  usage: {
+    promptTokens: number;
+    completionTokens: number;
+    totalTokens: number;
+  };
+  cost: number;
+}
+
 export interface CompletionResult {
   content: string;
   model: string;
@@ -396,5 +439,219 @@ export async function aiPremium(prompt: string): Promise<string> {
     model: "anthropic/claude-4.5-opus",
     temperature: 0.5,
   });
+  return result.content;
+}
+
+// ============================================================================
+// VISION FUNCTIONS
+// ============================================================================
+
+/**
+ * Analyze an image with optional reference images
+ * Uses Gemini 3 Pro by default (best for vision tasks)
+ */
+export async function analyzeImageWithVision(
+  imageUrl: string,
+  prompt: string,
+  referenceImageUrls: string[] = [],
+  options: VisionOptions = {}
+): Promise<VisionAnalysisResult> {
+  const {
+    systemPrompt,
+    model = "google/gemini-3-pro",
+    temperature = 0.5,
+    maxTokens = 4096,
+    detail = "high",
+  } = options;
+
+  const client = getOpenRouterClient();
+
+  // Build user message with images
+  const userContent: Array<TextContent | ImageContent> = [];
+
+  // Add main image first
+  userContent.push({
+    type: "image_url",
+    image_url: {
+      url: imageUrl,
+      detail,
+    },
+  });
+
+  // Add reference images
+  for (const refUrl of referenceImageUrls) {
+    userContent.push({
+      type: "image_url",
+      image_url: {
+        url: refUrl,
+        detail: "low", // Use low detail for references to save tokens
+      },
+    });
+  }
+
+  // Add text prompt
+  userContent.push({
+    type: "text",
+    text: prompt,
+  });
+
+  // Build messages
+  const messages: VisionMessage[] = [];
+
+  if (systemPrompt) {
+    messages.push({
+      role: "system",
+      content: systemPrompt,
+    });
+  }
+
+  messages.push({
+    role: "user",
+    content: userContent,
+  });
+
+  // Make API call
+  const response = await fetch(`${client["baseUrl"]}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${client["apiKey"]}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://moostik.vercel.app",
+      "X-Title": "Moostik Bloodwings - Vision Analysis",
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`OpenRouter Vision API error: ${response.status} - ${error}`);
+  }
+
+  const data = await response.json();
+  
+  const modelInfo = MODELS[model];
+  const promptTokens = data.usage?.prompt_tokens || 0;
+  const completionTokens = data.usage?.completion_tokens || 0;
+  
+  // Calculate cost (vision images add ~500-2000 tokens each)
+  const cost = modelInfo
+    ? (promptTokens * modelInfo.inputPrice + completionTokens * modelInfo.outputPrice) / 1_000_000
+    : 0;
+
+  return {
+    content: data.choices?.[0]?.message?.content || "",
+    model: data.model || model,
+    usage: {
+      promptTokens,
+      completionTokens,
+      totalTokens: promptTokens + completionTokens,
+    },
+    cost,
+  };
+}
+
+/**
+ * Compare multiple images (e.g., generated vs reference)
+ */
+export async function compareImages(
+  images: string[],
+  comparisonPrompt: string,
+  options: VisionOptions = {}
+): Promise<VisionAnalysisResult> {
+  if (images.length < 2) {
+    throw new Error("At least 2 images required for comparison");
+  }
+
+  const {
+    systemPrompt = "Tu es un expert en analyse d'images. Compare les images fournies et donne une evaluation detaillee.",
+    model = "google/gemini-3-pro",
+    temperature = 0.3,
+    maxTokens = 4096,
+    detail = "high",
+  } = options;
+
+  const client = getOpenRouterClient();
+
+  // Build user message with all images
+  const userContent: Array<TextContent | ImageContent> = [];
+
+  for (let i = 0; i < images.length; i++) {
+    userContent.push({
+      type: "image_url",
+      image_url: {
+        url: images[i],
+        detail: i === 0 ? detail : "low", // First image high detail, rest low
+      },
+    });
+  }
+
+  userContent.push({
+    type: "text",
+    text: comparisonPrompt,
+  });
+
+  const messages: VisionMessage[] = [
+    { role: "system", content: systemPrompt },
+    { role: "user", content: userContent },
+  ];
+
+  const response = await fetch(`${client["baseUrl"]}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${client["apiKey"]}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://moostik.vercel.app",
+      "X-Title": "Moostik Bloodwings - Image Comparison",
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`OpenRouter Vision API error: ${response.status} - ${error}`);
+  }
+
+  const data = await response.json();
+  
+  const modelInfo = MODELS[model];
+  const promptTokens = data.usage?.prompt_tokens || 0;
+  const completionTokens = data.usage?.completion_tokens || 0;
+  
+  const cost = modelInfo
+    ? (promptTokens * modelInfo.inputPrice + completionTokens * modelInfo.outputPrice) / 1_000_000
+    : 0;
+
+  return {
+    content: data.choices?.[0]?.message?.content || "",
+    model: data.model || model,
+    usage: {
+      promptTokens,
+      completionTokens,
+      totalTokens: promptTokens + completionTokens,
+    },
+    cost,
+  };
+}
+
+/**
+ * Quick image description
+ */
+export async function describeImage(imageUrl: string): Promise<string> {
+  const result = await analyzeImageWithVision(
+    imageUrl,
+    "Decris cette image en detail.",
+    [],
+    { model: "google/gemini-3-flash", temperature: 0.3 }
+  );
   return result.content;
 }

@@ -33,6 +33,38 @@ export type VariationStatus = "pending" | "generating" | "completed" | "failed";
 export type ShotStatus = "pending" | "in_progress" | "completed";
 
 // ============================================================================
+// VIDEO PROMPT DATA - SOTA Janvier 2026
+// ============================================================================
+
+/** Data for SOTA video generation prompt */
+export interface VideoPromptData {
+  /** Optimized video prompt for the specific model */
+  prompt: string;
+  /** Negative prompt (not supported by all models) */
+  negativePrompt?: string;
+  /** Duration in seconds */
+  duration: number;
+  /** Frames per second */
+  fps: number;
+  /** Aspect ratio (e.g., "21:9") */
+  aspectRatio: string;
+  /** Camera motion description */
+  cameraMotion?: string;
+  /** Audio prompt for models with native audio */
+  audioPrompt?: string;
+  /** First frame image URL */
+  firstFrame?: string;
+  /** Last frame image URL (for interpolation) */
+  lastFrame?: string;
+  /** Video provider to use */
+  provider: string;
+  /** Estimated cost in USD */
+  estimatedCost: number;
+  /** Model-specific configuration */
+  modelConfig: Record<string, unknown>;
+}
+
+// ============================================================================
 // SYSTÈME DE DIALOGUE
 // ============================================================================
 
@@ -176,30 +208,75 @@ export interface Variation {
   localPath?: string;
   generatedAt?: string;
   seed?: number;
+  
+  // SOTA BLOODWINGS - Custom prompt per variation
+  /** Custom prompt override for this specific variation */
+  customPrompt?: import("@/lib/json-moostik-standard").JsonMoostik;
+  /** SOTA version used for generation */
+  sotaVersion?: string;
+  /** Strategy used for this variation (chaos-wide, victim-pov, etc.) */
+  strategy?: string;
+  /** Human-readable description of this variation */
+  description?: string;
+  /** Prompt modifiers applied to this variation */
+  promptOverrides?: {
+    composition?: { framing: string; layout: string; depth: string };
+    camera?: { angle: string; lens_mm?: number };
+    focusShift?: string;
+    momentShift?: string;
+  };
+  /** Is this a legacy pre-SOTA variation */
+  isLegacy?: boolean;
+  /** Original ID before legacy conversion */
+  legacyId?: string;
+  /** Reason for legacy status */
+  legacyReason?: string;
+  /** Any error during generation */
+  error?: string;
+  /** Creation timestamp */
+  createdAt?: string;
 
-  // Video generation
+  // Video generation - SOTA Janvier 2026
   /** Video generation status */
   videoStatus?: "pending" | "generating" | "completed" | "failed";
-  /** Generated video URL (from provider CDN) */
+  /** Generated video URL (from provider CDN or Supabase) */
   videoUrl?: string;
   /** Local path to downloaded video */
   videoLocalPath?: string;
-  /** Video provider used (kling, runway, etc.) */
+  /** Video provider used (kling-2.6, veo-3.1-fast, etc.) */
   videoProvider?: string;
   /** Video generation timestamp */
   videoGeneratedAt?: string;
-  /** Optimized video prompt */
-  videoPrompt?: string;
+  /** SOTA Video prompt data */
+  videoPrompt?: VideoPromptData;
   /** Video duration in seconds */
   videoDuration?: number;
   /** Camera motion type */
   videoCameraMotion?: string;
+  /** Video generation error */
+  videoError?: string;
 
   // Lip sync
   /** Lip sync status */
   lipSyncStatus?: "pending" | "processing" | "completed" | "failed";
   /** Lip-synced video path */
   lipSyncVideoPath?: string;
+
+  // Image Grading - SOTA Février 2026
+  /** Overall quality score (0-100) */
+  qualityScore?: number;
+  /** Character fidelity score (0-100) */
+  characterFidelityScore?: number;
+  /** Environment fidelity score (0-100) */
+  environmentFidelityScore?: number;
+  /** DA compliance score (0-100) */
+  daComplianceScore?: number;
+  /** Narrative coherence score (0-100) */
+  narrativeCoherenceScore?: number;
+  /** Detailed grading feedback */
+  gradingFeedback?: string;
+  /** When the variation was graded */
+  gradedAt?: string;
 }
 
 export interface Shot {

@@ -14,6 +14,142 @@ import { cn } from "@/lib/utils";
 import { ShotPlaceholder } from "@/components/shared/ShotPlaceholder";
 import type { Shot } from "@/types";
 
+// ============================================================================
+// GRADE BADGE COMPONENT
+// ============================================================================
+
+type GradeLetter = "S" | "A" | "B" | "C" | "D" | "F";
+
+interface GradeInfo {
+  grade: GradeLetter;
+  score: number;
+  breakdown?: {
+    characterFidelity?: { score: number };
+    environmentFidelity?: { score: number };
+    bibleCompliance?: { score: number };
+    narrativeCoherence?: { score: number };
+  };
+  violations?: string[];
+  suggestions?: string[];
+  regenerateRecommended?: boolean;
+}
+
+const GRADE_CONFIG: Record<GradeLetter, { color: string; bg: string; border: string; label: string }> = {
+  S: { color: "text-yellow-400", bg: "bg-yellow-500/20", border: "border-yellow-500/40", label: "Exceptionnel" },
+  A: { color: "text-emerald-400", bg: "bg-emerald-500/20", border: "border-emerald-500/40", label: "Excellent" },
+  B: { color: "text-blue-400", bg: "bg-blue-500/20", border: "border-blue-500/40", label: "Bon" },
+  C: { color: "text-amber-400", bg: "bg-amber-500/20", border: "border-amber-500/40", label: "Passable" },
+  D: { color: "text-orange-400", bg: "bg-orange-500/20", border: "border-orange-500/40", label: "Insuffisant" },
+  F: { color: "text-red-400", bg: "bg-red-500/20", border: "border-red-500/40", label: "Échec" },
+};
+
+function GradeBadge({ gradeInfo, onGrade }: { gradeInfo?: GradeInfo; onGrade?: () => void }) {
+  if (!gradeInfo) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            onClick={(e) => { e.stopPropagation(); onGrade?.(); }}
+            className="absolute top-2 left-2 z-10 w-7 h-7 rounded-lg bg-zinc-800/80 backdrop-blur-sm border border-zinc-700/50 flex items-center justify-center text-[10px] font-bold text-zinc-500 hover:bg-zinc-700/80 hover:text-zinc-300 transition-all cursor-pointer"
+          >
+            ?
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="right" className="bg-[#0b0b0e] border-zinc-700/50 text-white max-w-xs">
+          <p className="text-xs">Cliquez pour noter cette image</p>
+          <p className="text-[10px] text-zinc-500 mt-1">Agent IA de notation Moostik</p>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  const config = GRADE_CONFIG[gradeInfo.grade];
+  const breakdown = gradeInfo.breakdown;
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          onClick={(e) => { e.stopPropagation(); onGrade?.(); }}
+          className={cn(
+            "absolute top-2 left-2 z-10 w-7 h-7 rounded-lg backdrop-blur-sm border flex items-center justify-center text-sm font-black transition-all cursor-pointer hover:scale-110",
+            config.bg, config.border, config.color
+          )}
+        >
+          {gradeInfo.grade}
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="right" className="bg-[#0b0b0e] border-zinc-700/50 text-white max-w-xs p-3">
+        <div className="space-y-2">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <span className={cn("text-lg font-black", config.color)}>{gradeInfo.grade}</span>
+            <span className="text-xs text-zinc-400">{gradeInfo.score}/100</span>
+          </div>
+          <p className="text-xs text-zinc-300">{config.label}</p>
+          
+          {/* Breakdown */}
+          {breakdown && (
+            <div className="space-y-1 pt-2 border-t border-zinc-800">
+              <div className="flex justify-between text-[10px]">
+                <span className="text-zinc-500">Personnage</span>
+                <span className="text-zinc-300">{breakdown.characterFidelity?.score ?? "N/A"}</span>
+              </div>
+              <div className="flex justify-between text-[10px]">
+                <span className="text-zinc-500">Environnement</span>
+                <span className="text-zinc-300">{breakdown.environmentFidelity?.score ?? "N/A"}</span>
+              </div>
+              <div className="flex justify-between text-[10px]">
+                <span className="text-zinc-500">Bible DA</span>
+                <span className="text-zinc-300">{breakdown.bibleCompliance?.score ?? "N/A"}</span>
+              </div>
+              <div className="flex justify-between text-[10px]">
+                <span className="text-zinc-500">Narration</span>
+                <span className="text-zinc-300">{breakdown.narrativeCoherence?.score ?? "N/A"}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Violations */}
+          {gradeInfo.violations && gradeInfo.violations.length > 0 && (
+            <div className="pt-2 border-t border-zinc-800">
+              <p className="text-[10px] text-red-400 font-medium mb-1">Violations:</p>
+              <ul className="text-[10px] text-zinc-400 space-y-0.5">
+                {gradeInfo.violations.slice(0, 3).map((v, i) => (
+                  <li key={i} className="truncate">• {v}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Suggestions */}
+          {gradeInfo.suggestions && gradeInfo.suggestions.length > 0 && (
+            <div className="pt-2 border-t border-zinc-800">
+              <p className="text-[10px] text-amber-400 font-medium mb-1">Suggestions:</p>
+              <ul className="text-[10px] text-zinc-400 space-y-0.5">
+                {gradeInfo.suggestions.slice(0, 2).map((s, i) => (
+                  <li key={i} className="truncate">• {s}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Regenerate recommendation */}
+          {gradeInfo.regenerateRecommended && (
+            <div className="pt-2 border-t border-zinc-800">
+              <p className="text-[10px] text-red-400 font-medium">⚠️ Régénération recommandée</p>
+            </div>
+          )}
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+// ============================================================================
+// SHOT CARD PROPS
+// ============================================================================
+
 interface ShotCardProps {
   shot: Shot;
   onEdit: (shot: Shot) => void;
@@ -22,6 +158,7 @@ interface ShotCardProps {
   onDuplicate: (shot: Shot) => void;
   onViewDetails: (shot: Shot) => void;
   isGenerating?: boolean;
+  onGradeImage?: (shot: Shot, variationId?: string) => void;
 }
 
 export function ShotCard({
@@ -32,6 +169,7 @@ export function ShotCard({
   onDuplicate,
   onViewDetails,
   isGenerating,
+  onGradeImage,
 }: ShotCardProps) {
   const completedVariations = shot.variations.filter((v) => v.status === "completed").length;
   const totalVariations = shot.variations.length;
@@ -39,6 +177,28 @@ export function ShotCard({
 
   // Get the first completed variation for preview
   const previewVariation = shot.variations.find((v) => v.imageUrl);
+
+  // Get grade info from variation if available
+  const getGradeInfo = (variation?: typeof shot.variations[0]): GradeInfo | undefined => {
+    if (!variation?.qualityScore) return undefined;
+    
+    // Determine grade letter from score
+    const score = variation.qualityScore;
+    let grade: GradeLetter = "F";
+    if (score >= 95) grade = "S";
+    else if (score >= 85) grade = "A";
+    else if (score >= 70) grade = "B";
+    else if (score >= 55) grade = "C";
+    else if (score >= 40) grade = "D";
+    
+    return {
+      grade,
+      score,
+      regenerateRecommended: score < 60,
+    };
+  };
+
+  const previewGrade = getGradeInfo(previewVariation);
 
   const statusConfig = {
     pending: { color: "bg-zinc-800 text-zinc-500 border-zinc-700/50", label: "En attente", textColor: "text-zinc-500" },
@@ -69,6 +229,12 @@ export function ShotCard({
               
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0e] via-transparent to-transparent opacity-60" />
+
+              {/* Grade Badge */}
+              <GradeBadge 
+                gradeInfo={previewGrade} 
+                onGrade={() => onGradeImage?.(shot, previewVariation.id)}
+              />
 
               {/* Mini Grid Overlay */}
               <div className="absolute bottom-3 right-3 p-1.5 flex gap-1 bg-black/40 backdrop-blur-md rounded-lg border border-white/10">

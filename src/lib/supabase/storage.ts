@@ -16,6 +16,9 @@ export const BUCKET_GENERATED_IMAGES = "generated-images";
 /** Bucket pour les images de référence (personnages, lieux) */
 export const BUCKET_REFERENCES = "references";
 
+/** Bucket pour les vidéos générées - SOTA Janvier 2026 */
+export const BUCKET_VIDEOS = "generated-videos";
+
 /** URL publique de Supabase */
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 
@@ -47,7 +50,7 @@ export interface UploadResult {
 
 export interface UploadOptions {
   /** Bucket cible */
-  bucket: typeof BUCKET_GENERATED_IMAGES | typeof BUCKET_REFERENCES;
+  bucket: typeof BUCKET_GENERATED_IMAGES | typeof BUCKET_REFERENCES | typeof BUCKET_VIDEOS;
   /** Chemin dans le bucket (ex: "ep0/shot-1/var-wide.png") */
   path: string;
   /** Type MIME du fichier */
@@ -361,4 +364,137 @@ export async function uploadReference(
     contentType: "image/png",
     upsert: true,
   });
+}
+
+// ============================================
+// VIDEO UPLOAD FUNCTIONS - SOTA Janvier 2026
+// ============================================
+
+/**
+ * Upload une vidéo générée vers Supabase Storage
+ * 
+ * @param videoData - Données de la vidéo
+ * @param episodeId - ID de l'épisode
+ * @param shotId - ID du shot
+ * @param variationId - ID de la variation
+ * @returns UploadResult avec l'URL publique
+ */
+export async function uploadVideo(
+  videoData: Buffer | Blob | ArrayBuffer,
+  episodeId: string,
+  shotId: string,
+  variationId: string
+): Promise<UploadResult> {
+  const path = `${episodeId}/${shotId}/${variationId}.mp4`;
+  
+  return uploadFile(videoData, {
+    bucket: BUCKET_VIDEOS,
+    path,
+    contentType: "video/mp4",
+    upsert: true,
+  });
+}
+
+/**
+ * Upload une vidéo depuis une URL vers Supabase Storage
+ * 
+ * @param videoUrl - URL de la vidéo source
+ * @param episodeId - ID de l'épisode
+ * @param shotId - ID du shot  
+ * @param variationId - ID de la variation
+ * @returns UploadResult avec l'URL publique
+ */
+export async function uploadVideoFromUrl(
+  videoUrl: string,
+  episodeId: string,
+  shotId: string,
+  variationId: string
+): Promise<UploadResult> {
+  try {
+    console.log(`[VideoUpload] Downloading from: ${videoUrl}`);
+    
+    const response = await fetch(videoUrl);
+    if (!response.ok) {
+      return {
+        success: false,
+        error: `Failed to fetch video: ${response.status} ${response.statusText}`,
+      };
+    }
+    
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    console.log(`[VideoUpload] Downloaded ${buffer.length} bytes, uploading to Supabase...`);
+    
+    return uploadVideo(buffer, episodeId, shotId, variationId);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[VideoUpload] Error:`, error);
+    return {
+      success: false,
+      error: message,
+    };
+  }
+}
+
+/**
+ * Upload générique d'un fichier vers Supabase Storage
+ */
+async function uploadFile(
+  data: Buffer | Blob | ArrayBuffer,
+  options: UploadOptions
+): Promise<UploadResult> {
+  const { bucket, path, contentType, upsert = true } = options;
+  
+  if (!isSupabaseConfigured()) {
+    console.warn("[Storage] Supabase not configured, skipping upload");
+    return {
+      success: false,
+      error: "Supabase not configured",
+    };
+  }
+  
+  try {
+    // Convertir en Uint8Array pour Supabase
+    let fileData: Uint8Array;
+    if (Buffer.isBuffer(data)) {
+      fileData = new Uint8Array(data);
+    } else if (data instanceof ArrayBuffer) {
+      fileData = new Uint8Array(data);
+    } else {
+      fileData = new Uint8Array(await data.arrayBuffer());
+    }
+    
+    const supabase = getServerClient();
+    const { error: uploadError } = await supabase.storage
+      .from(bucket)
+      .upload(path, fileData, {
+        contentType,
+        upsert,
+      });
+
+    if (uploadError) {
+      console.error(`[Storage] Upload error for ${bucket}/${path}:`, uploadError);
+      return {
+        success: false,
+        error: uploadError.message,
+      };
+    }
+    
+    const publicUrl = getPublicUrl(bucket, path);
+    console.log(`[Storage] Uploaded to ${bucket}/${path} -> ${publicUrl}`);
+    
+    return {
+      success: true,
+      publicUrl,
+      storagePath: path,
+    };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[Storage] Error uploading to ${bucket}/${path}:`, error);
+    return {
+      success: false,
+      error: message,
+    };
+  }
 }

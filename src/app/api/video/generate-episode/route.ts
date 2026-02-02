@@ -165,7 +165,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           return {
             ...variation,
             videoStatus: "pending" as const,
-            videoPrompt: videoPrompt.shortPrompt,
+            videoPrompt: {
+              prompt: videoPrompt.shortPrompt,
+              negativePrompt: videoPrompt.negativePrompt,
+              duration: videoPrompt.recommendedDuration,
+              fps: 24,
+              aspectRatio: "21:9",
+              cameraMotion: videoPrompt.cameraMotion.type,
+              provider: "kling-2.6",
+              estimatedCost: 0.65,
+              modelConfig: {
+                mode: "pro",
+                motion_amount: 0.5,
+              },
+            },
             videoDuration: videoPrompt.recommendedDuration,
             videoCameraMotion: videoPrompt.cameraMotion.type,
           };

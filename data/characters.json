@@ -778,7 +778,13 @@
       "Grief transformed to purpose",
       "Voice of the fallen"
     ],
-    "backstory": "Mila était une jeune mère lors du génocide. Elle a perdu ses enfants mais a survécu pour témoigner. Elle a consacré sa vie à préserver la mémoire de chaque victime.",
+    "backstory": "Mila était une jeune mère lors du génocide. Elle a perdu ses premiers enfants mais a survécu avec Koko et Bébé Dorval après le sacrifice de Mama Dorval. Dans le refuge du Pneu, Mila a pris la décision sacrée de pondre une nouvelle génération - devenant la Mère de la Renaissance. Ses œufs ont donné naissance aux premiers Bloodwings. Elle a ensuite consacré sa vie à préserver la mémoire de chaque victime et à transmettre l'histoire aux nouvelles générations, dont le jeune Dorval.",
+    "pivotalRole": {
+      "episode": "t0.5",
+      "sequence": "seq-10",
+      "action": "Ponte de la nouvelle génération dans le Pneu",
+      "significance": "Mère biologique de la Renaissance Bloodwing"
+    },
     "relationships": [
       {
         "targetId": "papy-tik",
@@ -830,7 +836,13 @@
       "Never sleeps deeply",
       "Voice of urgent memory"
     ],
-    "backstory": "Trez était le premier à sentir le BYSS arriver. Son alerte a sauvé les quelques survivants dont Dorval bébé. Il n'a jamais pardonné de ne pas avoir été plus rapide.",
+    "backstory": "Trez était le premier à sentir le BYSS arriver. Son alerte a déclenché la fuite des 5 survivants. Hélas, lors de la course-poursuite avec l'enfant-tueur, Trez fut le premier à tomber - écrasé par les doigts titans de l'enfant alors qu'il couvrait la fuite des autres. Sa mort héroïque permit à Koko, Mila, Mama Dorval et Bébé Dorval de s'échapper. Son sacrifice est célébré comme le premier martyr de l'ère Bloodwing.",
+    "death": {
+      "episode": "t0.5",
+      "sequence": "seq-4",
+      "cause": "Écrasé par les doigts de l'enfant-tueur",
+      "heroicAct": "A couvert la fuite des 4 autres survivants"
+    },
     "relationships": [
       {
         "targetId": "papy-tik",

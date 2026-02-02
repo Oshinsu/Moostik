@@ -23,13 +23,17 @@ export type VideoProvider =
   | "wan-2.6"
   | "kling-2.6"
   | "veo-3.1"
+  | "veo-3.1-fast"      // SOTA Janvier 2026 - $0.15/s
   | "hailuo-2.3"
+  | "hailuo-2.3-fast"   // SOTA Janvier 2026 - 50% moins cher
   | "luma-ray-2"
   | "luma-ray-3"
   | "ltx-2"
   | "sora-2"
   | "hunyuan-1.5"
-  | "pixverse-4";
+  | "pixverse-4"
+  | "seedance-1.5-pro"  // SOTA Janvier 2026 - Lip-sync multilingual
+  | "seedance-1-lite";  // Budget SOTA
 
 export type ProviderTier = "budget" | "standard" | "premium" | "local";
 
@@ -331,16 +335,20 @@ export interface BatchVideoResult {
 export const REPLICATE_MODELS: Record<VideoProvider, string> = {
   "wan-2.2": "wan-video/wan-2.2-i2v-fast",
   "wan-2.5": "wan-video/wan-2.5-i2v",
-  "wan-2.6": "wan-video/wan-2.6-i2v", // If available
+  "wan-2.6": "wan-video/wan-2.6-i2v",
   "kling-2.6": "kwaivgi/kling-v2.6-pro",
   "veo-3.1": "google/veo-3-1",
-  "hailuo-2.3": "minimax/hailuo-02-pro",
+  "veo-3.1-fast": "google/veo-3.1-fast",           // SOTA Janvier 2026
+  "hailuo-2.3": "minimax/hailuo-2.3",
+  "hailuo-2.3-fast": "minimax/hailuo-2.3-fast",   // SOTA Janvier 2026
   "luma-ray-2": "luma/ray-2",
   "luma-ray-3": "luma/ray-3",
   "ltx-2": "lightricks/ltx-video-2",
   "sora-2": "openai/sora-2",
   "hunyuan-1.5": "tencent/hunyuan-video",
   "pixverse-4": "pixverse/pixverse-v4",
+  "seedance-1.5-pro": "bytedance/seedance-1.5-pro", // SOTA Janvier 2026
+  "seedance-1-lite": "bytedance/seedance-1-lite",   // Budget SOTA
 };
 
 export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
@@ -765,6 +773,138 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
       currency: "USD",
     },
   },
+
+  // ============================================
+  // SOTA JANVIER 2026 - NEW PROVIDERS
+  // ============================================
+  
+  "veo-3.1-fast": {
+    provider: "veo-3.1-fast",
+    tier: "standard",
+    replicateModel: "google/veo-3.1-fast",
+    maxConcurrent: 3,
+    timeoutMs: 300000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: true, // First/Last frame support
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["Best physics", "Context-aware audio", "First/Last frame", "56% cheaper than Veo 3.1"],
+      weaknesses: ["720p for fast tier", "Shorter than full Veo"],
+    },
+    pricing: {
+      costPerSecond: 0.15,
+      costPer5sVideo: 0.75,
+      minimumCost: 0.75,
+      currency: "USD",
+    },
+  },
+
+  "hailuo-2.3-fast": {
+    provider: "hailuo-2.3-fast",
+    tier: "standard",
+    replicateModel: "minimax/hailuo-2.3-fast",
+    maxConcurrent: 3,
+    timeoutMs: 240000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 6,
+      supportedResolutions: ["768p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [25],
+      strengths: ["50% cheaper than standard", "Same motion quality", "Fast iteration"],
+      weaknesses: ["No audio", "25fps only"],
+    },
+    pricing: {
+      costPerSecond: 0.05,
+      costPer5sVideo: 0.25,
+      minimumCost: 0.25,
+      currency: "USD",
+    },
+  },
+
+  "seedance-1.5-pro": {
+    provider: "seedance-1.5-pro",
+    tier: "premium",
+    replicateModel: "bytedance/seedance-1.5-pro",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 12,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: true, // Multilingual lip-sync!
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["Lip-sync 8 languages", "Film-grade cinematography", "Native audio-visual"],
+      weaknesses: ["No negative prompts", "Higher cost"],
+    },
+    pricing: {
+      costPerSecond: 0.10,
+      costPer5sVideo: 0.50,
+      minimumCost: 0.50,
+      currency: "USD",
+    },
+  },
+
+  "seedance-1-lite": {
+    provider: "seedance-1-lite",
+    tier: "budget",
+    replicateModel: "bytedance/seedance-1-lite",
+    maxConcurrent: 5,
+    timeoutMs: 180000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 5,
+      supportedResolutions: ["480p", "720p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["Very cheap", "Fast", "Good quality/price ratio"],
+      weaknesses: ["No audio", "Lower resolution"],
+    },
+    pricing: {
+      costPerSecond: 0.03,
+      costPer5sVideo: 0.15,
+      minimumCost: 0.15,
+      currency: "USD",
+    },
+  },
 };
 
 // ============================================
@@ -775,16 +915,17 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
  * Recommended providers by animation type for MOOSTIK
  */
 export const MOOSTIK_ANIMATION_PROVIDERS: Record<AnimationType, VideoProvider[]> = {
-  subtle: ["wan-2.5", "ltx-2", "hunyuan-1.5"],
-  dialogue: ["kling-2.6", "wan-2.5"], // Need lip-sync or motion control
-  action: ["hailuo-2.3", "kling-2.6", "veo-3.1"],
-  transition: ["luma-ray-2", "wan-2.5"],
-  establishing: ["veo-3.1", "luma-ray-2", "luma-ray-3"],
-  emotional: ["kling-2.6", "hailuo-2.3", "veo-3.1"],
-  combat: ["hailuo-2.3", "kling-2.6"],
-  death: ["veo-3.1", "kling-2.6", "hailuo-2.3"],
-  flashback: ["luma-ray-2", "wan-2.5"],
-  dance: ["hailuo-2.3", "kling-2.6"],
+  // SOTA Janvier 2026 - Updated recommendations
+  subtle: ["wan-2.6", "hailuo-2.3-fast", "ltx-2", "hunyuan-1.5"],
+  dialogue: ["seedance-1.5-pro", "kling-2.6"], // Seedance = BEST lip-sync multilingue
+  action: ["hailuo-2.3", "kling-2.6", "veo-3.1-fast"],
+  transition: ["luma-ray-2", "wan-2.6", "veo-3.1-fast"],
+  establishing: ["veo-3.1-fast", "veo-3.1", "luma-ray-2", "luma-ray-3"],
+  emotional: ["kling-2.6", "seedance-1.5-pro", "hailuo-2.3", "veo-3.1-fast"],
+  combat: ["hailuo-2.3", "kling-2.6", "veo-3.1-fast"],
+  death: ["veo-3.1-fast", "kling-2.6", "hailuo-2.3"],
+  flashback: ["luma-ray-2", "wan-2.6", "veo-3.1-fast"], // First/Last frame
+  dance: ["hailuo-2.3", "kling-2.6", "seedance-1.5-pro"],
   walking: ["wan-2.5", "ltx-2"],
   flying: ["veo-3.1", "kling-2.6"],
 };

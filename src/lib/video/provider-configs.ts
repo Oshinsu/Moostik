@@ -446,6 +446,127 @@ export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig
       "Best for long narrative sequences",
     ],
   },
+
+  // ============================================
+  // SOTA JANVIER 2026 - NEW PROVIDERS
+  // ============================================
+
+  "veo-3.1-fast": {
+    maxLength: 1500,
+    preferredStyle: "cinematic",
+    keywordWeights: {
+      physics: 1.5,
+      natural: 1.4,
+      cinematic: 1.3,
+      audio: 1.3,
+    },
+    negativePromptLibrary: [
+      "blurry",
+      "low quality",
+      "artifact",
+      "impossible physics",
+      "floating objects",
+    ],
+    supportsNegativePrompt: true,
+    supportsWeightSyntax: false,
+    avoidTerms: ["surreal physics", "impossible motion"],
+    boostTerms: [
+      "realistic physics",
+      "natural motion",
+      "atmospheric audio",
+      "cinematic",
+      "first frame to last frame",
+    ],
+    notes: [
+      "Best physics simulation",
+      "Native audio generation",
+      "Supports first/last frame interpolation",
+      "56% cheaper than Veo 3.1 standard",
+    ],
+  },
+
+  "hailuo-2.3-fast": {
+    maxLength: 1200,
+    preferredStyle: "descriptive",
+    keywordWeights: {
+      dynamic: 1.5,
+      expressive: 1.4,
+      emotional: 1.3,
+      fluid: 1.3,
+    },
+    negativePromptLibrary: [
+      "blurry",
+      "static",
+      "frozen",
+      "low quality",
+      "jittery",
+    ],
+    supportsNegativePrompt: true,
+    supportsWeightSyntax: false,
+    avoidTerms: ["static", "frozen", "still"],
+    boostTerms: [
+      "fluid motion",
+      "dynamic",
+      "expressive",
+      "emotional intensity",
+      "graceful movement",
+    ],
+    notes: [
+      "50% cheaper than standard Hailuo",
+      "Same motion quality",
+      "Best for character animation",
+      "Excellent for dance and fluid motion",
+    ],
+  },
+
+  "seedance-1.5-pro": {
+    maxLength: 1000,
+    preferredStyle: "descriptive",
+    keywordWeights: {
+      speaking: 1.5,
+      dialogue: 1.4,
+      expressive: 1.4,
+      emotional: 1.3,
+    },
+    negativePromptLibrary: [], // NO NEGATIVE PROMPTS SUPPORTED
+    supportsNegativePrompt: false,
+    supportsWeightSyntax: false,
+    avoidTerms: ["don't", "no", "not", "without", "never"], // NO NEGATIONS
+    boostTerms: [
+      "speaking",
+      "dialogue",
+      "conversation",
+      "expressive",
+      "emotional",
+      "character talking",
+    ],
+    notes: [
+      "BEST lip-sync in industry (8 languages)",
+      "NO negative prompts supported",
+      "Avoid negation words in prompt",
+      "Native audio-visual synthesis",
+      "Film-grade cinematography",
+    ],
+  },
+
+  "seedance-1-lite": {
+    maxLength: 600,
+    preferredStyle: "concise",
+    keywordWeights: {
+      motion: 1.3,
+      smooth: 1.2,
+    },
+    negativePromptLibrary: [], // NO NEGATIVE PROMPTS
+    supportsNegativePrompt: false,
+    supportsWeightSyntax: false,
+    avoidTerms: ["don't", "no", "not", "without"],
+    boostTerms: ["smooth", "natural", "professional"],
+    notes: [
+      "Budget Seedance option",
+      "Good quality/price ratio",
+      "No lip-sync support",
+    ],
+  },
 };
 
 // ============================================

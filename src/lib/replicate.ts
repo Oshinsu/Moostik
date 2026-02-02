@@ -278,6 +278,7 @@ export async function generateVariation(
 }
 
 // Générer toutes les variations d'un shot en parallèle
+// SOTA BLOODWINGS: Support pour customPrompt par variation
 export async function generateShotVariations(
   moostikPrompt: MoostikPrompt | JsonMoostik,
   variations: Variation[],
@@ -288,9 +289,13 @@ export async function generateShotVariations(
 ): Promise<BatchGenerationResult[]> {
   const pendingVariations = variations.filter(v => v.status === "pending" || v.status === "failed");
 
+  // Count variations with custom prompts
+  const customPromptCount = pendingVariations.filter(v => v.customPrompt).length;
+
   logger.info("Starting shot variations generation", {
     shotId,
     total: pendingVariations.length,
+    withCustomPrompt: customPromptCount,
     episodeId,
   });
 
@@ -302,8 +307,17 @@ export async function generateShotVariations(
     processor: async (variation) => {
       onProgress?.(variation.id, "generating");
 
+      // SOTA BLOODWINGS: Use customPrompt if available, otherwise use base prompt
+      const promptToUse = variation.customPrompt || moostikPrompt;
+      
+      logger.debug(`Generating variation ${variation.id}`, {
+        hasCustomPrompt: !!variation.customPrompt,
+        strategy: variation.strategy,
+        cameraAngle: variation.cameraAngle,
+      });
+
       const result = await generateVariation(
-        moostikPrompt,
+        promptToUse,
         variation.cameraAngle,
         episodeId,
         shotId,
@@ -351,6 +365,7 @@ export async function generateShotVariations(
     shotId,
     successful: batchResult.successful.length,
     failed: batchResult.failed.length,
+    withCustomPrompt: customPromptCount,
     totalTime: `${batchResult.totalTime}ms`,
   });
 

@@ -57,13 +57,17 @@ const PROVIDER_ICONS: Record<VideoProvider, string> = {
   "wan-2.6": "🌟",
   "kling-2.6": "🎬",
   "veo-3.1": "🏆",
+  "veo-3.1-fast": "⚡",
   "hailuo-2.3": "💃",
+  "hailuo-2.3-fast": "🏃",
   "luma-ray-2": "🌈",
   "luma-ray-3": "⚡",
   "ltx-2": "🔓",
   "sora-2": "🎥",
   "hunyuan-1.5": "🐉",
   "pixverse-4": "🎨",
+  "seedance-1.5-pro": "🎤",
+  "seedance-1-lite": "🎵",
 };
 
 const PROVIDER_NAMES: Record<VideoProvider, string> = {
@@ -72,13 +76,17 @@ const PROVIDER_NAMES: Record<VideoProvider, string> = {
   "wan-2.6": "Wan 2.6",
   "kling-2.6": "Kling 2.6 Pro",
   "veo-3.1": "Google Veo 3.1",
+  "veo-3.1-fast": "Veo 3.1 Fast",
   "hailuo-2.3": "Hailuo 2.3 Pro",
+  "hailuo-2.3-fast": "Hailuo 2.3 Fast",
   "luma-ray-2": "Luma Ray 2",
   "luma-ray-3": "Luma Ray 3",
   "ltx-2": "LTX-2 (Open)",
   "sora-2": "OpenAI Sora 2",
   "hunyuan-1.5": "Hunyuan 1.5",
   "pixverse-4": "PixVerse 4",
+  "seedance-1.5-pro": "Seedance 1.5 Pro",
+  "seedance-1-lite": "Seedance 1 Lite",
 };
 
 const PROVIDER_COMPANIES: Record<VideoProvider, string> = {
@@ -87,13 +95,17 @@ const PROVIDER_COMPANIES: Record<VideoProvider, string> = {
   "wan-2.6": "Alibaba",
   "kling-2.6": "Kuaishou",
   "veo-3.1": "Google DeepMind",
+  "veo-3.1-fast": "Google DeepMind",
   "hailuo-2.3": "MiniMax",
+  "hailuo-2.3-fast": "MiniMax",
   "luma-ray-2": "Luma AI",
   "luma-ray-3": "Luma AI",
   "ltx-2": "Lightricks",
   "sora-2": "OpenAI",
   "hunyuan-1.5": "Tencent",
   "pixverse-4": "PixVerse",
+  "seedance-1.5-pro": "ByteDance",
+  "seedance-1-lite": "ByteDance",
 };
 
 export function VideoModelSelector({
