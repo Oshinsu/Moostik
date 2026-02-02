@@ -1,0 +1,198 @@
+"use client";
+
+import Link from "next/link";
+import { BloodwingsLogo } from "./BloodwingsLogo";
+import { ROUTES } from "@/types/bloodwings";
+import {
+  Twitter,
+  Instagram,
+  Youtube,
+  Linkedin,
+  Github,
+  Mail,
+  MapPin,
+  Building2,
+} from "lucide-react";
+
+// ============================================================================
+// FOOTER LINKS
+// ============================================================================
+
+interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+const FOOTER_LINKS: Record<string, FooterSection> = {
+  product: {
+    title: "Produit",
+    links: [
+      { label: "Studio", href: ROUTES.studio },
+      { label: "Tarifs", href: ROUTES.pricing },
+      { label: "Fonctionnalités", href: "/features" },
+      { label: "Roadmap", href: "/roadmap" },
+      { label: "Changelog", href: "/changelog" },
+    ],
+  },
+  series: {
+    title: "Série Moostik",
+    links: [
+      { label: "Regarder", href: ROUTES.moostik },
+      { label: "Personnages", href: "/moostik/characters" },
+      { label: "L'Univers", href: "/moostik/world" },
+      { label: "Épisodes", href: "/moostik/episodes" },
+    ],
+  },
+  community: {
+    title: "Communauté",
+    links: [
+      { label: "Galerie", href: ROUTES.communityGallery },
+      { label: "Soumettre un épisode", href: ROUTES.communitySubmit },
+      { label: "Créer un avatar", href: ROUTES.communityAvatar },
+      { label: "Discord", href: "https://discord.gg/bloodwings", external: true },
+    ],
+  },
+  legal: {
+    title: "Légal",
+    links: [
+      { label: "Mentions légales", href: "/legal" },
+      { label: "Confidentialité", href: "/privacy" },
+      { label: "CGU", href: "/terms" },
+      { label: "Cookies", href: "/cookies" },
+    ],
+  },
+  support: {
+    title: "Support",
+    links: [
+      { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Documentation", href: "/docs" },
+      { label: "Status", href: "https://status.bloodwings.studio", external: true },
+    ],
+  },
+};
+
+const SOCIAL_LINKS = [
+  { icon: Twitter, href: "https://twitter.com/bloodwingsstudio", label: "Twitter" },
+  { icon: Instagram, href: "https://instagram.com/bloodwingsstudio", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com/@bloodwingsstudio", label: "YouTube" },
+  { icon: Linkedin, href: "https://linkedin.com/company/bloodwings-studio", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/bloodwings-studio", label: "GitHub" },
+];
+
+// ============================================================================
+// FOOTER COMPONENT
+// ============================================================================
+
+export function PublicFooter() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[#08080a] border-t border-blood-900/20">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+            <Link href="/" className="inline-block mb-4">
+              <BloodwingsLogo size="sm" />
+            </Link>
+            <p className="text-sm text-zinc-500 mb-4 max-w-xs">
+              Le premier studio AI qui pense comme un réalisateur.
+              Créez votre série animée sans équipe.
+            </p>
+            
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-blood-400 hover:bg-blood-900/30 transition-all"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link Columns */}
+          {Object.entries(FOOTER_LINKS).map(([key, section]) => (
+            <div key={key}>
+              <h3 className="text-sm font-semibold text-white mb-4">
+                {section.title}
+              </h3>
+              <ul className="space-y-2">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-zinc-500 hover:text-blood-400 transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-zinc-500 hover:text-blood-400 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-zinc-900">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Company Info */}
+            <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-zinc-600">
+              <div className="flex items-center gap-2">
+                <Building2 className="w-3 h-3" />
+                <span>© {currentYear} Moostik Inc. / Bloodwings Studio</span>
+              </div>
+              <div className="hidden md:block w-px h-3 bg-zinc-800" />
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3 h-3" />
+                <span>Fort-de-France, Martinique</span>
+              </div>
+            </div>
+
+            {/* Powered By */}
+            <div className="flex items-center gap-2 text-xs text-zinc-600">
+              <span>Fondé par Gary Bissol</span>
+              <span className="text-zinc-700">•</span>
+              <span>Powered by</span>
+              <a 
+                href="https://byss.group" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blood-500 hover:text-blood-400 font-medium"
+              >
+                Byss Group
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
