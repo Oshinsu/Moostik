@@ -66,31 +66,28 @@ type StatusFilter = "all" | "completed" | "pending" | "with_video";
 type AngleFilter = "all" | "extreme_wide" | "wide" | "medium" | "close_up" | "low_angle";
 
 // ============================================================================
-// EPISODE METADATA
+// EPISODE METADATA - T0.5 GENÈSE DES BLOODWINGS
 // ============================================================================
 
 const EP0_METADATA = {
-  tagline: "La naissance de la vengeance.",
-  synopsis: `Dans les profondeurs d'une maison créole de Martinique, un drame se noue. 
-Un enfant de 5 ans, armé d'un simple aérosol BYSS, s'apprête inconsciemment à commettre un génocide.
+  tagline: "43 shots. 5 parties. 100% pipeline génératif.",
+  synopsis: `T0.5 — Genèse des Bloodwings.
 
-Les Moostik — un peuple millénaire de moustiques aux yeux d'ambre — vivent leur dernier jour de paix 
-dans le village Cooltik. Mama Dorval berce son bébé. Personne ne voit venir l'apocalypse.
+Proof of concept du pipeline Bloodwings Studio.
+43 shots générés. 5 parties narratives. Cohérence personnages maintenue sur l'ensemble.
+Image-to-video chain avec first/last frame. Beat sync sur Requiem for Attack on Titan.
 
-Quand le nuage toxique envahit l'air, seuls quelques-uns survivent. Parmi eux, un bébé 
-protégé par le sacrifice ultime de sa mère. Ce bébé deviendra Papy Tik, fondateur des Bloodwings.
-
-Cinquante ans plus tard, au Bar Ti Sang, les survivants racontent. Koko, Mila, Trez — 
-leurs voix portent le poids des milliers de morts. Car oublier, c'est mourir une seconde fois.`,
-  themes: ["Vengeance", "Mémoire", "Sacrifice", "Renaissance"],
+Le contenu : des moustiques anthropomorphes. Un génocide. Une reconstruction.
+L'intérêt : prouver que le pipeline fonctionne de bout en bout.`,
+  themes: ["Pipeline", "Cohérence", "Beat Sync", "I2V Chain"],
   music: {
     title: "Requiem for Attack on Titan OST",
     artist: "Hiroyuki Sawano",
-    mood: "Épique tragique"
+    mood: "Track de référence pour beat sync"
   },
-  inspiration: "Inspiré par l'intensité narrative de 'Attack on Titan' et le worldbuilding de Pixar.",
+  inspiration: "Esthétique Pixar-démoniaque. Moustiques anthropomorphes parce que personne n'avait osé.",
   duration: "~8 minutes",
-  structure: "Présent → Flashback → Génocide → Évasion → Reconstruction → Cliffhanger"
+  structure: "APOCALYPSE → ÉVASION → RECONSTRUCTION → BLOODWINGS → 20 ANS PLUS TARD"
 };
 
 // ============================================================================

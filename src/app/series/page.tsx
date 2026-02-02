@@ -102,48 +102,48 @@ export default function SeriesLandingPage() {
         </div>
 
         {/* Hero Content */}
-        <div 
+        <div
           className="relative z-10 text-center px-4 max-w-5xl mx-auto"
           style={{ transform: `translateY(${scrollY * -0.3}px)`, opacity: Math.max(0, 1 - scrollY / 500) }}
         >
           {/* Studio Badge */}
-          <Badge className="bg-blood-900/50 text-blood-300 border-blood-700/50 mb-6 text-sm">
-            BLOODWINGS STUDIO PRESENTS
+          <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 mb-6 text-sm">
+            PROOF OF CONCEPT — PIPELINE GÉNÉRATIF
           </Badge>
 
           {/* Title */}
           <h1 className="text-7xl md:text-9xl font-black tracking-tighter uppercase mb-4">
             <span className="block text-blood-500 moostik-text-glow">MOOSTIK</span>
           </h1>
-          
+
           {/* Subtitle */}
           <p className="text-2xl md:text-3xl text-zinc-400 font-light tracking-wide mb-2">
-            Rise of the Bloodwings
-          </p>
-          
-          {/* Tagline */}
-          <p className="text-lg text-blood-400 italic mb-8">
-            "We are the real vampires."
+            T0.5 — Genèse des Bloodwings
           </p>
 
-          {/* Synopsis */}
+          {/* Tagline */}
+          <p className="text-lg text-blood-400 italic mb-8">
+            43 shots. 5 parties. 100% généré.
+          </p>
+
+          {/* Synopsis factuel */}
           <p className="text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Dans les profondeurs de la Martinique, une civilisation de moustiques genies a survecu 
-            au genocide humain. Guidés par Papy Tik, les derniers survivants du Clan Cooltik 
-            preparent leur vengeance. Une saga épique en animation Pixar-demoniaque.
+            Une série sur des moustiques anthropomorphes. Du génocide à la reconstruction.
+            Esthétique Pixar-démoniaque. Fait pour prouver que le pipeline fonctionne.
+            Le reste, c&apos;est de la narration.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/watch/ep0">
+            <Link href="/watch/t05">
               <Button size="lg" className="moostik-btn-blood text-white font-bold px-8 py-6 text-lg group">
                 <span className="mr-2 group-hover:scale-110 transition-transform">▶</span>
-                Regarder l'Episode 0
+                Voir T0.5
               </Button>
             </Link>
-            <Link href="/ep0">
+            <Link href="/library">
               <Button size="lg" variant="outline" className="border-blood-700/50 text-blood-400 hover:bg-blood-900/20 px-8 py-6 text-lg">
-                Voir la Galerie
+                Explorer les assets
               </Button>
             </Link>
           </div>
@@ -161,39 +161,38 @@ export default function SeriesLandingPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* SYNOPSIS SECTION */}
+      {/* TECH SECTION */}
       {/* ================================================================ */}
       <section className="py-24 px-4 relative">
         <div className="max-w-4xl mx-auto">
-          <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 mb-6">SYNOPSIS</Badge>
-          
+          <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 mb-6">PIPELINE</Badge>
+
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="text-blood-500">L'histoire</span> commence ici
+            <span className="text-blood-500">Comment</span> c&apos;est fait
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6 text-zinc-400">
               <p>
-                <span className="text-blood-400 font-bold">Martinique, 2047.</span> Les humains ont 
-                déclaré la guerre aux moustiques. L'opération BYSS, un nuage toxique massif, 
-                a décimé des milliards de Moostiks.
+                <span className="text-blood-400 font-bold">Génération image.</span> Chaque shot
+                commence par une image. Références de personnages et lieux injectées automatiquement
+                pour maintenir la cohérence sur 43 shots.
               </p>
               <p>
-                Mais dans les profondeurs de la jungle, le <span className="text-amber-400">Clan Cooltik</span> a 
-                survécu. Une civilisation sophistiquée de moustiques génies, avec leur propre 
-                culture, leur bar clandestin, et leur soif de vengeance.
+                <span className="text-amber-400 font-bold">Image-to-video.</span> First frame,
+                last frame, interpolation. Le système chain les shots pour une continuité narrative
+                sans intervention manuelle.
               </p>
             </div>
             <div className="space-y-6 text-zinc-400">
               <p>
-                <span className="text-blood-400 font-bold">Papy Tik</span>, le patriarche borgne et 
-                philosophe, guide les survivants. <span className="text-amber-400">Baby Dorval</span>, 
-                l'enfant humain transformé en allié improbable. Et <span className="text-purple-400">l'Eminence</span>, 
-                la figure mystérieuse qui tire les ficelles dans l'ombre.
+                <span className="text-purple-400 font-bold">Beat sync.</span> Analyse BPM de la track
+                (Requiem for Attack on Titan), calage automatique des cuts sur le tempo.
+                Le montage se construit sur la musique.
               </p>
               <p>
-                Une histoire de survie, de résistance, et de vengeance. Racontée du point de vue 
-                des "méchants" que nous avons toujours voulu exterminer.
+                <span className="text-emerald-400 font-bold">Composition.</span> Audio, transitions,
+                export EDL. Le résultat sort prêt pour post-prod ou diffusion directe.
               </p>
             </div>
           </div>
@@ -373,26 +372,24 @@ export default function SeriesLandingPage() {
       {/* ================================================================ */}
       <section className="py-32 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-blood-900/20 via-transparent to-transparent" />
-        
+
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <h2 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="text-blood-500">Rejoignez</span> la résistance
+            <span className="text-blood-500">Tu veux</span> le même pipeline ?
           </h2>
-          <p className="text-xl text-zinc-400 mb-10">
-            Plongez dans l'univers Moostik. Découvrez l'histoire du point de vue de ceux 
-            qu'on a toujours voulu exterminer.
+          <p className="text-xl text-zinc-500 mb-10">
+            Early access. Places limitées. Projets sérieux uniquement.
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/watch/ep0">
+            <Link href="/studio">
               <Button size="lg" className="moostik-btn-blood text-white font-bold px-10 py-6 text-lg group">
-                <span className="mr-2 group-hover:scale-110 transition-transform">▶</span>
-                Commencer l'aventure
+                Voir comment ça marche
               </Button>
             </Link>
-            <Link href="/series/lore">
+            <Link href="/library">
               <Button size="lg" variant="outline" className="border-blood-700/50 text-blood-400 hover:bg-blood-900/20 px-10 py-6 text-lg">
-                Explorer le lore
+                Explorer les assets
               </Button>
             </Link>
           </div>

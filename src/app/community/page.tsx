@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 
 // ============================================================================
-// MOCK DATA
+// PLACEHOLDER DATA - COMMUNITY EN DÉVELOPPEMENT
 // ============================================================================
 
 interface MockPost {
@@ -44,52 +44,11 @@ interface MockPost {
   status?: string;
 }
 
-const MOCK_POSTS: MockPost[] = [
-  {
-    id: "1",
-    type: "avatar",
-    author: { name: "Marie L.", username: "marie_creates", avatar: "🎬", badges: ["early_adopter"] },
-    title: "Mon avatar Bloodwing",
-    content: "J'ai créé mon premier avatar Moostik ! Voici Kira, guerrière du clan Aile de Sang.",
-    thumbnail: "/output/references/characters/baby-dorval.png",
-    likes: 234,
-    comments: 45,
-    views: 1200,
-    createdAt: "Il y a 2h",
-    clan: "bloodwing",
-  },
-  {
-    id: "2",
-    type: "episode_submission",
-    author: { name: "Studio Néon", username: "studio_neon", avatar: "✨", badges: ["verified", "top_creator"] },
-    title: "Episode Communauté #3 - La Chute",
-    content: "Notre épisode a été approuvé ! Découvrez l'histoire de Zara et sa descente dans les ténèbres.",
-    thumbnail: null,
-    likes: 567,
-    comments: 89,
-    views: 3400,
-    createdAt: "Il y a 1j",
-    status: "published",
-  },
-  {
-    id: "3",
-    type: "creation",
-    author: { name: "Thomas D.", username: "tom_motion", avatar: "🎥", badges: [] },
-    title: "Timelapse - Création d'une scène de combat",
-    content: "Comment j'ai utilisé les Symphonies de Montage pour créer cette séquence en 30 minutes.",
-    thumbnail: null,
-    likes: 189,
-    comments: 32,
-    views: 890,
-    createdAt: "Il y a 3j",
-  },
-];
+// Community feature en cours de développement
+// Ces données sont des placeholders pour l'UI
+const MOCK_POSTS: MockPost[] = [];
 
-const TRENDING_CREATORS = [
-  { name: "Studio Néon", username: "studio_neon", avatar: "✨", followers: 1234 },
-  { name: "Marie L.", username: "marie_creates", avatar: "🎬", followers: 890 },
-  { name: "Tom Motion", username: "tom_motion", avatar: "🎥", followers: 567 },
-];
+const TRENDING_CREATORS: { name: string; username: string; avatar: string; followers: number }[] = [];
 
 // ============================================================================
 // COMMUNITY PAGE

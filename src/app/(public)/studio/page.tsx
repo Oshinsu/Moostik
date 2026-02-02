@@ -30,72 +30,50 @@ import {
 const FEATURES = [
   {
     icon: Film,
-    title: "Bible d'Univers Intégrée",
-    description: "Personnages, lieux, lore - tout reste cohérent automatiquement entre vos shots",
-    badge: "Exclusif",
+    title: "Persistance de référence",
+    description: "Injection auto de 14 références max par shot. Personnages et lieux identiques sur 100+ variations.",
+    badge: null,
   },
   {
     icon: Sparkles,
-    title: "Multi-Provider AI",
-    description: "Runway Gen-4, Kling 2.6, Flux Pro - choisissez le meilleur modèle pour chaque shot",
+    title: "Routing intelligent",
+    description: "Le système analyse chaque shot et route vers le provider optimal. Tu ne choisis plus, tu valides.",
     badge: null,
   },
   {
     icon: Music,
-    title: "Symphonies de Montage™",
-    description: "20 presets cinématographiques uniques : Eisenstein, Tarantino, EDM Drop, et plus",
-    badge: "Brevet en cours",
+    title: "Beat detection native",
+    description: "Analyse BPM, subdivision rythmique, calage auto sur le tempo. Montage musicalement cohérent sans effort.",
+    badge: null,
   },
   {
     icon: Zap,
-    title: "Beat Sync Automatique",
-    description: "Montage calé sur le tempo : noires, blanches, croches, triolets...",
+    title: "Batch & retry",
+    description: "Génération parallèle. Retry exponentiel sur erreur. Queue persistante. Tu lances, tu reviens.",
     badge: null,
   },
   {
     icon: Layers,
-    title: "Pipeline End-to-End",
-    description: "Script → Storyboard → Images → Vidéos → Montage → Export en un seul outil",
+    title: "First/last frame chain",
+    description: "Image-to-video avec continuité inter-shots. Pas de prompt engineering, juste de la cohérence.",
     badge: null,
   },
   {
     icon: FileVideo,
-    title: "Export Pro",
-    description: "EDL pour Premiere/DaVinci, 4K HDR, formats optimisés par plateforme",
+    title: "Export EDL natif",
+    description: "Timeline complète avec cuts, audio, métadonnées. Direct dans Premiere/DaVinci.",
     badge: null,
   },
 ];
 
 const COMPARISONS = [
-  { feature: "Bible d'univers", us: true, competitors: false },
-  { feature: "Pipeline complet", us: true, competitors: false },
-  { feature: "Beat Sync automatique", us: true, competitors: false },
-  { feature: "Symphonies de Montage™", us: true, competitors: false },
-  { feature: "Multi-provider AI", us: true, competitors: false },
-  { feature: "Export EDL", us: true, competitors: "Partiel" },
-  { feature: "Communauté intégrée", us: true, competitors: false },
-  { feature: "Revenue sharing créateurs", us: "15%", competitors: false },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Marie L.",
-    role: "Créatrice YouTube",
-    avatar: "🎬",
-    content: "J'ai créé ma première mini-série en 2 jours. Avant, ça m'aurait pris 3 mois.",
-  },
-  {
-    name: "Thomas D.",
-    role: "Studio Indé",
-    avatar: "🎥",
-    content: "Le Beat Sync change tout. Mon montage est enfin professionnel sans y passer des heures.",
-  },
-  {
-    name: "Studio Néon",
-    role: "Agence Créative",
-    avatar: "✨",
-    content: "On économise 200€/mois et on a plus de fonctionnalités qu'avec 5 outils séparés.",
-  },
+  { feature: "Persistance références inter-shots", us: true, competitors: false },
+  { feature: "Routing multi-provider auto", us: true, competitors: false },
+  { feature: "Beat sync & analyse BPM", us: true, competitors: false },
+  { feature: "First/last frame chaining", us: true, competitors: false },
+  { feature: "Batch processing parallèle", us: true, competitors: "Manuel" },
+  { feature: "Export EDL natif", us: true, competitors: "Partiel" },
+  { feature: "Queue persistante avec retry", us: true, competitors: false },
 ];
 
 export default function StudioPage() {
@@ -105,39 +83,41 @@ export default function StudioPage() {
       {/* HERO */}
       {/* ================================================================== */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/30 via-[#0b0b0e] to-[#0b0b0e]" />
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-[#0b0b0e] to-[#0b0b0e]" />
+
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-          <Badge className="mb-6 bg-emerald-900/50 text-emerald-400 border-emerald-700/30">
-            Le Studio
+          <Badge className="mb-6 bg-zinc-800 text-zinc-400 border-zinc-700">
+            Architecture technique
           </Badge>
-          
+
           <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
-            <span className="text-white">Le prix d&apos;un freelance.</span>
+            <span className="text-white">Un pipeline.</span>
             <br />
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              La puissance d&apos;un studio.
+            <span className="bg-gradient-to-r from-blood-500 to-crimson-500 bg-clip-text text-transparent">
+              Pas une collection de SaaS.
             </span>
           </h1>
-          
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-8">
-            Un seul outil pour créer des séries animées professionnelles.
-            Sans équipe, sans compétences techniques, sans budget Hollywood.
+
+          <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-4">
+            Orchestration complète : génération → composition → export.
           </p>
-          
+          <p className="text-lg text-zinc-600 max-w-xl mx-auto mb-8">
+            Les autres te vendent des briques. On te vend le mur fini.
+          </p>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href={ROUTES.signup}>
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-8 py-6"
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-bold px-8 py-6"
               >
-                Essayer gratuitement
+                Early access
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Link href={ROUTES.pricing}>
+            <Link href="/series">
               <Button size="lg" variant="outline" className="border-zinc-700 px-8 py-6">
-                Voir les tarifs
+                Voir T0.5 en action
               </Button>
             </Link>
           </div>
@@ -145,81 +125,68 @@ export default function StudioPage() {
       </section>
 
       {/* ================================================================== */}
-      {/* ÉCONOMIES */}
+      {/* LE PROBLÈME */}
       {/* ================================================================== */}
       <section className="py-20 px-4 bg-gradient-to-b from-[#0b0b0e] to-[#0d0d12]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Économisez sur votre stack créatif
+              Le workflow classique, c&apos;est ça
             </h2>
-            <p className="text-zinc-400">
-              Un seul abonnement au lieu de 5+ outils séparés
+            <p className="text-zinc-500">
+              5 outils. 5 exports. 5 imports. Et toi au milieu qui fait le taxi.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Avant */}
+            {/* Le problème */}
             <Card className="p-6 bg-zinc-900/50 border-zinc-800/50">
-              <h3 className="text-lg font-bold text-zinc-400 mb-4">❌ Sans Bloodwings</h3>
+              <h3 className="text-lg font-bold text-zinc-500 mb-4">Le workflow fragmenté</h3>
               <div className="space-y-3">
                 {[
-                  { name: "Runway Pro", price: 28 },
-                  { name: "Kling Premier", price: 65 },
-                  { name: "Midjourney Pro", price: 60 },
-                  { name: "Descript Business", price: 65 },
-                  { name: "Adobe Premiere", price: 22 },
-                ].map((tool) => (
-                  <div key={tool.name} className="flex justify-between text-sm">
-                    <span className="text-zinc-500">{tool.name}</span>
-                    <span className="text-zinc-400">{tool.price}€/mois</span>
+                  { name: "Génération d'images", desc: "Provider A" },
+                  { name: "Image-to-video", desc: "Provider B" },
+                  { name: "Génération audio", desc: "Provider C" },
+                  { name: "Montage", desc: "Logiciel D" },
+                  { name: "Export", desc: "Manips manuelles" },
+                ].map((step, i) => (
+                  <div key={step.name} className="flex items-center gap-3 text-sm">
+                    <span className="w-6 h-6 rounded-full bg-zinc-800 flex items-center justify-center text-xs text-zinc-500">{i + 1}</span>
+                    <span className="text-zinc-400">{step.name}</span>
+                    <span className="text-zinc-600 ml-auto">{step.desc}</span>
                   </div>
                 ))}
                 <div className="pt-3 border-t border-zinc-800">
-                  <div className="flex justify-between font-bold">
-                    <span className="text-zinc-400">Total</span>
-                    <span className="text-red-400">240€/mois</span>
-                  </div>
-                  <p className="text-xs text-zinc-600 mt-1">+ workflow manuel entre outils</p>
+                  <p className="text-zinc-500 text-sm">
+                    Résultat : 4h de workflow pour 30s de contenu. Et la cohérence ? Bonne chance.
+                  </p>
                 </div>
               </div>
             </Card>
-            
-            {/* Après */}
-            <Card className="p-6 bg-emerald-900/20 border-emerald-700/30">
-              <h3 className="text-lg font-bold text-emerald-400 mb-4">✓ Avec Bloodwings Studio</h3>
+
+            {/* La solution */}
+            <Card className="p-6 bg-blood-900/20 border-blood-700/30">
+              <h3 className="text-lg font-bold text-blood-400 mb-4">Le pipeline unifié</h3>
               <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-zinc-300">Tout inclus</span>
-                  <span className="text-emerald-400 font-bold">À partir de 129€/mois</span>
+                <div className="flex items-center gap-3 text-sm">
+                  <span className="w-6 h-6 rounded-full bg-blood-900/50 flex items-center justify-center text-xs text-blood-400">1</span>
+                  <span className="text-zinc-300">Tu définis tes shots</span>
                 </div>
-                <ul className="space-y-2 text-sm text-zinc-400">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    Multi-provider AI intégré
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    Montage automatique
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    Bible d&apos;univers
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    Beat Sync & Symphonies
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    Export pro (EDL, 4K)
-                  </li>
-                </ul>
-                <div className="pt-3 border-t border-emerald-800/50">
-                  <p className="text-emerald-400 font-bold text-lg">
-                    Économie: jusqu&apos;à 111€/mois
+                <div className="flex items-center gap-3 text-sm">
+                  <span className="w-6 h-6 rounded-full bg-blood-900/50 flex items-center justify-center text-xs text-blood-400">2</span>
+                  <span className="text-zinc-300">Tu lances le pipeline</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <span className="w-6 h-6 rounded-full bg-blood-900/50 flex items-center justify-center text-xs text-blood-400">3</span>
+                  <span className="text-zinc-300">Tu récupères l&apos;épisode monté</span>
+                </div>
+                <div className="pt-3 border-t border-blood-800/50">
+                  <p className="text-blood-400 text-sm font-medium">
+                    Images, vidéos, audio, composition, export. Une passe.
                   </p>
-                  <p className="text-xs text-emerald-600">+ gain de temps x10</p>
+                  <p className="text-zinc-600 text-xs mt-1">
+                    Le routing provider, le retry sur erreur, le beat sync — c&apos;est notre problème, pas le tien.
+                  </p>
                 </div>
               </div>
             </Card>
@@ -308,50 +275,25 @@ export default function StudioPage() {
       </section>
 
       {/* ================================================================== */}
-      {/* TÉMOIGNAGES */}
-      {/* ================================================================== */}
-      <section className="py-20 px-4 bg-[#0b0b0e]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ce qu&apos;ils en disent
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((testimonial, i) => (
-              <Card key={i} className="p-6 bg-zinc-900/50 border-zinc-800/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{testimonial.avatar}</span>
-                  <div>
-                    <p className="font-bold text-white">{testimonial.name}</p>
-                    <p className="text-xs text-zinc-500">{testimonial.role}</p>
-                  </div>
-                </div>
-                <p className="text-zinc-400 italic">&quot;{testimonial.content}&quot;</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* SUPPORT */}
+      {/* TECH SPECS */}
       {/* ================================================================== */}
       <section className="py-20 px-4 bg-gradient-to-b from-[#0b0b0e] to-blood-950/20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Support & Sécurité
+              Sous le capot
             </h2>
+            <p className="text-zinc-500">
+              Pour ceux qui veulent savoir ce qui tourne vraiment
+            </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { icon: HeadphonesIcon, title: "Support FR", desc: "Équipe francophone réactive" },
-              { icon: Shield, title: "RGPD", desc: "Données hébergées en Europe" },
-              { icon: Clock, title: "SLA 99.9%", desc: "Disponibilité garantie" },
-              { icon: Code, title: "API", desc: "Intégration sur mesure" },
+              { icon: Layers, title: "5 providers", desc: "Routing automatique par type de shot" },
+              { icon: Shield, title: "Queue persistante", desc: "Retry exponentiel, pas de perte" },
+              { icon: Clock, title: "Batch parallèle", desc: "50+ variations simultanées" },
+              { icon: Code, title: "Export EDL", desc: "Timeline native Premiere/DaVinci" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <div className="w-12 h-12 rounded-full bg-blood-900/30 flex items-center justify-center mx-auto mb-3">
@@ -371,17 +313,17 @@ export default function StudioPage() {
       <section className="py-24 px-4 bg-[#0b0b0e]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            Prêt à révolutionner votre création ?
+            Tu veux tester le pipeline ?
           </h2>
-          <p className="text-xl text-zinc-400 mb-8">
-            20 images gratuites pour tester. Pas de carte bancaire.
+          <p className="text-xl text-zinc-500 mb-8">
+            Early access. On prend pas tout le monde. Mais on prend ceux qui ont des projets.
           </p>
           <Link href={ROUTES.signup}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-bold text-xl px-12 py-8 rounded-2xl"
             >
-              Créer mon compte gratuit
+              Demander l&apos;accès
               <ArrowRight className="w-6 h-6 ml-3" />
             </Button>
           </Link>

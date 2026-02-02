@@ -15,8 +15,9 @@ import {
   Zap,
   Globe,
   ChevronRight,
-  Star,
   Check,
+  Cpu,
+  Layers,
 } from "lucide-react";
 
 // ============================================================================
@@ -33,7 +34,7 @@ export default function LandingPage() {
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-blood-950/50 via-[#0b0b0e] to-[#0b0b0e]" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
-        
+
         {/* Animated blood particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(20)].map((_, i) => (
@@ -53,71 +54,63 @@ export default function LandingPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           {/* Badge */}
           <Badge className="mb-6 bg-blood-900/50 text-blood-400 border-blood-700/30 px-4 py-1.5">
-            <Sparkles className="w-3 h-3 mr-2" />
-            Studio AI de nouvelle génération
+            <Cpu className="w-3 h-3 mr-2" />
+            Pipeline génératif SOTA 2026
           </Badge>
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6">
             <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-              De l&apos;idée
+              Script.
             </span>
             <br />
             <span className="bg-gradient-to-r from-blood-500 via-crimson-500 to-blood-600 bg-clip-text text-transparent">
-              à l&apos;épisode
+              Render. Ship.
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-8">
-            Le premier studio qui pense comme un réalisateur.
-            <br />
-            <span className="text-zinc-500">
-              Créez votre série animée sans équipe, sans budget Hollywood.
-            </span>
+          <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-4">
+            Le seul pipeline qui orchestre image-to-video, beat sync et composition en une passe.
+          </p>
+          <p className="text-lg text-zinc-600 max-w-2xl mx-auto mb-8">
+            Pendant que les autres jonglent entre 5 SaaS, tu livres.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link href={ROUTES.signup}>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-bold text-lg px-8 py-6 rounded-xl shadow-lg shadow-blood-900/50"
               >
-                Commencer gratuitement
+                Accès Early
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Link href={ROUTES.moostik}>
-              <Button 
-                size="lg" 
-                variant="outline" 
+            <Link href="/series">
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-zinc-700 text-zinc-300 hover:bg-zinc-800/50 px-8 py-6 rounded-xl"
               >
                 <Play className="w-5 h-5 mr-2" />
-                Voir la série Moostik
+                Voir ce qu&apos;on a fait avec
               </Button>
             </Link>
           </div>
 
-          {/* Social Proof */}
-          <div className="flex items-center justify-center gap-8 text-sm text-zinc-500">
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {[...Array(4)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-blood-600 to-crimson-700 border-2 border-[#0b0b0e]"
-                  />
-                ))}
-              </div>
-              <span>+500 créateurs</span>
+          {/* Technical proof - no fake stats */}
+          <div className="flex items-center justify-center gap-6 text-sm text-zinc-500">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900/50 border border-zinc-800">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>T0.5 en production</span>
             </div>
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
-              ))}
-              <span className="ml-1">4.9/5</span>
+            <div className="px-3 py-1.5 rounded-lg bg-zinc-900/50 border border-zinc-800">
+              43 shots générés
+            </div>
+            <div className="px-3 py-1.5 rounded-lg bg-zinc-900/50 border border-zinc-800">
+              5 providers intégrés
             </div>
           </div>
         </div>
@@ -136,14 +129,14 @@ export default function LandingPage() {
       <section className="py-24 px-4 bg-gradient-to-b from-[#0b0b0e] to-[#0d0d12]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-emerald-900/50 text-emerald-400 border-emerald-700/30">
-              Fonctionnalités exclusives
+            <Badge className="mb-4 bg-zinc-800 text-zinc-400 border-zinc-700">
+              Stack technique
             </Badge>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              Tout ce dont vous avez besoin
+              Ce qui tourne sous le capot
             </h2>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Un pipeline complet de création, de l&apos;écriture à l&apos;export final
+            <p className="text-zinc-500 text-lg max-w-2xl mx-auto">
+              Pas de magie. Du code. Des pipelines. Des résultats.
             </p>
           </div>
 
@@ -151,38 +144,38 @@ export default function LandingPage() {
             {[
               {
                 icon: Film,
-                title: "Bible d'Univers",
-                description: "Personnages, lieux, lore - tout reste cohérent automatiquement",
+                title: "Cohérence persistante",
+                description: "Tes personnages et lieux restent identiques sur 100+ shots. Injection de références automatique.",
                 color: "blood",
               },
               {
-                icon: Sparkles,
-                title: "Génération AI",
-                description: "Images et vidéos avec Runway, Kling, Flux intégrés",
+                icon: Layers,
+                title: "Multi-provider routing",
+                description: "Le système choisit le meilleur modèle par shot. Action → provider A. Dialogue → provider B. Toi tu t'en fous.",
                 color: "purple",
               },
               {
                 icon: Music,
-                title: "Symphonies de Montage™",
-                description: "20 presets cinématographiques uniques au monde",
+                title: "Beat sync natif",
+                description: "Analyse BPM, détection de drops, calage auto sur noires/croches/triolets. Le montage se fait tout seul.",
                 color: "amber",
               },
               {
                 icon: Zap,
-                title: "Beat Sync",
-                description: "Montage automatique calé sur le tempo musical",
+                title: "Batch processing",
+                description: "Génère 50 variations en parallèle. Retry automatique sur erreur. Queue persistante.",
                 color: "emerald",
               },
               {
-                icon: Users,
-                title: "Communauté",
-                description: "Partagez, soumettez vos épisodes, gagnez 15% des revenus",
+                icon: Globe,
+                title: "Image-to-video chain",
+                description: "First frame → last frame → interpolation. Continuité parfaite entre shots sans prompt engineering.",
                 color: "blue",
               },
               {
-                icon: Globe,
-                title: "Multi-Provider",
-                description: "Choisissez le meilleur modèle pour chaque shot",
+                icon: Sparkles,
+                title: "Export EDL",
+                description: "Exporte direct vers Premiere/DaVinci. Timeline, cuts, audio sync. Prêt pour post-prod.",
                 color: "pink",
               },
             ].map((feature, i) => (
@@ -285,30 +278,39 @@ export default function LandingPage() {
       </section>
 
       {/* ================================================================== */}
-      {/* MOOSTIK SERIES TEASER */}
+      {/* PROOF OF CONCEPT - MOOSTIK T0.5 */}
       {/* ================================================================== */}
       <section className="py-24 px-4 bg-gradient-to-b from-[#0b0b0e] to-blood-950/30">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-crimson-900/50 text-crimson-400 border-crimson-700/30">
-                Notre série
+              <Badge className="mb-4 bg-zinc-800 text-zinc-400 border-zinc-700">
+                Proof of concept
               </Badge>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Découvrez Moostik
+                MOOSTIK T0.5
               </h2>
-              <p className="text-zinc-400 text-lg mb-6">
-                Une série créée entièrement avec Bloodwings Studio.
-                Plongez dans l&apos;univers des clans ancestraux et de leurs pouvoirs.
+              <p className="text-zinc-400 text-lg mb-2">
+                43 shots. 5 parties. Entièrement généré avec ce pipeline.
               </p>
-              <Link href={ROUTES.moostik}>
+              <p className="text-zinc-600 mb-6">
+                Du génocide à la vengeance. 8 minutes de rendu sur une base de moustiques anthropomorphes
+                parce que personne n&apos;avait encore osé.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <Badge variant="outline" className="border-blood-800 text-blood-400">Image-to-video</Badge>
+                <Badge variant="outline" className="border-zinc-700 text-zinc-400">Beat sync</Badge>
+                <Badge variant="outline" className="border-zinc-700 text-zinc-400">Multi-provider</Badge>
+                <Badge variant="outline" className="border-zinc-700 text-zinc-400">Cohérence perso</Badge>
+              </div>
+              <Link href="/series">
                 <Button size="lg" variant="outline" className="border-blood-700 text-blood-400 hover:bg-blood-900/30">
                   <Play className="w-5 h-5 mr-2" />
-                  Regarder la série
+                  Voir le résultat
                 </Button>
               </Link>
             </div>
-            
+
             <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-blood-900/50 to-crimson-900/30 border border-blood-800/50">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-blood-600/80 flex items-center justify-center cursor-pointer hover:bg-blood-500 transition-colors">
@@ -316,8 +318,8 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white font-bold text-lg">MOOSTIK - Episode 0</p>
-                <p className="text-zinc-400 text-sm">L&apos;Éveil des Ailes de Sang</p>
+                <p className="text-white font-bold text-lg">MOOSTIK — T0.5</p>
+                <p className="text-zinc-400 text-sm">Genèse des Bloodwings</p>
               </div>
             </div>
           </div>
@@ -330,22 +332,22 @@ export default function LandingPage() {
       <section className="py-24 px-4 bg-[#0b0b0e]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Prêt à créer votre série ?
+            Tu veux le même pipeline ?
           </h2>
-          <p className="text-xl text-zinc-400 mb-8">
-            Rejoignez les créateurs qui révolutionnent l&apos;animation
+          <p className="text-xl text-zinc-500 mb-8">
+            Early access. Places limitées. On scale doucement.
           </p>
           <Link href={ROUTES.signup}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-bold text-xl px-12 py-8 rounded-2xl shadow-2xl shadow-blood-900/50"
             >
-              Commencer maintenant
+              Demander l&apos;accès
               <ArrowRight className="w-6 h-6 ml-3" />
             </Button>
           </Link>
-          <p className="mt-4 text-zinc-500 text-sm">
-            Gratuit pour commencer • Pas de carte bancaire requise
+          <p className="mt-4 text-zinc-600 text-sm">
+            Pas de bullshit. Tu testes, tu juges.
           </p>
         </div>
       </section>
