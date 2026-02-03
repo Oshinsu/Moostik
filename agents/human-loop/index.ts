@@ -376,7 +376,7 @@ export class HITLManager extends EventEmitter {
    * Get agent trust score
    */
   getAgentTrustScore(agentId: string): number {
-    return this.agentTrustScores.get(agentId) || 0.5;
+    return this.agentTrustScores.get(agentId) ?? 0.5;
   }
 
   /**
