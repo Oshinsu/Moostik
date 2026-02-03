@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -54,58 +54,32 @@ interface OrchestratorStatus {
   dailyBudget: number;
 }
 
-// ============================================================================
-// MOCK DATA (would come from API in production)
-// ============================================================================
+interface APIAgentStats {
+  totalActions: number;
+  successfulActions: number;
+  failedActions: number;
+  lastActivity: string;
+}
 
-const MOCK_STATUS: OrchestratorStatus = {
-  isRunning: true,
-  agents: [
-    {
-      id: "bloodwings-worker",
-      name: "BloodwingsWorker",
-      type: "worker",
-      status: "running",
-      lastHeartbeat: new Date().toISOString(),
-      metrics: { actionsToday: 47, errorsToday: 2, costToday: 12.50 },
-    },
-    {
-      id: "papy-tik",
-      name: "Papy Tik",
-      type: "persona",
-      status: "running",
-      lastHeartbeat: new Date().toISOString(),
-      metrics: { actionsToday: 8, errorsToday: 0, costToday: 0.15 },
-    },
-    {
-      id: "zik-barman",
-      name: "Zik le Barman",
-      type: "persona",
-      status: "running",
-      lastHeartbeat: new Date().toISOString(),
-      metrics: { actionsToday: 12, errorsToday: 1, costToday: 0.20 },
-    },
-    {
-      id: "mila-la-sage",
-      name: "Mila la Sage",
-      type: "persona",
-      status: "paused",
-      lastHeartbeat: new Date(Date.now() - 3600000).toISOString(),
-      metrics: { actionsToday: 5, errorsToday: 0, costToday: 0.08 },
-    },
-    {
-      id: "koko-guerrier",
-      name: "Koko le Guerrier",
-      type: "persona",
-      status: "running",
-      lastHeartbeat: new Date().toISOString(),
-      metrics: { actionsToday: 15, errorsToday: 0, costToday: 0.25 },
-    },
-  ],
-  pendingTasks: 23,
-  dailySpent: 13.18,
-  dailyBudget: 50,
-};
+interface APIResponse {
+  status: Record<string, boolean>;
+  isRunning: boolean;
+  uptime?: number;
+  stats?: {
+    totalWorkflows: number;
+    completedWorkflows: number;
+    failedWorkflows: number;
+    activeWorkflows: number;
+    agentStatuses: Record<string, boolean>;
+  };
+  agentStats?: Record<string, APIAgentStats>;
+  workflows?: {
+    total: number;
+    completed: number;
+    failed: number;
+    active: number;
+  };
+}
 
 // ============================================================================
 // COMPONENTS
@@ -223,25 +197,135 @@ function AgentCard({ agent, onAction }: {
 // MAIN PAGE
 // ============================================================================
 
+// ============================================================================
+// AGENT NAME MAPPING
+// ============================================================================
+
+const AGENT_NAMES: Record<string, { name: string; type: "worker" | "persona" }> = {
+  swarm: { name: "Swarm Narrative", type: "worker" },
+  bleed: { name: "Reality Bleed", type: "worker" },
+  molt: { name: "The Molt", type: "worker" },
+  worker: { name: "BloodwingsWorker", type: "worker" },
+  "papy-tik": { name: "Papy Tik", type: "persona" },
+  "zik-barman": { name: "Zik le Barman", type: "persona" },
+  "mila-sage": { name: "Mila la Sage", type: "persona" },
+  "koko-guerrier": { name: "Koko le Guerrier", type: "persona" },
+};
+
+// ============================================================================
+// TRANSFORM API RESPONSE TO UI FORMAT
+// ============================================================================
+
+function transformApiResponse(data: APIResponse): OrchestratorStatus {
+  const agents: AgentStatus[] = Object.entries(data.status || {}).map(([id, isRunning]) => {
+    const agentInfo = AGENT_NAMES[id] || { name: id, type: "worker" as const };
+    const stats = data.agentStats?.[id];
+
+    return {
+      id,
+      name: agentInfo.name,
+      type: agentInfo.type,
+      status: isRunning ? "running" : "stopped",
+      lastHeartbeat: stats?.lastActivity || new Date().toISOString(),
+      metrics: {
+        actionsToday: stats?.totalActions || 0,
+        errorsToday: stats?.failedActions || 0,
+        costToday: (stats?.totalActions || 0) * 0.01, // Estimated cost
+      },
+    };
+  });
+
+  return {
+    isRunning: data.isRunning,
+    agents,
+    pendingTasks: data.workflows?.active || 0,
+    dailySpent: agents.reduce((sum, a) => sum + a.metrics.costToday, 0),
+    dailyBudget: 50,
+  };
+}
+
+// ============================================================================
+// MAIN PAGE
+// ============================================================================
+
 export default function AgentDashboardPage() {
-  const [status, setStatus] = useState<OrchestratorStatus>(MOCK_STATUS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<OrchestratorStatus>({
+    isRunning: false,
+    agents: [],
+    pendingTasks: 0,
+    dailySpent: 0,
+    dailyBudget: 50,
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchStatus = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch("/api/agents");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: APIResponse = await response.json();
+      setStatus(transformApiResponse(data));
+    } catch (err) {
+      console.error("[AgentDashboard] Failed to fetch status:", err);
+      setError(err instanceof Error ? err.message : "Failed to fetch agent status");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchStatus();
+    // Auto-refresh every 30 seconds
+    const interval = setInterval(fetchStatus, 30000);
+    return () => clearInterval(interval);
+  }, [fetchStatus]);
 
   const handleRefresh = async () => {
-    setIsLoading(true);
-    // Would fetch from API
-    await new Promise(r => setTimeout(r, 1000));
-    setIsLoading(false);
+    await fetchStatus();
   };
 
   const handleAction = async (action: string, agentId: string) => {
     console.log(`Action: ${action} on agent: ${agentId}`);
-    // Would call API
+    try {
+      const response = await fetch("/api/agents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action, data: { agentId } }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      await fetchStatus();
+    } catch (err) {
+      console.error("[AgentDashboard] Action failed:", err);
+    }
   };
 
   const handleOrchestratorToggle = async () => {
-    // Would call API to start/stop orchestrator
-    setStatus(prev => ({ ...prev, isRunning: !prev.isRunning }));
+    try {
+      const action = status.isRunning ? "stop" : "start";
+      const response = await fetch("/api/agents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      await fetchStatus();
+    } catch (err) {
+      console.error("[AgentDashboard] Toggle failed:", err);
+    }
   };
 
   const workerAgents = status.agents.filter(a => a.type === "worker");
@@ -298,12 +382,34 @@ export default function AgentDashboardPage() {
         </div>
       </div>
 
+      {/* Error Banner */}
+      {error && (
+        <div className="mb-8 p-4 rounded-xl bg-red-900/30 border border-red-800/50">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-red-400" />
+            <div>
+              <p className="text-sm font-medium text-red-400">Erreur de connexion</p>
+              <p className="text-xs text-red-400/70">{error}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              className="ml-auto border-red-700/50 text-red-400 hover:bg-red-900/30"
+            >
+              Réessayer
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-black text-white mb-2">Agent Dashboard</h1>
           <p className="text-zinc-500">
             Gérez vos agents de production et personas Moltbook
+            {status.agents.length === 0 && !error && " • Chargement..."}
           </p>
         </div>
         <div className="flex items-center gap-3">
