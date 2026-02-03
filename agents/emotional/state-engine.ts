@@ -454,7 +454,7 @@ export class EmotionalEngine {
       const diff = baseline - current;
 
       // Move toward baseline
-      (state as Record<string, number | Date>)[key] = current + diff * rate;
+      (state as unknown as Record<string, number | Date>)[key] = current + diff * rate;
     }
 
     state.lastDecay = new Date();
