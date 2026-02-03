@@ -182,6 +182,19 @@ export {
   type HITLConfig,
 } from "./human-loop";
 
+// Claude Agent Skills - Open standard for portable AI capabilities
+export {
+  SkillLoader,
+  SkillRegistry,
+  getSkillRegistry,
+  buildSkillContext,
+  buildSkillSummary,
+  MOOSTIK_SKILLS,
+  type Skill,
+  type SkillMetadata,
+  type SkillMatch,
+} from "./skills";
+
 // ============================================================================
 // FULL SOTA QUICK START
 // ============================================================================
@@ -234,6 +247,7 @@ export async function quickStartSOTA() {
   const { getMemoryManager } = await import("../src/lib/memory/mem0-client");
   const { getReasoningEngine } = await import("../src/lib/ai/llm-reasoning");
   const { getHITLManager } = await import("./human-loop");
+  const { getSkillRegistry } = await import("./skills");
 
   // Initialize all SOTA components
   const mcp = {
@@ -245,6 +259,7 @@ export async function quickStartSOTA() {
   const memory = getMemoryManager();
   const reasoning = getReasoningEngine();
   const hitl = getHITLManager();
+  const skills = getSkillRegistry();
 
   // Start orchestrator with all agents
   const orchestrator = await quickStart();
@@ -255,6 +270,7 @@ export async function quickStartSOTA() {
   console.log("  - Memory Manager (Mem0)");
   console.log("  - LLM Reasoning Engine (Claude)");
   console.log("  - Human-in-the-Loop Manager");
+  console.log("  - Skills Registry with", skills.getAll().length, "skills");
 
   return {
     orchestrator,
@@ -263,5 +279,6 @@ export async function quickStartSOTA() {
     memory,
     reasoning,
     hitl,
+    skills,
   };
 }
