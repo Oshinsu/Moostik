@@ -10,6 +10,34 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
+/**
+ * Validates that a path is safe and doesn't contain path traversal attacks
+ * Returns the sanitized path or null if invalid
+ */
+function validateAndSanitizePath(inputPath: string, allowedBaseDir: string): string | null {
+  // Remove any path traversal sequences
+  const sanitized = inputPath
+    .replace(/\.\./g, "")
+    .replace(/\/\//g, "/")
+    .replace(/\\/g, "/");
+
+  // Resolve the full path
+  const fullPath = path.resolve(allowedBaseDir, sanitized);
+
+  // Ensure the resolved path is within the allowed directory
+  const normalizedBase = path.resolve(allowedBaseDir);
+  if (!fullPath.startsWith(normalizedBase)) {
+    return null;
+  }
+
+  return fullPath;
+}
+
+/**
+ * Allowed file extensions for download
+ */
+const ALLOWED_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".mp4", ".webm"]);
+
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
@@ -27,10 +55,23 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     if (url.startsWith("/api/images") || url.startsWith("/output")) {
       // Fichier local - lire depuis le système de fichiers
       const localPath = url.startsWith("/api/images")
-        ? url.replace("/api/images/", "output/")
-        : url.replace(/^\//, "");
+        ? url.replace("/api/images/", "")
+        : url.replace(/^\/output\//, "");
 
-      const fullPath = path.join(process.cwd(), localPath);
+      // SECURITY: Validate path to prevent path traversal
+      const outputDir = path.join(process.cwd(), "output");
+      const fullPath = validateAndSanitizePath(localPath, outputDir);
+
+      if (!fullPath) {
+        console.error("Path traversal attempt blocked:", url);
+        return NextResponse.json({ error: "Invalid path" }, { status: 400 });
+      }
+
+      // SECURITY: Validate file extension
+      const ext = path.extname(fullPath).toLowerCase();
+      if (!ALLOWED_EXTENSIONS.has(ext)) {
+        return NextResponse.json({ error: "File type not allowed" }, { status: 400 });
+      }
 
       try {
         fileBuffer = await fs.readFile(fullPath);

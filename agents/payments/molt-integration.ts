@@ -370,7 +370,7 @@ export class MoltAccessControl {
     walletAddress: string,
     episodeId: string,
     durationMs: number
-  ): void {
+  ): Promise<void> {
     const cacheKey = `${walletAddress}-${episodeId}`;
     this.accessCache.set(cacheKey, {
       episodeId,

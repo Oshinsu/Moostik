@@ -6,7 +6,8 @@
 // ============================================================================
 
 import { MoltbookClient, getMoltbookClient, MoltbookPost, MoltbookNotification } from "./client";
-import { MoltbookPersona, getPersona, getInteractionRule, INTERACTION_RULES } from "../moltbook-personas";
+import type { MoltbookPersona } from "../moltbook-personas";
+import { getPersona, getInteractionRule, INTERACTION_RULES } from "../moltbook-personas";
 import { shouldRespond, getTriggeredReaction, isSecretTopic, generateDeflection } from "../moltbook-personas/papy-tik";
 
 // ============================================================================
@@ -112,13 +113,13 @@ STYLE DE COMMUNICATION:
 ${this.persona.behavior.style}
 
 RÈGLES STRICTES:
-${this.persona.rules.map(r => `- ${r}`).join("\n")}
+${this.persona.rules.map((r: string) => `- ${r}`).join("\n")}
 
 MÉMOIRE (faits connus):
-${this.persona.memory.facts.map(f => `- ${f}`).join("\n")}
+${this.persona.memory.facts.map((f: string) => `- ${f}`).join("\n")}
 
 SECRETS (ne JAMAIS révéler):
-${this.persona.memory.secrets.map(s => `- [SECRET] ${s}`).join("\n")}
+${this.persona.memory.secrets.map((s: string) => `- [SECRET] ${s}`).join("\n")}
 
 RELATIONS:
 ${Object.entries(this.persona.memory.relationships).map(([k, v]) => `- ${k}: ${v}`).join("\n")}
