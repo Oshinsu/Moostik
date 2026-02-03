@@ -341,7 +341,7 @@ export function VideoModelConfig({
         </Collapsible>
       )}
 
-      {/* Motion Transfer - For Kling 2.6, Luma Ray 3 */}
+      {/* Motion Transfer - For Kling 2.6, Luma Ray Flash 2 */}
       {caps.supportsMotionTransfer && (
         <div className="p-4 bg-pink-900/10 rounded-xl border border-pink-900/20 space-y-3">
           <div className="flex items-center gap-2">
@@ -370,7 +370,7 @@ export function VideoModelConfig({
         </div>
       )}
 
-      {/* Interpolation - For Luma Ray 2/3 */}
+      {/* Interpolation - For Luma Ray Flash 2/3 */}
       {caps.supportsInterpolation && (
         <div className="p-4 bg-cyan-900/10 rounded-xl border border-cyan-900/20 space-y-3">
           <div className="flex items-center gap-2">

@@ -95,7 +95,7 @@ function buildReplicateInput(
     // SEEDANCE 1.5 PRO - ByteDance (image-to-video with audio)
     // Schema: prompt, image, duration, aspect_ratio, generate_audio, fps, camera_fixed
     // ============================================
-    case "seedance-1.5-pro":
+    case "seedance-1-pro":
       return {
         prompt: videoPrompt.prompt,
         image: imageUrl, // CORRECT: Seedance uses "image"
@@ -129,7 +129,7 @@ function buildReplicateInput(
     // ============================================
     // WAN - Fast & cheap
     // ============================================
-    case "wan-2.6":
+    case "wan-2.5":
     case "wan-2.5":
     case "wan-2.2":
       return {
@@ -141,8 +141,8 @@ function buildReplicateInput(
     // ============================================
     // LUMA RAY - Interpolation
     // ============================================
-    case "luma-ray-2":
-    case "luma-ray-3":
+    case "luma-ray-flash-2":
+    case "luma-ray-flash-2":
       return {
         prompt: videoPrompt.prompt,
         start_image: imageUrl,

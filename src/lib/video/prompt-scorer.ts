@@ -152,12 +152,12 @@ export function scorePrompt(prompt: string, provider: VideoProvider): PromptScor
   const suggestions: string[] = [];
 
   // Calculate individual scores
-  const lengthResult = scoreLengthScore(prompt, config.maxLength);
+  const lengthResult = scoreLengthScore(prompt, config?.maxLength ?? 800);
   const keywordResult = scoreKeywords(prompt, config);
-  const styleResult = scoreStyle(prompt, config.preferredStyle);
+  const styleResult = scoreStyle(prompt, config?.preferredStyle ?? "descriptive");
   const clarityResult = scoreClarity(prompt);
   const motionResult = scoreMotion(prompt);
-  const avoidedResult = scoreAvoidedTerms(prompt, config.avoidTerms);
+  const avoidedResult = scoreAvoidedTerms(prompt, config?.avoidTerms ?? []);
 
   // Collect warnings
   if (lengthResult.score < 50) {
@@ -246,7 +246,7 @@ function scoreLengthScore(prompt: string, maxLength: number): { score: number; d
  */
 function scoreKeywords(
   prompt: string,
-  config: typeof PROVIDER_PROMPT_CONFIGS[VideoProvider]
+  config: (typeof PROVIDER_PROMPT_CONFIGS)[VideoProvider] | undefined
 ): { score: number; detail: string } {
   const lowerPrompt = prompt.toLowerCase();
   let score = 50; // Base score
@@ -271,7 +271,7 @@ function scoreKeywords(
   }
 
   // Check for provider-specific boost terms
-  for (const boost of config.boostTerms) {
+  for (const boost of config?.boostTerms ?? []) {
     if (lowerPrompt.includes(boost.toLowerCase())) {
       foundBoost++;
       score += 8;

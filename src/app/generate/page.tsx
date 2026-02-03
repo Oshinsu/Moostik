@@ -42,7 +42,7 @@ interface GenerationStats {
 const VIDEO_PROVIDERS = [
   { id: "wan", name: "Wan 2.1", cost: "$0.20/5s", quality: "Excellent" },
   { id: "kling", name: "Kling 1.6", cost: "$0.40/5s", quality: "Premium" },
-  { id: "luma", name: "Luma Ray 2", cost: "$0.25/5s", quality: "Great" },
+  { id: "luma", name: "Luma Ray Flash 2", cost: "$0.25/5s", quality: "Great" },
   { id: "runway", name: "Runway Gen-4", cost: "$0.30/5s", quality: "Premium" },
 ];
 

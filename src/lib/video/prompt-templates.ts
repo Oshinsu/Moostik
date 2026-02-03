@@ -315,7 +315,7 @@ export const PROMPT_TEMPLATES: Record<SceneType, PromptTemplate> = {
       { name: "table_orbit", motion: "slow orbit around table", description: "Circle the conspirators" },
       { name: "entrance_reveal", motion: "push in from door to character", description: "Dramatic entrance" },
     ],
-    recommendedProviders: ["wan-2.5", "wan-2.6", "kling-2.6"],
+    recommendedProviders: ["wan-2.5", "wan-2.5", "kling-2.6"],
     negativePromptAdditions: [
       "bright daylight",
       "outdoor",
@@ -462,7 +462,7 @@ export const PROMPT_TEMPLATES: Record<SceneType, PromptTemplate> = {
       { name: "horizon_pan", motion: "slow horizontal pan across landscape", description: "Reveal scale" },
       { name: "dawn_reveal", motion: "static, let light change", description: "Time passage" },
     ],
-    recommendedProviders: ["veo-3.1", "luma-ray-2", "luma-ray-3"],
+    recommendedProviders: ["veo-3.1", "luma-ray-flash-2", "luma-ray-flash-2"],
     negativePromptAdditions: [
       "close-up",
       "face",
@@ -526,7 +526,7 @@ export const PROMPT_TEMPLATES: Record<SceneType, PromptTemplate> = {
       { name: "fragment_cuts", motion: "static, rapid fragments", description: "Memory flashes" },
       { name: "dissolve_morph", motion: "interpolation between states", description: "Time blend" },
     ],
-    recommendedProviders: ["luma-ray-2", "luma-ray-3", "wan-2.5"],
+    recommendedProviders: ["luma-ray-flash-2", "luma-ray-flash-2", "wan-2.5"],
     negativePromptAdditions: [
       "modern",
       "crisp HD",
@@ -583,7 +583,7 @@ export const PROMPT_TEMPLATES: Record<SceneType, PromptTemplate> = {
       { name: "match_movement", motion: "continuous motion matching scenes", description: "Action match" },
       { name: "time_lapse", motion: "static, time passes", description: "Time transition" },
     ],
-    recommendedProviders: ["luma-ray-2", "luma-ray-3", "wan-2.5"],
+    recommendedProviders: ["luma-ray-flash-2", "luma-ray-flash-2", "wan-2.5"],
     negativePromptAdditions: [
       "jarring cut",
       "abrupt",

@@ -438,7 +438,7 @@ export class ImageAnalyzer {
     const cameraDesc = `${cameraMotion.type} camera, ${cameraMotion.description}`;
     
     // Kling 2.6 boost terms
-    const boostTerms = this.config.boostTerms.slice(0, 3).join(", ");
+    const boostTerms = (this.config?.boostTerms ?? []).slice(0, 3).join(", ");
     
     // Build short prompt (under 800 chars for Kling 2.6)
     const shortPromptParts = [
@@ -453,8 +453,9 @@ export class ImageAnalyzer {
     let shortPrompt = shortPromptParts.join(". ") + ".";
     
     // Truncate if needed
-    if (shortPrompt.length > this.config.maxLength) {
-      shortPrompt = shortPrompt.slice(0, this.config.maxLength - 3) + "...";
+    const maxLength = this.config?.maxLength ?? 800;
+    if (shortPrompt.length > maxLength) {
+      shortPrompt = shortPrompt.slice(0, maxLength - 3) + "...";
     }
     
     // Build detailed prompt (for reference)
@@ -491,7 +492,7 @@ ${options.includeAudio ? "- Audio generation: ENABLED" : ""}
    * Build negative prompt
    */
   private buildNegativePrompt(sceneType: SceneType): string {
-    const baseNegatives = this.config.negativePromptLibrary.join(", ");
+    const baseNegatives = (this.config?.negativePromptLibrary ?? []).join(", ");
     const templateNegatives = PROMPT_TEMPLATES[sceneType]?.negativePromptAdditions || [];
     
     return [baseNegatives, ...templateNegatives].join(", ");
@@ -511,14 +512,14 @@ ${options.includeAudio ? "- Audio generation: ENABLED" : ""}
     }
     
     // Boost terms check
-    this.config.boostTerms.forEach(term => {
+    (this.config?.boostTerms ?? []).forEach(term => {
       if (prompt.toLowerCase().includes(term.toLowerCase())) {
         score += 3;
       }
     });
-    
+
     // Avoid terms check
-    this.config.avoidTerms.forEach(term => {
+    (this.config?.avoidTerms ?? []).forEach(term => {
       if (prompt.toLowerCase().includes(term.toLowerCase())) {
         score -= 5;
       }

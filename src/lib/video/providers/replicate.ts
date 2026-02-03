@@ -3,7 +3,7 @@
  * Unified provider for all I2V models available on Replicate
  *
  * Supports: Wan 2.2/2.5/2.6, Kling 2.6, Veo 3.1, Hailuo 2.3,
- *           Luma Ray 2/3, LTX-2, Sora 2, Hunyuan 1.5, PixVerse 4
+ *           Luma Ray Flash 2/3, LTX-2, Sora 2, Hunyuan 1.5, PixVerse 4
  */
 
 import Replicate from "replicate";
@@ -275,7 +275,7 @@ function buildHailuoInput(input: VideoGenerationInput): ReplicateInput {
 }
 
 /**
- * Build input for Luma Ray 2/3
+ * Build input for Luma Ray Flash 2/3
  */
 function buildLumaInput(input: VideoGenerationInput, provider: VideoProvider): ReplicateInput {
   const lumaInput: ReplicateInput = {
@@ -303,17 +303,17 @@ function buildLumaInput(input: VideoGenerationInput, provider: VideoProvider): R
   lumaInput.aspect_ratio = input.aspectRatio || "16:9";
 
   // Ray 3 specific: draft mode
-  if (provider === "luma-ray-3" && input.quality === "draft") {
+  if (provider === "luma-ray-flash-2" && input.quality === "draft") {
     lumaInput.draft_mode = true;
   }
 
   // Ray 3: audio
-  if (provider === "luma-ray-3" && input.generateAudio) {
+  if (provider === "luma-ray-flash-2" && input.generateAudio) {
     lumaInput.enable_audio = true;
   }
 
   // Motion transfer (Ray 3)
-  if (provider === "luma-ray-3" && input.motionTransfer) {
+  if (provider === "luma-ray-flash-2" && input.motionTransfer) {
     lumaInput.reference_video = input.motionTransfer.referenceVideoUrl;
   }
 
@@ -467,33 +467,106 @@ function buildPixVerseInput(input: VideoGenerationInput): ReplicateInput {
   return pixInput;
 }
 
+/**
+ * Build input for ByteDance Seedance models
+ * bytedance/seedance-1-pro-fast and bytedance/seedance-1-lite
+ */
+function buildSeedanceInput(input: VideoGenerationInput, provider: VideoProvider): ReplicateInput {
+  const seedanceInput: ReplicateInput = {
+    prompt: input.prompt,
+  };
+
+  // Image source (optional - supports T2V and I2V)
+  if (input.sourceImage) {
+    seedanceInput.image = input.sourceImage;
+  }
+
+  // Duration
+  if (input.durationSeconds) {
+    seedanceInput.duration = Math.min(input.durationSeconds, provider === "seedance-1-pro" ? 12 : 10);
+  }
+
+  // Aspect ratio
+  if (input.aspectRatio) {
+    seedanceInput.aspect_ratio = input.aspectRatio;
+  }
+
+  // Resolution (Pro supports 1080p, Lite supports 720p max)
+  if (input.resolution) {
+    const maxRes = provider === "seedance-1-pro" ? "1080p" : "720p";
+    seedanceInput.resolution = input.resolution === "1080p" && provider === "seedance-1-lite" ? "720p" : input.resolution;
+  }
+
+  // Audio (Seedance 1 Pro supports native audio)
+  if (provider === "seedance-1-pro" && input.generateAudio !== false) {
+    seedanceInput.generate_audio = true;
+  }
+
+  // Seed
+  if (input.seed) {
+    seedanceInput.seed = input.seed;
+  }
+
+  return seedanceInput;
+}
+
 // ============================================
 // MAIN PROVIDER FUNCTION
 // ============================================
 
 function buildReplicateInput(input: VideoGenerationInput, provider: VideoProvider): ReplicateInput {
   switch (provider) {
+    // Wan models (Alibaba)
     case "wan-2.2":
+    case "wan-2.2-fast":
     case "wan-2.5":
-    case "wan-2.6":
+    case "wan-2.5-fast":
       return buildWanInput(input, provider);
+
+    // Kling models (Kuaishou)
+    case "kling-2.5-turbo":
     case "kling-2.6":
       return buildKlingInput(input);
+
+    // Veo models (Google)
+    case "veo-2":
+    case "veo-3":
+    case "veo-3-fast":
     case "veo-3.1":
+    case "veo-3.1-fast":
       return buildVeoInput(input);
+
+    // Hailuo models (MiniMax)
     case "hailuo-2.3":
+    case "hailuo-2.3-fast":
       return buildHailuoInput(input);
-    case "luma-ray-2":
-    case "luma-ray-3":
+
+    // Luma Ray
+    case "luma-ray-flash-2":
       return buildLumaInput(input, provider);
+
+    // Lightricks LTX
     case "ltx-2":
       return buildLtxInput(input);
+
+    // OpenAI Sora
     case "sora-2":
+    case "sora-2-pro":
       return buildSoraInput(input);
+
+    // Tencent Hunyuan
     case "hunyuan-1.5":
       return buildHunyuanInput(input);
+
+    // PixVerse
     case "pixverse-4":
       return buildPixVerseInput(input);
+
+    // ByteDance Seedance
+    case "seedance-1-pro":
+    case "seedance-1-lite":
+      return buildSeedanceInput(input, provider);
+
     default:
       throw new ReplicateVideoError(provider, "", "UNKNOWN_PROVIDER", `Unknown provider: ${provider}`);
   }
