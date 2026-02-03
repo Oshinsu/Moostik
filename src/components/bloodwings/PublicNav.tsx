@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { BloodwingsLogo } from "./BloodwingsLogo";
 import { ROUTES } from "@/types/bloodwings";
 import {
@@ -16,11 +17,14 @@ import {
   CreditCard,
   MessageSquare,
   LogIn,
+  Brain,
+  Network,
 } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: ROUTES.moostik, label: "La Série", icon: Play },
   { href: ROUTES.studio, label: "Le Studio", icon: Sparkles },
+  { href: "/emergent-ai", label: "Emergent AI", icon: Brain, badge: "NEW" },
   { href: ROUTES.pricing, label: "Tarifs", icon: CreditCard },
   { href: ROUTES.community, label: "Communauté", icon: MessageSquare },
 ];
@@ -47,13 +51,19 @@ export function PublicNav() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                    "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
                     isActive
                       ? "bg-blood-900/30 text-blood-400"
-                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50",
+                    item.badge && "bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-800/30"
                   )}
                 >
                   {item.label}
+                  {item.badge && (
+                    <Badge className="bg-purple-900/50 text-purple-400 border-0 text-[10px] px-1.5 py-0">
+                      {item.badge}
+                    </Badge>
+                  )}
                 </Link>
               );
             })}

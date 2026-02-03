@@ -21,7 +21,13 @@ import {
   CheckCircle,
   Clock,
   Users,
+  Network,
+  Ghost,
+  Brain,
+  Sparkles,
+  ChevronRight,
 } from "lucide-react";
+import Link from "next/link";
 
 // ============================================================================
 // TYPES
@@ -245,6 +251,53 @@ export default function AgentDashboardPage() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
+      {/* SOTA++ Systems Banner */}
+      <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-purple-950/30 via-rose-950/20 to-indigo-950/30 border border-purple-800/30">
+        <div className="flex items-center gap-2 mb-3">
+          <Sparkles className="w-5 h-5 text-purple-400" />
+          <h2 className="text-lg font-bold text-white">Emergent AI Systems</h2>
+          <Badge className="bg-emerald-900/50 text-emerald-400 border-0 text-xs">SOTA++</Badge>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          <Link href="/app/swarm">
+            <div className="p-4 rounded-xl bg-purple-900/20 border border-purple-800/30 hover:border-purple-600/50 transition-colors cursor-pointer group">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Network className="w-5 h-5 text-purple-400" />
+                  <span className="font-semibold text-white">Swarm Narrative</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-purple-400 transition-colors" />
+              </div>
+              <p className="text-xs text-zinc-500">L'histoire émerge du chaos collectif</p>
+            </div>
+          </Link>
+          <Link href="/app/reality-bleed">
+            <div className="p-4 rounded-xl bg-rose-900/20 border border-rose-800/30 hover:border-rose-600/50 transition-colors cursor-pointer group">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Ghost className="w-5 h-5 text-rose-400" />
+                  <span className="font-semibold text-white">Reality Bleed</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-rose-400 transition-colors" />
+              </div>
+              <p className="text-xs text-zinc-500">Le 4ème mur n'existe plus</p>
+            </div>
+          </Link>
+          <Link href="/app/molt">
+            <div className="p-4 rounded-xl bg-indigo-900/20 border border-indigo-800/30 hover:border-indigo-600/50 transition-colors cursor-pointer group">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-indigo-400" />
+                  <span className="font-semibold text-white">The Molt</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400 transition-colors" />
+              </div>
+              <p className="text-xs text-zinc-500">L'inconscient collectif des agents</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
