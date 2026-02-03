@@ -14,7 +14,9 @@ import {
   Menu,
   X,
   Clapperboard,
+  Search,
 } from "lucide-react";
+import { SearchTrigger } from "@/components/shared/GlobalSearch";
 
 // ============================================================================
 // PUBLIC HEADER - Navigation pour les pages spectateur
@@ -94,8 +96,11 @@ export function PublicHeader() {
               ))}
             </nav>
 
-            {/* Studio Access */}
-            <div className="hidden md:flex items-center gap-4">
+            {/* Search + Studio Access */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Global Search */}
+              <SearchTrigger />
+
               <Link href="/">
                 <Button
                   variant="outline"

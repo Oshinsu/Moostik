@@ -72,24 +72,24 @@ const FEATURE_ROWS: FeatureCategory[] = [
 
 const FAQ = [
   {
-    q: "Puis-je changer de plan à tout moment ?",
-    a: "Oui, vous pouvez upgrader ou downgrader à tout moment. Le changement est effectif immédiatement avec un prorata.",
+    q: "C'est en early access, ça veut dire quoi ?",
+    a: "On scale doucement. Le pipeline tourne, mais on prend pas tout le monde d'un coup. Tu testes, tu nous dis ce qui merde.",
   },
   {
-    q: "Que se passe-t-il si je dépasse mes limites ?",
-    a: "Vous recevez une notification avant d'atteindre la limite. Vous pouvez acheter des crédits supplémentaires ou passer au plan supérieur.",
+    q: "Pourquoi pas de tier gratuit illimité ?",
+    a: "Parce que les providers de génération coûtent cher. Chaque image, chaque vidéo, c'est du compute. On paie, donc tu paies.",
   },
   {
-    q: "Les crédits non utilisés sont-ils reportés ?",
-    a: "Pour les plans Studio et supérieurs, oui. Les crédits non utilisés sont reportés au mois suivant (max 2 mois d'accumulation).",
+    q: "C'est quoi le multi-provider exactement ?",
+    a: "Le système route automatiquement vers le provider optimal par shot. Action → un provider. Dialogue → un autre. Tu valides, tu t'en fous du reste.",
   },
   {
-    q: "Y a-t-il un engagement ?",
-    a: "Non, tous les plans sont sans engagement. L'abonnement annuel offre 17% de réduction mais peut être annulé avec remboursement au prorata.",
+    q: "L'export EDL, ça marche vraiment ?",
+    a: "Timeline complète avec cuts, audio, métadonnées. Import direct dans Premiere/DaVinci. Testé.",
   },
   {
-    q: "Comment fonctionne le revenue sharing communauté ?",
-    a: "Si votre épisode est sélectionné et publié sur la chaîne officielle Moostik, vous recevez 15% des revenus générés (pub, sponsors, etc.).",
+    q: "Et si mon provider préféré sort un nouveau modèle ?",
+    a: "On l'intègre. Le routing s'adapte. C'est le point du multi-provider : toi tu vois le résultat, nous on gère le backend.",
   },
 ];
 
@@ -104,14 +104,14 @@ export default function PricingPage() {
         {/* HEADER */}
         {/* ================================================================ */}
         <section className="max-w-6xl mx-auto px-4 text-center mb-16">
-          <Badge className="mb-4 bg-blood-900/50 text-blood-400 border-blood-700/30">
-            Tarification
+          <Badge className="mb-4 bg-zinc-800 text-zinc-400 border-zinc-700">
+            Early Access
           </Badge>
           <h1 className="text-4xl md:text-6xl font-black text-white mb-4">
-            Un prix simple, pas de surprise
+            Pricing transparent
           </h1>
-          <p className="text-xl text-zinc-400 mb-8">
-            Commencez gratuitement, évoluez selon vos besoins
+          <p className="text-xl text-zinc-500 mb-8">
+            Pas de crédits cachés. Tu sais ce que tu paies.
           </p>
           
           {/* Toggle Annuel/Mensuel */}

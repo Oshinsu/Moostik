@@ -332,3 +332,20 @@
   outline: 2px solid #8b0015;
   outline-offset: 2px;
 }
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Netflix-style horizontal carousel */
+.carousel-gradient-left {
+  background: linear-gradient(to right, #0b0b0e 0%, transparent 100%);
+}
+.carousel-gradient-right {
+  background: linear-gradient(to left, #0b0b0e 0%, transparent 100%);
+}

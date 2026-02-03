@@ -32,6 +32,11 @@ import {
   Sparkles,
   Menu,
   X,
+  Bot,
+  Network,
+  Waves,
+  Brain,
+  Ghost,
 } from "lucide-react";
 
 // ============================================================================
@@ -44,6 +49,14 @@ const NAV_ITEMS = [
   { href: "/app/editor", label: "Éditeur", icon: Film },
   { href: "/app/library", label: "Bibliothèque", icon: Library },
   { href: "/app/credits", label: "Crédits", icon: Coins },
+];
+
+// EMERGENT AI - Systèmes SOTA++
+const AI_NAV_ITEMS = [
+  { href: "/app/agents", label: "Hub Agents", icon: Bot, badge: "SOTA" },
+  { href: "/app/swarm", label: "Swarm Narrative", icon: Network, badge: "NEW" },
+  { href: "/app/reality-bleed", label: "Reality Bleed", icon: Ghost, badge: "NEW" },
+  { href: "/app/molt", label: "The Molt", icon: Brain, badge: "NEW" },
 ];
 
 const SECONDARY_NAV = [
@@ -128,10 +141,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </button>
         </div>
 
-        {/* Nav */}
+        {/* Nav - Production */}
         <nav className="p-4 space-y-1">
+          <div className="px-3 py-1.5 text-xs font-semibold text-zinc-600 uppercase tracking-wider">
+            Production
+          </div>
           {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href || 
+            const isActive = pathname === item.href ||
               (item.href !== "/app" && pathname.startsWith(item.href));
             return (
               <Link
@@ -150,6 +166,43 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 {item.label === "Crédits" && credits && (
                   <Badge className="ml-auto bg-blood-900/50 text-blood-400 border-0 text-xs">
                     {credits.total}
+                  </Badge>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Nav - Emergent AI */}
+        <nav className="px-4 pb-4 space-y-1">
+          <div className="px-3 py-1.5 text-xs font-semibold text-zinc-600 uppercase tracking-wider flex items-center gap-2">
+            <Sparkles className="w-3 h-3 text-blood-500" />
+            Emergent AI
+          </div>
+          {AI_NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
+                  isActive
+                    ? "bg-gradient-to-r from-blood-900/40 to-purple-900/20 text-blood-400 border border-blood-800/30"
+                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                )}
+              >
+                <item.icon className="w-5 h-5" />
+                {item.label}
+                {item.badge && (
+                  <Badge className={cn(
+                    "ml-auto border-0 text-[10px] px-1.5",
+                    item.badge === "NEW"
+                      ? "bg-emerald-900/50 text-emerald-400"
+                      : "bg-purple-900/50 text-purple-400"
+                  )}>
+                    {item.badge}
                   </Badge>
                 )}
               </Link>
