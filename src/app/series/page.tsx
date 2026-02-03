@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { PublicHeader } from "@/components/public";
+import { HorizontalCarousel, CarouselItem, CharacterCard, LocationCard } from "@/components/shared/HorizontalCarousel";
+import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 
 // ============================================================================
 // TYPES
@@ -42,7 +44,17 @@ export default function SeriesLandingPage() {
   const [locations, setLocations] = useState<Location[]>([]);
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [scrollY, setScrollY] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Autoplay video preview after 3 seconds (Netflix pattern)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Load data
   useEffect(() => {
@@ -73,37 +85,61 @@ export default function SeriesLandingPage() {
       <PublicHeader />
 
       {/* ================================================================ */}
-      {/* HERO SECTION - Parallax */}
+      {/* HERO SECTION - Netflix Style with Video Autoplay */}
       {/* ================================================================ */}
-      <section 
+      <section
         ref={heroRef}
         className="relative h-screen flex items-center justify-center overflow-hidden -mt-16"
       >
+        {/* Video Background (Netflix-style autoplay after 3s) */}
+        {showVideo && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+            style={{ opacity: showVideo ? 0.4 : 0 }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedData={() => {
+              if (videoRef.current) {
+                videoRef.current.style.opacity = "0.4";
+              }
+            }}
+          >
+            {/* Add video source when available */}
+            {/* <source src="/videos/moostik-trailer.mp4" type="video/mp4" /> */}
+          </video>
+        )}
+
         {/* Background Layers (Parallax) */}
-        <div 
+        <div
           className="absolute inset-0 bg-gradient-to-b from-blood-900/30 via-[#0b0b0e] to-[#0b0b0e]"
           style={{ transform: `translateY(${scrollY * 0.5}px)` }}
         />
-        
+
         {/* Animated Blood Veins */}
         <div className="absolute inset-0 opacity-20">
-          <div 
+          <div
             className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-blood-600 via-blood-800 to-transparent animate-pulse"
             style={{ transform: `translateY(${scrollY * 0.2}px)` }}
           />
-          <div 
+          <div
             className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blood-700 to-blood-900 animate-pulse"
             style={{ animationDelay: "0.5s", transform: `translateY(${scrollY * 0.3}px)` }}
           />
-          <div 
+          <div
             className="absolute top-0 left-2/3 w-px h-full bg-gradient-to-b from-blood-700 via-transparent to-blood-800 animate-pulse"
             style={{ animationDelay: "1s", transform: `translateY(${scrollY * 0.15}px)` }}
           />
         </div>
 
+        {/* Bottom gradient overlay for video */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0e] via-transparent to-[#0b0b0e]/50 z-[1]" />
+
         {/* Hero Content */}
         <div
-          className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+          className="relative z-20 text-center px-4 max-w-5xl mx-auto"
           style={{ transform: `translateY(${scrollY * -0.3}px)`, opacity: Math.max(0, 1 - scrollY / 500) }}
         >
           {/* Badge */}
@@ -569,80 +605,84 @@ export default function SeriesLandingPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* CHARACTERS CAROUSEL */}
+      {/* CHARACTERS CAROUSEL - Netflix Style */}
       {/* ================================================================ */}
-      <section className="py-24 px-4 bg-gradient-to-b from-[#0b0b0e] via-blood-950/20 to-[#0b0b0e]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+      <section className="py-24 bg-gradient-to-b from-[#0b0b0e] via-blood-950/20 to-[#0b0b0e]">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="text-center mb-12 px-4">
             <Badge className="bg-purple-900/50 text-purple-300 border-purple-700/50 mb-4">PERSONNAGES</Badge>
             <h2 className="text-4xl md:text-5xl font-bold">
-              Les <span className="text-blood-500">héros</span> de l'ombre
+              Les <span className="text-blood-500">héros</span> de l&apos;ombre
             </h2>
           </div>
 
-          {/* Moostik Characters */}
-          <div className="mb-16">
-            <h3 className="text-xl text-amber-400 font-bold mb-6 flex items-center gap-2">
-              <span className="text-2xl">🦟</span> Les Moostiks
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {moostikCharacters.slice(0, 5).map((char) => (
-                <Link key={char.id} href={`/series/characters/${char.id}`}>
-                  <Card className="bg-zinc-900/50 border-zinc-800 hover:border-blood-700/50 transition-all group overflow-hidden">
-                    <div className="aspect-square relative bg-gradient-to-br from-blood-900/20 to-zinc-900">
-                      {char.referenceImages?.[0] ? (
-                        <img 
-                          src={char.referenceImages[0]} 
-                          alt={char.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-6xl opacity-30">🦟</div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    </div>
-                    <div className="p-4">
-                      <h4 className="font-bold text-white truncate">{char.name}</h4>
-                      <p className="text-xs text-zinc-500 truncate">{char.description?.slice(0, 50)}...</p>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
+          <ErrorBoundary>
+            {/* Moostik Characters - Horizontal Carousel */}
+            <div className="mb-12">
+              <HorizontalCarousel
+                title="🦟 Les Moostiks"
+                subtitle="Le peuple de l'ombre"
+                gap="md"
+              >
+                {moostikCharacters.map((char) => (
+                  <CarouselItem key={char.id} width="md" aspectRatio="portrait">
+                    <Link href={`/series/characters/${char.id}`}>
+                      <CharacterCard
+                        name={char.name}
+                        role={char.description?.slice(0, 40)}
+                        imageUrl={char.referenceImages?.[0]}
+                        color="amber"
+                      />
+                    </Link>
+                  </CarouselItem>
+                ))}
+                {/* Placeholder if empty */}
+                {moostikCharacters.length === 0 && (
+                  <>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <CarouselItem key={i} width="md" aspectRatio="portrait">
+                        <div className="w-full h-full bg-zinc-900/50 rounded-xl animate-pulse" />
+                      </CarouselItem>
+                    ))}
+                  </>
+                )}
+              </HorizontalCarousel>
             </div>
-          </div>
 
-          {/* Human Characters */}
-          <div>
-            <h3 className="text-xl text-blue-400 font-bold mb-6 flex items-center gap-2">
-              <span className="text-2xl">👤</span> Les Humains
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {humanCharacters.slice(0, 5).map((char) => (
-                <Link key={char.id} href={`/series/characters/${char.id}`}>
-                  <Card className="bg-zinc-900/50 border-zinc-800 hover:border-blue-700/50 transition-all group overflow-hidden">
-                    <div className="aspect-square relative bg-gradient-to-br from-blue-900/20 to-zinc-900">
-                      {char.referenceImages?.[0] ? (
-                        <img 
-                          src={char.referenceImages[0]} 
-                          alt={char.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-6xl opacity-30">👤</div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    </div>
-                    <div className="p-4">
-                      <h4 className="font-bold text-white truncate">{char.name}</h4>
-                      <p className="text-xs text-zinc-500 truncate">{char.description?.slice(0, 50)}...</p>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
+            {/* Human Characters - Horizontal Carousel */}
+            <div className="mb-8">
+              <HorizontalCarousel
+                title="👤 Les Humains"
+                subtitle="Ceux d'en haut"
+                gap="md"
+              >
+                {humanCharacters.map((char) => (
+                  <CarouselItem key={char.id} width="md" aspectRatio="portrait">
+                    <Link href={`/series/characters/${char.id}`}>
+                      <CharacterCard
+                        name={char.name}
+                        role={char.description?.slice(0, 40)}
+                        imageUrl={char.referenceImages?.[0]}
+                        color="blue"
+                      />
+                    </Link>
+                  </CarouselItem>
+                ))}
+                {/* Placeholder if empty */}
+                {humanCharacters.length === 0 && (
+                  <>
+                    {[1, 2, 3].map((i) => (
+                      <CarouselItem key={i} width="md" aspectRatio="portrait">
+                        <div className="w-full h-full bg-zinc-900/50 rounded-xl animate-pulse" />
+                      </CarouselItem>
+                    ))}
+                  </>
+                )}
+              </HorizontalCarousel>
             </div>
-          </div>
+          </ErrorBoundary>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-10 px-4">
             <Link href="/series/characters">
               <Button variant="outline" className="border-zinc-700 text-zinc-400 hover:bg-zinc-800">
                 Voir tous les personnages →
@@ -653,45 +693,48 @@ export default function SeriesLandingPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* LOCATIONS SECTION */}
+      {/* LOCATIONS SECTION - Netflix Style */}
       {/* ================================================================ */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+      <section className="py-24">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="text-center mb-12 px-4">
             <Badge className="bg-emerald-900/50 text-emerald-300 border-emerald-700/50 mb-4">LIEUX</Badge>
             <h2 className="text-4xl md:text-5xl font-bold">
               Le <span className="text-emerald-500">monde</span> Moostik
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {locations.slice(0, 3).map((loc) => (
-              <Link key={loc.id} href={`/series/locations/${loc.id}`}>
-                <Card className="bg-zinc-900/30 border-zinc-800 hover:border-emerald-700/50 transition-all group overflow-hidden h-80">
-                  <div className="relative h-full">
-                    {loc.referenceImages?.[0] ? (
-                      <img 
-                        src={loc.referenceImages[0]} 
-                        alt={loc.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-emerald-900/20 to-zinc-900 flex items-center justify-center">
-                        <span className="text-8xl opacity-20">📍</span>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">{loc.name}</h3>
-                      <p className="text-zinc-400 text-sm line-clamp-2">{loc.description}</p>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          <ErrorBoundary>
+            <HorizontalCarousel
+              title="📍 Explorez l'univers"
+              subtitle="Des murs de Cooltik aux ruelles de Tire City"
+              gap="lg"
+            >
+              {locations.map((loc) => (
+                <CarouselItem key={loc.id} width="lg" aspectRatio="video">
+                  <Link href={`/series/locations/${loc.id}`}>
+                    <LocationCard
+                      name={loc.name}
+                      description={loc.description}
+                      imageUrl={loc.referenceImages?.[0]}
+                    />
+                  </Link>
+                </CarouselItem>
+              ))}
+              {/* Placeholder if empty */}
+              {locations.length === 0 && (
+                <>
+                  {[1, 2, 3, 4].map((i) => (
+                    <CarouselItem key={i} width="lg" aspectRatio="video">
+                      <div className="w-full h-full bg-zinc-900/50 rounded-xl animate-pulse" />
+                    </CarouselItem>
+                  ))}
+                </>
+              )}
+            </HorizontalCarousel>
+          </ErrorBoundary>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-10 px-4">
             <Link href="/series/locations">
               <Button variant="outline" className="border-zinc-700 text-zinc-400 hover:bg-zinc-800">
                 Explorer tous les lieux →
