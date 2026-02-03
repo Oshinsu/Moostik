@@ -1,5 +1,6 @@
 /**
  * LLM Reasoning Engine Tests
+ * Tests the real LLM implementation - requires ANTHROPIC_API_KEY for full tests
  */
 import { describe, it, expect, beforeEach } from "vitest";
 import {
@@ -11,116 +12,58 @@ import {
 } from "../llm-reasoning";
 
 describe("LLM Reasoning Engine", () => {
-  let engine: LLMReasoningEngine;
+  describe("Initialization", () => {
+    it("should initialize without API key", () => {
+      const engine = new LLMReasoningEngine();
+      expect(engine).toBeDefined();
+    });
 
-  beforeEach(() => {
-    // Create instance without API key (mock mode)
-    engine = new LLMReasoningEngine();
+    it("should report unavailable without API key", () => {
+      const engine = new LLMReasoningEngine();
+      expect(engine.isAvailable()).toBe(false);
+    });
+
+    it("should accept custom configuration", () => {
+      const customEngine = new LLMReasoningEngine({
+        model: "claude-sonnet-4-20250514",
+        maxTokens: 2048,
+        temperature: 0.5,
+        enableMemoryAugmentation: false,
+      });
+
+      expect(customEngine).toBeDefined();
+    });
   });
 
-  describe("General Reasoning", () => {
-    it("should reason about tasks", async () => {
+  describe("Error Handling (No API Key)", () => {
+    let engine: LLMReasoningEngine;
+
+    beforeEach(() => {
+      engine = new LLMReasoningEngine();
+    });
+
+    it("should throw error for reason without API key", async () => {
       const context: ReasoningContext = {
         agentId: "test-agent",
         task: "Analyze the emotional state of Tikoro in Episode 3",
       };
 
-      const result = await engine.reason(context);
-
-      expect(result.response).toBeDefined();
-      expect(result.confidence).toBeGreaterThanOrEqual(0);
-      expect(result.confidence).toBeLessThanOrEqual(1);
-      expect(result.reasoning).toBeDefined();
-      expect(Array.isArray(result.reasoning)).toBe(true);
-      expect(result.tokensUsed).toBeGreaterThanOrEqual(0);
+      await expect(engine.reason(context)).rejects.toThrow("ANTHROPIC_API_KEY not configured");
     });
 
-    it("should include suggestions in mock mode", async () => {
-      const result = await engine.reason({
-        agentId: "suggest-agent",
-        task: "Generate ideas for a new character",
-      });
-
-      expect(result.suggestions).toBeDefined();
-      expect(Array.isArray(result.suggestions)).toBe(true);
-    });
-
-    it("should handle additional context", async () => {
-      const result = await engine.reason({
-        agentId: "context-agent",
-        task: "Make a decision",
-        additionalContext: {
-          previousDecisions: ["choice1", "choice2"],
-          constraints: ["budget", "time"],
-        },
-      });
-
-      expect(result.response).toBeDefined();
-    });
-  });
-
-  describe("Narrative Generation", () => {
-    it("should generate narrative from signals", async () => {
+    it("should throw error for generateNarrative without API key", async () => {
       const request: NarrativeRequest = {
         signals: [
           { content: "Users expressing sadness", source: "community", timestamp: new Date() },
-          { content: "Interest in redemption themes", source: "analytics", timestamp: new Date() },
         ],
         characters: ["Koko", "Tikoro"],
         currentMood: "melancholic",
-        targetLength: "medium",
       };
 
-      const result = await engine.generateNarrative(request);
-
-      expect(result.narrative).toBeDefined();
-      expect(result.narrative.length).toBeGreaterThan(0);
-      expect(result.title).toBeDefined();
-      expect(result.themes).toBeDefined();
-      expect(Array.isArray(result.themes)).toBe(true);
-      expect(result.emotionalArc).toBeDefined();
-      expect(result.suggestedVisuals).toBeDefined();
+      await expect(engine.generateNarrative(request)).rejects.toThrow("ANTHROPIC_API_KEY not configured");
     });
 
-    it("should include all requested characters in narrative", async () => {
-      const request: NarrativeRequest = {
-        signals: [
-          { content: "Test signal", source: "test", timestamp: new Date() },
-        ],
-        characters: ["Papy Tik", "THE MOLT"],
-        currentMood: "mysterious",
-      };
-
-      const result = await engine.generateNarrative(request);
-
-      // In mock mode, characters are mentioned in the narrative
-      expect(result.narrative).toContain("Papy Tik");
-    });
-
-    it("should respect target length", async () => {
-      const shortRequest: NarrativeRequest = {
-        signals: [{ content: "Signal", source: "test", timestamp: new Date() }],
-        characters: ["Koko"],
-        currentMood: "tense",
-        targetLength: "short",
-      };
-
-      const longRequest: NarrativeRequest = {
-        ...shortRequest,
-        targetLength: "long",
-      };
-
-      const shortResult = await engine.generateNarrative(shortRequest);
-      const longResult = await engine.generateNarrative(longRequest);
-
-      // Both should produce valid narratives
-      expect(shortResult.narrative.length).toBeGreaterThan(0);
-      expect(longResult.narrative.length).toBeGreaterThan(0);
-    });
-  });
-
-  describe("Decision Making", () => {
-    it("should make decisions between options", async () => {
+    it("should throw error for decide without API key", async () => {
       const request: DecisionRequest = {
         situation: "Tikoro must choose a path in the Submolt",
         options: [
@@ -135,79 +78,18 @@ describe("LLM Reasoning Engine", () => {
         ],
       };
 
-      const result = await engine.decide(request);
-
-      expect(result.selectedOption).toBeDefined();
-      expect(request.options).toContain(result.selectedOption);
-      expect(result.reasoning).toBeDefined();
-      expect(result.confidence).toBeGreaterThanOrEqual(0);
-      expect(result.confidence).toBeLessThanOrEqual(1);
-      expect(result.risks).toBeDefined();
-      expect(Array.isArray(result.risks)).toBe(true);
+      await expect(engine.decide(request)).rejects.toThrow("ANTHROPIC_API_KEY not configured");
     });
 
-    it("should consider constraints", async () => {
-      const request: DecisionRequest = {
-        situation: "Choose episode release timing",
-        options: ["Release now", "Wait for review", "Schedule for later"],
-        criteria: ["Audience engagement", "Quality"],
-        constraints: ["Budget limited", "Deadline approaching"],
-      };
-
-      const result = await engine.decide(request);
-
-      expect(result.selectedOption).toBeDefined();
-      expect(result.risks.length).toBeGreaterThan(0);
-    });
-
-    it("should provide alternatives", async () => {
-      const result = await engine.decide({
-        situation: "Test situation",
-        options: ["Option A", "Option B", "Option C"],
-        criteria: ["Criterion 1"],
-      });
-
-      expect(result.alternatives).toBeDefined();
-    });
-  });
-
-  describe("Pattern Analysis", () => {
-    it("should analyze patterns in data", async () => {
+    it("should throw error for analyzePatterns without API key", async () => {
       const data = [
         { content: "User mentioned transformation", metadata: { source: "chat" } },
         { content: "Interest in Koko's backstory", metadata: { source: "survey" } },
-        { content: "Questions about the Submolt", metadata: { source: "forum" } },
-        { content: "Transformation theme again", metadata: { source: "chat" } },
       ];
 
-      const result = await engine.analyzePatterns(
-        data,
-        "What themes are emerging from community feedback?"
-      );
-
-      expect(result.patterns).toBeDefined();
-      expect(Array.isArray(result.patterns)).toBe(true);
-      expect(result.insights).toBeDefined();
-      expect(result.anomalies).toBeDefined();
-      expect(result.confidence).toBeGreaterThanOrEqual(0);
-    });
-
-    it("should handle empty data", async () => {
-      const result = await engine.analyzePatterns([], "Find patterns");
-
-      expect(result.patterns).toBeDefined();
-      expect(result.confidence).toBeGreaterThanOrEqual(0);
-    });
-
-    it("should handle large datasets", async () => {
-      const largeData = Array.from({ length: 100 }, (_, i) => ({
-        content: `Data point ${i}`,
-        metadata: { index: i },
-      }));
-
-      const result = await engine.analyzePatterns(largeData, "Analyze trends");
-
-      expect(result.patterns).toBeDefined();
+      await expect(
+        engine.analyzePatterns(data, "What themes are emerging?")
+      ).rejects.toThrow("ANTHROPIC_API_KEY not configured");
     });
   });
 
@@ -220,17 +102,83 @@ describe("LLM Reasoning Engine", () => {
     });
   });
 
-  describe("Configuration", () => {
-    it("should accept custom configuration", () => {
-      const customEngine = new LLMReasoningEngine({
-        model: "claude-sonnet-4-20250514",
-        maxTokens: 2048,
-        temperature: 0.5,
-        enableMemoryAugmentation: false,
-      });
+  // Integration tests - only run if ANTHROPIC_API_KEY is set
+  describe.skipIf(!process.env.ANTHROPIC_API_KEY)("Integration Tests (requires API key)", () => {
+    let engine: LLMReasoningEngine;
 
-      // Engine should be created without error
-      expect(customEngine).toBeDefined();
+    beforeEach(() => {
+      engine = new LLMReasoningEngine({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+    });
+
+    it("should be available with API key", () => {
+      expect(engine.isAvailable()).toBe(true);
+    });
+
+    it("should reason about tasks", async () => {
+      const context: ReasoningContext = {
+        agentId: "test-agent",
+        task: "What is the capital of France?",
+      };
+
+      const result = await engine.reason(context);
+
+      expect(result.response).toBeDefined();
+      expect(result.confidence).toBeGreaterThanOrEqual(0);
+      expect(result.confidence).toBeLessThanOrEqual(1);
+      expect(result.reasoning).toBeDefined();
+      expect(Array.isArray(result.reasoning)).toBe(true);
+      expect(result.tokensUsed).toBeGreaterThan(0);
+    });
+
+    it("should generate narrative from signals", async () => {
+      const request: NarrativeRequest = {
+        signals: [
+          { content: "A shadow moves in the darkness", source: "observer", timestamp: new Date() },
+        ],
+        characters: ["Koko"],
+        currentMood: "mysterious",
+        targetLength: "short",
+      };
+
+      const result = await engine.generateNarrative(request);
+
+      expect(result.narrative).toBeDefined();
+      expect(result.narrative.length).toBeGreaterThan(0);
+      expect(result.title).toBeDefined();
+      expect(result.themes).toBeDefined();
+      expect(Array.isArray(result.themes)).toBe(true);
+    });
+
+    it("should make decisions between options", async () => {
+      const request: DecisionRequest = {
+        situation: "Choose a path",
+        options: ["Path A", "Path B"],
+        criteria: ["Safety", "Speed"],
+      };
+
+      const result = await engine.decide(request);
+
+      expect(result.selectedOption).toBeDefined();
+      expect(request.options).toContain(result.selectedOption);
+      expect(result.reasoning).toBeDefined();
+      expect(result.confidence).toBeGreaterThanOrEqual(0);
+      expect(result.risks).toBeDefined();
+    });
+
+    it("should analyze patterns in data", async () => {
+      const data = [
+        { content: "User mentioned transformation" },
+        { content: "User mentioned change" },
+        { content: "User mentioned evolution" },
+      ];
+
+      const result = await engine.analyzePatterns(data, "What themes emerge?");
+
+      expect(result.patterns).toBeDefined();
+      expect(Array.isArray(result.patterns)).toBe(true);
+      expect(result.confidence).toBeGreaterThanOrEqual(0);
     });
   });
 });

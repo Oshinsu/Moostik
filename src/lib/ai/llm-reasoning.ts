@@ -97,8 +97,15 @@ export class LLMReasoningEngine {
     if (apiKey) {
       this.client = new Anthropic({ apiKey });
     } else {
-      console.warn("[LLM] No API key provided, using mock reasoning");
+      console.warn("[LLM] No ANTHROPIC_API_KEY provided. LLM reasoning features unavailable.");
     }
+  }
+
+  /**
+   * Check if LLM reasoning is available
+   */
+  isAvailable(): boolean {
+    return this.client !== null;
   }
 
   /**
@@ -142,7 +149,10 @@ Please reason through this task and provide:
 4. Any suggestions for improvement`;
 
     if (!this.client) {
-      return this.mockReason(context);
+      throw new Error(
+        "ANTHROPIC_API_KEY not configured. LLM reasoning requires a valid API key. " +
+        "Set the ANTHROPIC_API_KEY environment variable to enable reasoning features."
+      );
     }
 
     try {
@@ -175,7 +185,7 @@ Please reason through this task and provide:
       return result;
     } catch (error) {
       console.error("[LLM] Reasoning failed:", error);
-      return this.mockReason(context);
+      throw error;
     }
   }
 
@@ -213,7 +223,10 @@ Provide:
 Format as JSON.`;
 
     if (!this.client) {
-      return this.mockNarrative(request);
+      throw new Error(
+        "ANTHROPIC_API_KEY not configured. Narrative generation requires a valid API key. " +
+        "Set the ANTHROPIC_API_KEY environment variable to enable this feature."
+      );
     }
 
     try {
@@ -250,7 +263,7 @@ Format as JSON.`;
       };
     } catch (error) {
       console.error("[LLM] Narrative generation failed:", error);
-      return this.mockNarrative(request);
+      throw error;
     }
   }
 
@@ -284,7 +297,10 @@ Provide:
 Format as JSON.`;
 
     if (!this.client) {
-      return this.mockDecision(request);
+      throw new Error(
+        "ANTHROPIC_API_KEY not configured. Decision making requires a valid API key. " +
+        "Set the ANTHROPIC_API_KEY environment variable to enable this feature."
+      );
     }
 
     try {
@@ -319,7 +335,7 @@ Format as JSON.`;
       };
     } catch (error) {
       console.error("[LLM] Decision making failed:", error);
-      return this.mockDecision(request);
+      throw error;
     }
   }
 
@@ -356,12 +372,10 @@ Identify:
 Format as JSON.`;
 
     if (!this.client) {
-      return {
-        patterns: ["Recurring theme of transformation", "Collective emotional resonance"],
-        insights: ["Community engagement peaks during mysterious events"],
-        anomalies: ["Unusual spike in negative sentiment"],
-        confidence: 0.6,
-      };
+      throw new Error(
+        "ANTHROPIC_API_KEY not configured. Pattern analysis requires a valid API key. " +
+        "Set the ANTHROPIC_API_KEY environment variable to enable this feature."
+      );
     }
 
     try {
@@ -395,12 +409,7 @@ Format as JSON.`;
       };
     } catch (error) {
       console.error("[LLM] Pattern analysis failed:", error);
-      return {
-        patterns: [],
-        insights: [],
-        anomalies: [],
-        confidence: 0,
-      };
+      throw error;
     }
   }
 
@@ -439,43 +448,6 @@ Format as JSON.`;
     };
   }
 
-  private mockReason(context: ReasoningContext): ReasoningResult {
-    return {
-      response: `[Mock] Processed task for agent ${context.agentId}: ${context.task.slice(0, 50)}...`,
-      confidence: 0.6,
-      reasoning: [
-        "Analyzed the task requirements",
-        "Considered available context",
-        "Generated appropriate response",
-      ],
-      suggestions: ["Consider adding more context", "Enable API key for better results"],
-      tokensUsed: 0,
-    };
-  }
-
-  private mockNarrative(request: NarrativeRequest): NarrativeResult {
-    return {
-      narrative: `In the depths of the Submolt, where echoes of ${request.signals.length} collective voices intertwined, a new story emerged. ${request.characters.join(" and ")} found themselves drawn into an inexplicable pattern, their fates weaving together like threads in a tapestry of ${request.currentMood}. The signals whispered of change, of transformation, of something ancient awakening beneath the surface of their digital reality.`,
-      title: "Echoes of the Collective",
-      themes: ["transformation", "collective consciousness", "digital mysticism"],
-      emotionalArc: "mysterious buildup to revelation",
-      suggestedVisuals: [
-        "Abstract swirling patterns representing collective thoughts",
-        "Characters emerging from digital mist",
-        "Glowing threads connecting disparate entities",
-      ],
-    };
-  }
-
-  private mockDecision(request: DecisionRequest): DecisionResult {
-    return {
-      selectedOption: request.options[0],
-      reasoning: `Selected first option as the most aligned with criteria: ${request.criteria.slice(0, 2).join(", ")}`,
-      confidence: 0.5,
-      risks: ["Limited analysis without API", "May not account for all factors"],
-      alternatives: request.options.slice(1),
-    };
-  }
 }
 
 // Singleton instance

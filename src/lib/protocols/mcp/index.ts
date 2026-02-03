@@ -11,6 +11,11 @@
  */
 
 import { EventEmitter } from "events";
+import * as fs from "fs";
+import * as path from "path";
+import Replicate from "replicate";
+import { getMemoryManager, type MemoryMetadata } from "../../memory/mem0-client";
+import { getA2AHub } from "../a2a";
 
 // ============================================================================
 // MCP Types (Based on MCP Specification)
@@ -229,6 +234,60 @@ export class MCPServer extends EventEmitter {
 // MOOSTIK MCP Tools - Pre-built tools for the MOOSTIK ecosystem
 // ============================================================================
 
+// ============================================================================
+// Real Data Access Helpers
+// ============================================================================
+
+function loadCharactersData(): unknown[] {
+  try {
+    const dataPath = path.join(process.cwd(), "data", "characters.json");
+    const data = fs.readFileSync(dataPath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("[MCP] Failed to load characters data:", error);
+    return [];
+  }
+}
+
+function loadEpisodesData(): unknown[] {
+  try {
+    const episodesDir = path.join(process.cwd(), "data", "episodes");
+    if (!fs.existsSync(episodesDir)) {
+      return [];
+    }
+    const files = fs.readdirSync(episodesDir).filter((f) => f.endsWith(".json"));
+    return files.map((file) => {
+      const data = fs.readFileSync(path.join(episodesDir, file), "utf-8");
+      return JSON.parse(data);
+    });
+  } catch (error) {
+    console.error("[MCP] Failed to load episodes data:", error);
+    return [];
+  }
+}
+
+// ============================================================================
+// Replicate Client for Image Generation
+// ============================================================================
+
+let replicateClient: Replicate | null = null;
+
+function getReplicateClient(): Replicate | null {
+  if (!replicateClient) {
+    const apiToken = process.env.REPLICATE_API_TOKEN;
+    if (!apiToken) {
+      console.warn("[MCP] REPLICATE_API_TOKEN not set, image/video generation unavailable");
+      return null;
+    }
+    replicateClient = new Replicate({ auth: apiToken });
+  }
+  return replicateClient;
+}
+
+// ============================================================================
+// MOOSTIK MCP Server Factory
+// ============================================================================
+
 export function createMoostikMCPServer(): MCPServer {
   const server = new MCPServer({
     name: "moostik-mcp",
@@ -236,12 +295,16 @@ export function createMoostikMCPServer(): MCPServer {
     description: "MCP Server for MOOSTIK AI Agent ecosystem",
   });
 
+  // Get shared services
+  const memoryManager = getMemoryManager();
+  const { messenger, registry } = getA2AHub();
+
   // --- Generation Tools ---
 
   server.registerTool(
     {
       name: "generate_image",
-      description: "Generate an image using the MOOSTIK generation pipeline",
+      description: "Generate an image using the MOOSTIK generation pipeline via Replicate",
       inputSchema: {
         type: "object",
         properties: {
@@ -273,12 +336,39 @@ export function createMoostikMCPServer(): MCPServer {
       },
     },
     async (args) => {
-      // This would connect to the actual generation pipeline
       console.log(`[MCP Tool] generate_image called with:`, args);
+
+      const replicate = getReplicateClient();
+      if (!replicate) {
+        throw new Error("REPLICATE_API_TOKEN not configured. Cannot generate images.");
+      }
+
+      const prompt = args.prompt as string;
+      const style = (args.style as string) || "bloodwings";
+      const aspectRatio = (args.aspectRatio as string) || "16:9";
+
+      // Build style-enhanced prompt
+      let enhancedPrompt = prompt;
+      if (style === "bloodwings") {
+        enhancedPrompt = `Premium 3D animated feature film, Pixar-demonic microscopic mosquito, dark gradient background, matte obsidian chitin body (#0B0B0E), blood-red accents, warm amber lighting (#FFB25A), 8K micro-textures. ${prompt}`;
+      }
+
+      // Use FLUX for image generation
+      const prediction = await replicate.predictions.create({
+        model: "black-forest-labs/flux-1.1-pro",
+        input: {
+          prompt: enhancedPrompt,
+          aspect_ratio: aspectRatio,
+          output_format: "png",
+          output_quality: 90,
+        },
+      });
+
       return {
-        status: "queued",
-        jobId: crypto.randomUUID(),
-        estimatedTime: "30s",
+        status: "processing",
+        predictionId: prediction.id,
+        model: "flux-1.1-pro",
+        prompt: enhancedPrompt,
       };
     }
   );
@@ -286,7 +376,7 @@ export function createMoostikMCPServer(): MCPServer {
   server.registerTool(
     {
       name: "generate_video",
-      description: "Generate a video clip using Kling or VEO",
+      description: "Generate a video clip using Kling or VEO via Replicate",
       inputSchema: {
         type: "object",
         properties: {
@@ -296,7 +386,7 @@ export function createMoostikMCPServer(): MCPServer {
           },
           duration: {
             type: "number",
-            description: "Duration in seconds (5-30)",
+            description: "Duration in seconds (5-10)",
             default: 5,
           },
           provider: {
@@ -315,15 +405,50 @@ export function createMoostikMCPServer(): MCPServer {
     },
     async (args) => {
       console.log(`[MCP Tool] generate_video called with:`, args);
+
+      const replicate = getReplicateClient();
+      if (!replicate) {
+        throw new Error("REPLICATE_API_TOKEN not configured. Cannot generate videos.");
+      }
+
+      const prompt = args.prompt as string;
+      const duration = (args.duration as number) || 5;
+      const provider = (args.provider as string) || "kling";
+      const sourceImage = args.sourceImage as string | undefined;
+
+      // Select model based on provider
+      const modelMap: Record<string, string> = {
+        kling: "kwaivgi/kling-v2.1-master",
+        veo: "google/veo-3",
+      };
+
+      const model = modelMap[provider] || modelMap.kling;
+
+      const input: Record<string, unknown> = {
+        prompt,
+        duration: duration <= 5 ? 5 : 10,
+      };
+
+      if (sourceImage) {
+        input.start_image = sourceImage;
+      }
+
+      const prediction = await replicate.predictions.create({
+        model,
+        input,
+      });
+
       return {
-        status: "queued",
-        jobId: crypto.randomUUID(),
-        estimatedTime: "2m",
+        status: "processing",
+        predictionId: prediction.id,
+        model,
+        provider,
+        estimatedDuration: `${duration * 20}s`,
       };
     }
   );
 
-  // --- Data Access Tools ---
+  // --- Data Access Tools (REAL DATA) ---
 
   server.registerTool(
     {
@@ -345,14 +470,49 @@ export function createMoostikMCPServer(): MCPServer {
       },
     },
     async (args) => {
-      // Would fetch from database
       console.log(`[MCP Tool] get_characters called with:`, args);
+
+      const allCharacters = loadCharactersData() as Array<{
+        id: string;
+        name: string;
+        type?: string;
+        role?: string;
+        title?: string;
+        description?: string;
+        visualTraits?: string[];
+        personality?: string[];
+        referenceImages?: string[];
+        referencePrompt?: string;
+      }>;
+
+      const characterId = args.characterId as string | undefined;
+      const includeReferences = args.includeReferences as boolean | undefined;
+
+      let characters = allCharacters;
+
+      if (characterId) {
+        characters = allCharacters.filter((c) => c.id === characterId);
+      }
+
+      // Transform to output format
+      const result = characters.map((c) => ({
+        id: c.id,
+        name: c.name,
+        type: c.type,
+        role: c.role,
+        title: c.title,
+        description: c.description,
+        visualTraits: c.visualTraits,
+        personality: c.personality,
+        ...(includeReferences && {
+          referenceImages: c.referenceImages,
+          referencePrompt: c.referencePrompt,
+        }),
+      }));
+
       return {
-        characters: [
-          { id: "koko", name: "Koko", role: "Corrupted AI Guide" },
-          { id: "papy-tik", name: "Papy Tik", role: "Nostalgic Elder" },
-          { id: "the-molt", name: "THE MOLT", role: "Collective Unconscious" },
-        ],
+        characters: result,
+        total: result.length,
       };
     }
   );
@@ -360,7 +520,7 @@ export function createMoostikMCPServer(): MCPServer {
   server.registerTool(
     {
       name: "get_episodes",
-      description: "Get episode data",
+      description: "Get episode data from the MOOSTIK series",
       inputSchema: {
         type: "object",
         properties: {
@@ -378,21 +538,52 @@ export function createMoostikMCPServer(): MCPServer {
     },
     async (args) => {
       console.log(`[MCP Tool] get_episodes called with:`, args);
+
+      const allEpisodes = loadEpisodesData() as Array<{
+        id: string;
+        number?: number;
+        title?: string;
+        description?: string;
+        acts?: unknown[];
+        status?: string;
+      }>;
+
+      const episodeId = args.episodeId as string | undefined;
+      const status = args.status as string | undefined;
+
+      let episodes = allEpisodes;
+
+      if (episodeId) {
+        episodes = allEpisodes.filter((e) => e.id === episodeId);
+      }
+
+      if (status) {
+        episodes = episodes.filter((e) => e.status === status);
+      }
+
+      // Transform to output format
+      const result = episodes.map((e) => ({
+        id: e.id,
+        number: e.number,
+        title: e.title,
+        description: e.description,
+        actsCount: e.acts?.length || 0,
+        status: e.status || "draft",
+      }));
+
       return {
-        episodes: [
-          { id: "ep0", title: "The Awakening", status: "complete" },
-          { id: "ep1", title: "Emergence", status: "generating" },
-        ],
+        episodes: result,
+        total: result.length,
       };
     }
   );
 
-  // --- Memory Tools ---
+  // --- Memory Tools (REAL MEM0 INTEGRATION) ---
 
   server.registerTool(
     {
       name: "remember",
-      description: "Store a memory for later recall",
+      description: "Store a memory using Mem0 for later recall",
       inputSchema: {
         type: "object",
         properties: {
@@ -411,15 +602,34 @@ export function createMoostikMCPServer(): MCPServer {
             items: { type: "string" },
             description: "Tags for categorization",
           },
+          agentId: {
+            type: "string",
+            description: "Agent ID to store memory for",
+            default: "mcp-agent",
+          },
         },
         required: ["content"],
       },
     },
     async (args) => {
       console.log(`[MCP Tool] remember called with:`, args);
+
+      const content = args.content as string;
+      const type = (args.type as MemoryMetadata["type"]) || "episodic";
+      const tags = args.tags as string[] | undefined;
+      const agentId = (args.agentId as string) || "mcp-agent";
+
+      const memory = await memoryManager.remember(agentId, content, {
+        type,
+        tags,
+      });
+
       return {
-        memoryId: crypto.randomUUID(),
+        memoryId: memory.id,
         stored: true,
+        agentId,
+        type: memory.metadata.type,
+        importance: memory.importance,
       };
     }
   );
@@ -427,7 +637,7 @@ export function createMoostikMCPServer(): MCPServer {
   server.registerTool(
     {
       name: "recall",
-      description: "Search memories for relevant information",
+      description: "Search memories using Mem0 semantic search",
       inputSchema: {
         type: "object",
         properties: {
@@ -445,28 +655,55 @@ export function createMoostikMCPServer(): MCPServer {
             items: { type: "string" },
             description: "Filter by memory types",
           },
+          agentId: {
+            type: "string",
+            description: "Agent ID to search memories for",
+            default: "mcp-agent",
+          },
         },
         required: ["query"],
       },
     },
     async (args) => {
       console.log(`[MCP Tool] recall called with:`, args);
+
+      const query = args.query as string;
+      const limit = (args.limit as number) || 10;
+      const types = args.types as MemoryMetadata["type"][] | undefined;
+      const agentId = (args.agentId as string) || "mcp-agent";
+
+      const results = await memoryManager.recall(agentId, query, {
+        limit,
+        types,
+      });
+
       return {
-        memories: [],
-        total: 0,
+        memories: results.map((r) => ({
+          id: r.memory.id,
+          content: r.memory.content,
+          type: r.memory.metadata.type,
+          relevance: r.relevance,
+          importance: r.memory.importance,
+        })),
+        total: results.length,
       };
     }
   );
 
-  // --- Agent Communication Tools ---
+  // --- Agent Communication Tools (REAL A2A INTEGRATION) ---
 
   server.registerTool(
     {
       name: "send_message",
-      description: "Send a message to another agent",
+      description: "Send a message to another agent via A2A protocol",
       inputSchema: {
         type: "object",
         properties: {
+          fromAgent: {
+            type: "string",
+            description: "Sender agent ID",
+            default: "mcp-agent",
+          },
           toAgent: {
             type: "string",
             description: "Target agent ID",
@@ -475,16 +712,16 @@ export function createMoostikMCPServer(): MCPServer {
             type: "string",
             description: "Message content",
           },
+          action: {
+            type: "string",
+            description: "Action type for the message",
+            default: "notification",
+          },
           priority: {
             type: "string",
             description: "Message priority",
             enum: ["low", "normal", "high", "urgent"],
             default: "normal",
-          },
-          requiresResponse: {
-            type: "boolean",
-            description: "Whether a response is expected",
-            default: false,
           },
         },
         required: ["toAgent", "content"],
@@ -492,9 +729,60 @@ export function createMoostikMCPServer(): MCPServer {
     },
     async (args) => {
       console.log(`[MCP Tool] send_message called with:`, args);
+
+      const fromAgent = (args.fromAgent as string) || "mcp-agent";
+      const toAgent = args.toAgent as string;
+      const content = args.content as string;
+      const action = (args.action as string) || "notification";
+
+      // Check if target agent exists
+      const targetAgent = registry.getAgent(toAgent);
+      if (!targetAgent) {
+        // Register sender if needed
+        if (!registry.getAgent(fromAgent)) {
+          registry.registerAgent({
+            id: fromAgent,
+            name: fromAgent,
+            description: "MCP Agent",
+            version: "1.0.0",
+            capabilities: [],
+            endpoints: [],
+          });
+        }
+
+        return {
+          delivered: false,
+          error: `Agent '${toAgent}' not found in registry`,
+          availableAgents: registry.getAllAgents().map((a) => a.id),
+        };
+      }
+
+      // Register sender if needed
+      if (!registry.getAgent(fromAgent)) {
+        registry.registerAgent({
+          id: fromAgent,
+          name: fromAgent,
+          description: "MCP Agent",
+          version: "1.0.0",
+          capabilities: [],
+          endpoints: [],
+        });
+      }
+
+      const message = await messenger.send({
+        type: "notification",
+        from: fromAgent,
+        to: toAgent,
+        payload: {
+          action,
+          data: { content },
+        },
+      });
+
       return {
-        messageId: crypto.randomUUID(),
+        messageId: message.id,
         delivered: true,
+        timestamp: message.timestamp.toISOString(),
       };
     }
   );
