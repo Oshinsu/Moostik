@@ -523,11 +523,12 @@ export const MOOSTIK_CLANS: Record<MoostikClan, {
 export const ROUTES = {
   // Public
   home: "/",
-  moostik: "/moostik",
-  moostikCharacters: "/moostik/characters",
-  moostikWorld: "/moostik/world",
-  moostikWatch: (id: string) => `/moostik/watch/${id}`,
-  studio: "/studio",
+  series: "/series",
+  seriesCharacters: "/series/characters",
+  seriesLocations: "/series/locations",
+  seriesLore: "/series/lore",
+  watch: (id: string) => `/watch/${id}`,
+  emergentAi: "/emergent-ai",
   pricing: "/pricing",
   
   // Auth
