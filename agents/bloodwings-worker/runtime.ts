@@ -409,7 +409,7 @@ export class BloodwingsWorkerRuntime extends EventEmitter {
     const result = await this.pollForCompletion(prediction.id, apiToken);
 
     return {
-      url: result.output,
+      url: Array.isArray(result.output) ? result.output[0] : result.output,
       metadata: {
         predictionId: prediction.id,
         beatSync: task.input.beatSync,

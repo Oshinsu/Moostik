@@ -379,7 +379,7 @@ export class SwarmNarrativeEngineRuntime extends EventEmitter {
       emotionalBeats: this.generateEmotionalBeats(pattern),
       generatedAt: new Date(),
       expiresAt: pattern.expiresAt,
-      status: "pending",
+      status: "detected",
     };
   }
 

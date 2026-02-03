@@ -90,7 +90,8 @@ export {
  * ```
  */
 export async function quickStart() {
-  const orchestrator = await startOrchestrator({
+  const { startOrchestrator: start } = await import("./orchestrator/runtime");
+  const orchestrator = await start({
     autoStart: true,
     enableSwarm: true,
     enableRealityBleed: true,
