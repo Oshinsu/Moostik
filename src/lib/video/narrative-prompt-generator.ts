@@ -791,7 +791,7 @@ ${template.cameraApproach}
       VENGEANCE_BIRTH: "kling-2.6",   // Transformation
       TRAINING_MONTAGE: "hailuo-2.3", // Action
       NOIR_ATMOSPHERE: "wan-2.5",     // Ambiance
-      MEMORY_HAUNTING: "luma-ray-2",  // Effets dreamlike
+      MEMORY_HAUNTING: "luma-ray-flash-2",  // Effets dreamlike
       SCALE_REVELATION: "veo-3.1",    // Grand angle
       IMPACT_DESTRUCTION: "hailuo-2.3", // Physique
       ESTABLISHING_WORLD: "veo-3.1",  // Cinématique

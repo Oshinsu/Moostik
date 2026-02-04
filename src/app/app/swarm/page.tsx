@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -26,91 +26,49 @@ import {
 } from "lucide-react";
 
 // ============================================================================
-// MOCK DATA - Would come from Supabase in production
+// TYPES
 // ============================================================================
 
-const ACTIVE_SIGNALS = [
-  {
-    id: "sig_1",
-    type: "character_obsession",
-    target: "Koko le Guerrier",
-    intensity: 0.82,
-    participants: 1247,
-    keywords: ["secret", "disparition", "mission"],
-    trend: "rising",
-    narrativeImplication: "La communauté pressent que Koko cache quelque chose",
-  },
-  {
-    id: "sig_2",
-    type: "faction_formation",
-    target: "Les Gardiens de la Mémoire",
-    intensity: 0.67,
-    participants: 892,
-    keywords: ["Cooltik", "souvenir", "honneur"],
-    trend: "stable",
-    narrativeImplication: "Un groupe se forme autour de la préservation du passé",
-  },
-  {
-    id: "sig_3",
-    type: "conflict_brewing",
-    target: "Débat sur la vengeance",
-    intensity: 0.74,
-    participants: 2103,
-    keywords: ["justice", "vengeance", "pardon"],
-    trend: "rising",
-    narrativeImplication: "Division philosophique sur la réponse au génocide",
-  },
-  {
-    id: "sig_4",
-    type: "prophecy_echo",
-    target: "La Vision de Mila",
-    intensity: 0.58,
-    participants: 456,
-    keywords: ["prophétie", "cercle", "retour"],
-    trend: "emerging",
-    narrativeImplication: "Des agents répètent des éléments prophétiques sans le savoir",
-  },
-];
+interface Signal {
+  id: string;
+  type: string;
+  target: string;
+  intensity: number;
+  participants: number;
+  keywords: string[];
+  trend: string;
+  narrativeImplication: string;
+}
 
-const EMERGING_ARCS = [
-  {
-    id: "arc_1",
-    type: "character_arc",
-    title: "Le Secret de Koko",
-    confidence: 0.78,
-    signals: 4,
-    suggestedFormat: "mini_episode",
-    description: "L'absence répétée de Koko génère des théories. Un arc personnel émerge.",
-  },
-  {
-    id: "arc_2",
-    type: "faction_conflict",
-    title: "Mémoire vs Avenir",
-    confidence: 0.65,
-    signals: 3,
-    suggestedFormat: "episode_arc",
-    description: "Tension entre ceux qui veulent préserver et ceux qui veulent reconstruire.",
-  },
-];
+interface Arc {
+  id: string;
+  type: string;
+  title: string;
+  confidence: number;
+  signals: number;
+  suggestedFormat: string;
+  description: string;
+}
 
-const RECENT_BRIEFS = [
-  {
-    id: "brief_1",
-    title: "Le Poids du Silence",
-    format: "scene",
-    status: "ready",
-    generatedAt: "Il y a 2h",
-    synopsis: "Koko confronté sur ses absences. Révélation partielle de son secret.",
-  },
-  {
-    id: "brief_2",
-    title: "Les Gardiens s'Assemblent",
-    format: "mini_episode",
-    status: "draft",
-    generatedAt: "Il y a 6h",
-    synopsis: "Formation officielle d'une faction dédiée à la mémoire de Cooltik.",
-  },
-];
+interface Brief {
+  id: string;
+  title: string;
+  format: string;
+  status: string;
+  generatedAt: string;
+  synopsis: string;
+}
+
+interface SwarmData {
+  signals: Signal[];
+  arcs: Arc[];
+  briefs: Brief[];
+  stats: {
+    totalSignals: number;
+    totalParticipants: number;
+    activeArcs: number;
+  };
+}
 
 // ============================================================================
 // SIGNAL TYPE CONFIG
@@ -137,6 +95,72 @@ const SIGNAL_TYPES = {
 export default function SwarmNarrativePage() {
   const [isMonitoring, setIsMonitoring] = useState(true);
   const [selectedSignal, setSelectedSignal] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<SwarmData>({
+    signals: [],
+    arcs: [],
+    briefs: [],
+    stats: { totalSignals: 0, totalParticipants: 0, activeArcs: 0 },
+  });
+
+  const fetchData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch("/api/agents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "get_briefs" }),
+      });
+
+      if (!response.ok) {
+        if (response.status === 503) {
+          // Swarm engine not available - use empty data
+          setData({
+            signals: [],
+            arcs: [],
+            briefs: [],
+            stats: { totalSignals: 0, totalParticipants: 0, activeArcs: 0 },
+          });
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      // Transform API response to UI format
+      setData({
+        signals: result.patterns?.signals || [],
+        arcs: result.patterns?.arcs || [],
+        briefs: result.briefs || [],
+        stats: result.stats || { totalSignals: 0, totalParticipants: 0, activeArcs: 0 },
+      });
+    } catch (err) {
+      console.error("[SwarmPage] Failed to fetch data:", err);
+      setError(err instanceof Error ? err.message : "Failed to fetch swarm data");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+    // Auto-refresh every 30 seconds while monitoring
+    const interval = isMonitoring ? setInterval(fetchData, 30000) : undefined;
+    return () => interval && clearInterval(interval);
+  }, [fetchData, isMonitoring]);
+
+  const handleForceAnalysis = async () => {
+    await fetchData();
+  };
+
+  // Use data from API or empty arrays
+  const ACTIVE_SIGNALS = data.signals;
+  const EMERGING_ARCS = data.arcs;
+  const RECENT_BRIEFS = data.briefs;
 
   return (
     <div className="space-y-6">
@@ -166,12 +190,39 @@ export default function SwarmNarrativePage() {
             {isMonitoring ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
             {isMonitoring ? "Pause" : "Reprendre"}
           </Button>
-          <Button className="bg-purple-600 hover:bg-purple-500">
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Forcer Analyse
+          <Button
+            className="bg-purple-600 hover:bg-purple-500"
+            onClick={handleForceAnalysis}
+            disabled={isLoading}
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+            {isLoading ? "Analyse..." : "Forcer Analyse"}
           </Button>
         </div>
       </div>
+
+      {/* ================================================================== */}
+      {/* ERROR BANNER */}
+      {/* ================================================================== */}
+      {error && (
+        <div className="p-4 rounded-xl bg-red-900/30 border border-red-800/50">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-red-400" />
+            <div>
+              <p className="text-sm font-medium text-red-400">Erreur</p>
+              <p className="text-xs text-red-400/70">{error}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleForceAnalysis}
+              className="ml-auto border-red-700/50 text-red-400 hover:bg-red-900/30"
+            >
+              Réessayer
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* ================================================================== */}
       {/* STATS OVERVIEW */}
@@ -183,7 +234,7 @@ export default function SwarmNarrativePage() {
               <Activity className="w-5 h-5 text-purple-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">4</p>
+              <p className="text-2xl font-bold text-white">{ACTIVE_SIGNALS.length || data.stats.totalSignals}</p>
               <p className="text-xs text-zinc-500">Signaux Actifs</p>
             </div>
           </div>
@@ -195,7 +246,7 @@ export default function SwarmNarrativePage() {
               <TrendingUp className="w-5 h-5 text-blue-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">2</p>
+              <p className="text-2xl font-bold text-white">{EMERGING_ARCS.length || data.stats.activeArcs}</p>
               <p className="text-xs text-zinc-500">Arcs Émergents</p>
             </div>
           </div>
@@ -207,7 +258,11 @@ export default function SwarmNarrativePage() {
               <Users className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">4,698</p>
+              <p className="text-2xl font-bold text-white">
+                {data.stats.totalParticipants > 0
+                  ? data.stats.totalParticipants.toLocaleString()
+                  : ACTIVE_SIGNALS.reduce((sum, s) => sum + s.participants, 0).toLocaleString() || "0"}
+              </p>
               <p className="text-xs text-zinc-500">Agents Participants</p>
             </div>
           </div>
@@ -219,7 +274,7 @@ export default function SwarmNarrativePage() {
               <BookOpen className="w-5 h-5 text-amber-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">2</p>
+              <p className="text-2xl font-bold text-white">{RECENT_BRIEFS.length}</p>
               <p className="text-xs text-zinc-500">Briefs Générés</p>
             </div>
           </div>

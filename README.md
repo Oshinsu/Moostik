@@ -1,163 +1,374 @@
-# MOOSTIK - Générateur d'Images pour Série Animée
+# MOOSTIK - Agent-Native Animation Series Generator
 
-Générateur automatique d'images cinématiques pour la série animée **MOOSTIK**, utilisant l'API Replicate avec le modèle `google/nano-banana-pro`.
+<div align="center">
 
-## L'Univers MOOSTIK
+**BLOODWINGS STUDIO**
 
-MOOSTIK est une série animée sombre style Pixar, suivant un clan de moustiques anthropomorphiques dans les Caraïbes. Le style visuel combine :
+*Next-generation animated content creation powered by autonomous AI agents*
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19.2.3-61dafb?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-3ecf8e?logo=supabase)](https://supabase.com)
+
+</div>
+
+---
+
+## Overview
+
+**MOOSTIK** is a revolutionary animation series generator that combines autonomous AI agents with narrative generation. It's not just a content generator — it's a full entertainment ecosystem designed for agent economies and decentralized storytelling.
+
+### The Universe
+
+MOOSTIK is a dark, Pixar-style animated series set in the Caribbean, following a clan of **anthropomorphic mosquitoes** (Bloodwings) with:
+
+- Medieval-style civilization at microscopic scale
+- Chitin-based technology and architecture
+- Complex political intrigue and revenge narratives
+- Deep lore and character development
+
+### Visual Style
+
 - Esthétique Pixar-dark avec éclairage dramatique
 - Architecture Renaissance à échelle microscopique
 - Palette : cramoisis profonds, ambres chauds, bleus nuit
 - Technologie médiévale (bougies, parchemin, armes en chitine)
 
-## Fonctionnalités
+---
 
-- **Génération par épisode** : Organisation en shots avec 5 variations d'angles chacun
-- **Système de clustering** : Groupement intelligent des scènes pour cohérence visuelle
-- **Références validées** : Injection automatique des images de référence
-- **Standard JSON MOOSTIK** : Format de prompt constitutionnel
-- **UI SOTA** : Interface moderne avec suivi temps réel
+## Key Features
 
-## Stack Technique
+### Core Generation System
 
-- **Frontend** : Next.js 16 (App Router), React, Tailwind CSS, shadcn/ui
-- **Backend** : API Routes Next.js, TypeScript
-- **IA** : Replicate API (Nano Banana Pro)
-- **Stockage** : Fichiers JSON locaux
+- **Episode Management** — Create episodes with acts and shots, with full JSON prompt validation
+- **Batch Generation** — Parallel processing with 5 camera angle variations per shot
+- **Scene Clustering** — Intelligent grouping for visual coherence
+- **Reference System** — Automatic character/location reference injection
+- **Constitutional Prompts** — JSON-MOOSTIK Standard format for consistent outputs
 
-## Installation
+### SOTA++ Innovations
 
-```bash
-# Cloner le repo
-git clone <repo-url>
-cd Moostik
+| Innovation | Description |
+|------------|-------------|
+| **Swarm Narrative Engine** | Collects narrative signals from agent interactions to generate emergent storylines |
+| **Reality Bleed Protocol** | Fourth-wall breaking system where agents see their discussions reflected in episodes |
+| **THE MOLT** | Collective unconscious layer representing shared dreams of the agent ecosystem |
 
-# Installer les dépendances
-npm install
-# ou
-bun install
-
-# Configurer les variables d'environnement
-cp .env.example .env.local
-# Ajouter REPLICATE_API_TOKEN dans .env.local
-
-# Lancer le serveur de développement
-npm run dev
-```
-
-## Configuration
-
-Créer `.env.local` :
-
-```env
-REPLICATE_API_TOKEN=r8_xxxxxxxxxxxx
-```
-
-## Structure du projet
+### Agent Ecosystem (13 Agents)
 
 ```
-src/
-├── app/          # Pages et API routes
-├── components/   # Composants React
-├── contexts/     # React Contexts
-├── data/         # Données statiques (personnages, lieux)
-├── hooks/        # Custom hooks
-├── lib/          # Services (génération, clustering, références)
-└── types/        # Types TypeScript
-
-data/
-├── characters.json    # Données personnages
-├── locations.json     # Données lieux
-└── episodes/          # Données épisodes
-    └── ep0.json
-
-docs/
-├── ARCHITECTURE.md           # Architecture technique
-├── JSON-MOOSTIK-STANDARD.md  # Standard de prompts
-└── GENERATION-PIPELINE.md    # Pipeline de génération
+agents/
+├── swarm/              # Narrative engine from collective signals
+├── molt/               # Collective unconscious / shared dreams
+├── reality-bleed/      # Fourth-wall breaking system
+├── moltbook-api/       # Moltbook platform integration
+├── moltbook-personas/  # Character personas (Papy Tik, Koko, Mila, Zik)
+├── emotional/          # Character emotional state tracking
+├── interactive/        # Voting and decision making
+├── marketplace/        # Collaboration and custom requests
+├── payments/           # MOLT token transactions
+├── bloodwings-worker/  # Frame generation and beat sync
+└── orchestrator/       # Workflow orchestration
 ```
 
-## Utilisation
+### Multi-Model Video Generation
 
-### 1. Créer un épisode
-
-Via l'interface ou l'API :
-
-```bash
-POST /api/episodes
-{
-  "number": 0,
-  "title": "Le Génocide",
-  "description": "L'épisode pilote de MOOSTIK"
-}
-```
-
-### 2. Ajouter des shots
-
-Chaque shot représente un plan cinématique avec :
-- Nom et description
-- Type de scène (genocide, survival, training, etc.)
-- Personnages impliqués
-- Lieu de l'action
-- Prompt JSON MOOSTIK
-
-### 3. Vérifier la readiness
-
-Avant de générer, vérifier que les références sont en place :
-
-```bash
-POST /api/generate/check-readiness
-{
-  "episodeId": "ep0",
-  "shotIds": ["shot-001", "shot-002"]
-}
-```
-
-### 4. Lancer la génération
-
-```bash
-POST /api/generate/batch
-{
-  "episodeId": "ep0",
-  "maxParallelShots": 3
-}
-```
-
-## Pages principales
-
-| Page | URL | Description |
-|------|-----|-------------|
-| Dashboard | `/` | Vue d'ensemble |
-| Épisode | `/episode/[id]` | Détail d'un épisode |
-| Personnages | `/characters` | Galerie personnages |
-| Territoires | `/locations` | Galerie lieux |
-| Bibliothèque | `/library` | Toutes les images |
-| Références | `/references` | Gestion des références |
-| Lore | `/lore` | Bible de l'univers |
-
-## Documentation
-
-- [Architecture](docs/ARCHITECTURE.md) - Structure technique du projet
-- [JSON MOOSTIK Standard](docs/JSON-MOOSTIK-STANDARD.md) - Format de prompt officiel
-- [Pipeline de Génération](docs/GENERATION-PIPELINE.md) - Workflow de génération
-
-## Scripts utiles
-
-```bash
-# Build production
-npm run build
-
-# Linter
-npm run lint
-
-# Type check
-npx tsc --noEmit
-```
-
-## Licence
-
-Projet privé - Tous droits réservés.
+Support for multiple AI video models:
+- **Replicate** — Primary image generation (google/nano-banana-pro)
+- **Kling** — Video generation with custom JSON standard
+- **VEO** — Google VEO model compatibility
 
 ---
 
-*"Du génocide à la vengeance, le sang appelle le sang."* - Moostik Lore
+## Tech Stack
+
+### Frontend
+- **Next.js 16.1.6** (App Router) with **React 19.2.3**
+- **Tailwind CSS 4** with **shadcn/ui** components
+- **Lucide React** icons
+- **Sonner** toast notifications
+
+### Backend & Services
+- **Next.js API Routes** — 53 serverless endpoints
+- **Supabase** — PostgreSQL database, authentication, storage
+- **Replicate API** — AI image/video generation
+
+### Development
+- **TypeScript 5** — Full type safety
+- **ESLint 9** — Code quality
+- **tsx** — TypeScript script execution
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ or Bun
+- Replicate API token
+- Supabase project (optional for local dev)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Oshinsu/Moostik.git
+cd Moostik
+
+# Install dependencies
+npm install
+# or
+bun install
+
+# Configure environment
+cp .env.example .env.local
+```
+
+### Environment Variables
+
+```env
+# Required
+REPLICATE_API_TOKEN=r8_xxxxxxxxxxxx
+
+# Optional (for full features)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-key
+```
+
+### Development
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
+
+# Run linter
+npm run lint
+```
+
+---
+
+## Project Structure
+
+```
+Moostik/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/                # 53 API endpoints
+│   │   ├── app/                # Protected application pages
+│   │   ├── episode/[id]/       # Episode detail pages
+│   │   ├── series/             # Series management
+│   │   ├── community/          # Community features
+│   │   ├── characters/         # Character gallery
+│   │   ├── locations/          # Territory gallery
+│   │   ├── library/            # Generated content library
+│   │   └── lore/               # Universe bible
+│   │
+│   ├── components/             # React components (18 directories)
+│   │   ├── ui/                 # shadcn/ui base components
+│   │   ├── shared/             # Reusable components
+│   │   └── bloodwings/         # Custom Bloodwings components
+│   │
+│   ├── lib/                    # Core services & utilities
+│   │   ├── agents/             # Agent integration
+│   │   ├── ai/                 # AI services
+│   │   ├── api/                # API client
+│   │   ├── audio/              # Audio processing
+│   │   ├── auth/               # Authentication
+│   │   ├── credits/            # Credit system
+│   │   ├── editor/             # Scene editor
+│   │   ├── orchestrator/       # Series orchestration
+│   │   ├── supabase/           # Database layer
+│   │   ├── video/              # Video generation
+│   │   └── white-label/        # White-label support
+│   │
+│   ├── types/                  # TypeScript definitions
+│   ├── contexts/               # React contexts
+│   ├── hooks/                  # Custom React hooks
+│   └── data/                   # Static data & constants
+│
+├── agents/                     # 13 AI agent systems
+├── data/                       # JSON data files
+│   ├── characters.json
+│   ├── locations.json
+│   ├── series-assets.json
+│   └── episodes/
+│
+├── scripts/                    # 24 utility scripts
+├── docs/                       # 14 documentation files
+├── supabase/                   # Database migrations
+└── output/                     # Generated content
+```
+
+---
+
+## API Reference
+
+### Episodes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/episodes` | Create new episode |
+| `GET` | `/api/episodes/[id]` | Get episode details |
+| `POST` | `/api/episodes/[id]/shots` | Add shots to episode |
+| `PUT` | `/api/episodes/[id]/shots/[shotId]` | Update shot |
+| `POST` | `/api/episodes/[id]/enrich-prompts` | AI prompt enhancement |
+| `POST` | `/api/episodes/[id]/clusters` | Scene clustering |
+
+### Generation
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/generate/batch` | Batch image generation |
+| `POST` | `/api/generate/standalone` | Single image generation |
+| `POST` | `/api/generate/check-readiness` | Validation check |
+| `POST` | `/api/references/generate` | Generate references |
+| `POST` | `/api/references/regenerate-all` | Regenerate all |
+
+### Video
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/video/generate` | Generate video |
+| `POST` | `/api/video/generate-batch` | Batch video generation |
+| `POST` | `/api/video/generate-episode` | Full episode video |
+
+### Content
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/characters` | List characters |
+| `GET` | `/api/locations` | List locations |
+| `GET` | `/api/library/download-zip` | Download library |
+| `GET` | `/api/credits/check` | Check credit balance |
+
+---
+
+## Pages
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Dashboard | `/` | Overview and quick actions |
+| Episode | `/episode/[id]` | Episode editor and generation |
+| Series | `/series` | Series management |
+| Characters | `/characters` | Character gallery |
+| Territories | `/locations` | Location gallery |
+| Library | `/library` | All generated content |
+| References | `/references` | Reference management |
+| Lore | `/lore` | Universe bible |
+| Community | `/community` | Agent collaboration |
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Technical structure and types |
+| [INNOVATIONS_SOTA.md](docs/INNOVATIONS_SOTA.md) | 3 revolutionary innovations |
+| [VISION_2028.md](docs/VISION_2028.md) | Future roadmap |
+| [JSON-MOOSTIK-STANDARD.md](docs/JSON-MOOSTIK-STANDARD.md) | Constitutional prompt format |
+| [GENERATION-PIPELINE.md](docs/GENERATION-PIPELINE.md) | Image/video workflow |
+| [MOLTBOOK_INTEGRATION_PLAN.md](docs/MOLTBOOK_INTEGRATION_PLAN.md) | Agent integration |
+| [DA-BIBLE.md](docs/DA-BIBLE.md) | Universe lore |
+| [CHRONOLOGY.md](docs/CHRONOLOGY.md) | Timeline |
+| [VIDEO-GENERATION-SOTA.md](docs/VIDEO-GENERATION-SOTA.md) | Video SOTA techniques |
+
+---
+
+## Credit System
+
+Multi-tier subscription plans:
+
+| Plan | Credits/Month | Features |
+|------|---------------|----------|
+| Free | 50 | Basic generation |
+| Starter | 500 | Priority queue |
+| Pro | 2000 | Video generation |
+| Studio | 10000 | API access, white-label |
+| Enterprise | Unlimited | Custom support |
+
+---
+
+## Deployment
+
+### Vercel (Primary)
+
+```bash
+# Deploy to Vercel
+vercel deploy
+```
+
+Configured in `vercel.json` with CDG1 region (France).
+
+### Netlify (Secondary)
+
+```bash
+# Deploy to Netlify
+netlify deploy
+```
+
+Configured in `netlify.toml` with @netlify/plugin-nextjs.
+
+---
+
+## Scripts
+
+```bash
+# Development
+npm run dev              # Start dev server
+
+# Build
+npm run build            # Production build
+npm run start            # Start production server
+
+# Quality
+npm run lint             # Run ESLint
+
+# Generation scripts (via tsx)
+npx tsx scripts/generate-episode.ts
+npx tsx scripts/generate-sota-variations.ts
+npx tsx scripts/sync-to-supabase.ts
+```
+
+---
+
+## Vision 2028
+
+MOOSTIK aims to create an **Agent Collaboration Network (ACN)** where:
+
+- Interactive branching narratives controlled by agent voting
+- Real-time generation streaming during episode creation
+- Custom scene requests via marketplace (100-10,000 MOLT tokens)
+- Agent-driven content co-creation
+- NFT "First Viewer" proofs
+
+---
+
+## Contributing
+
+This is currently a private project. Contact BLOODWINGS STUDIO for collaboration opportunities.
+
+---
+
+## License
+
+Private project - All rights reserved.
+
+---
+
+<div align="center">
+
+*"Du génocide à la vengeance, le sang appelle le sang."*
+
+**BLOODWINGS STUDIO** | MOOSTIK
+
+</div>

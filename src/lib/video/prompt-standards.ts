@@ -48,7 +48,7 @@ export interface VideoPromptResult {
 // CONFIGURATIONS PAR MODÈLE
 // ============================================
 
-export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
+export const VIDEO_PROMPT_CONFIGS: Partial<Record<VideoProvider, VideoPromptConfig>> = {
   // ============================================
   // SOTA PREMIUM - Kling 2.6
   // ============================================
@@ -82,10 +82,10 @@ export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
   },
 
   // ============================================
-  // SOTA PREMIUM - Seedance 1.5 Pro (BEST LIP-SYNC)
+  // SOTA PREMIUM - Seedance 1 Pro (BEST LIP-SYNC)
   // ============================================
-  "seedance-1.5-pro": {
-    provider: "seedance-1.5-pro",
+  "seedance-1-pro": {
+    provider: "seedance-1-pro",
     maxLength: 1000,
     minLength: 50,
     structure: "natural",
@@ -225,10 +225,10 @@ export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
   },
 
   // ============================================
-  // SOTA BUDGET - Wan 2.6
+  // SOTA BUDGET - Wan 2.5
   // ============================================
-  "wan-2.6": {
-    provider: "wan-2.6",
+  "wan-2.5": {
+    provider: "wan-2.5",
     maxLength: 800,
     minLength: 40,
     structure: "keyword",
@@ -265,20 +265,6 @@ export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
     boostTerms: []
   },
 
-  "wan-2.5": {
-    provider: "wan-2.5",
-    maxLength: 600,
-    minLength: 35,
-    structure: "keyword",
-    supportsNegative: true,
-    supportsBoost: false,
-    audioSupport: "none",
-    cameraMotion: { supported: true, keywords: ["pan", "zoom", "tilt"], maxComplexity: "simple" },
-    bestPractices: ["Good balance quality/speed"],
-    avoidTerms: [],
-    boostTerms: []
-  },
-
   "seedance-1-lite": {
     provider: "seedance-1-lite",
     maxLength: 600,
@@ -293,8 +279,8 @@ export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
     boostTerms: []
   },
 
-  "luma-ray-2": {
-    provider: "luma-ray-2",
+  "luma-ray-flash-2": {
+    provider: "luma-ray-flash-2",
     maxLength: 1000,
     minLength: 60,
     structure: "natural",
@@ -305,20 +291,6 @@ export const VIDEO_PROMPT_CONFIGS: Record<VideoProvider, VideoPromptConfig> = {
     bestPractices: ["Best for first/last frame interpolation", "Natural physics"],
     avoidTerms: [],
     boostTerms: ["smooth", "natural", "interpolate"]
-  },
-
-  "luma-ray-3": {
-    provider: "luma-ray-3",
-    maxLength: 1200,
-    minLength: 70,
-    structure: "natural",
-    supportsNegative: true,
-    supportsBoost: true,
-    audioSupport: "none",
-    cameraMotion: { supported: true, keywords: ["smooth transition", "interpolate", "natural motion"], maxComplexity: "moderate" },
-    bestPractices: ["Enhanced interpolation", "Better physics than Ray 2"],
-    avoidTerms: [],
-    boostTerms: ["smooth", "natural", "cinematic transition"]
   },
 
   "ltx-2": {
@@ -456,6 +428,9 @@ export function convertImagePromptToVideo(
   provider: VideoProvider
 ): VideoPromptResult {
   const config = VIDEO_PROMPT_CONFIGS[provider];
+  if (!config) {
+    throw new Error(`No config found for provider: ${provider}`);
+  }
   const { imagePrompt, sceneType, hasDialogue, dialogueText, dialogueLanguage } = input;
 
   // Déterminer la durée optimale
@@ -638,7 +613,7 @@ function buildNegativePrompt(sceneType: string): string {
 
 function getOptimalDuration(sceneType: string, provider: VideoProvider): number {
   const config = VIDEO_PROMPT_CONFIGS[provider];
-  
+
   const durationMap: Record<string, number> = {
     apocalyptic: 6,
     emotional: 8,
@@ -654,7 +629,7 @@ function getOptimalDuration(sceneType: string, provider: VideoProvider): number 
   };
 
   const ideal = durationMap[sceneType] || 5;
-  return Math.min(Math.max(ideal, config.minLength || 4), config.maxLength || 10);
+  return Math.min(Math.max(ideal, config?.minLength || 4), config?.maxLength || 10);
 }
 
 function truncatePrompt(prompt: string, maxLength: number): string {
@@ -691,7 +666,7 @@ function buildModelConfig(
         audio_mode: "auto"
       };
 
-    case "seedance-1.5-pro":
+    case "seedance-1-pro":
       return {
         ...baseConfig,
         lip_sync: input.hasDialogue,
@@ -714,7 +689,7 @@ function buildModelConfig(
         motion_mode: input.sceneType === "dance" ? "dynamic" : "natural"
       };
 
-    case "wan-2.6":
+    case "wan-2.5":
     case "wan-2.5":
     case "wan-2.2":
       return {
@@ -722,8 +697,8 @@ function buildModelConfig(
         fast_mode: provider === "wan-2.2"
       };
 
-    case "luma-ray-2":
-    case "luma-ray-3":
+    case "luma-ray-flash-2":
+    case "luma-ray-flash-2":
       return {
         ...baseConfig,
         end_image: input.nextShotImageUrl,  // Interpolation
@@ -760,7 +735,7 @@ function getMotionAmount(sceneType: string): number {
 export function getRecommendedProvider(sceneType: string, hasDialogue: boolean): VideoProvider {
   // Dialogue = Seedance pour le lip-sync
   if (hasDialogue) {
-    return "seedance-1.5-pro";
+    return "seedance-1-pro";
   }
 
   const recommendations: Record<string, VideoProvider> = {
@@ -769,12 +744,12 @@ export function getRecommendedProvider(sceneType: string, hasDialogue: boolean):
     action: "hailuo-2.3-fast",
     combat: "hailuo-2.3-fast",
     establishing: "veo-3.1-fast",
-    dialogue: "seedance-1.5-pro",
+    dialogue: "seedance-1-pro",
     death: "veo-3.1-fast",
     flashback: "veo-3.1-fast",  // First/Last frame
-    transition: "luma-ray-2",
+    transition: "luma-ray-flash-2",
     dance: "hailuo-2.3",
-    subtle: "wan-2.6"
+    subtle: "wan-2.5"
   };
 
   return recommendations[sceneType] || "hailuo-2.3-fast";
@@ -785,19 +760,17 @@ export function estimateCost(
   duration: number,
   count: number = 1
 ): { perVideo: number; total: number } {
-  const costs: Record<VideoProvider, number> = {
+  const costs: Partial<Record<VideoProvider, number>> = {
     "kling-2.6": 0.65,
-    "seedance-1.5-pro": 0.50,
+    "seedance-1-pro": 0.50,
     "veo-3.1-fast": 0.75,
     "veo-3.1": 1.75,
     "hailuo-2.3-fast": 0.25,
     "hailuo-2.3": 0.50,
-    "wan-2.6": 0.15,
-    "wan-2.5": 0.12,
+    "wan-2.5": 0.15,
     "wan-2.2": 0.086,
     "seedance-1-lite": 0.15,
-    "luma-ray-2": 0.25,
-    "luma-ray-3": 0.35,
+    "luma-ray-flash-2": 0.25,
     "ltx-2": 0.20,
     "sora-2": 0.50,
     "hunyuan-1.5": 0.15,

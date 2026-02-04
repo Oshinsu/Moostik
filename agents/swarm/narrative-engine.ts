@@ -98,24 +98,32 @@ export interface EmergentNarrativeBrief {
 
   // Structure
   suggestedFormat: "shot" | "scene" | "mini_episode" | "full_episode";
-  keyBeats: {
+  suggestedActs?: { act: number; description: string }[];
+  keyBeats?: {
     beat: string;
     emotionalTone: string;
     visualCue: string;
   }[];
+  keyMoments?: { timestamp: string; description: string }[];
+
+  // Visual & Emotional
+  visualSuggestions?: string[];
+  emotionalBeats?: { beat: string; emotion: string }[];
 
   // Expectations
-  communityExpectation: string;
-  subversionOpportunity: string;
+  communityExpectation?: string;
+  subversionOpportunity?: string;
 
   // Meta
-  confidence: number;
-  novelty: number;
-  canonCompatibility: number;
+  confidence?: number;
+  novelty?: number;
+  canonCompatibility?: number;
 
-  // Status
+  // Status & Timing
   status: "detected" | "analyzed" | "approved" | "in_production" | "released";
-  createdAt: Date;
+  createdAt?: Date;
+  generatedAt?: Date;
+  expiresAt?: Date;
 }
 
 // ============================================================================
@@ -903,7 +911,7 @@ export class SwarmNarrativeEngine {
 
         console.log(`[Swarm] Generated narrative: "${narrative.title}"`);
         console.log(`[Swarm]   Format: ${narrative.suggestedFormat}`);
-        console.log(`[Swarm]   Confidence: ${(narrative.confidence * 100).toFixed(1)}%`);
+        console.log(`[Swarm]   Confidence: ${((narrative.confidence ?? 0) * 100).toFixed(1)}%`);
       }
     }
 
@@ -950,7 +958,7 @@ export class SwarmNarrativeEngine {
       .upsert(narratives.map(n => ({
         ...n,
         sourcePattern: n.sourcePattern.id,
-        createdAt: n.createdAt.toISOString()
+        createdAt: (n.createdAt ?? new Date()).toISOString()
       })));
 
     if (error) console.error("[Swarm] Failed to store narratives:", error);

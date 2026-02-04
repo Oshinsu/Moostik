@@ -31,7 +31,7 @@ export interface ProviderPromptConfig {
 // PROVIDER CONFIGURATIONS
 // ============================================
 
-export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig> = {
+export const PROVIDER_PROMPT_CONFIGS: Partial<Record<VideoProvider, ProviderPromptConfig>> = {
   // ============================================
   // BUDGET TIER
   // ============================================
@@ -162,38 +162,7 @@ export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig
     ],
   },
 
-  "wan-2.6": {
-    maxLength: 600,
-    preferredStyle: "descriptive",
-    keywordWeights: {
-      speech: 1.5,
-      dialogue: 1.5,
-      detailed: 1.3,
-      sharp: 1.3,
-    },
-    negativePromptLibrary: [
-      "blurry",
-      "low quality",
-      "distorted",
-      "watermark",
-      "flickering",
-      "jittery",
-      "unstable",
-      "bad lip sync",
-    ],
-    supportsNegativePrompt: true,
-    supportsWeightSyntax: false,
-    avoidTerms: [],
-    boostTerms: ["sharp details", "crisp", "clear", "stable", "consistent"],
-    notes: [
-      "Sharper than 2.5",
-      "Better temporal consistency",
-      "Less flicker",
-      "Improved text rendering",
-    ],
-  },
-
-  "luma-ray-2": {
+  "luma-ray-flash-2": {
     maxLength: 500,
     preferredStyle: "cinematic",
     keywordWeights: {
@@ -323,44 +292,6 @@ export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig
       "NCR architecture (2.5x more efficient)",
       "Good for anime style",
       "25fps only",
-    ],
-  },
-
-  "luma-ray-3": {
-    maxLength: 600,
-    preferredStyle: "cinematic",
-    keywordWeights: {
-      reasoning: 1.5,
-      character: 1.4,
-      consistency: 1.4,
-      HDR: 1.3,
-    },
-    negativePromptLibrary: [
-      "inconsistent",
-      "character morphing",
-      "identity change",
-      "low dynamic range",
-      "flat colors",
-      "artifacts",
-    ],
-    supportsNegativePrompt: true,
-    supportsWeightSyntax: false,
-    promptPrefix: "Cinematic HDR shot. ",
-    avoidTerms: [],
-    boostTerms: [
-      "character consistency",
-      "reasoning-driven",
-      "HDR",
-      "high dynamic range",
-      "keyframe",
-      "draft mode",
-    ],
-    notes: [
-      "Reasoning-driven generation",
-      "Best character reference preservation",
-      "First HDR pipeline on market",
-      "Draft mode 20x faster",
-      "Video-to-video with keyframes",
     ],
   },
 
@@ -519,7 +450,7 @@ export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig
     ],
   },
 
-  "seedance-1.5-pro": {
+  "seedance-1-pro": {
     maxLength: 1000,
     preferredStyle: "descriptive",
     keywordWeights: {
@@ -576,7 +507,7 @@ export const PROVIDER_PROMPT_CONFIGS: Record<VideoProvider, ProviderPromptConfig
 /**
  * Get config for provider with defaults
  */
-export function getProviderConfig(provider: VideoProvider): ProviderPromptConfig {
+export function getProviderConfig(provider: VideoProvider): ProviderPromptConfig | undefined {
   return PROVIDER_PROMPT_CONFIGS[provider];
 }
 
@@ -585,33 +516,33 @@ export function getProviderConfig(provider: VideoProvider): ProviderPromptConfig
  */
 export function shouldAvoidTerm(term: string, provider: VideoProvider): boolean {
   const config = PROVIDER_PROMPT_CONFIGS[provider];
-  return config.avoidTerms.some((avoid) => term.toLowerCase().includes(avoid.toLowerCase()));
+  return config?.avoidTerms.some((avoid) => term.toLowerCase().includes(avoid.toLowerCase())) ?? false;
 }
 
 /**
  * Get boost terms for provider
  */
 export function getBoostTerms(provider: VideoProvider): string[] {
-  return PROVIDER_PROMPT_CONFIGS[provider].boostTerms;
+  return PROVIDER_PROMPT_CONFIGS[provider]?.boostTerms ?? [];
 }
 
 /**
  * Get provider style preference
  */
 export function getPreferredStyle(provider: VideoProvider): PromptStyle {
-  return PROVIDER_PROMPT_CONFIGS[provider].preferredStyle;
+  return PROVIDER_PROMPT_CONFIGS[provider]?.preferredStyle ?? "descriptive";
 }
 
 /**
  * Get max prompt length for provider
  */
 export function getMaxPromptLength(provider: VideoProvider): number {
-  return PROVIDER_PROMPT_CONFIGS[provider].maxLength;
+  return PROVIDER_PROMPT_CONFIGS[provider]?.maxLength ?? 500;
 }
 
 /**
  * Check if provider supports negative prompts
  */
 export function supportsNegativePrompt(provider: VideoProvider): boolean {
-  return PROVIDER_PROMPT_CONFIGS[provider].supportsNegativePrompt;
+  return PROVIDER_PROMPT_CONFIGS[provider]?.supportsNegativePrompt ?? true;
 }

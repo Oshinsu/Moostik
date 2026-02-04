@@ -32,6 +32,11 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
   product: {
     title: "Infrastructure",
     links: [
+      { label: "Studio", href: ROUTES.studio },
+      { label: "Tarifs", href: ROUTES.pricing },
+      { label: "Éditeur", href: ROUTES.editor },
+      { label: "Génération Vidéo", href: ROUTES.video },
+      { label: "Cinéma IA", href: ROUTES.cinema },
       { label: "Systèmes d'émergence", href: ROUTES.emergentAi },
       { label: "Tarification", href: ROUTES.pricing },
       { label: "Documentation", href: "/docs" },
@@ -40,6 +45,11 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
   series: {
     title: "Corpus MOOSTIK",
     links: [
+      { label: "Regarder", href: ROUTES.series },
+      { label: "Personnages", href: ROUTES.seriesCharacters },
+      { label: "Territoires", href: ROUTES.seriesLocations },
+      { label: "L'Univers", href: ROUTES.seriesLore },
+      { label: "Chronologie", href: ROUTES.seriesTimeline },
       { label: "Visionner", href: ROUTES.series },
       { label: "Personnages", href: ROUTES.seriesCharacters },
       { label: "Lieux", href: ROUTES.seriesLocations },
@@ -57,15 +67,18 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
   legal: {
     title: "Légal",
     links: [
-      { label: "Mentions légales", href: "/legal" },
-      { label: "Confidentialité", href: "/privacy" },
-      { label: "CGU", href: "/terms" },
-      { label: "Cookies", href: "/cookies" },
+      { label: "Mentions légales", href: ROUTES.legal },
+      { label: "Confidentialité", href: ROUTES.privacy },
+      { label: "CGU", href: ROUTES.terms },
+      { label: "Cookies", href: ROUTES.cookies },
     ],
   },
   support: {
     title: "Support",
     links: [
+      { label: "Contact", href: ROUTES.contact },
+      { label: "IA Émergente", href: ROUTES.emergentAi },
+      { label: "Status", href: "https://status.bloodwings.studio", external: true },
       { label: "Contact", href: "/contact" },
     ],
   },

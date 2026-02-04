@@ -10,17 +10,55 @@ import { mapDbProfileToProfile, mapDbPlanToPlan } from "@/lib/auth/auth-utils";
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get("userId");
-    
-    if (!userId) {
+    const supabase = createServerClient();
+
+    // SECURITY: Require authentication for profile access
+    const authHeader = request.headers.get("authorization");
+    if (!authHeader) {
       return NextResponse.json(
-        { error: "Missing userId" },
-        { status: 400 }
+        { error: "Authentication required" },
+        { status: 401 }
       );
     }
-    
-    const supabase = createServerClient();
+
+    // Verify the token and get the authenticated user
+    const { data: { user: authUser }, error: authError } = await supabase.auth.getUser(
+      authHeader.replace("Bearer ", "")
+    );
+
+    if (authError || !authUser) {
+      return NextResponse.json(
+        { error: "Invalid or expired token" },
+        { status: 401 }
+      );
+    }
+
+    // Get userId from query param, but only allow users to access their own profile
+    // unless they are admin (checked below)
+    const { searchParams } = new URL(request.url);
+    const requestedUserId = searchParams.get("userId");
+
+    // If no userId provided, use the authenticated user's ID
+    const userId = requestedUserId || authUser.id;
+
+    // SECURITY: Users can only access their own profile unless admin
+    if (userId !== authUser.id) {
+      // Check if requester is admin
+      const { data: requesterProfile } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", authUser.id)
+        .single();
+
+      const isAdmin = requesterProfile?.role === "admin" || requesterProfile?.role === "super_admin";
+
+      if (!isAdmin) {
+        return NextResponse.json(
+          { error: "Access denied: cannot view other users' profiles" },
+          { status: 403 }
+        );
+      }
+    }
     
     const { data, error } = await supabase
       .from("profiles")

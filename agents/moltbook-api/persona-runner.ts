@@ -6,7 +6,8 @@
 // ============================================================================
 
 import { MoltbookClient, getMoltbookClient, MoltbookPost, MoltbookNotification } from "./client";
-import { MoltbookPersona, getPersona, getInteractionRule, INTERACTION_RULES } from "../moltbook-personas";
+import type { MoltbookPersona } from "../moltbook-personas";
+import { getPersona, getInteractionRule, INTERACTION_RULES } from "../moltbook-personas";
 import { shouldRespond, getTriggeredReaction, isSecretTopic, generateDeflection } from "../moltbook-personas/papy-tik";
 
 // ============================================================================

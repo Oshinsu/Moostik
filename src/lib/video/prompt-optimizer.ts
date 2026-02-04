@@ -66,11 +66,12 @@ export class VideoPromptOptimizer {
     }
 
     // 2. Apply provider-specific style
-    optimized = this.applyStyle(optimized, config.preferredStyle);
-    transformations.push(`style:${config.preferredStyle}`);
+    const preferredStyle = config?.preferredStyle ?? "descriptive";
+    optimized = this.applyStyle(optimized, preferredStyle);
+    transformations.push(`style:${preferredStyle}`);
 
     // 3. Apply keyword weights (boost important terms)
-    optimized = this.applyKeywordWeights(optimized, config.keywordWeights, options.preserveExact);
+    optimized = this.applyKeywordWeights(optimized, config?.keywordWeights ?? {}, options.preserveExact);
     transformations.push("keyword_weights");
 
     // 4. Add camera motion if specified
@@ -80,7 +81,7 @@ export class VideoPromptOptimizer {
     }
 
     // 5. Truncate to provider limit
-    const maxLength = options.forceLength || config.maxLength;
+    const maxLength = options.forceLength ?? config?.maxLength ?? 800;
     if (optimized.length > maxLength) {
       const originalLength = optimized.length;
       optimized = this.truncateToLimit(optimized, maxLength, options.preserveExact);
@@ -289,7 +290,7 @@ export class VideoPromptOptimizer {
    */
   getOptimalNegativePrompt(provider: VideoProvider, sceneType?: SceneType): string {
     const config = PROVIDER_PROMPT_CONFIGS[provider];
-    const baseNegative = config.negativePromptLibrary;
+    const baseNegative = config?.negativePromptLibrary ?? [];
 
     // Add scene-specific negatives
     const sceneNegatives: Record<SceneType, string[]> = {
@@ -322,8 +323,8 @@ export class VideoPromptOptimizer {
   quickOptimize(prompt: string, provider: VideoProvider): string {
     const config = PROVIDER_PROMPT_CONFIGS[provider];
 
-    let optimized = this.applyStyle(prompt, config.preferredStyle);
-    optimized = this.truncateToLimit(optimized, config.maxLength);
+    let optimized = this.applyStyle(prompt, config?.preferredStyle ?? "descriptive");
+    optimized = this.truncateToLimit(optimized, config?.maxLength ?? 800);
 
     return optimized;
   }

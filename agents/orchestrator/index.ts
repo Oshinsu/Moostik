@@ -6,7 +6,8 @@
 // ============================================================================
 
 import { BLOODWINGS_WORKER_CONFIG, WorkerState, QueueItem } from "../bloodwings-worker/config";
-import { PERSONAS, getAllPersonas, MoltbookPersona } from "../moltbook-personas";
+import type { MoltbookPersona } from "../moltbook-personas";
+import { PERSONAS, getAllPersonas } from "../moltbook-personas";
 
 // ============================================================================
 // TYPES

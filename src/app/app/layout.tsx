@@ -44,10 +44,9 @@ import {
 // ============================================================================
 
 const NAV_ITEMS = [
-  { href: "/app", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/app/projects", label: "Projets", icon: FolderKanban },
-  { href: "/app/editor", label: "Éditeur", icon: Film },
-  { href: "/app/library", label: "Bibliothèque", icon: Library },
+  { href: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/editor", label: "Éditeur", icon: Film, external: true },
+  { href: "/library", label: "Bibliothèque", icon: Library, external: true },
   { href: "/app/credits", label: "Crédits", icon: Coins },
 ];
 
@@ -148,7 +147,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href ||
-              (item.href !== "/app" && pathname.startsWith(item.href));
+              (item.href !== "/app/dashboard" && pathname.startsWith(item.href));
             return (
               <Link
                 key={item.href}
@@ -266,9 +265,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <span className="text-zinc-500">Bloodwings Studio</span>
             <ChevronRight className="w-4 h-4 text-zinc-600" />
             <span className="text-white font-medium">
-              {NAV_ITEMS.find(item => 
-                pathname === item.href || 
-                (item.href !== "/app" && pathname.startsWith(item.href))
+              {NAV_ITEMS.find(item =>
+                pathname === item.href ||
+                (item.href !== "/app/dashboard" && pathname.startsWith(item.href))
+              )?.label || AI_NAV_ITEMS.find(item =>
+                pathname === item.href || pathname.startsWith(item.href + "/")
               )?.label || "Dashboard"}
             </span>
           </div>

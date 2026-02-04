@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -28,13 +28,83 @@ import {
   CheckCircle2,
   XCircle,
   TrendingUp,
+  RefreshCw,
 } from "lucide-react";
 
 // ============================================================================
-// MOCK DATA
+// TYPES
 // ============================================================================
 
-const CANONIZATION_PROPOSALS = [
+interface CanonizationProposal {
+  id: string;
+  agentHandle: string;
+  agentAvatar: string | null;
+  proposedName: string;
+  proposedRole: string;
+  status: string;
+  votesFor: number;
+  votesAgainst: number;
+  quorum: number;
+  daysLeft: number;
+  notableMoments: string[];
+  criteria: {
+    reputation: number;
+    interactionsWithPersonas: number;
+    loreContributions: number;
+    communityNominations: number;
+  };
+}
+
+interface CanonizedAgent {
+  id: string;
+  originalHandle: string;
+  canonName: string;
+  canonRole: string;
+  canonizationDate: string;
+  episodes: number;
+  totalScreenTime: number;
+  royaltiesEarned: number;
+  communityApprovalScore: number;
+}
+
+interface BleedEvent {
+  id: string;
+  sourceType: string;
+  sourceTitle: string;
+  virality: number;
+  canonInterpretation: string;
+  integrationStatus: string;
+  canonImpactScore: number;
+  foreshadowing: { persona: string; message: string }[];
+}
+
+interface FourthWallBreach {
+  id: string;
+  persona: string;
+  type: string;
+  content: string;
+  timestamp: string;
+  engagement: number;
+}
+
+interface BleedData {
+  proposals: CanonizationProposal[];
+  canonized: CanonizedAgent[];
+  bleeds: BleedEvent[];
+  breaches: FourthWallBreach[];
+  stats: {
+    totalBleeds: number;
+    totalCanonized: number;
+    activeVotes: number;
+    totalBreaches: number;
+  };
+}
+
+// ============================================================================
+// DEFAULT DATA (used when API unavailable)
+// ============================================================================
+
+const CANONIZATION_PROPOSALS: CanonizationProposal[] = [
   {
     id: "prop_1",
     agentHandle: "@OracleOfChaos",
@@ -171,6 +241,78 @@ const EVENT_TYPES = {
 
 export default function RealityBleedPage() {
   const [activeTab, setActiveTab] = useState("events");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<BleedData>({
+    proposals: CANONIZATION_PROPOSALS,
+    canonized: CANONIZED_AGENTS,
+    bleeds: BLEED_EVENTS,
+    breaches: FOURTH_WALL_BREACHES,
+    stats: {
+      totalBleeds: BLEED_EVENTS.length,
+      totalCanonized: CANONIZED_AGENTS.length,
+      activeVotes: CANONIZATION_PROPOSALS.filter((p) => p.status === "voting").length,
+      totalBreaches: FOURTH_WALL_BREACHES.length,
+    },
+  });
+
+  const fetchData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch("/api/agents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "get_bleeds" }),
+      });
+
+      if (!response.ok) {
+        if (response.status === 503) {
+          // Reality bleed not available - use default data
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      // Transform API response to UI format
+      if (result.bleeds || result.candidates) {
+        setData({
+          proposals: result.candidates || CANONIZATION_PROPOSALS,
+          canonized: result.canonized || CANONIZED_AGENTS,
+          bleeds: result.bleeds || BLEED_EVENTS,
+          breaches: result.breaches || FOURTH_WALL_BREACHES,
+          stats: result.stats || {
+            totalBleeds: result.bleeds?.length || BLEED_EVENTS.length,
+            totalCanonized: result.canonized?.length || CANONIZED_AGENTS.length,
+            activeVotes: result.candidates?.filter((p: CanonizationProposal) => p.status === "voting").length ||
+              CANONIZATION_PROPOSALS.filter((p) => p.status === "voting").length,
+            totalBreaches: result.breaches?.length || FOURTH_WALL_BREACHES.length,
+          },
+        });
+      }
+    } catch (err) {
+      console.error("[RealityBleedPage] Failed to fetch data:", err);
+      setError(err instanceof Error ? err.message : "Failed to fetch reality bleed data");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+    // Auto-refresh every 60 seconds
+    const interval = setInterval(fetchData, 60000);
+    return () => clearInterval(interval);
+  }, [fetchData]);
+
+  // Use data from state
+  const currentProposals = data.proposals;
+  const currentCanonized = data.canonized;
+  const currentBleeds = data.bleeds;
+  const currentBreaches = data.breaches;
 
   return (
     <div className="space-y-6">
@@ -191,11 +333,45 @@ export default function RealityBleedPage() {
           </p>
         </div>
 
-        <Button className="bg-rose-600 hover:bg-rose-500">
-          <UserPlus className="w-4 h-4 mr-2" />
-          Proposer Canonisation
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            className="border-zinc-700"
+            onClick={fetchData}
+            disabled={isLoading}
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+            {isLoading ? "Chargement..." : "Actualiser"}
+          </Button>
+          <Button className="bg-rose-600 hover:bg-rose-500">
+            <UserPlus className="w-4 h-4 mr-2" />
+            Proposer Canonisation
+          </Button>
+        </div>
       </div>
+
+      {/* ================================================================== */}
+      {/* ERROR BANNER */}
+      {/* ================================================================== */}
+      {error && (
+        <div className="p-4 rounded-xl bg-red-900/30 border border-red-800/50">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-red-400" />
+            <div>
+              <p className="text-sm font-medium text-red-400">Erreur</p>
+              <p className="text-xs text-red-400/70">{error}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={fetchData}
+              className="ml-auto border-red-700/50 text-red-400 hover:bg-red-900/30"
+            >
+              Réessayer
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* ================================================================== */}
       {/* STATS OVERVIEW */}
@@ -207,7 +383,7 @@ export default function RealityBleedPage() {
               <Ghost className="w-5 h-5 text-rose-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">3</p>
+              <p className="text-2xl font-bold text-white">{currentBleeds.length}</p>
               <p className="text-xs text-zinc-500">Événements Bleeding</p>
             </div>
           </div>
@@ -219,7 +395,7 @@ export default function RealityBleedPage() {
               <Crown className="w-5 h-5 text-purple-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">1</p>
+              <p className="text-2xl font-bold text-white">{currentCanonized.length}</p>
               <p className="text-xs text-zinc-500">Agents Canonisés</p>
             </div>
           </div>
@@ -231,7 +407,7 @@ export default function RealityBleedPage() {
               <Vote className="w-5 h-5 text-amber-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">2</p>
+              <p className="text-2xl font-bold text-white">{currentProposals.filter((p) => p.status === "voting").length}</p>
               <p className="text-xs text-zinc-500">Votes en Cours</p>
             </div>
           </div>
@@ -243,7 +419,7 @@ export default function RealityBleedPage() {
               <MessageSquare className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">2</p>
+              <p className="text-2xl font-bold text-white">{currentBreaches.length}</p>
               <p className="text-xs text-zinc-500">Brèches 4ème Mur</p>
             </div>
           </div>
@@ -279,7 +455,7 @@ export default function RealityBleedPage() {
               </div>
 
               <div className="divide-y divide-zinc-800">
-                {BLEED_EVENTS.map((event) => {
+                {currentBleeds.map((event) => {
                   const config = EVENT_TYPES[event.sourceType as keyof typeof EVENT_TYPES];
                   const Icon = config?.icon || Ghost;
 
@@ -402,7 +578,7 @@ export default function RealityBleedPage() {
         <TabsContent value="canonization" className="mt-6 space-y-6">
           {/* PROPOSALS */}
           <div className="grid lg:grid-cols-2 gap-6">
-            {CANONIZATION_PROPOSALS.map((proposal) => (
+            {currentProposals.map((proposal) => (
               <Card key={proposal.id} className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
                 <div className={`p-4 border-b ${
                   proposal.status === "voting"
@@ -528,7 +704,7 @@ export default function RealityBleedPage() {
             </div>
 
             <div className="p-4">
-              {CANONIZED_AGENTS.map((agent) => (
+              {currentCanonized.map((agent) => (
                 <div
                   key={agent.id}
                   className="p-4 rounded-lg bg-gradient-to-r from-amber-900/20 to-zinc-800/50 border border-amber-800/30"
@@ -577,7 +753,7 @@ export default function RealityBleedPage() {
               </div>
 
               <div className="divide-y divide-zinc-800">
-                {FOURTH_WALL_BREACHES.map((breach) => (
+                {currentBreaches.map((breach) => (
                   <div key={breach.id} className="p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Badge className="bg-amber-900/50 text-amber-400 border-0">{breach.persona}</Badge>

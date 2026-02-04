@@ -521,8 +521,12 @@ export const MOOSTIK_CLANS: Record<MoostikClan, {
 // ============================================================================
 
 export const ROUTES = {
-  // Public
+  // ==========================================
+  // PUBLIC MARKETING PAGES
+  // ==========================================
   home: "/",
+  moostik: "/moostik",
+  studio: "/studio",
   series: "/series",
   seriesCharacters: "/series/characters",
   seriesLocations: "/series/locations",
@@ -530,25 +534,95 @@ export const ROUTES = {
   watch: (id: string) => `/watch/${id}`,
   emergentAi: "/emergent-ai",
   pricing: "/pricing",
-  
-  // Auth
+  emergentAi: "/emergent-ai",
+  contact: "/contact",
+
+  // Legal
+  legal: "/legal",
+  privacy: "/privacy",
+  terms: "/terms",
+  cookies: "/cookies",
+
+  // ==========================================
+  // SERIES VIEWER (Public Content)
+  // ==========================================
+  series: "/series",
+  seriesDetail: (id: string) => `/series/${id}`,
+  seriesCharacters: "/series/characters",
+  seriesCharacter: (id: string) => `/series/characters/${id}`,
+  seriesLocations: "/series/locations",
+  seriesLocation: (id: string) => `/series/locations/${id}`,
+  seriesLore: "/series/lore",
+  seriesTimeline: "/series/timeline",
+  watch: (id: string) => `/watch/${id}`,
+
+  // ==========================================
+  // AUTHENTICATION
+  // ==========================================
   login: "/auth/login",
   signup: "/auth/signup",
-  
-  // App (Dashboard)
-  dashboard: "/app",
-  projects: "/app/projects",
-  project: (id: string) => `/app/projects/${id}`,
-  editor: "/app/editor",
-  library: "/app/library",
-  credits: "/app/credits",
-  settings: "/app/settings",
-  
-  // Community
+
+  // ==========================================
+  // APP DASHBOARD (Authenticated)
+  // ==========================================
+  dashboard: "/app/dashboard",
+  app: "/app",
+  appAgents: "/app/agents",
+  appSwarm: "/app/swarm",
+  appRealityBleed: "/app/reality-bleed",
+  appMolt: "/app/molt",
+  appCredits: "/app/credits",
+  appSettings: "/app/settings",
+
+  // ==========================================
+  // CREATION STUDIO (Authenticated)
+  // ==========================================
+  editor: "/editor",
+  generate: "/generate",
+  video: "/video",
+  cinema: "/cinema",
+  shots: "/shots",
+
+  // ==========================================
+  // CONTENT LIBRARY
+  // ==========================================
+  library: "/library",
+  libraryEpisodeImages: (id: string) => `/library/episodes/${id}/images`,
+  libraryEpisodeVideos: (id: string) => `/library/episodes/${id}/videos`,
+  characters: "/characters",
+  locations: "/locations",
+  lore: "/lore",
+  references: "/references",
+  episode: (id: string) => `/episode/${id}`,
+  promo: "/promo",
+
+  // ==========================================
+  // USER
+  // ==========================================
+  profile: "/profile",
+  admin: "/admin",
+
+  // ==========================================
+  // COMMUNITY
+  // ==========================================
   community: "/community",
   communityGallery: "/community/gallery",
   communitySubmit: "/community/submit",
   communityAvatar: "/community/avatar",
   communityPost: (id: string) => `/community/post/${id}`,
   communityProfile: (username: string) => `/community/u/${username}`,
+
+  // ==========================================
+  // DEPRECATED (kept for backward compatibility)
+  // ==========================================
+  /** @deprecated Use seriesCharacters instead */
+  moostikCharacters: "/series/characters",
+  /** @deprecated Use seriesLore instead */
+  moostikWorld: "/series/lore",
+  /** @deprecated Use watch instead */
+  moostikWatch: (id: string) => `/watch/${id}`,
+  /** @deprecated Use appCredits instead */
+  credits: "/app/credits",
+  /** @deprecated Use appSettings instead */
+  settings: "/app/settings",
 } as const;

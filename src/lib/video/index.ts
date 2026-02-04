@@ -7,7 +7,7 @@
  * - Kling 2.6 Pro (Kuaishou) - Premium quality, 6-region motion brush
  * - Veo 3.1 (Google DeepMind) - Highest quality, 4K, physics simulation
  * - Hailuo 2.3 (MiniMax) - Excellent motion, character consistency
- * - Luma Ray 2/3 (Luma AI) - Fast, frame interpolation
+ * - Luma Ray Flash 2/3 (Luma AI) - Fast, frame interpolation
  * - LTX-2 (Lightricks) - Open source, very fast
  * - Sora 2 (OpenAI) - Premium quality, long-form video
  * - Hunyuan 1.5 (Tencent) - Excellent quality/cost ratio

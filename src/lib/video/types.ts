@@ -1,16 +1,20 @@
 /**
  * MOOSTIK Video Generation Types
- * SOTA I2V Models on Replicate - January 2026
+ * SOTA I2V Models on Replicate - February 2026
  *
- * Based on comprehensive analysis of available providers:
- * - Wan 2.2/2.5/2.6 (Alibaba) - Best value, open source
+ * Based on comprehensive benchmarks (Artificial Analysis Video Arena):
+ * - Kling 2.5 Turbo Pro (Kuaishou) - 1.7M runs, #1 most used
  * - Kling 2.6 Pro (Kuaishou) - Motion control, native audio
- * - Veo 3.1 (Google) - Best quality, physics
- * - Hailuo 2.3 (MiniMax) - Dance, expressions
- * - Luma Ray 2/3 - Natural physics, interpolation
- * - LTX-2 (Lightricks) - Open source 4K
- * - Sora 2 (OpenAI) - Long duration
- * - Hunyuan 1.5 (Tencent) - Open source, 13B params
+ * - Veo 3.1/3 (Google) - Best physics, context-aware audio
+ * - Wan 2.2/2.5 (Alibaba) - Best value, 6.8M runs on I2V
+ * - Hailuo 2.3 (MiniMax) - Dance, expressions, NCR architecture
+ * - Luma Ray Flash 2 - Natural physics, interpolation
+ * - Sora 2/2 Pro (OpenAI) - Long duration
+ * - Seedance 1 Pro (ByteDance) - 614K runs, lip-sync
+ * - PixVerse v4 - Camera control, stylized content
+ *
+ * Note: Kling O1 and Runway Gen-4.5 are NOT on Replicate
+ * (available only via their native APIs)
  */
 
 // ============================================
@@ -18,22 +22,37 @@
 // ============================================
 
 export type VideoProvider =
-  | "wan-2.2"
-  | "wan-2.5"
-  | "wan-2.6"
-  | "kling-2.6"
-  | "veo-3.1"
-  | "veo-3.1-fast"      // SOTA Janvier 2026 - $0.15/s
-  | "hailuo-2.3"
-  | "hailuo-2.3-fast"   // SOTA Janvier 2026 - 50% moins cher
-  | "luma-ray-2"
-  | "luma-ray-3"
-  | "ltx-2"
-  | "sora-2"
-  | "hunyuan-1.5"
-  | "pixverse-4"
-  | "seedance-1.5-pro"  // SOTA Janvier 2026 - Lip-sync multilingual
-  | "seedance-1-lite";  // Budget SOTA
+  // Wan (Alibaba) - Budget & Standard
+  | "wan-2.2"           // 6.8M runs - Most popular I2V on Replicate
+  | "wan-2.2-fast"      // wan-video/wan-2.2-i2v-fast
+  | "wan-2.5"           // wan-video/wan-2.5-i2v
+  | "wan-2.5-fast"      // wan-video/wan-2.5-i2v-fast
+  // Kling (Kuaishou) - Premium
+  | "kling-2.5-turbo"   // 1.7M runs - kwaivgi/kling-v2.5-turbo-pro
+  | "kling-2.6"         // kwaivgi/kling-v2.6 - Native audio
+  // Google Veo - Premium
+  | "veo-3"             // google/veo-3 - Full quality
+  | "veo-3-fast"        // google/veo-3-fast - Faster, cheaper
+  | "veo-3.1"           // google/veo-3.1 - Latest with last frame
+  | "veo-3.1-fast"      // google/veo-3.1-fast - Best physics + speed
+  | "veo-2"             // google/veo-2 - Previous gen
+  // MiniMax Hailuo - Premium
+  | "hailuo-2.3"        // minimax/hailuo-2.3 - NCR architecture
+  | "hailuo-2.3-fast"   // minimax/hailuo-2.3-fast - I2V optimized
+  // Luma Ray - Standard
+  | "luma-ray-flash-2"  // luma/ray-flash-2-720p - Interpolation
+  // Lightricks - Budget
+  | "ltx-2"             // lightricks/ltx-video-2 - Open source 4K
+  // OpenAI Sora - Premium
+  | "sora-2"            // openai/sora-2 - Long duration
+  | "sora-2-pro"        // openai/sora-2-pro - Premium quality
+  // Tencent Hunyuan - Standard
+  | "hunyuan-1.5"       // wavespeedai/hunyuan-video-fast
+  // PixVerse - Budget
+  | "pixverse-4"        // pixverse/pixverse-v4 - Camera control
+  // ByteDance Seedance - Premium
+  | "seedance-1-pro"    // bytedance/seedance-1-pro-fast - 614K runs
+  | "seedance-1-lite";  // Budget option
 
 export type ProviderTier = "budget" | "standard" | "premium" | "local";
 
@@ -128,7 +147,7 @@ export interface VideoGenerationInput {
 
   // Image source (for img2vid)
   sourceImage?: string; // URL or base64
-  endImage?: string; // For interpolation (Luma Ray 2)
+  endImage?: string; // For interpolation (Luma Ray Flash 2)
 
   // Video source (for vid2vid / motion transfer)
   sourceVideo?: string;
@@ -329,57 +348,83 @@ export interface BatchVideoResult {
 }
 
 // ============================================
-// SOTA PROVIDER CONFIGURATIONS - JANUARY 2026
+// SOTA PROVIDER CONFIGURATIONS - FEBRUARY 2026
 // ============================================
 
 export const REPLICATE_MODELS: Record<VideoProvider, string> = {
-  // Budget tier - Wan video (fast & cheap)
-  "wan-2.2": "wan-video/wan-2.2-i2v-fast",
-  "wan-2.5": "wavespeedai/wan-2.1-i2v-720p",      // CORRIGÉ: Wan 2.1 720p accéléré
-  "wan-2.6": "wan-video/wan-2.2-i2v-a14b",        // CORRIGÉ: Wan 2.2 A14B I2V
-  
-  // Premium tier - Kling (cinematic motion)
-  "kling-2.6": "kwaivgi/kling-v2.6",              // CORRIGÉ Fév 2026: Kling v2.6 Pro
-  
-  // Google Veo (best quality)
-  "veo-3.1": "google/veo-3.1",                    // CORRIGÉ Fév 2026: Veo 3.1 (latest)
-  "veo-3.1-fast": "google/veo-3.1-fast",          // CORRIGÉ Fév 2026: Veo 3.1 Fast
-  
-  // MiniMax Hailuo (expressions, dance)
-  "hailuo-2.3": "minimax/hailuo-2.3",             // CORRIGÉ Fév 2026: Hailuo 2.3 (T2V + I2V)
-  "hailuo-2.3-fast": "minimax/hailuo-2.3",        // CORRIGÉ Fév 2026: Same model (fast = I2V only)
-  
-  // Luma Ray (physics, interpolation)
-  "luma-ray-2": "luma/ray-flash-2-720p",          // CORRIGÉ: Ray Flash 2 720p
-  "luma-ray-3": "luma/ray-flash-2-540p",          // CORRIGÉ: Ray Flash 2 540p (faster)
-  
-  // Lightricks LTX
-  "ltx-2": "lightricks/audio-to-video",           // CORRIGÉ: Audio to video
-  
-  // OpenAI Sora (N/A on Replicate - fallback)
-  "sora-2": "google/veo-3",                       // FALLBACK: Veo 3 (Sora N/A)
-  
-  // Tencent Hunyuan
-  "hunyuan-1.5": "wavespeedai/hunyuan-video-fast", // CORRIGÉ: Hunyuan Video Fast
-  
-  // PixVerse
-  "pixverse-4": "pixverse/pixverse-v4.5",         // CORRIGÉ: PixVerse v4.5 (latest)
-  
-  // ByteDance Seedance
-  "seedance-1.5-pro": "bytedance/seedance-1.5-pro", // CORRIGÉ Fév 2026: Seedance 1.5 Pro (264K runs)
-  "seedance-1-lite": "bytedance/seedance-1-lite",
+  // ============================================
+  // WAN (Alibaba) - Best Value, Open Source
+  // ============================================
+  "wan-2.2": "wan-video/wan-2.2-i2v",             // Standard I2V
+  "wan-2.2-fast": "wan-video/wan-2.2-i2v-fast",   // 6.8M runs - MOST POPULAR I2V
+  "wan-2.5": "wan-video/wan-2.5-i2v",             // 181.6K runs - Audio support
+  "wan-2.5-fast": "wan-video/wan-2.5-i2v-fast",   // 49.2K runs - Speed optimized
+
+  // ============================================
+  // KLING (Kuaishou) - Premium Cinematic
+  // ============================================
+  "kling-2.5-turbo": "kwaivgi/kling-v2.5-turbo-pro", // 1.7M runs - #1 MOST USED
+  "kling-2.6": "kwaivgi/kling-v2.6",              // 92.4K runs - Native audio
+
+  // ============================================
+  // GOOGLE VEO - Best Physics & Quality
+  // ============================================
+  "veo-3": "google/veo-3",                        // 216.2K runs - Full quality
+  "veo-3-fast": "google/veo-3-fast",              // 161.4K runs - Faster variant
+  "veo-3.1": "google/veo-3.1",                    // 323.8K runs - Last frame support
+  "veo-3.1-fast": "google/veo-3.1-fast",          // 354.3K runs - BEST PHYSICS + SPEED
+  "veo-2": "google/veo-2",                        // 105.5K runs - Previous gen
+
+  // ============================================
+  // MINIMAX HAILUO - Dance & Expressions
+  // ============================================
+  "hailuo-2.3": "minimax/hailuo-2.3",             // T2V + I2V, NCR architecture
+  "hailuo-2.3-fast": "minimax/hailuo-2.3-fast",   // I2V optimized, lower latency
+
+  // ============================================
+  // LUMA RAY - Physics & Interpolation
+  // ============================================
+  "luma-ray-flash-2": "luma/ray-flash-2-720p",    // Start+end frame interpolation
+
+  // ============================================
+  // LIGHTRICKS LTX - Open Source 4K
+  // ============================================
+  "ltx-2": "lightricks/ltx-video-2",              // Open source, can run locally
+
+  // ============================================
+  // OPENAI SORA - Long Duration
+  // ============================================
+  "sora-2": "openai/sora-2",                      // 198.7K runs - Up to 35s
+  "sora-2-pro": "openai/sora-2-pro",              // 78.6K runs - Premium quality
+
+  // ============================================
+  // TENCENT HUNYUAN - Open Source 13B
+  // ============================================
+  "hunyuan-1.5": "wavespeedai/hunyuan-video-fast", // 13B params, fast variant
+
+  // ============================================
+  // PIXVERSE - Camera Control
+  // ============================================
+  "pixverse-4": "pixverse/pixverse-v4",           // 20+ camera presets
+
+  // ============================================
+  // BYTEDANCE SEEDANCE - Lip-Sync
+  // ============================================
+  "seedance-1-pro": "bytedance/seedance-1-pro-fast", // 613.9K runs - Multilingual lip-sync
+  "seedance-1-lite": "bytedance/seedance-1-lite", // Budget variant
 };
 
 export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
   // ============================================
-  // BUDGET TIER - Fast & Cheap
+  // BUDGET TIER - Fast & Cheap ($0.02-0.09/5s)
   // ============================================
+
   "wan-2.2": {
     provider: "wan-2.2",
     tier: "budget",
-    replicateModel: "wan-video/wan-2.2-i2v-fast",
+    replicateModel: "wan-video/wan-2.2-i2v",
     maxConcurrent: 5,
-    timeoutMs: 180000, // 3 min
+    timeoutMs: 180000,
     capabilities: {
       maxDurationSeconds: 5,
       minDurationSeconds: 2,
@@ -395,7 +440,39 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
       supportsMotionBrush: false,
       supportsMotionTransfer: false,
       fps: [24],
-      strengths: ["Very fast (39s for 5s@480p)", "Cheapest option", "Good for prototyping"],
+      strengths: ["Standard I2V", "Good for prototyping"],
+      weaknesses: ["Lower resolution", "No audio"],
+    },
+    pricing: {
+      costPerSecond: 0.020,
+      costPer5sVideo: 0.10,
+      minimumCost: 0.10,
+      currency: "USD",
+    },
+  },
+
+  "wan-2.2-fast": {
+    provider: "wan-2.2-fast",
+    tier: "budget",
+    replicateModel: "wan-video/wan-2.2-i2v-fast",
+    maxConcurrent: 8,
+    timeoutMs: 120000,
+    capabilities: {
+      maxDurationSeconds: 5,
+      minDurationSeconds: 2,
+      supportedResolutions: ["480p", "720p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["6.8M runs - MOST POPULAR", "Very fast (39s for 5s)", "Cheapest option"],
       weaknesses: ["Lower resolution", "No audio", "Limited motion control"],
     },
     pricing: {
@@ -440,7 +517,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
 
   "pixverse-4": {
     provider: "pixverse-4",
-    tier: "budget",
+    tier: "standard",  // Corrected: $0.30 is standard tier pricing
     replicateModel: "pixverse/pixverse-v4",
     maxConcurrent: 5,
     timeoutMs: 180000,
@@ -466,429 +543,6 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
       costPerSecond: 0.06,
       costPer5sVideo: 0.30,
       minimumCost: 0.30,
-      currency: "USD",
-    },
-  },
-
-  // ============================================
-  // STANDARD TIER - Balanced
-  // ============================================
-  "wan-2.5": {
-    provider: "wan-2.5",
-    tier: "standard",
-    replicateModel: "wan-video/wan-2.5-i2v",
-    maxConcurrent: 3,
-    timeoutMs: 300000, // 5 min
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 3,
-      supportedResolutions: ["480p", "720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: true,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["One-pass A/V sync", "Lip-sync native", "6 aspect ratios", "Multilingual prompts", "Best value"],
-      weaknesses: ["Slower than 2.2", "Open source limitations"],
-    },
-    pricing: {
-      costPerSecond: 0.042,
-      costPer5sVideo: 0.21,
-      minimumCost: 0.21,
-      currency: "USD",
-    },
-  },
-
-  "wan-2.6": {
-    provider: "wan-2.6",
-    tier: "standard",
-    replicateModel: "wan-video/wan-2.6-i2v",
-    maxConcurrent: 3,
-    timeoutMs: 400000,
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 3,
-      supportedResolutions: ["480p", "720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: true,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["Sharper details vs 2.5", "Less flicker", "Better text rendering", "Improved temporal consistency"],
-      weaknesses: ["Slower than 2.5", "Newer model"],
-    },
-    pricing: {
-      costPerSecond: 0.05,
-      costPer5sVideo: 0.25,
-      minimumCost: 0.25,
-      currency: "USD",
-    },
-  },
-
-  "luma-ray-2": {
-    provider: "luma-ray-2",
-    tier: "standard",
-    replicateModel: "luma/ray-2",
-    maxConcurrent: 3,
-    timeoutMs: 300000,
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 5,
-      supportedResolutions: ["540p", "720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: true, // Start + end frame!
-      supportsAudio: false,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["Start+end frame interpolation", "Natural physics", "10x compute vs Ray 1", "Coherent motion"],
-      weaknesses: ["No audio", "Higher latency"],
-    },
-    pricing: {
-      costPerSecond: 0.10,
-      costPer5sVideo: 0.50,
-      minimumCost: 0.50,
-      currency: "USD",
-    },
-  },
-
-  "hunyuan-1.5": {
-    provider: "hunyuan-1.5",
-    tier: "standard",
-    replicateModel: "tencent/hunyuan-video",
-    maxConcurrent: 2,
-    timeoutMs: 600000,
-    capabilities: {
-      maxDurationSeconds: 5,
-      minDurationSeconds: 2,
-      supportedResolutions: ["720p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: false,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["13B parameters", "Open source", "Good motion quality", "Text alignment"],
-      weaknesses: ["Requires 60-80GB VRAM", "Slower"],
-    },
-    pricing: {
-      costPerSecond: 0.06,
-      costPer5sVideo: 0.30,
-      minimumCost: 0.30,
-      currency: "USD",
-    },
-  },
-
-  // ============================================
-  // PREMIUM TIER - High Quality
-  // ============================================
-  "kling-2.6": {
-    provider: "kling-2.6",
-    tier: "premium",
-    replicateModel: "kwaivgi/kling-v2.6",
-    maxConcurrent: 3,
-    timeoutMs: 600000, // 10 min
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 5,
-      supportedResolutions: ["1080p", "4k"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: true,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: true,
-      supportsMotionTransfer: true,
-      fps: [24, 30],
-      strengths: [
-        "Motion brush (6 regions)",
-        "Motion transfer from video",
-        "Native audio generation",
-        "Advanced physics engine",
-        "4K native",
-      ],
-      weaknesses: ["Higher cost", "Longer processing"],
-    },
-    pricing: {
-      costPerSecond: 0.095,
-      costPer5sVideo: 0.475,
-      minimumCost: 0.475,
-      currency: "USD",
-    },
-  },
-
-  "hailuo-2.3": {
-    provider: "hailuo-2.3",
-    tier: "premium",
-    replicateModel: "minimax/hailuo-2.3",
-    maxConcurrent: 2,
-    timeoutMs: 600000,
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 6,
-      supportedResolutions: ["768p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: false,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [25],
-      strengths: [
-        "Excellent for dance/complex motion",
-        "Micro-expressions",
-        "Good anime style",
-        "NCR architecture (2.5x efficient)",
-      ],
-      weaknesses: ["No audio", "25fps only"],
-    },
-    pricing: {
-      costPerSecond: 0.08,
-      costPer5sVideo: 0.40,
-      minimumCost: 0.40,
-      currency: "USD",
-    },
-  },
-
-  "luma-ray-3": {
-    provider: "luma-ray-3",
-    tier: "premium",
-    replicateModel: "luma/ray-3",
-    maxConcurrent: 2,
-    timeoutMs: 600000,
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 5,
-      supportedResolutions: ["720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: true,
-      supportsInterpolation: true,
-      supportsAudio: true,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: true,
-      fps: [24],
-      strengths: [
-        "Reasoning-driven generation",
-        "Character reference preservation",
-        "Draft mode (20x faster)",
-        "HDR pipeline (first on market)",
-        "Video-to-video with keyframes",
-      ],
-      weaknesses: ["Newer, less documentation"],
-    },
-    pricing: {
-      costPerSecond: 0.12,
-      costPer5sVideo: 0.60,
-      minimumCost: 0.60,
-      currency: "USD",
-    },
-  },
-
-  "veo-3.1": {
-    provider: "veo-3.1",
-    tier: "premium",
-    replicateModel: "google/veo-3-1",
-    maxConcurrent: 2,
-    timeoutMs: 600000,
-    capabilities: {
-      maxDurationSeconds: 8,
-      minDurationSeconds: 4,
-      supportedResolutions: ["1080p", "4k"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "21:9"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: [
-        "Best physics simulation",
-        "Contextual audio generation",
-        "Last frame support for chaining",
-        "Highest fidelity",
-        "SynthID watermark",
-      ],
-      weaknesses: ["Expensive", "Preview limitations", "Videos stored 2 days only"],
-    },
-    pricing: {
-      costPerSecond: 0.35,
-      costPer5sVideo: 1.75,
-      minimumCost: 1.75,
-      currency: "USD",
-    },
-  },
-
-  "sora-2": {
-    provider: "sora-2",
-    tier: "premium",
-    replicateModel: "openai/sora-2",
-    maxConcurrent: 1,
-    timeoutMs: 900000, // 15 min
-    capabilities: {
-      maxDurationSeconds: 35,
-      minDurationSeconds: 4,
-      supportedResolutions: ["720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["Longest duration (35s)", "Good realism", "Audio support"],
-      weaknesses: [
-        "No copyrighted characters",
-        "No real human faces",
-        "No celebrities",
-        "Not available EU/UK/Switzerland",
-        "Slower",
-      ],
-    },
-    pricing: {
-      costPerSecond: 0.10,
-      costPer5sVideo: 0.50,
-      minimumCost: 0.50,
-      currency: "USD",
-    },
-  },
-
-  // ============================================
-  // SOTA JANVIER 2026 - NEW PROVIDERS
-  // ============================================
-  
-  "veo-3.1-fast": {
-    provider: "veo-3.1-fast",
-    tier: "standard",
-    replicateModel: "google/veo-3.1-fast",
-    maxConcurrent: 3,
-    timeoutMs: 300000,
-    capabilities: {
-      maxDurationSeconds: 8,
-      minDurationSeconds: 4,
-      supportedResolutions: ["720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: true, // First/Last frame support
-      supportsAudio: true,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["Best physics", "Context-aware audio", "First/Last frame", "56% cheaper than Veo 3.1"],
-      weaknesses: ["720p for fast tier", "Shorter than full Veo"],
-    },
-    pricing: {
-      costPerSecond: 0.15,
-      costPer5sVideo: 0.75,
-      minimumCost: 0.75,
-      currency: "USD",
-    },
-  },
-
-  "hailuo-2.3-fast": {
-    provider: "hailuo-2.3-fast",
-    tier: "standard",
-    replicateModel: "minimax/hailuo-2.3",
-    maxConcurrent: 3,
-    timeoutMs: 240000,
-    capabilities: {
-      maxDurationSeconds: 10,
-      minDurationSeconds: 6,
-      supportedResolutions: ["768p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: false,
-      supportsLipSync: false,
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [25],
-      strengths: ["50% cheaper than standard", "Same motion quality", "Fast iteration"],
-      weaknesses: ["No audio", "25fps only"],
-    },
-    pricing: {
-      costPerSecond: 0.05,
-      costPer5sVideo: 0.25,
-      minimumCost: 0.25,
-      currency: "USD",
-    },
-  },
-
-  "seedance-1.5-pro": {
-    provider: "seedance-1.5-pro",
-    tier: "premium",
-    replicateModel: "bytedance/seedance-1.5-pro",
-    maxConcurrent: 2,
-    timeoutMs: 600000,
-    capabilities: {
-      maxDurationSeconds: 12,
-      minDurationSeconds: 4,
-      supportedResolutions: ["720p", "1080p"],
-      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
-      supportsImageToVideo: true,
-      supportsTextToVideo: true,
-      supportsVideoToVideo: false,
-      supportsInterpolation: false,
-      supportsAudio: true,
-      supportsLipSync: true, // Multilingual lip-sync!
-      supportsCameraControl: true,
-      supportsMotionBrush: false,
-      supportsMotionTransfer: false,
-      fps: [24],
-      strengths: ["Lip-sync 8 languages", "Film-grade cinematography", "Native audio-visual"],
-      weaknesses: ["No negative prompts", "Higher cost"],
-    },
-    pricing: {
-      costPerSecond: 0.10,
-      costPer5sVideo: 0.50,
-      minimumCost: 0.50,
       currency: "USD",
     },
   },
@@ -924,6 +578,567 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
       currency: "USD",
     },
   },
+
+  // ============================================
+  // STANDARD TIER - Balanced ($0.15-0.50/5s)
+  // ============================================
+
+  "wan-2.5": {
+    provider: "wan-2.5",
+    tier: "standard",
+    replicateModel: "wan-video/wan-2.5-i2v",
+    maxConcurrent: 3,
+    timeoutMs: 300000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 3,
+      supportedResolutions: ["480p", "720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: true,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["181.6K runs", "One-pass A/V sync", "Lip-sync native", "6 aspect ratios", "Best value"],
+      weaknesses: ["Slower than 2.2", "Open source limitations"],
+    },
+    pricing: {
+      costPerSecond: 0.042,
+      costPer5sVideo: 0.21,
+      minimumCost: 0.21,
+      currency: "USD",
+    },
+  },
+
+  "wan-2.5-fast": {
+    provider: "wan-2.5-fast",
+    tier: "standard",
+    replicateModel: "wan-video/wan-2.5-i2v-fast",
+    maxConcurrent: 5,
+    timeoutMs: 180000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 3,
+      supportedResolutions: ["480p", "720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: true,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["49.2K runs", "Speed-optimized", "Same features as 2.5"],
+      weaknesses: ["Slightly lower quality than standard"],
+    },
+    pricing: {
+      costPerSecond: 0.035,
+      costPer5sVideo: 0.175,
+      minimumCost: 0.175,
+      currency: "USD",
+    },
+  },
+
+  "luma-ray-flash-2": {
+    provider: "luma-ray-flash-2",
+    tier: "standard",  // $0.40 is high-end standard (interpolation feature justifies price)
+    replicateModel: "luma/ray-flash-2-720p",
+    maxConcurrent: 3,
+    timeoutMs: 300000,
+    capabilities: {
+      maxDurationSeconds: 9,
+      minDurationSeconds: 5,
+      supportedResolutions: ["540p", "720p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: true,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["Start+end frame interpolation", "Natural physics", "Fast (40s for 5s)", "Coherent motion"],
+      weaknesses: ["No audio", "Limited resolution"],
+    },
+    pricing: {
+      costPerSecond: 0.08,
+      costPer5sVideo: 0.40,
+      minimumCost: 0.40,
+      currency: "USD",
+    },
+  },
+
+  "hunyuan-1.5": {
+    provider: "hunyuan-1.5",
+    tier: "standard",
+    replicateModel: "wavespeedai/hunyuan-video-fast",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 5,
+      minDurationSeconds: 2,
+      supportedResolutions: ["720p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["13B parameters", "Open source", "Good motion quality", "Text alignment"],
+      weaknesses: ["Requires 60-80GB VRAM for local", "Slower"],
+    },
+    pricing: {
+      costPerSecond: 0.06,
+      costPer5sVideo: 0.30,
+      minimumCost: 0.30,
+      currency: "USD",
+    },
+  },
+
+  "veo-2": {
+    provider: "veo-2",
+    tier: "standard",
+    replicateModel: "google/veo-2",
+    maxConcurrent: 3,
+    timeoutMs: 400000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["105.5K runs", "Good physics", "Reliable", "Previous gen Veo"],
+      weaknesses: ["Superseded by Veo 3/3.1", "Less features"],
+    },
+    pricing: {
+      costPerSecond: 0.10,
+      costPer5sVideo: 0.50,
+      minimumCost: 0.50,
+      currency: "USD",
+    },
+  },
+
+  "veo-3-fast": {
+    provider: "veo-3-fast",
+    tier: "standard",
+    replicateModel: "google/veo-3-fast",
+    maxConcurrent: 3,
+    timeoutMs: 300000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["161.4K runs", "Good balance speed/quality", "Context-aware audio"],
+      weaknesses: ["Less features than 3.1"],
+    },
+    pricing: {
+      costPerSecond: 0.12,
+      costPer5sVideo: 0.60,
+      minimumCost: 0.60,
+      currency: "USD",
+    },
+  },
+
+  "veo-3.1-fast": {
+    provider: "veo-3.1-fast",
+    tier: "standard",
+    replicateModel: "google/veo-3.1-fast",
+    maxConcurrent: 3,
+    timeoutMs: 300000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: true,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["354.3K runs - MOST POPULAR VEO", "Best physics", "Context-aware audio", "First/Last frame support"],
+      weaknesses: ["Limited to 720p-1080p"],
+    },
+    pricing: {
+      costPerSecond: 0.15,
+      costPer5sVideo: 0.75,
+      minimumCost: 0.75,
+      currency: "USD",
+    },
+  },
+
+  "hailuo-2.3-fast": {
+    provider: "hailuo-2.3-fast",
+    tier: "standard",
+    replicateModel: "minimax/hailuo-2.3-fast",
+    maxConcurrent: 3,
+    timeoutMs: 240000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 6,
+      supportedResolutions: ["768p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [25],
+      strengths: ["Lower latency I2V", "Same motion quality as standard", "Fast iteration"],
+      weaknesses: ["No audio", "25fps only"],
+    },
+    pricing: {
+      costPerSecond: 0.05,
+      costPer5sVideo: 0.25,
+      minimumCost: 0.25,
+      currency: "USD",
+    },
+  },
+
+  // ============================================
+  // PREMIUM TIER - High Quality ($0.40-1.75/5s)
+  // ============================================
+
+  "kling-2.5-turbo": {
+    provider: "kling-2.5-turbo",
+    tier: "premium",
+    replicateModel: "kwaivgi/kling-v2.5-turbo-pro",
+    maxConcurrent: 3,
+    timeoutMs: 500000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 5,
+      supportedResolutions: ["1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: true,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: true,
+      supportsMotionTransfer: true,
+      fps: [24, 30],
+      strengths: [
+        "1.7M runs - #1 MOST USED",
+        "Smooth motion, cinematic depth",
+        "Remarkable prompt adherence",
+        "Motion brush (6 regions)",
+      ],
+      weaknesses: ["No native audio (use 2.6 for audio)"],
+    },
+    pricing: {
+      costPerSecond: 0.08,
+      costPer5sVideo: 0.40,
+      minimumCost: 0.40,
+      currency: "USD",
+    },
+  },
+
+  "kling-2.6": {
+    provider: "kling-2.6",
+    tier: "premium",
+    replicateModel: "kwaivgi/kling-v2.6",
+    maxConcurrent: 3,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 5,
+      supportedResolutions: ["1080p", "4k"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: true,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: true,
+      supportsMotionTransfer: true,
+      fps: [24, 30],
+      strengths: [
+        "92.4K runs",
+        "Native audio generation",
+        "Motion brush (6 regions)",
+        "Motion transfer from video",
+        "4K native",
+        "Advanced physics engine",
+      ],
+      weaknesses: ["Higher cost", "Longer processing"],
+    },
+    pricing: {
+      costPerSecond: 0.095,
+      costPer5sVideo: 0.475,
+      minimumCost: 0.475,
+      currency: "USD",
+    },
+  },
+
+  "veo-3": {
+    provider: "veo-3",
+    tier: "premium",
+    replicateModel: "google/veo-3",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["1080p", "4k"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: [
+        "216.2K runs",
+        "Excellent physics simulation",
+        "Contextual audio generation",
+        "High fidelity",
+        "SynthID watermark",
+      ],
+      weaknesses: ["Premium pricing", "Videos stored 2 days only"],
+    },
+    pricing: {
+      costPerSecond: 0.25,
+      costPer5sVideo: 1.25,
+      minimumCost: 1.25,
+      currency: "USD",
+    },
+  },
+
+  "veo-3.1": {
+    provider: "veo-3.1",
+    tier: "premium",
+    replicateModel: "google/veo-3.1",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 8,
+      minDurationSeconds: 4,
+      supportedResolutions: ["1080p", "4k"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: true,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: [
+        "323.8K runs",
+        "BEST physics simulation",
+        "Last frame support for chaining",
+        "Reference image support",
+        "Contextual audio generation",
+        "Highest fidelity",
+      ],
+      weaknesses: ["Expensive", "Videos stored 2 days only"],
+    },
+    pricing: {
+      costPerSecond: 0.35,
+      costPer5sVideo: 1.75,
+      minimumCost: 1.75,
+      currency: "USD",
+    },
+  },
+
+  "hailuo-2.3": {
+    provider: "hailuo-2.3",
+    tier: "premium",
+    replicateModel: "minimax/hailuo-2.3",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 10,
+      minDurationSeconds: 6,
+      supportedResolutions: ["768p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: false,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [25],
+      strengths: [
+        "Excellent for dance/complex motion",
+        "Micro-expressions",
+        "Good anime style",
+        "NCR architecture (2.5x efficient)",
+        "Real world physics",
+      ],
+      weaknesses: ["No audio", "25fps only"],
+    },
+    pricing: {
+      costPerSecond: 0.08,
+      costPer5sVideo: 0.40,
+      minimumCost: 0.40,
+      currency: "USD",
+    },
+  },
+
+  "sora-2": {
+    provider: "sora-2",
+    tier: "premium",
+    replicateModel: "openai/sora-2",
+    maxConcurrent: 1,
+    timeoutMs: 900000,
+    capabilities: {
+      maxDurationSeconds: 35,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["198.7K runs", "LONGEST duration (35s)", "Good realism", "Audio support"],
+      weaknesses: [
+        "No copyrighted characters",
+        "No real human faces",
+        "No celebrities",
+        "Not available EU/UK/Switzerland",
+        "Slower",
+      ],
+    },
+    pricing: {
+      costPerSecond: 0.10,
+      costPer5sVideo: 0.50,
+      minimumCost: 0.50,
+      currency: "USD",
+    },
+  },
+
+  "sora-2-pro": {
+    provider: "sora-2-pro",
+    tier: "premium",
+    replicateModel: "openai/sora-2-pro",
+    maxConcurrent: 1,
+    timeoutMs: 1200000,
+    capabilities: {
+      maxDurationSeconds: 35,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: false,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["78.6K runs", "Premium quality", "35s max duration", "Best realism"],
+      weaknesses: [
+        "Same content restrictions as Sora 2",
+        "Higher cost",
+        "Very slow",
+      ],
+    },
+    pricing: {
+      costPerSecond: 0.15,
+      costPer5sVideo: 0.75,
+      minimumCost: 0.75,
+      currency: "USD",
+    },
+  },
+
+  "seedance-1-pro": {
+    provider: "seedance-1-pro",
+    tier: "premium",
+    replicateModel: "bytedance/seedance-1-pro-fast",
+    maxConcurrent: 2,
+    timeoutMs: 600000,
+    capabilities: {
+      maxDurationSeconds: 12,
+      minDurationSeconds: 4,
+      supportedResolutions: ["720p", "1080p"],
+      supportedAspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      supportsImageToVideo: true,
+      supportsTextToVideo: true,
+      supportsVideoToVideo: false,
+      supportsInterpolation: false,
+      supportsAudio: true,
+      supportsLipSync: true,
+      supportsCameraControl: true,
+      supportsMotionBrush: false,
+      supportsMotionTransfer: false,
+      fps: [24],
+      strengths: ["613.9K runs", "Lip-sync 8 languages", "Film-grade cinematography", "Native audio-visual"],
+      weaknesses: ["No negative prompts", "Higher cost"],
+    },
+    pricing: {
+      costPerSecond: 0.10,
+      costPer5sVideo: 0.50,
+      minimumCost: 0.50,
+      currency: "USD",
+    },
+  },
 };
 
 // ============================================
@@ -932,46 +1147,48 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
 
 /**
  * Recommended providers by animation type for MOOSTIK
+ * SOTA February 2026 - Updated with benchmarks
  */
 export const MOOSTIK_ANIMATION_PROVIDERS: Record<AnimationType, VideoProvider[]> = {
-  // SOTA Janvier 2026 - Updated recommendations
-  subtle: ["wan-2.6", "hailuo-2.3-fast", "ltx-2", "hunyuan-1.5"],
-  dialogue: ["seedance-1.5-pro", "kling-2.6"], // Seedance = BEST lip-sync multilingue
-  action: ["hailuo-2.3", "kling-2.6", "veo-3.1-fast"],
-  transition: ["luma-ray-2", "wan-2.6", "veo-3.1-fast"],
-  establishing: ["veo-3.1-fast", "veo-3.1", "luma-ray-2", "luma-ray-3"],
-  emotional: ["kling-2.6", "seedance-1.5-pro", "hailuo-2.3", "veo-3.1-fast"],
-  combat: ["hailuo-2.3", "kling-2.6", "veo-3.1-fast"],
+  // Budget → Standard → Premium recommendations
+  subtle: ["wan-2.5", "hailuo-2.3-fast", "ltx-2", "hunyuan-1.5"],
+  dialogue: ["seedance-1-pro", "kling-2.6", "wan-2.5"], // Seedance = BEST lip-sync
+  action: ["hailuo-2.3", "kling-2.5-turbo", "veo-3.1-fast"],
+  transition: ["luma-ray-flash-2", "wan-2.5", "veo-3.1-fast"],
+  establishing: ["veo-3.1-fast", "veo-3.1", "luma-ray-flash-2"],
+  emotional: ["kling-2.6", "seedance-1-pro", "hailuo-2.3", "veo-3.1-fast"],
+  combat: ["hailuo-2.3", "kling-2.5-turbo", "veo-3.1-fast"],
   death: ["veo-3.1-fast", "kling-2.6", "hailuo-2.3"],
-  flashback: ["luma-ray-2", "wan-2.6", "veo-3.1-fast"], // First/Last frame
-  dance: ["hailuo-2.3", "kling-2.6", "seedance-1.5-pro"],
-  walking: ["wan-2.5", "ltx-2"],
-  flying: ["veo-3.1", "kling-2.6"],
+  flashback: ["luma-ray-flash-2", "wan-2.5", "veo-3.1-fast"], // First/Last frame
+  dance: ["hailuo-2.3", "kling-2.5-turbo", "seedance-1-pro"],
+  walking: ["wan-2.5", "wan-2.2-fast", "ltx-2"],
+  flying: ["veo-3.1", "veo-3", "kling-2.6"],
 };
 
 /**
  * Provider selection by budget tier
+ * February 2026 pricing
  */
 export const MOOSTIK_BUDGET_TIERS = {
-  /** ~$2.50/episode - Prototyping */
+  /** ~$2.32/episode - Prototyping (wan-2.2-fast is MOST POPULAR) */
   prototype: {
-    provider: "wan-2.2" as VideoProvider,
+    provider: "wan-2.2-fast" as VideoProvider,
     resolution: "480p" as VideoResolution,
-    estimatedCostPerEpisode: 2.50, // 27 shots × $0.086
+    estimatedCostPerEpisode: 2.32, // 27 shots × $0.086
   },
-  /** ~$6/episode - Draft review */
+  /** ~$5.67/episode - Draft review */
   draft: {
     provider: "wan-2.5" as VideoProvider,
     resolution: "720p" as VideoResolution,
     estimatedCostPerEpisode: 5.67, // 27 shots × $0.21
   },
-  /** ~$13/episode - Standard production */
+  /** ~$10.80/episode - Standard production (kling-2.5-turbo = #1 MOST USED) */
   standard: {
-    provider: "kling-2.6" as VideoProvider,
+    provider: "kling-2.5-turbo" as VideoProvider,
     resolution: "1080p" as VideoResolution,
-    estimatedCostPerEpisode: 12.83, // 27 shots × $0.475
+    estimatedCostPerEpisode: 10.80, // 27 shots × $0.40
   },
-  /** ~$47/episode - High quality */
+  /** ~$47.25/episode - High quality (veo-3.1 = BEST physics) */
   high: {
     provider: "veo-3.1" as VideoProvider,
     resolution: "4k" as VideoResolution,
@@ -981,16 +1198,17 @@ export const MOOSTIK_BUDGET_TIERS = {
 
 /**
  * Scene type to provider mapping for optimal quality
+ * February 2026 recommendations based on benchmarks
  */
 export const MOOSTIK_SCENE_PROVIDERS: Record<string, VideoProvider> = {
-  genocide: "veo-3.1", // Need best physics for death scenes
-  survival: "kling-2.6", // Motion control for intense scenes
-  training: "hailuo-2.3", // Complex body movements
-  bar_scene: "wan-2.5", // Dialogue with lip-sync
-  battle: "kling-2.6", // Motion brush for multi-character
-  emotional: "veo-3.1", // Subtle expressions
-  establishing: "luma-ray-2", // Natural camera physics
-  flashback: "luma-ray-2", // Interpolation for dreamy effect
+  genocide: "veo-3.1",          // Best physics for death scenes
+  survival: "kling-2.5-turbo",  // Motion control for intense scenes
+  training: "hailuo-2.3",       // Complex body movements
+  bar_scene: "seedance-1-pro",  // Dialogue with lip-sync (8 languages)
+  battle: "kling-2.6",          // Motion brush for multi-character
+  emotional: "veo-3.1",         // Subtle expressions + audio
+  establishing: "luma-ray-flash-2", // Natural camera physics + interpolation
+  flashback: "luma-ray-flash-2",// Interpolation for dreamy effect
 };
 
 // ============================================

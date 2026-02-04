@@ -1,19 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateMultipleShotsParallel } from "@/lib/replicate";
 import { getEpisode, updateShot } from "@/lib/storage";
-import { 
-  resolveReferencesForShot, 
+import {
+  resolveReferencesForShot,
   enrichPromptWithReferences,
-  checkGenerationReadiness 
+  checkGenerationReadiness
 } from "@/lib/reference-resolver";
+import {
+  requireAuth,
+  checkCredits,
+  deductCredits,
+  checkRateLimit,
+  getRequestIdentifier,
+  createRateLimitResponse,
+  RATE_LIMIT_CONFIGS,
+} from "@/lib/security";
 import type { ParallelShotGeneration } from "@/lib/replicate";
 import type { VariationStatus, ShotStatus, MoostikPrompt } from "@/types/moostik";
+
+// Credit cost per image generation
+const CREDITS_PER_IMAGE = 1;
 
 // POST /api/generate/batch - Generate multiple shots in parallel
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Rate limiting
+    const identifier = getRequestIdentifier(request);
+    const rateLimitResult = checkRateLimit(
+      `generate:${identifier}`,
+      RATE_LIMIT_CONFIGS.generation,
+      true // Assume authenticated for rate limit check
+    );
+
+    if (!rateLimitResult.allowed) {
+      return createRateLimitResponse(rateLimitResult);
+    }
+
+    // SECURITY: Require authentication
+    const { auth, response: authResponse } = await requireAuth(request);
+    if (authResponse) {
+      return authResponse;
+    }
+
     const body = await request.json();
-    const { 
+    const {
       episodeId,
       shotIds,
       maxParallelShots = 3,
@@ -95,6 +125,38 @@ export async function POST(request: NextRequest) {
     console.log(`[Batch] Starting generation for ${pendingShots.length} shots`);
     const totalVariations = pendingShots.reduce((sum, s) => sum + s.variations.length, 0);
     console.log(`[Batch] Total variations to generate: ${totalVariations}`);
+
+    // SECURITY: Check if user has enough credits
+    const requiredCredits = totalVariations * CREDITS_PER_IMAGE;
+    const creditCheck = await checkCredits(auth.userId!, requiredCredits);
+
+    if (!creditCheck.canProceed) {
+      return NextResponse.json(
+        {
+          error: "Insufficient credits",
+          required: requiredCredits,
+          available: creditCheck.balance,
+          message: `You need ${requiredCredits} credits but only have ${creditCheck.balance}`,
+        },
+        { status: 402 } // Payment Required
+      );
+    }
+
+    // Deduct credits before generation
+    const creditDeducted = await deductCredits(
+      auth.userId!,
+      requiredCredits,
+      `Batch generation: ${totalVariations} images for episode ${episodeId}`
+    );
+
+    if (!creditDeducted) {
+      return NextResponse.json(
+        { error: "Failed to deduct credits" },
+        { status: 500 }
+      );
+    }
+
+    console.log(`[Batch] Deducted ${requiredCredits} credits from user ${auth.userId}`);
 
     // Mark all shots as in_progress
     for (const shot of pendingShots) {
