@@ -517,7 +517,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
 
   "pixverse-4": {
     provider: "pixverse-4",
-    tier: "budget",
+    tier: "standard",  // Corrected: $0.30 is standard tier pricing
     replicateModel: "pixverse/pixverse-v4",
     maxConcurrent: 5,
     timeoutMs: 180000,
@@ -649,7 +649,7 @@ export const PROVIDER_CONFIGS: Record<VideoProvider, VideoProviderConfig> = {
 
   "luma-ray-flash-2": {
     provider: "luma-ray-flash-2",
-    tier: "standard",
+    tier: "standard",  // $0.40 is high-end standard (interpolation feature justifies price)
     replicateModel: "luma/ray-flash-2-720p",
     maxConcurrent: 3,
     timeoutMs: 300000,
