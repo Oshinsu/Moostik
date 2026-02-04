@@ -12,19 +12,18 @@ import {
   Menu,
   X,
   Play,
-  Users,
-  Sparkles,
+  Network,
   CreditCard,
   MessageSquare,
   LogIn,
   Brain,
-  Network,
+  Ghost,
+  FileText,
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { href: ROUTES.moostik, label: "La Série", icon: Play },
-  { href: ROUTES.studio, label: "Le Studio", icon: Sparkles },
-  { href: "/emergent-ai", label: "Emergent AI", icon: Brain, badge: "NEW" },
+  { href: "/series", label: "Corpus", icon: Play },
+  { href: "/emergent-ai", label: "Systèmes", icon: Brain },
   { href: ROUTES.pricing, label: "Tarifs", icon: CreditCard },
   { href: ROUTES.community, label: "Communauté", icon: MessageSquare },
 ];
@@ -54,16 +53,10 @@ export function PublicNav() {
                     "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
                     isActive
                       ? "bg-blood-900/30 text-blood-400"
-                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50",
-                    item.badge && "bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-800/30"
+                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
                   )}
                 >
                   {item.label}
-                  {item.badge && (
-                    <Badge className="bg-purple-900/50 text-purple-400 border-0 text-[10px] px-1.5 py-0">
-                      {item.badge}
-                    </Badge>
-                  )}
                 </Link>
               );
             })}
@@ -79,7 +72,7 @@ export function PublicNav() {
             </Link>
             <Link href={ROUTES.signup}>
               <Button className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-semibold">
-                Commencer
+                Accès anticipé
               </Button>
             </Link>
           </div>
@@ -118,7 +111,7 @@ export function PublicNav() {
                 </Link>
               );
             })}
-            
+
             <div className="pt-4 border-t border-zinc-800 space-y-2">
               <Link href={ROUTES.login} onClick={() => setMobileMenuOpen(false)}>
                 <Button variant="outline" className="w-full border-zinc-700">
@@ -127,7 +120,7 @@ export function PublicNav() {
               </Link>
               <Link href={ROUTES.signup} onClick={() => setMobileMenuOpen(false)}>
                 <Button className="w-full bg-gradient-to-r from-blood-600 to-crimson-600">
-                  Commencer gratuitement
+                  Accès anticipé
                 </Button>
               </Link>
             </div>

@@ -9,7 +9,6 @@ import {
   Youtube,
   Linkedin,
   Github,
-  Mail,
   MapPin,
   Building2,
 } from "lucide-react";
@@ -31,32 +30,38 @@ interface FooterSection {
 
 const FOOTER_LINKS: Record<string, FooterSection> = {
   product: {
-    title: "Produit",
+    title: "Infrastructure",
     links: [
       { label: "Studio", href: ROUTES.studio },
       { label: "Tarifs", href: ROUTES.pricing },
       { label: "Éditeur", href: ROUTES.editor },
       { label: "Génération Vidéo", href: ROUTES.video },
       { label: "Cinéma IA", href: ROUTES.cinema },
+      { label: "Systèmes d'émergence", href: ROUTES.emergentAi },
+      { label: "Tarification", href: ROUTES.pricing },
+      { label: "Documentation", href: "/docs" },
     ],
   },
   series: {
-    title: "Série Moostik",
+    title: "Corpus MOOSTIK",
     links: [
       { label: "Regarder", href: ROUTES.series },
       { label: "Personnages", href: ROUTES.seriesCharacters },
       { label: "Territoires", href: ROUTES.seriesLocations },
       { label: "L'Univers", href: ROUTES.seriesLore },
       { label: "Chronologie", href: ROUTES.seriesTimeline },
+      { label: "Visionner", href: ROUTES.series },
+      { label: "Personnages", href: ROUTES.seriesCharacters },
+      { label: "Lieux", href: ROUTES.seriesLocations },
+      { label: "Lore", href: ROUTES.seriesLore },
     ],
   },
   community: {
     title: "Communauté",
     links: [
       { label: "Galerie", href: ROUTES.communityGallery },
-      { label: "Soumettre un épisode", href: ROUTES.communitySubmit },
-      { label: "Créer un avatar", href: ROUTES.communityAvatar },
-      { label: "Discord", href: "https://discord.gg/bloodwings", external: true },
+      { label: "Soumettre", href: ROUTES.communitySubmit },
+      { label: "Avatar", href: ROUTES.communityAvatar },
     ],
   },
   legal: {
@@ -74,6 +79,7 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
       { label: "Contact", href: ROUTES.contact },
       { label: "IA Émergente", href: ROUTES.emergentAi },
       { label: "Status", href: "https://status.bloodwings.studio", external: true },
+      { label: "Contact", href: "/contact" },
     ],
   },
 };
@@ -104,10 +110,10 @@ export function PublicFooter() {
               <BloodwingsLogo size="sm" />
             </Link>
             <p className="text-sm text-zinc-500 mb-4 max-w-xs">
-              Le premier studio AI qui pense comme un réalisateur.
-              Créez votre série animée sans équipe.
+              Infrastructure de production narrative émergente.
+              Morphogenèse computationnelle autonome.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map((social) => (
@@ -167,7 +173,7 @@ export function PublicFooter() {
             <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-zinc-600">
               <div className="flex items-center gap-2">
                 <Building2 className="w-3 h-3" />
-                <span>© {currentYear} Moostik Inc. / Bloodwings Studio</span>
+                <span>© {currentYear} Bloodwings Studio</span>
               </div>
               <div className="hidden md:block w-px h-3 bg-zinc-800" />
               <div className="flex items-center gap-2">
@@ -178,12 +184,10 @@ export function PublicFooter() {
 
             {/* Powered By */}
             <div className="flex items-center gap-2 text-xs text-zinc-600">
-              <span>Fondé par Gary Bissol</span>
-              <span className="text-zinc-700">•</span>
               <span>Powered by</span>
-              <a 
-                href="https://byss.group" 
-                target="_blank" 
+              <a
+                href="https://byss.group"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blood-500 hover:text-blood-400 font-medium"
               >

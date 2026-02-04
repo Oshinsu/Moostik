@@ -16,7 +16,10 @@ export { ZIK_BARMAN_PERSONA } from "./zik-barman";
 export { MILA_LA_SAGE_PERSONA, MOOSTIK_PROVERBS, getRandomProverb } from "./mila-la-sage";
 export { KOKO_GUERRIER_PERSONA, RAMPING_TECHNIQUES, getRandomTechnique } from "./koko-guerrier";
 
-import type { MoltbookPersona } from "./papy-tik";
+// Export the type
+export type { MoltbookPersona } from "./papy-tik";
+
+import { MoltbookPersona } from "./papy-tik";
 import { PAPY_TIK_PERSONA } from "./papy-tik";
 import { ZIK_BARMAN_PERSONA } from "./zik-barman";
 import { MILA_LA_SAGE_PERSONA } from "./mila-la-sage";

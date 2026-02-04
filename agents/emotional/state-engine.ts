@@ -412,8 +412,7 @@ export class EmotionalEngine {
 
     for (const [key, delta] of Object.entries(impact)) {
       if (typeof delta === "number" && key in state) {
-        const stateRecord = state as unknown as Record<string, number | Date>;
-        const current = stateRecord[key];
+        const current = (state as unknown as Record<string, number | Date>)[key];
         if (typeof current === "number") {
           // Apply delta with clamping
           (state as unknown as Record<string, number>)[key] = Math.max(0, Math.min(100, current + delta));
