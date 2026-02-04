@@ -35,18 +35,19 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
     links: [
       { label: "Studio", href: ROUTES.studio },
       { label: "Tarifs", href: ROUTES.pricing },
-      { label: "Fonctionnalités", href: "/features" },
-      { label: "Roadmap", href: "/roadmap" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "Éditeur", href: ROUTES.editor },
+      { label: "Génération Vidéo", href: ROUTES.video },
+      { label: "Cinéma IA", href: ROUTES.cinema },
     ],
   },
   series: {
     title: "Série Moostik",
     links: [
-      { label: "Regarder", href: ROUTES.moostik },
-      { label: "Personnages", href: "/moostik/characters" },
-      { label: "L'Univers", href: "/moostik/world" },
-      { label: "Épisodes", href: "/moostik/episodes" },
+      { label: "Regarder", href: ROUTES.series },
+      { label: "Personnages", href: ROUTES.seriesCharacters },
+      { label: "Territoires", href: ROUTES.seriesLocations },
+      { label: "L'Univers", href: ROUTES.seriesLore },
+      { label: "Chronologie", href: ROUTES.seriesTimeline },
     ],
   },
   community: {
@@ -61,18 +62,17 @@ const FOOTER_LINKS: Record<string, FooterSection> = {
   legal: {
     title: "Légal",
     links: [
-      { label: "Mentions légales", href: "/legal" },
-      { label: "Confidentialité", href: "/privacy" },
-      { label: "CGU", href: "/terms" },
-      { label: "Cookies", href: "/cookies" },
+      { label: "Mentions légales", href: ROUTES.legal },
+      { label: "Confidentialité", href: ROUTES.privacy },
+      { label: "CGU", href: ROUTES.terms },
+      { label: "Cookies", href: ROUTES.cookies },
     ],
   },
   support: {
     title: "Support",
     links: [
-      { label: "Contact", href: "/contact" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Documentation", href: "/docs" },
+      { label: "Contact", href: ROUTES.contact },
+      { label: "IA Émergente", href: ROUTES.emergentAi },
       { label: "Status", href: "https://status.bloodwings.studio", external: true },
     ],
   },
