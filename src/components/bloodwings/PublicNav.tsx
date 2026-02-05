@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BloodwingsLogo } from "./BloodwingsLogo";
 import { ROUTES } from "@/types/bloodwings";
+import { useAuth } from "@/lib/auth/auth-context";
 import {
   Menu,
   X,
@@ -19,6 +20,7 @@ import {
   Brain,
   Ghost,
   FileText,
+  LayoutDashboard,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -31,6 +33,7 @@ const NAV_ITEMS = [
 export function PublicNav() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, isLoading } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0b0b0e]/90 backdrop-blur-xl border-b border-blood-900/20">
@@ -64,17 +67,28 @@ export function PublicNav() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href={ROUTES.login}>
-              <Button variant="ghost" className="text-zinc-400 hover:text-white">
-                <LogIn className="w-4 h-4 mr-2" />
-                Connexion
-              </Button>
-            </Link>
-            <Link href={ROUTES.signup}>
-              <Button className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-semibold">
-                Accès anticipé
-              </Button>
-            </Link>
+            {!isLoading && user ? (
+              <Link href={ROUTES.app}>
+                <Button className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-semibold">
+                  <LayoutDashboard className="w-4 h-4 mr-2" />
+                  Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link href={ROUTES.login}>
+                  <Button variant="ghost" className="text-zinc-400 hover:text-white">
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Connexion
+                  </Button>
+                </Link>
+                <Link href={ROUTES.signup}>
+                  <Button className="bg-gradient-to-r from-blood-600 to-crimson-600 hover:from-blood-500 hover:to-crimson-500 text-white font-semibold">
+                    Accès anticipé
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -113,16 +127,27 @@ export function PublicNav() {
             })}
 
             <div className="pt-4 border-t border-zinc-800 space-y-2">
-              <Link href={ROUTES.login} onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full border-zinc-700">
-                  Connexion
-                </Button>
-              </Link>
-              <Link href={ROUTES.signup} onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-gradient-to-r from-blood-600 to-crimson-600">
-                  Accès anticipé
-                </Button>
-              </Link>
+              {!isLoading && user ? (
+                <Link href={ROUTES.app} onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full bg-gradient-to-r from-blood-600 to-crimson-600">
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link href={ROUTES.login} onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full border-zinc-700">
+                      Connexion
+                    </Button>
+                  </Link>
+                  <Link href={ROUTES.signup} onClick={() => setMobileMenuOpen(false)}>
+                    <Button className="w-full bg-gradient-to-r from-blood-600 to-crimson-600">
+                      Accès anticipé
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
