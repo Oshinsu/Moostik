@@ -263,7 +263,7 @@ async function main() {
     // Create meta if missing
     if (!prompt.meta) {
       prompt.meta = {
-        model_version: "nano-banana-2-pro",
+        model_version: "flux-2-pro",
         task_type: "cinematic_keyframe",
         project: "MOOSTIK_T05",
         asset_id: shot.id.toUpperCase().replace(/-/g, "_"),

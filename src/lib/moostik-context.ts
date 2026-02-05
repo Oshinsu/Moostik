@@ -385,7 +385,7 @@ export function injectGlobalContext(
   // ═══ Créer meta si absent ═══
   if (!enrichedPrompt.meta) {
     enrichedPrompt.meta = {
-      model_version: "nano-banana-2-pro",
+      model_version: "flux-2-pro",
       task_type: "cinematic_keyframe",
       project: `MOOSTIK_${context.project.episode.toUpperCase()}`,
       asset_id: `shot_${Date.now()}`,

@@ -426,7 +426,7 @@ function buildCharacterJsonMoostik(
   return {
     ...base,
     meta: {
-      model_version: "nano-banana-2-pro",
+      model_version: "flux-2-pro",
       task_type: "cinematic_keyframe",
       project: "MOOSTIK_EP0",
       asset_id: `${character.id}-${situation.id}`,

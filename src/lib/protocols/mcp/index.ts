@@ -355,7 +355,7 @@ export function createMoostikMCPServer(): MCPServer {
 
       // Use FLUX for image generation
       const prediction = await replicate.predictions.create({
-        model: "black-forest-labs/flux-1.1-pro",
+        model: "black-forest-labs/flux-2-pro",
         input: {
           prompt: enhancedPrompt,
           aspect_ratio: aspectRatio,
@@ -367,7 +367,7 @@ export function createMoostikMCPServer(): MCPServer {
       return {
         status: "processing",
         predictionId: prediction.id,
-        model: "flux-1.1-pro",
+        model: "flux-2-pro",
         prompt: enhancedPrompt,
       };
     }

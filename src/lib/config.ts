@@ -61,8 +61,35 @@ export const config = {
       // Lazy evaluation pour éviter les erreurs au démarrage
       return requireEnv("REPLICATE_API_TOKEN");
     },
-    /** Modèle utilisé pour la génération */
-    model: "google/nano-banana-pro" as const,
+    /** Modèle principal pour la génération d'images (février 2026 SOTA) */
+    model: "black-forest-labs/flux-2-pro" as const,
+    /** Modèles image disponibles */
+    imageModels: {
+      /** FLUX 2 Pro - Haute qualité, 8 images de référence, $0.015/run */
+      "flux-2-pro": "black-forest-labs/flux-2-pro",
+      /** FLUX 2 Max - Fidélité maximale, $0.04/run */
+      "flux-2-max": "black-forest-labs/flux-2-max",
+      /** FLUX 2 Flex - 10 images de référence, max qualité editing */
+      "flux-2-flex": "black-forest-labs/flux-2-flex",
+      /** Google Imagen 4 - Détails fins, typographie, $0.04/image */
+      "imagen-4": "google/imagen-4",
+      /** Google Imagen 4 Fast - Rapide, $0.02/image */
+      "imagen-4-fast": "google/imagen-4-fast",
+      /** Google Imagen 4 Ultra - Qualité maximale Google */
+      "imagen-4-ultra": "google/imagen-4-ultra",
+      /** Seedream 4.5 - ByteDance, 4K natif, batch, $0.04/image */
+      "seedream-4.5": "bytedance/seedream-4.5",
+      /** Ideogram v3 Turbo - Rapide, $0.03/image, 50+ styles */
+      "ideogram-v3-turbo": "ideogram-ai/ideogram-v3-turbo",
+      /** Ideogram v3 Quality - Meilleure qualité Ideogram */
+      "ideogram-v3-quality": "ideogram-ai/ideogram-v3-quality",
+      /** Recraft v3 - Long texte, styles variés, $0.04/image */
+      "recraft-v3": "recraft-ai/recraft-v3",
+      /** FLUX Kontext Pro - Editing texte SOTA, 44.8M runs */
+      "flux-kontext-pro": "black-forest-labs/flux-kontext-pro",
+      /** FLUX Schnell - Ultra rapide pour prototypage */
+      "flux-schnell": "black-forest-labs/flux-schnell",
+    } as const,
     /** Nombre maximum de générations parallèles (Replicate permet 600 req/min) */
     maxParallelGenerations: 10,
     /** Délai entre les batches (ms) */
