@@ -41,7 +41,7 @@ export interface GenerationTask {
 export type TaskStatus = "pending" | "processing" | "completed" | "failed" | "cancelled";
 
 export interface GenerationStyle {
-  model: "nano-banana-pro" | "flux-schnell" | "flux-pro";
+  model: "nano-banana-pro" | "flux-2-pro" | "flux-2-max" | "imagen-4" | "flux-schnell" | "seedream-4.5";
   aspectRatio: string;
   resolution: string;
   steps: number;

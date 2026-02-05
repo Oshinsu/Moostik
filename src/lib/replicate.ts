@@ -95,7 +95,7 @@ export async function generateImage(
   // Utiliser le retry automatique pour les appels Replicate
   const output = await withReplicateRetry(async () => {
     try {
-      return await replicate.run("google/nano-banana-pro", { input });
+      return await replicate.run(config.replicate.model, { input });
     } catch (error) {
       // Détecter les erreurs de rate limiting
       if (error instanceof Error && error.message.includes("429")) {

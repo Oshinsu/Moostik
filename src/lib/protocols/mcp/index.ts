@@ -353,9 +353,9 @@ export function createMoostikMCPServer(): MCPServer {
         enhancedPrompt = `Premium 3D animated feature film, Pixar-demonic microscopic mosquito, dark gradient background, matte obsidian chitin body (#0B0B0E), blood-red accents, warm amber lighting (#FFB25A), 8K micro-textures. ${prompt}`;
       }
 
-      // Use FLUX for image generation
+      // Use Nano Banana Pro for image generation
       const prediction = await replicate.predictions.create({
-        model: "black-forest-labs/flux-1.1-pro",
+        model: "google/nano-banana-pro",
         input: {
           prompt: enhancedPrompt,
           aspect_ratio: aspectRatio,
@@ -367,7 +367,7 @@ export function createMoostikMCPServer(): MCPServer {
       return {
         status: "processing",
         predictionId: prediction.id,
-        model: "flux-1.1-pro",
+        model: "nano-banana-pro",
         prompt: enhancedPrompt,
       };
     }

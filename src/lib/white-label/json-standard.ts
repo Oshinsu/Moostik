@@ -23,7 +23,7 @@ import type { Character, Location, StructuredPrompt } from "./types";
 export interface JsonStandardMeta {
   universeId: string;
   universeName: string;
-  model: string;                           // Ex: "nano-banana-pro", "flux-pro"
+  model: string;                           // Ex: "nano-banana-pro", "flux-2-pro", "imagen-4"
   version: string;
   generatedAt: string;
 }

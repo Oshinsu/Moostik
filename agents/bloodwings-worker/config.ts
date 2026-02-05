@@ -141,11 +141,10 @@ export interface WorkerState {
 
 export const DEFAULT_GENERATION_PARAMS = {
   image: {
-    width: 1920,
-    height: 1080,
-    steps: 30,
-    guidance: 7.5,
-    scheduler: "euler_ancestral",
+    aspect_ratio: "16:9" as const,
+    output_format: "png" as const,
+    output_quality: 95,
+    safety_tolerance: 2,
   },
   video: {
     duration: 5,
@@ -163,11 +162,11 @@ export const DEFAULT_GENERATION_PARAMS = {
 // ============================================================================
 
 export const COST_ESTIMATES = {
-  replicate_flux: 0.003,      // Per image
-  fal_flux: 0.002,            // Per image
-  kling_video: 0.15,          // Per 5s video
-  runway_video: 0.20,         // Per 5s video
-  veo_video: 0.25,            // Per 5s video
+  replicate_flux: 0.015,      // FLUX 2 Pro per image (Feb 2026)
+  fal_flux: 0.010,            // Fal.ai FLUX per image
+  kling_video: 0.20,          // Kling v2.0 per 5s video
+  runway_video: 0.25,         // Runway per 5s video
+  veo_video: 0.30,            // Veo 2 per 5s video
   upscale_4k: 0.01,           // Per image
 };
 

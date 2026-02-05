@@ -19,7 +19,7 @@
  */
 export interface JsonMoostikMeta {
   /** Version du modèle utilisé */
-  model_version: "nano-banana-2-pro";
+  model_version: "nano-banana-2-pro" | "flux-2-pro" | "flux-2-max" | "imagen-4" | "seedream-4.5" | "ideogram-v3-turbo" | "recraft-v3";
   /** Type de tâche */
   task_type: "cinematic_keyframe" | "character_sheet" | "location_establishing" | "action_shot" | "ultra_cinematic_environment_keyframe";
   /** Projet parent */

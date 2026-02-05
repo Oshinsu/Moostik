@@ -77,8 +77,8 @@ const PROVIDERS: Record<string, ProviderConfig> = {
     apiKey: process.env.REPLICATE_API_TOKEN || "",
     endpoint: "https://api.replicate.com/v1/predictions",
     models: {
-      image: "black-forest-labs/flux-1.1-pro",
-      video: "minimax/video-01",
+      image: "google/nano-banana-pro",
+      video: "minimax/video-01-live",
     },
     limits: {
       maxConcurrent: 5,
@@ -90,8 +90,8 @@ const PROVIDERS: Record<string, ProviderConfig> = {
     apiKey: process.env.FAL_API_KEY || "",
     endpoint: "https://fal.run",
     models: {
-      image: "fal-ai/flux-pro/v1.1",
-      video: "fal-ai/kling-video/v1.5/pro",
+      image: "fal-ai/flux-pro/v2",
+      video: "fal-ai/kling-video/v2/pro",
     },
     limits: {
       maxConcurrent: 3,
@@ -103,8 +103,8 @@ const PROVIDERS: Record<string, ProviderConfig> = {
     apiKey: process.env.KLING_API_KEY || "",
     endpoint: "https://api.klingai.com/v1",
     models: {
-      image: "kling-image-v1",
-      video: "kling-video-v1.5",
+      image: "kling-image-v2",
+      video: "kling-video-v2.0",
     },
     limits: {
       maxConcurrent: 2,
@@ -185,14 +185,13 @@ async function generateImageReplicate(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        version: "black-forest-labs/flux-1.1-pro",
+        model: "google/nano-banana-pro",
         input: {
           prompt,
-          width: config.width,
-          height: config.height,
-          num_outputs: 1,
-          guidance_scale: 7.5,
-          num_inference_steps: 30,
+          aspect_ratio: config.width > config.height ? "16:9" : config.width < config.height ? "9:16" : "1:1",
+          output_format: "png",
+          output_quality: 95,
+          safety_tolerance: 2,
           seed: config.seed,
         },
       }),
@@ -221,15 +220,17 @@ async function generateImageReplicate(
       throw new Error(result.error || "Generation failed");
     }
 
+    // FLUX 2 returns output as string URL or array
+    const outputUrl = Array.isArray(result.output) ? result.output[0] : result.output;
+
     return {
       success: true,
-      outputUrl: result.output[0],
+      outputUrl,
       cost: COST_ESTIMATES.replicate_flux,
       provider: "replicate",
       duration: Date.now() - startTime,
       metadata: {
         seed: config.seed,
-        steps: 30,
         model: provider.models.image,
       },
     };

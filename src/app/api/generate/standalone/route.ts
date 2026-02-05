@@ -5,6 +5,9 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
+// Image model - Nano Banana Pro (Google Gemini 3 Pro, 12.1M runs, 14 refs)
+const IMAGE_MODEL = "google/nano-banana-pro";
+
 // Style presets for MOOSTIK
 const STYLE_PROMPTS: Record<string, string> = {
   pixar_dark: "pixar-style 3D animation, dark gothic atmosphere, cinematic lighting, detailed textures, dramatic shadows",
@@ -15,6 +18,19 @@ const STYLE_PROMPTS: Record<string, string> = {
   fantasy: "dark fantasy art, magical atmosphere, ethereal lighting, mystical elements",
   horror: "horror movie aesthetic, unsettling atmosphere, dark shadows, eerie lighting",
 };
+
+// Map aspect ratio from dimensions
+function getAspectRatio(width: number, height: number): string {
+  const ratio = width / height;
+  if (Math.abs(ratio - 1) < 0.05) return "1:1";
+  if (Math.abs(ratio - 16/9) < 0.1) return "16:9";
+  if (Math.abs(ratio - 9/16) < 0.1) return "9:16";
+  if (Math.abs(ratio - 4/3) < 0.1) return "4:3";
+  if (Math.abs(ratio - 3/4) < 0.1) return "3:4";
+  if (Math.abs(ratio - 3/2) < 0.1) return "3:2";
+  if (Math.abs(ratio - 2/3) < 0.1) return "2:3";
+  return "custom";
+}
 
 // POST /api/generate/standalone - Standalone image generation without episode context
 export async function POST(request: NextRequest) {
@@ -50,87 +66,61 @@ export async function POST(request: NextRequest) {
     console.log("[Standalone Generate] Prompt:", fullPrompt.slice(0, 100) + "...");
     console.log("[Standalone Generate] Style:", style, "Angle:", angle);
 
-    // Check if we have a source image for img2img
-    if (sourceImage && sourceImage.startsWith("data:")) {
-      // Use SDXL img2img with source image
-      try {
-        const output = await replicate.run(
-          "stability-ai/sdxl:7762fd07cf82c948538e41f63f77d685e02b063e37e496e96eefd46c929f9bdc",
-          {
-            input: {
-              image: sourceImage,
-              prompt: fullPrompt,
-              negative_prompt: "blurry, low quality, distorted, deformed, ugly, bad anatomy",
-              num_inference_steps: 30,
-              guidance_scale: 7.5,
-              prompt_strength: 0.75,
-              width,
-              height,
-            },
-          }
-        );
+    try {
+      // FLUX 2 Pro input format
+      const input: Record<string, unknown> = {
+        prompt: fullPrompt,
+        aspect_ratio: getAspectRatio(width, height),
+        output_format: "webp",
+        output_quality: 90,
+        safety_tolerance: 2,
+      };
 
-        const imageUrl = Array.isArray(output) ? output[0] : output;
-
-        return NextResponse.json({
-          success: true,
-          imageUrl,
-          prompt: fullPrompt,
-          style,
-          angle,
-        });
-      } catch (replicateError) {
-        console.error("[Standalone Generate] Replicate error:", replicateError);
-        // Fall through to return source image on error
+      // Add source image for img2img if provided
+      if (sourceImage && sourceImage.startsWith("data:")) {
+        input.input_images = [sourceImage];
       }
-    } else {
-      // Use SDXL text2img
-      try {
-        const output = await replicate.run(
-          "stability-ai/sdxl:7762fd07cf82c948538e41f63f77d685e02b063e37e496e96eefd46c929f9bdc",
-          {
-            input: {
-              prompt: fullPrompt,
-              negative_prompt: "blurry, low quality, distorted, deformed, ugly, bad anatomy",
-              num_inference_steps: 30,
-              guidance_scale: 7.5,
-              width,
-              height,
-            },
-          }
-        );
 
-        const imageUrl = Array.isArray(output) ? output[0] : output;
-
-        return NextResponse.json({
-          success: true,
-          imageUrl,
-          prompt: fullPrompt,
-          style,
-          angle,
-        });
-      } catch (replicateError) {
-        console.error("[Standalone Generate] Replicate error:", replicateError);
-        // Return placeholder on error
-        return NextResponse.json({
-          success: false,
-          error: "Generation failed - API unavailable",
-          imageUrl: sourceImage || null, // Return source as fallback
-          prompt: fullPrompt,
-        });
+      // Use custom dimensions if aspect ratio is non-standard
+      if (input.aspect_ratio === "custom") {
+        input.aspect_ratio = "custom";
+        input.width = Math.min(width, 2048);
+        input.height = Math.min(height, 2048);
       }
+
+      const output = await replicate.run(IMAGE_MODEL, { input });
+
+      // FLUX 2 returns a single URL string or FileOutput
+      let imageUrl: string;
+      if (typeof output === "string") {
+        imageUrl = output;
+      } else if (Array.isArray(output) && typeof output[0] === "string") {
+        imageUrl = output[0];
+      } else if (output && typeof output === "object" && "url" in output) {
+        imageUrl = String((output as { url: unknown }).url);
+      } else if (output && typeof (output as { url: () => string }).url === "function") {
+        imageUrl = (output as { url: () => string }).url();
+      } else {
+        imageUrl = String(output);
+      }
+
+      return NextResponse.json({
+        success: true,
+        imageUrl,
+        prompt: fullPrompt,
+        style,
+        angle,
+        model: IMAGE_MODEL,
+      });
+    } catch (replicateError) {
+      console.error("[Standalone Generate] Replicate error:", replicateError);
+      return NextResponse.json({
+        success: false,
+        error: "Generation failed - API unavailable",
+        imageUrl: sourceImage || null,
+        prompt: fullPrompt,
+      });
     }
-
-    // Fallback if no generation happened
-    return NextResponse.json({
-      success: true,
-      imageUrl: sourceImage || null,
-      prompt: fullPrompt,
-      style,
-      angle,
-      note: "Mock generation - API not configured",
-    });
-
   } catch (error) {
     console.error("[Standalone Generate] Error:", error);
     return NextResponse.json(
