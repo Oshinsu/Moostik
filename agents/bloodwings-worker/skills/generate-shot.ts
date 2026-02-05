@@ -77,7 +77,7 @@ const PROVIDERS: Record<string, ProviderConfig> = {
     apiKey: process.env.REPLICATE_API_TOKEN || "",
     endpoint: "https://api.replicate.com/v1/predictions",
     models: {
-      image: "black-forest-labs/flux-2-pro",
+      image: "google/nano-banana-pro",
       video: "minimax/video-01-live",
     },
     limits: {
@@ -185,7 +185,7 @@ async function generateImageReplicate(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "black-forest-labs/flux-2-pro",
+        model: "google/nano-banana-pro",
         input: {
           prompt,
           aspect_ratio: config.width > config.height ? "16:9" : config.width < config.height ? "9:16" : "1:1",

@@ -120,7 +120,7 @@ async function testGeneration() {
     try {
       const startTime = Date.now();
       
-      const output = await replicate.run("black-forest-labs/flux-2-pro" as `${string}/${string}`, {
+      const output = await replicate.run("google/nano-banana-pro" as `${string}/${string}`, {
         input: {
           prompt: test.prompt,
           aspect_ratio: "16:9",

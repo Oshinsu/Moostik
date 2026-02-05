@@ -61,10 +61,12 @@ export const config = {
       // Lazy evaluation pour éviter les erreurs au démarrage
       return requireEnv("REPLICATE_API_TOKEN");
     },
-    /** Modèle principal pour la génération d'images (février 2026 SOTA) */
-    model: "black-forest-labs/flux-2-pro" as const,
-    /** Modèles image disponibles */
+    /** Modèle principal pour la génération d'images (Nano Banana Pro - Gemini 3 Pro, 12.1M runs, 14 refs) */
+    model: "google/nano-banana-pro" as const,
+    /** Modèles image disponibles (février 2026 SOTA) */
     imageModels: {
+      /** Nano Banana Pro - Google Gemini 3 Pro, 14 refs, texte multilingue, $0.15/image */
+      "nano-banana-pro": "google/nano-banana-pro",
       /** FLUX 2 Pro - Haute qualité, 8 images de référence, $0.015/run */
       "flux-2-pro": "black-forest-labs/flux-2-pro",
       /** FLUX 2 Max - Fidélité maximale, $0.04/run */

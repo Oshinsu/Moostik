@@ -5,8 +5,8 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-// Image model - FLUX 2 Pro (February 2026 SOTA)
-const IMAGE_MODEL = "black-forest-labs/flux-2-pro";
+// Image model - Nano Banana Pro (Google Gemini 3 Pro, 12.1M runs, 14 refs)
+const IMAGE_MODEL = "google/nano-banana-pro";
 
 // Style presets for MOOSTIK
 const STYLE_PROMPTS: Record<string, string> = {

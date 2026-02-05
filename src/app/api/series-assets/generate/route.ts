@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     // Build JsonMoostik from shot prompt
     const jsonMoostik = {
       meta: {
-        model_version: "flux-2-pro",
+        model_version: "nano-banana-2-pro",
         task_type: "cinematic_keyframe",
         project: "MOOSTIK_SERIES_ASSETS",
         asset_id: shot.id.toUpperCase(),

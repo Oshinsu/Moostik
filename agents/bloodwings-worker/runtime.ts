@@ -41,7 +41,7 @@ export interface GenerationTask {
 export type TaskStatus = "pending" | "processing" | "completed" | "failed" | "cancelled";
 
 export interface GenerationStyle {
-  model: "flux-2-pro" | "flux-2-max" | "imagen-4" | "flux-schnell" | "seedream-4.5";
+  model: "nano-banana-pro" | "flux-2-pro" | "flux-2-max" | "imagen-4" | "flux-schnell" | "seedream-4.5";
   aspectRatio: string;
   resolution: string;
   steps: number;
@@ -158,7 +158,7 @@ export class BloodwingsWorkerRuntime extends EventEmitter {
         prompt,
         referenceImages: options.referenceImages,
         style: {
-          model: "flux-2-pro",
+          model: "nano-banana-pro",
           aspectRatio: "21:9",
           resolution: "4096x1744",
           steps: 70,
@@ -344,7 +344,7 @@ export class BloodwingsWorkerRuntime extends EventEmitter {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        version: "black-forest-labs/flux-2-pro",
+        version: "google/nano-banana-pro",
         input: {
           prompt: fullPrompt,
           negative_prompt: task.input.style?.negativePrompt || "blurry, low quality, distorted",
@@ -458,7 +458,7 @@ export class BloodwingsWorkerRuntime extends EventEmitter {
   }
 
   private buildFullPrompt(basePrompt: string, style?: GenerationStyle): string {
-    const stylePrefix = style?.model === "flux-2-pro"
+    const stylePrefix = style?.model === "nano-banana-pro"
       ? "Pixar-style dark animation, cinematic lighting, microscopic scale, "
       : "";
 

@@ -46,7 +46,7 @@ const VALID_TASK_TYPES = [
   "ultra_cinematic_environment_keyframe",
 ] as const;
 
-const VALID_MODEL_VERSIONS = ["flux-2-pro", "flux-2-max", "imagen-4", "seedream-4.5", "ideogram-v3-turbo", "recraft-v3"] as const;
+const VALID_MODEL_VERSIONS = ["nano-banana-2-pro", "flux-2-pro", "flux-2-max", "imagen-4", "seedream-4.5", "ideogram-v3-turbo", "recraft-v3"] as const;
 
 // ============================================================================
 // VALIDATION FUNCTIONS

@@ -23,7 +23,7 @@ import type { Character, Location, StructuredPrompt } from "./types";
 export interface JsonStandardMeta {
   universeId: string;
   universeName: string;
-  model: string;                           // Ex: "flux-2-pro", "imagen-4"
+  model: string;                           // Ex: "nano-banana-pro", "flux-2-pro", "imagen-4"
   version: string;
   generatedAt: string;
 }
@@ -132,7 +132,7 @@ export class JsonStandardBuilder {
       meta: {
         universeId: universeConfig.meta.id,
         universeName: universeConfig.meta.name,
-        model: "flux-2-pro",
+        model: "nano-banana-pro",
         version: "1.0",
         generatedAt: new Date().toISOString(),
       },

@@ -255,7 +255,7 @@ function upgradePrompt(shot: any): any {
   // Ajouter meta si absent
   if (!prompt.meta) {
     prompt.meta = {
-      model_version: "flux-2-pro",
+      model_version: "nano-banana-2-pro",
       task_type: "cinematic_keyframe",
       project: "MOOSTIK_EP0",
       asset_id: shotId,
